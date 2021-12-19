@@ -8,7 +8,7 @@ The following is a collection od smart contracts for solidity that will help acc
 # Usage
 In your truffle project, import the appropriate smart contract in your new contract
 
-    imports "@pingleware/contracts/ExemptDebtOfferingBond.sol";
+    imports "@pingleware/contracts/contracts/debt/ExemptDebtOfferingBond.sol";
 
     contract MyExemptBond is ExemptDebtOfferingBond {
         constructor() public {
