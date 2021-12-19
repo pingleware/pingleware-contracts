@@ -33,7 +33,8 @@ contract ExemptDebtOffering {
   event eventTransferBond(address sender,address _from,address _to,uint256 class,uint256 nonce,uint256 _amount);
   event eventBurnBond(address sender,address _from,uint256 class,uint256 nonce,uint256 _amount);
 
-  constructor() public {
+  constructor()
+  {
     owner = msg.sender;
     _Symbol[0] = "SASH-USD Bond";
     _Fibonacci_number[0] = 8;

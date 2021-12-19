@@ -72,7 +72,8 @@ contract ExemptEquityOfferingRegA {
   event Bought(uint value);
   event Sold(uint value);
 
-  constructor() public {
+  constructor()
+  {
     _mint(owner, totalValueMax * 1 ether);
   }
 

@@ -74,7 +74,8 @@ contract ExemptEquityOfferingRegS {
     event Bought(uint value);
     event Sold(uint value);
 
-    constructor() public {
+    constructor()
+    {
         owner = msg.sender;
         addMinter(owner);
         _mint(owner, INITIAL_SUPPLY);

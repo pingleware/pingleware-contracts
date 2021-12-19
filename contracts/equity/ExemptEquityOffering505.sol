@@ -77,7 +77,8 @@ contract ExemptEquityOffering505 {
 
      uint private year = 52 weeks;
 
-    constructor() public {
+    constructor()
+    {
         owner = msg.sender;
         addMinter(owner);
         _mint(owner, INITIAL_SUPPLY);
@@ -587,8 +588,8 @@ contract ExemptEquityOffering505 {
         isVerifiedAddress(sender)
     {
         require(amount > 0, "You need to sell at least some tokens");
-        uint256 allowance = allowance(sender, address(this));
-        require(allowance >= amount, "Check the token allowance");
+        uint256 _allowance = allowance(sender, address(this));
+        require(_allowance >= amount, "Check the token allowance");
         transferFrom(sender, address(this), amount);
         Transaction memory trans = Transaction(sender, amount, block.timestamp);
         transactions[sender].push(trans);

@@ -16,7 +16,8 @@ import "./ExemptEquityOfferingRegA.sol";
 
 contract ExemptEquityOfferingAT1 is ExemptEquityOfferingRegA {
 
-  constructor() public {
+  constructor()
+  {
     name = "Regulation A Tier 1 Token";
     symbol = "TOKEN.AT1";
     owner = msg.sender;

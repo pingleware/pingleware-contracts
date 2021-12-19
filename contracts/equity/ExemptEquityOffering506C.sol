@@ -73,7 +73,8 @@ contract ExemptEquityOffering506C {
     event VerifiedAddressRemoved(address addr, address sender);
     event VerifiedAddressAdded(address addr, bytes32 hash, address sender);
 
-    constructor() public {
+    constructor()
+    {
         owner = msg.sender;
         transferagents[owner] = true;
         addMinter(owner);

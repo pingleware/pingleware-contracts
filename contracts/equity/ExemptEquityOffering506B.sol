@@ -88,7 +88,8 @@ contract ExemptEquityOffering506B {
 
     bool private restricted = true;
 
-    constructor() public {
+    constructor()
+    {
         owner = msg.sender;
         addMinter(owner);
         _mint(owner, INITIAL_SUPPLY);
@@ -568,24 +569,23 @@ contract ExemptEquityOffering506B {
         require(amountTobuy <= dexBalance, "Not enough tokens in the reserve");
         Transaction memory trans = Transaction(msg.sender, amountTobuy, block.timestamp);
         transactions[msg.sender].push(trans);
-        transfer(msg.sender, amountTobuy);
         emit Bought(amountTobuy);
+        transfer(msg.sender, amountTobuy);
     }
 
-    function sell(address payable sender, uint256 amount)
+    function sell(uint256 amount)
         public
         payable
         isActive
-        isVerifiedAddress(sender)
+        isVerifiedAddress(msg.sender)
     {
         require(amount > 0, "You need to sell at least some tokens");
-        uint256 allowance = allowance(sender, address(this));
-        require(allowance >= amount, "Check the token allowance");
-        transferFrom(sender, address(this), amount);
-        Transaction memory trans = Transaction(sender, amount, block.timestamp);
-        transactions[sender].push(trans);
-        sender.transfer(amount);
+        uint256 _allowance = allowance(msg.sender, address(this));
+        require(_allowance >= amount, "Check the token allowance");
+        Transaction memory trans = Transaction(msg.sender, amount, block.timestamp);
+        transactions[msg.sender].push(trans);
         emit Sold(amount);
+        transferFrom(msg.sender, address(this), amount);
     }
 
     // Internal

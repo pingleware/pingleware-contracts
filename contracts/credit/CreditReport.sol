@@ -58,7 +58,8 @@ contract CreditReport {
   event SubscriberNotified(address addr, string message);
   event ConsumerNotified(address addr, string message);
 
-  constructor() public {
+  constructor()
+  {
     owner = msg.sender;
     initialized = true;
     total_consumers = 0;

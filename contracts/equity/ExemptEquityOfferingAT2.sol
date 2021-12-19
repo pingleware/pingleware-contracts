@@ -14,7 +14,8 @@ pragma solidity >=0.4.22 <0.9.0;
 import "./ExemptEquityOfferingRegA.sol";
 
 contract ExemptEquityOfferingAT2 is ExemptEquityOfferingRegA {
-  constructor() public {
+  constructor()
+  {
     name = "Regulation A Tier 2 Token";
     symbol = "TOKEN.AT2";
     owner = msg.sender;

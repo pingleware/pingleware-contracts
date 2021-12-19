@@ -85,7 +85,8 @@ contract ExemptEquityOfferingRegC {
       /**
        * @dev Constructor that gives msg.sender all of existing tokens.
        */
-    constructor() public {
+    constructor()
+    {
         balances[msg.sender] = INITIAL_SUPPLY;
         _mint(msg.sender, INITIAL_SUPPLY);
     }

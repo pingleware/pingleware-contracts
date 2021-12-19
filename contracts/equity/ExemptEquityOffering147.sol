@@ -106,7 +106,8 @@ contract ExemptEquityOffering147 {
     event Bought(uint value);
     event Sold(uint value);
 
-    constructor() public {
+    constructor()
+    {
         contract_creation = block.timestamp;
         owner = msg.sender;
         addMinter(owner);
