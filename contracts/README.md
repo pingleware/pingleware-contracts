@@ -1,1 +1,0 @@
-# Smart Contracts for Solidity
