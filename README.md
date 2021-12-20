@@ -22,11 +22,11 @@ There are prebuilt smart contracts for Exempt Equity and Debt Offerings, a Credi
 
 # Release Schedule
 
-    Date        Version                 Notes
-  12/19/2021     1.0.0         Initial release with only ExemptEquityOffering506C contract implemented
-  12/19/2021     1.0.1         The remaining ExemptOffering contracts implemented with the exception of Employee Benefit Plan
-  12/19/2021     1.0.2         Employee Benefit Plan contract implemented
-  12/19/2021     1.0.3         General fixes and compiler warnings cleanup
+        Date        Version                 Notes
+    12/19/2021     1.0.0         Initial release with only ExemptEquityOffering506C contract implemented
+    12/19/2021     1.0.1         The remaining ExemptOffering contracts implemented with the exception of Employee Benefit Plan
+    12/19/2021     1.0.2         Employee Benefit Plan contract implemented
+    12/19/2021     1.0.3         General fixes and compiler warnings cleanup
 
 # State of the Project
 The project is currently in an alpha-beta state, which means that production use is not recommended. Production ready will be tagged as stable.
@@ -50,4 +50,3 @@ When this project reaches that stage, this project has matured to a level where 
 
     Patrick O. Ingle
     December 19, 2021
-    
