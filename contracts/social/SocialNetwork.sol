@@ -38,13 +38,18 @@ contract SocialNetwork {
 
     mapping (address => uint256) private users;
     mapping (address => string[]) private posts;
-    address[] private posts_keys;
+    address[] private _posters;
     mapping (address => Comment[]) private comments;
     address[] private comment_keys;
-    mapping (address => LikesDislikes[]) private likes;
-    mapping (address => LikesDislikes[]) private dislikes;
+    mapping (address => mapping(address => uint256)) private likes;
+    mapping (address => mapping(address => uint256)) private dislikes;
     mapping (address => UserMeta) private user_meta;
     mapping (address => uint256) private balances;
+    mapping (address => address) private followers;
+    mapping (address => mapping(address => bool)) private friend_request;
+    mapping (address => address) private friends;
+
+    address[] private _friends;
 
     address[] private _users;
 
@@ -60,6 +65,13 @@ contract SocialNetwork {
 
     event Transfer(address sender,address recipient,uint256 amount);
     event Approval(address sender,address spender,uint256 amount);
+
+    event CommentAdded(address sender,address user,string comment);
+    event AdvertiserAdded(address sender);
+    event UserAdded(address sender);
+    event PostAdded(address sender, string message);
+    event FollowerAdded(address sender, address follower);
+    event FriendRequestAdded(address sender, address user);
 
   constructor()
     payable
@@ -187,12 +199,12 @@ contract SocialNetwork {
 
         if (balances[sender] >= amount && allowed[sender][msg.sender] >= amount && amount > 0 &&
         balances[recipient] + amount > balances[recipient]) {
-        balances[sender] -= amount;
-        balances[recipient] += amount;
-        emit Transfer(sender, recipient, amount);
-        return true;
+            balances[sender] -= amount;
+            balances[recipient] += amount;
+            emit Transfer(sender, recipient, amount);
+            return true;
         } else {
-        return false;
+            return false;
         }
     }
 
@@ -201,14 +213,13 @@ contract SocialNetwork {
         payable
         addressValid
     {
-        //require(allowance(msg.sender, address(this)) >= 0.001 ether, "registration cost 0.001 ether");
-        //require(transferFrom(msg.sender, address(this),  0.001 ether),"");
         require(users[msg.sender] == 0,"user already exists");
-        if (msg.sender != _owner) {
-        transferFrom(msg.sender, address(this),  0.001 ether);
-        }
         users[msg.sender] = 1;
         _users.push(msg.sender);
+        emit UserAdded(msg.sender);
+        if (msg.sender != _owner) {
+            transferFrom(msg.sender, address(this),  0.001 ether);
+        }
     }
 
     function addPostByOwner(string memory message)
@@ -225,17 +236,18 @@ contract SocialNetwork {
         returns (uint256)
     {
         bool found = false;
-        if (posts_keys.length > 0) {
-        for (uint i = 0; i < posts_keys.length; i++) {
-            if (posts_keys[i] == ZERO_ADDRESS) {
-            found = true;
+        if (_posters.length > 0) {
+            for (uint i = 0; i < _posters.length; i++) {
+                if (_posters[i] == ZERO_ADDRESS) {
+                    found = true;
+                }
             }
         }
-        }
         if (!found) {
-        posts_keys.push(msg.sender);
+            _posters.push(msg.sender);
         }
         posts[msg.sender].push(message);
+        emit PostAdded(msg.sender, message);
         return posts[msg.sender].length - 1;
     }
 
@@ -264,15 +276,15 @@ contract SocialNetwork {
         returns (string memory)
     {
         string memory output = "";
-        uint256 total = posts_keys.length;
+        uint256 total = _posters.length;
         for (uint i = 0; i < total; i++) {
-        address key = posts_keys[i];
-        string[] memory post = posts[key];
-        if (post.length > 0) {
-            for (uint l = 0; l < post.length; l++) {
-            output = string(abi.encodePacked(output, post[l]));
+            address key = _posters[i];
+            string[] memory post = posts[key];
+            if (post.length > 0) {
+                for (uint l = 0; l < post.length; l++) {
+                    output = string(abi.encodePacked(output, post[l]));
+                }
             }
-        }
         }
         return output;
     }
@@ -286,18 +298,19 @@ contract SocialNetwork {
     {
         bool found = false;
         if (comment_keys.length > 0) {
-        for (uint i = 0; i < comment_keys.length; i++) {
-            if (comment_keys[i] == poster) {
-            found = true;
+            for (uint i = 0; i < comment_keys.length; i++) {
+                if (comment_keys[i] == poster) {
+                found = true;
+                }
             }
         }
-        }
         if (!found) {
-        comment_keys.push(poster);
+            comment_keys.push(poster);
         }
         address comment_author = msg.sender;
         Comment memory comment = Comment(comment_author, index, message);
         comments[poster].push(comment);
+        emit CommentAdded(msg.sender,poster,message);
     }
 
     function getCommentTotal(address poster)
@@ -328,9 +341,9 @@ contract SocialNetwork {
         string memory output = "";
         uint count = comments[poster].length;
         if (count > 0) {
-        for(uint i = 0; i < count; i++) {
-            output = string(abi.encodePacked(output, "[", comments[poster][i].post_index,comments[poster][i].comment_author,comments[poster][i].message, "]"));
-        }
+            for(uint i = 0; i < count; i++) {
+                output = string(abi.encodePacked(output, "[", comments[poster][i].post_index,comments[poster][i].comment_author,comments[poster][i].message, "]"));
+            }
         }
         return output;
     }
@@ -378,6 +391,7 @@ contract SocialNetwork {
     {
         advertisers[msg.sender] = 1;
         _advertisers.push(msg.sender);
+        emit AdvertiserAdded(msg.sender);
     }
 
     function newAdvertisement(string memory message)
@@ -406,6 +420,31 @@ contract SocialNetwork {
         return _users;
     }
 
+    function getTotalUsers()
+        public
+        view
+        returns (uint256)
+    {
+        return _users.length;
+    }
+
+    function getPosters()
+        public
+        view
+        returns (address[] memory)
+    {
+        return _posters;
+    }
+
+    function getTotalPosters()
+        public
+        view
+        returns (uint256)
+    {
+        return _posters.length;
+    }
+
+
     /**
     * a post may contain many likes, one -> many
     * one like per user per post
@@ -416,8 +455,7 @@ contract SocialNetwork {
         isUser(user)
         isUser(poster)
     {
-        LikesDislikes memory like = LikesDislikes(post, poster, user);
-        likes[user].push(like);
+        likes[user][poster] = post;
     }
 
     function setDislike(uint256 post, address poster, address user)
@@ -426,28 +464,113 @@ contract SocialNetwork {
         isUser(user)
         isUser(poster)
     {
-        LikesDislikes memory like = LikesDislikes(post, poster, user);
-        dislikes[user].push(like);
+        dislikes[user][poster] = post;
     }
 
-    /*
-    function getLikes(address user)
+    function getLikes(address user, address poster)
         public
         view
         isUser(user)
-        returns (LikesDislikes[] memory)
+        isUser(poster)
+        returns (uint256)
     {
-        return likes[user];
+        return likes[user][poster];
     }
 
-    function getDislikes(address user)
+    function getDislikes(address user, address poster)
         public
         view
         isUser(user)
-        returns (LikesDislikes[] memory)
+        isUser(poster)
+        returns (uint256)
     {
-        return dislikes[user];
+        return dislikes[user][poster];
     }
-    */
 
+    /**
+     * Followers
+     */
+    function addFollower(address user)
+        public
+        payable
+        isUser(msg.sender)
+        isUser(user)
+    {
+        followers[msg.sender] = user;
+        emit FollowerAdded(msg.sender, user);
+    }
+
+    function getFollowers()
+        public
+        view
+        isUser(msg.sender)
+        returns (address)
+    {
+        return followers[msg.sender];
+    }
+
+    // Friend Request
+    function addFriendRequest(address user)
+        public
+        payable
+        isUser(msg.sender)
+        isUser(user)
+    {
+        bool found1 = false;
+        bool found2 = false;
+        for (uint i = 0; i < _friends.length; i++) {
+            if (_friends[i] == user) {
+                found1 = true;
+            }
+            if (_friends[1] == msg.sender) {
+                found2 = true;
+            }
+        }
+        if (found1) {
+            _friends.push(user);
+        }
+        if (found2) {
+            _friends.push(msg.sender);
+        }
+        friend_request[user][msg.sender] = true;
+        friend_request[msg.sender][user] = true;
+        emit FriendRequestAdded(msg.sender,user);
+    }
+
+    function getTotalFriendRequest()
+        public
+        view
+        returns (uint256)
+    {
+        uint total = 0;
+        for (uint i = 0; i < _friends.length; i++) {
+            if (friend_request[msg.sender][_friends[i]]) {
+                total++;
+            }
+        }
+        return total;
+    }
+
+    function getFriends()
+        public
+        view
+        returns (address[] memory)
+    {
+        return _friends;
+    }
+
+    function getFriendRequest()
+        public
+        view
+        isUser(msg.sender)
+        returns (string memory)
+    {
+        string memory output = "";
+        for (uint i = 0; i < _friends.length; i++) {
+            if (friend_request[msg.sender][_friends[i]]) {
+                output = string(abi.encodePacked(_friends[1]));
+            }
+        }
+        return output;
+    }
 }
