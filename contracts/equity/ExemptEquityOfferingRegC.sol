@@ -21,7 +21,9 @@ pragma solidity >=0.4.22 <0.9.0;
 
 // An example of a crowdfunding token at https://github.com/JincorTech/ico/blob/master/contracts/JincorToken.sol
 
-contract ExemptEquityOfferingRegC {
+import "../Version.sol";
+
+contract ExemptEquityOfferingRegC is Version {
     string public constant name = "Crowdfunding Token";
     string public constant symbol = "TOKEN.CF";
     uint8 public constant decimals = 0;

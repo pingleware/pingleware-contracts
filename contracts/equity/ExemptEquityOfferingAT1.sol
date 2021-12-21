@@ -12,9 +12,10 @@ pragma solidity >=0.4.22 <0.9.0;
  * Companies offering securities under Tier 1 do not have ongoing reporting requirements other than a final report on Form 1-Z on the status of the offering.
  */
 
+import "../Version.sol";
 import "./ExemptEquityOfferingRegA.sol";
 
-contract ExemptEquityOfferingAT1 is ExemptEquityOfferingRegA {
+contract ExemptEquityOfferingAT1 is Version, ExemptEquityOfferingRegA {
 
   constructor()
   {

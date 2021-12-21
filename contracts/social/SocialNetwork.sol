@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-contract SocialNetwork {
-    string constant public VERSION = "1.0.4";
+import "../Version.sol";
+
+contract SocialNetwork is Version {
 
     string public name;
     string public symbol;

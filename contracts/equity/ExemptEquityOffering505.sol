@@ -12,7 +12,9 @@ pragma solidity >=0.4.22 <0.9.0;
  * to accredited investors must be provided to non-accredited investors.
  */
 
-contract ExemptEquityOffering505 {
+import "../Version.sol";
+
+contract ExemptEquityOffering505 is Version {
     string public constant name = "Rule 505 Token";
     string public constant symbol = "TOKEN.505";
     uint8 public constant decimals = 0;

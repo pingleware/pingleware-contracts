@@ -11,7 +11,9 @@ pragma solidity >=0.4.22 <0.9.0;
  * being offered under this rule will be restricted.
  */
 
-contract ExemptEquityOffering504 {
+import "../Version.sol";
+
+contract ExemptEquityOffering504 is Version {
     string public constant name = "Rule 504 Token";
     string public constant symbol = "TOKEN.504";
     uint8 public constant decimals = 0;

@@ -16,7 +16,9 @@ pragma solidity >=0.4.22 <0.9.0;
  * or qualify their offerings with state securities regulators.
  */
 
-contract ExemptEquityOfferingRegA {
+import "../Version.sol";
+
+contract ExemptEquityOfferingRegA is Version {
   string public name;
   string public symbol;
   uint8 public constant decimals = 0;

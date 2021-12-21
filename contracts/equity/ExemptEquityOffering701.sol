@@ -13,7 +13,9 @@ pragma solidity >=0.4.22 <0.9.0;
  * are registered or the holders can rely on an exemption
  */
 
-contract ExemptEquityOffering701 {
+import "../Version.sol";
+
+contract ExemptEquityOffering701 is Version {
   string public constant name = "Rule 701 Token";
   string public constant symbol = "TOKEN.701";
   uint8 public constant decimals = 0;

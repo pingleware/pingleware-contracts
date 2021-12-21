@@ -28,7 +28,9 @@ pragma solidity >=0.4.22 <0.9.0;
  *
  */
 
-contract ExemptEquityOffering4A2 {
+import "../Version.sol";
+
+contract ExemptEquityOffering4A2 is Version {
     string public constant name = "Rule 4(a)(2) Token";
     string public constant symbol = "TOKEN.4A2";
     uint8 public constant decimals = 0;

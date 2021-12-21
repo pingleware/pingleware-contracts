@@ -11,9 +11,10 @@ pragma solidity >=0.4.22 <0.9.0;
  * ongoing reporting requirements in the form of an annual report on Form 1-K, a semiannual report on Form 1-SA and a current report on Form 1-U.
  */
 
+import "../Version.sol";
 import "./ExemptEquityOfferingRegA.sol";
 
-contract ExemptEquityOfferingAT2 is ExemptEquityOfferingRegA {
+contract ExemptEquityOfferingAT2 is Version, ExemptEquityOfferingRegA {
   constructor()
   {
     name = "Regulation A Tier 2 Token";

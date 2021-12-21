@@ -45,7 +45,9 @@ pragma solidity >=0.4.22 <0.9.0;
 * may be offered to the residents of both the state of Delaware and Florida.
 */
 
-contract ExemptEquityOffering147 {
+import "../Version.sol";
+
+contract ExemptEquityOffering147 is Version {
     string public constant name = "Rule 147 Token";
     string public constant symbol = "TOKEN.147";
     uint8 public constant decimals = 0;

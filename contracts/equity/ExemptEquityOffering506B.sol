@@ -27,8 +27,9 @@ pragma solidity >=0.4.22 <0.9.0;
  * after the first sale of securities in the offering. Although the Securities Act provides a federal preemption from state registration and qualification
  * under Rule 506(b), the states still have authority to require notice filings and collect state fees.
  */
+import "../Version.sol";
 
-contract ExemptEquityOffering506B {
+contract ExemptEquityOffering506B is Version {
     string public constant name = "Rule 506(b) Token";
     string public constant symbol = "TOKEN.506B";
     uint8 public constant decimals = 0;

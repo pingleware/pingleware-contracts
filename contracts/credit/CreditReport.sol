@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
+import "../Version.sol";
 
-contract CreditReport {
+contract CreditReport is Version {
   bytes32 constant private ZERO_BYTES = bytes32(0);
   address constant private ZERO_ADDRESS = address(0);
 

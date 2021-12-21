@@ -11,8 +11,9 @@ pragma solidity >=0.4.22 <0.9.0;
  * Regulation D 504(c) and Regulation S are typically conducted simultaneously.
  *
  */
+import "../Version.sol";
 
-contract ExemptEquityOfferingRegS {
+contract ExemptEquityOfferingRegS is Version {
     string public constant name = "Regulation S Token";
     string public constant symbol = "TOKEN.S";
     uint8 public constant decimals = 0;

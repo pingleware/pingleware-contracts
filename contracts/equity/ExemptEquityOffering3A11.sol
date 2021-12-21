@@ -23,7 +23,9 @@ pragma solidity >=0.4.22 <0.9.0;
  * of the Securities Act if the offering does not qualify for another exemption.
  */
 
-contract ExemptEquityOffering3A11 {
+import "../Version.sol";
+
+contract ExemptEquityOffering3A11 is Version {
     string public constant name = "Rule 3(a)(11) Token";
     string public constant symbol = "TOKEN.3A11";
     uint8 public constant decimals = 0;
