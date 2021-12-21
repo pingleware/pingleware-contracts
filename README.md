@@ -35,13 +35,14 @@ NPMJS.COM repository permits the tagging of releases as stable. See the workflow
 ## Workflow
 
     1. Create the contracts for each exempt offering in accordance with SEC rules; complete the Credit Report contract in compliance with the FCRA; complete the Social Network contract that support community driven choice.
-    2. Implement a DAPP using HTML, CSS, and JavaScript (jQuery and vanilla - no other JS frameworks) that connect to each contract deployed on a local truffle-ganache configuration.
-    3. Deploy on an ethereum testnet for further testing.
-    4. Create a private placement memorandum with a qualified attorney review.
-    5. File the appropriate exempt offering with the Security and Exchange Commission (SEC) via EDGAR.
-    6. Deploy the contract on an ethereum mainnet.
-    7. Contact preselect accredited investors for participation.
-    8. Tag this project as stable.
+    2. Test the contracts on remix.ethereum.org to fix implementation issues? To import a contract from github.com into remix, naivgate to the desired contract and press the view raw button, no copy and paste the URL of the raw file view.
+    3. Implement a DAPP using HTML, CSS, and JavaScript (jQuery and vanilla - no other JS frameworks) that connect to each contract deployed on a local truffle-ganache configuration.
+    4. Deploy on an ethereum testnet for further testing and public preview.
+    5. Create a private placement memorandum with a qualified attorney review.
+    6. File the appropriate exempt offering with the Security and Exchange Commission (SEC) via EDGAR.
+    7. Deploy the contract on an ethereum mainnet.
+    8. Contact preselect accredited investors for participation.
+    9. Tag this project as stable.
 
 # End-of-Life Doctrine
 When a piece of software is useful, there should never be an EOL doctrine. The intention for this application is to achieve immoratlity ;).
