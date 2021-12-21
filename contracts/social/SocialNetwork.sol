@@ -18,6 +18,12 @@ contract SocialNetwork is Version {
     address public _owner;
     bool private initialized;
 
+    struct Post {
+        uint256 epoch;
+        bool    visible;
+        string  content;
+    }
+
     struct Comment {
         address comment_author;
         uint256 post_index;
@@ -36,6 +42,8 @@ contract SocialNetwork is Version {
         address poster;
         address user;
     }
+
+    mapping (address => Post[]) private postsV2;
 
     mapping (address => uint256) private users;
     mapping (address => string[]) private posts;
@@ -221,6 +229,33 @@ contract SocialNetwork is Version {
         if (msg.sender != _owner) {
             transferFrom(msg.sender, address(this),  0.001 ether);
         }
+    }
+
+    function addPostv2(uint256 epoch,bool visible,string memory content)
+        public
+        payable
+        isUser(msg.sender)
+    {
+        Post memory _post = Post(epoch,visible,content);
+        postsV2[msg.sender].push(_post);
+    }
+
+    function getPostsv2()
+        public
+        view
+        isUser(msg.sender)
+        returns (Post[] memory)
+    {
+        return postsV2[msg.sender];
+    }
+
+    function getTotalPostsv2()
+        public
+        view
+        isUser(msg.sender)
+        returns (uint256)
+    {
+        return postsV2[msg.sender].length;
     }
 
     function addPostByOwner(string memory message)
