@@ -31,6 +31,7 @@ contract SocialNetwork is Version {
     }
 
     struct UserMeta {
+        string fullname;
         string profession;
         string location;
         string dob;
@@ -352,71 +353,51 @@ contract SocialNetwork is Version {
     function getCommentTotal(address poster)
         public
         view
+        isUser(poster)
         returns (uint256)
     {
         return comments[poster].length;
     }
 
-    function getComment(address poster, uint256 index)
+    function getComments()
         public
         view
         addressValid
         isUser(msg.sender)
-        returns (string memory)
+        returns (Comment[] memory)
     {
-        return string(abi.encodePacked(comments[poster][index].post_index,comments[poster][index].comment_author,comments[poster][index].message));
+        return comments[msg.sender];
     }
 
     function getCommentsForPoster(address poster)
         public
         view
+        onlyOwner
         addressValid
-        isUser(msg.sender)
-        returns (string memory)
+        isUser(poster)
+        returns (Comment[] memory)
     {
-        string memory output = "";
-        uint count = comments[poster].length;
-        if (count > 0) {
-            for(uint i = 0; i < count; i++) {
-                output = string(abi.encodePacked(output, "[", comments[poster][i].post_index,comments[poster][i].comment_author,comments[poster][i].message, "]"));
-            }
-        }
-        return output;
+        return comments[poster];
     }
 
-    function getAllComments()
-        public
-        view
-        onlyOwner
-        returns (string memory)
-    {
-        string memory output = "";
-        uint total = comment_keys.length;
-        if (total > 0) {
-        for (uint i = 0; i < total; i++) {
-            address poster = comment_keys[i];
-            uint count = comments[poster].length;
-            if (count > 0) {
-            output = string(abi.encodePacked(output, "{", poster, ":"));
-            for (uint j = 0; j < count; j++) {
-                output = string(abi.encodePacked(output, "[", comments[poster][j].post_index,comments[poster][j].comment_author,comments[poster][j].message, "]"));
-            }
-            output = string(abi.encodePacked(output,"}"));
-            }
-        }
-        }
-        return output;
-    }
 
     /**
     * interests is comma dellimited string, e.g. "girls,technology,stage plays"
     */
-    function updateUserMeta(string memory profession, string memory location, string memory dob, string memory interests)
+    function updateUserMeta(string memory fullname, string memory profession, string memory location, string memory dob, string memory interests)
         public
         payable
     {
-        UserMeta memory meta = UserMeta(profession, location, dob, interests);
+        UserMeta memory meta = UserMeta(fullname, profession, location, dob, interests);
         user_meta[msg.sender] = meta;
+    }
+
+    function getUserMeta()
+        public
+        view
+        returns (UserMeta memory)
+    {
+        return user_meta[msg.sender];
     }
 
     // Add a new advertiser

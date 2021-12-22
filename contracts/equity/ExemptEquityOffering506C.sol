@@ -16,23 +16,28 @@ pragma solidity >=0.4.22 <0.9.0;
  * after the first sale of securities in the offering. Although the Securities Act provides a federal preemption from state registration and qualification under
  * Rule 506(c), the states still have authority to require notice filings and collect state fees.
  */
+ 
 import "../Version.sol";
 
 contract ExemptEquityOffering506C is Version {
-    string public constant name = "Rule 506(c) Token";
-    string public constant symbol = "TOKEN.506C";
+    string public name = "Rule 506(c) Token";
+    string public symbol = "TOKEN.506C";
     uint8 public constant decimals = 0;
-    uint256 public totalSupply = 0;
+    uint256 public sharesOustanding = 0;
+    uint256 public marketCap = 0;
+
+    address public owner;
 
     uint256 public constant negative = type(uint256).max;
 
-    uint public constant INITIAL_SUPPLY = 100000 * 1 ether;
+    uint public constant INITIAL_SUPPLY = 100000;
 
     bytes32 constant private ZERO_BYTES = bytes32(0);
     address constant private ZERO_ADDRESS = address(0);
 
 
-    mapping(address => bytes32) private verified;
+    mapping(address => string) private verified;
+    address[] public _verified;
     mapping(address => address) private cancellations;
     mapping(address => uint256) private holderIndices;
     mapping(address => uint256) public  balances;
@@ -49,7 +54,6 @@ contract ExemptEquityOffering506C is Version {
 
     mapping(address => Transaction[]) public transactions;
 
-    address private owner;
 
     address[] private shareholders;
 
@@ -60,7 +64,7 @@ contract ExemptEquityOffering506C is Version {
 
     uint private year = 52 weeks;
 
-    event Bought(uint value);
+    event Bought(address sender, uint256 value, uint256 epoch);
     event Sold(uint value);
 
     event Transfer(address addr, uint256 amount);
@@ -70,15 +74,17 @@ contract ExemptEquityOffering506C is Version {
     event MinterAdded(address addr);
     event Minted(address addr, uint256 amount);
     event VerifiedAddressSuperseded(address addr1,address addr2,address addr3);
-    event VerifiedAddressUpdated(address addr, bytes32 oldhash, bytes32 hash, address sender);
+    event VerifiedAddressUpdated(address addr, string oldhash, string hash, address sender);
     event VerifiedAddressRemoved(address addr, address sender);
-    event VerifiedAddressAdded(address addr, bytes32 hash, address sender);
+    event VerifiedAddressAdded(address addr, string hash, address sender);
 
     constructor()
+        payable
     {
         owner = msg.sender;
         transferagents[owner] = true;
         addMinter(owner);
+        addTransferAgent(owner);
         _mint(owner, INITIAL_SUPPLY);
     }
 
@@ -98,22 +104,22 @@ contract ExemptEquityOffering506C is Version {
     }
 
     modifier isVerifiedAddress(address addr) {
-        require(verified[addr] != ZERO_BYTES, "");
+        require(bytes(verified[addr]).length > 0, "investor has not been verified as an accredited investor");
         _;
     }
 
     modifier isShareholder(address addr) {
-        require(holderIndices[addr] != 0, "");
+        require(holderIndices[addr] != 0, "investor is not a shareholder");
         _;
     }
 
     modifier isNotShareholder(address addr) {
-        require(holderIndices[addr] == 0, "");
+        require(holderIndices[addr] == 0, "investor is a shareholder");
         _;
     }
 
     modifier isNotCancelled(address addr) {
-        require(cancellations[addr] == ZERO_ADDRESS, "");
+        require(cancellations[addr] == ZERO_ADDRESS, "investor has not cancelled");
         _;
     }
 
@@ -255,7 +261,7 @@ contract ExemptEquityOffering506C is Version {
         view
         returns (address)
     {
-        require(index < shareholders.length, "");
+        require(index < shareholders.length, "holderAt out of bounds");
         return shareholders[index];
     }
 
@@ -267,15 +273,16 @@ contract ExemptEquityOffering506C is Version {
      *  @param addr The address of the person represented by the supplied hash.
      *  @param hash A cryptographic hash of the address holder's verified information.
      */
-    function addVerified(address addr, bytes32 hash)
+    function addVerified(address addr, string memory hash)
         public
         onlyTransferAgent
         isNotCancelled(addr)
     {
-        require(addr != ZERO_ADDRESS, "");
-        require(hash != ZERO_BYTES, "");
-        require(verified[addr] == ZERO_BYTES, "");
+        require(addr != ZERO_ADDRESS, "(addVerified) - address is missing");
+        require(bytes(hash).length != 0, "(addVerified) - hash is missing");
+        require(bytes(verified[addr]).length ==  0, "(addVerified) - investor already verified");
         verified[addr] = hash;
+        _verified.push(addr);
         emit VerifiedAddressAdded(addr, hash, msg.sender);
     }
 
@@ -291,8 +298,8 @@ contract ExemptEquityOffering506C is Version {
         onlyTransferAgent
     {
         require(addr.balance == 0, "account balance is not zero");
-        if (verified[addr] != ZERO_BYTES) {
-            verified[addr] = ZERO_BYTES;
+        if (bytes(verified[addr]).length != 0) {
+            delete verified[addr];
             emit VerifiedAddressRemoved(addr, msg.sender);
         }
     }
@@ -307,14 +314,14 @@ contract ExemptEquityOffering506C is Version {
      *  @param addr The verified address of the person represented by the supplied hash.
      *  @param hash A new cryptographic hash of the address holder's updated verified information.
      */
-    function updateVerified(address addr, bytes32 hash)
+    function updateVerified(address addr, string memory hash)
         public
         onlyTransferAgent
         isVerifiedAddress(addr)
     {
-        require(hash != ZERO_BYTES, "");
-        bytes32 oldHash = verified[addr];
-        if (oldHash != hash) {
+        require(bytes(hash).length != 0, "(updateVerified) - hash is zero");
+        string memory oldHash = verified[addr];
+        if (keccak256(abi.encodePacked((oldHash))) != keccak256(abi.encodePacked((hash)))) {
             verified[addr] = hash;
             emit VerifiedAddressUpdated(addr, oldHash, hash, msg.sender);
         }
@@ -340,7 +347,7 @@ contract ExemptEquityOffering506C is Version {
     {
         // replace the original address in the shareholders array
         // and update all the associated mappings
-        verified[original] = ZERO_BYTES;
+        verified[original] = "";
         cancellations[original] = replacement;
         uint256 holderIndex = holderIndices[original] - 1;
         shareholders[holderIndex] = replacement;
@@ -409,7 +416,7 @@ contract ExemptEquityOffering506C is Version {
         view
         returns (bool)
     {
-        return verified[addr] != ZERO_BYTES;
+        return bytes(verified[addr]).length > 0;
     }
 
     /**
@@ -439,7 +446,7 @@ contract ExemptEquityOffering506C is Version {
         if (addr == ZERO_ADDRESS) {
             return false;
         }
-        return verified[addr] == hash;
+        return  keccak256(abi.encodePacked((verified[addr]))) == keccak256(abi.encodePacked((hash)));
     }
 
     /**
@@ -531,20 +538,18 @@ contract ExemptEquityOffering506C is Version {
         holderIndices[addr] = 0;
     }
 
-    function buy()
+    function buy(uint256 amount, uint256 epoch)
         public
         payable
         isActive
         isVerifiedAddress(msg.sender)
     {
-        uint256 amountTobuy = msg.value;
-        uint256 dexBalance = balanceOf(address(this));
-        require(amountTobuy > 0, "You need to send some ether");
-        require(amountTobuy <= dexBalance, "Not enough tokens in the reserve");
-        Transaction memory trans = Transaction(msg.sender, amountTobuy, block.timestamp);
+        require(amount > 0, "You need to send some ether");
+        require(amount <= sharesOustanding, "Not enough shares in the reserve");
+        Transaction memory trans = Transaction(msg.sender, amount, epoch);
         transactions[msg.sender].push(trans);
-        transfer(msg.sender, amountTobuy);
-        emit Bought(amountTobuy);
+        transfer(msg.sender, amount);
+        emit Bought(msg.sender,amount,epoch);
     }
 
     function sell(address payable sender,uint256 amount)
@@ -569,7 +574,7 @@ contract ExemptEquityOffering506C is Version {
       internal
       returns (bool)
     {
-      require(amount <= totalSupply, "exceeds total supply");
+      require(amount <= INITIAL_SUPPLY, "exceeds total supply");
       balances[addr] += amount;
       emit Minted(addr, amount);
       return true;
