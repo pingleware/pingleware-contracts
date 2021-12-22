@@ -28,6 +28,8 @@ When using remix.ethereum.org, you can import directly from github.com
         }
     }
 
+# REMIX Webapp
+The remix desktop was rebuilt as a webapp because I found the straight-browser version to become slow and non-responsive. The webapp version can be downloaded from https://github.com/pingleware/remix-desktop. You should try installing the official desktop version from the Remix Team at https://github.com/ethereum/remix-desktop. If the application will no launch, then download the webapp version.
 
 # What's included?
 There are prebuilt smart contracts for Exempt Equity and Debt Offerings, a Credit Report and a Social network. Before launching an exempt equity or debt offering you are required to submit the appropriate form to the Security and Exchange Commission as well as to have a Private Placement Memorandum. Using a DAPP or decentralized application on the IPFS or interplanetary file system, to maintain KYC, AML and accredied investor vetting compliance for your restricted securities.
