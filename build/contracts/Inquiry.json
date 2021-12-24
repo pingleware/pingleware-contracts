@@ -1,0 +1,813 @@
+{
+  "contractName": "Inquiry",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/credit/Inquiry.sol\":\"Inquiry\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/credit/Inquiry.sol\":{\"keccak256\":\"0x0e141c70b6b48fd5037f7870c6b76af3a12232f91d716615b60700bff6322fe9\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://8f5292459c1fffd040167fdc1b0b61500ad215050f86ff75835fda3e0db7b8bf\",\"dweb:/ipfs/QmdJkMvb9Yk2BW7nFkx2p7dHVg24ACrQA16Jm63s7npdwm\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220e8159b6f140d4357ae82a0a1da536dafbaef507e604f13824352791a5eda76c064736f6c634300080a0033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220e8159b6f140d4357ae82a0a1da536dafbaef507e604f13824352791a5eda76c064736f6c634300080a0033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "75:410:14:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "75:410:14:-:0;;;;;;;;",
+  "source": "// SPDX-License-Identifier: CC-BY-4.0\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\nlibrary Inquiry {\r\n    struct Inquiry {\r\n        address subscriber;\r\n        uint256 reqdate; // epoch timestamp\r\n    }\r\n\r\n    struct InquiryStorage {\r\n        mapping(address => Inquiry[]) inquiries;\r\n    }\r\n\r\n    function inquiryStorage() internal pure returns (InquiryStorage storage ds)\r\n    {\r\n        bytes32 position = keccak256(\"inquiry.storage\");\r\n        assembly { ds.slot := position }\r\n    }\r\n\r\n}",
+  "sourcePath": "G:\\projects\\pingleware-contracts\\contracts\\credit\\Inquiry.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/credit/Inquiry.sol",
+    "exportedSymbols": {
+      "Inquiry": [
+        2577
+      ]
+    },
+    "id": 2578,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2550,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:32:14"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Inquiry",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 2577,
+        "linearizedBaseContracts": [
+          2577
+        ],
+        "name": "Inquiry",
+        "nameLocation": "83:7:14",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Inquiry.Inquiry",
+            "id": 2555,
+            "members": [
+              {
+                "constant": false,
+                "id": 2552,
+                "mutability": "mutable",
+                "name": "subscriber",
+                "nameLocation": "132:10:14",
+                "nodeType": "VariableDeclaration",
+                "scope": 2555,
+                "src": "124:18:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 2551,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "124:7:14",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2554,
+                "mutability": "mutable",
+                "name": "reqdate",
+                "nameLocation": "161:7:14",
+                "nodeType": "VariableDeclaration",
+                "scope": 2555,
+                "src": "153:15:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2553,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "153:7:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Inquiry",
+            "nameLocation": "105:7:14",
+            "nodeType": "StructDefinition",
+            "scope": 2577,
+            "src": "98:97:14",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Inquiry.InquiryStorage",
+            "id": 2562,
+            "members": [
+              {
+                "constant": false,
+                "id": 2561,
+                "mutability": "mutable",
+                "name": "inquiries",
+                "nameLocation": "266:9:14",
+                "nodeType": "VariableDeclaration",
+                "scope": 2562,
+                "src": "236:39:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Inquiry_$2555_storage_$dyn_storage_$",
+                  "typeString": "mapping(address => struct Inquiry.Inquiry[])"
+                },
+                "typeName": {
+                  "id": 2560,
+                  "keyType": {
+                    "id": 2556,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "244:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "236:29:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Inquiry_$2555_storage_$dyn_storage_$",
+                    "typeString": "mapping(address => struct Inquiry.Inquiry[])"
+                  },
+                  "valueType": {
+                    "baseType": {
+                      "id": 2558,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 2557,
+                        "name": "Inquiry",
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 2555,
+                        "src": "255:7:14"
+                      },
+                      "referencedDeclaration": 2555,
+                      "src": "255:7:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Inquiry_$2555_storage_ptr",
+                        "typeString": "struct Inquiry.Inquiry"
+                      }
+                    },
+                    "id": 2559,
+                    "nodeType": "ArrayTypeName",
+                    "src": "255:9:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Inquiry_$2555_storage_$dyn_storage_ptr",
+                      "typeString": "struct Inquiry.Inquiry[]"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "InquiryStorage",
+            "nameLocation": "210:14:14",
+            "nodeType": "StructDefinition",
+            "scope": 2577,
+            "src": "203:80:14",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2575,
+              "nodeType": "Block",
+              "src": "372:108:14",
+              "statements": [
+                {
+                  "assignments": [
+                    2569
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2569,
+                      "mutability": "mutable",
+                      "name": "position",
+                      "nameLocation": "391:8:14",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2575,
+                      "src": "383:16:14",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 2568,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "383:7:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2573,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "hexValue": "696e71756972792e73746f72616765",
+                        "id": 2571,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "412:17:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_c9bd89c8aa20bb12e3e84ed83a939d0b94623f7d7460b60dcb76099d9fe92b72",
+                          "typeString": "literal_string \"inquiry.storage\""
+                        },
+                        "value": "inquiry.storage"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_c9bd89c8aa20bb12e3e84ed83a939d0b94623f7d7460b60dcb76099d9fe92b72",
+                          "typeString": "literal_string \"inquiry.storage\""
+                        }
+                      ],
+                      "id": 2570,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967288,
+                      "src": "402:9:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 2572,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "402:28:14",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "383:47:14"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "450:23:14",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "452:19:14",
+                        "value": {
+                          "name": "position",
+                          "nodeType": "YulIdentifier",
+                          "src": "463:8:14"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "ds.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "452:7:14"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "byzantium",
+                  "externalReferences": [
+                    {
+                      "declaration": 2566,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "452:7:14",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 2569,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "463:8:14",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 2574,
+                  "nodeType": "InlineAssembly",
+                  "src": "441:32:14"
+                }
+              ]
+            },
+            "id": 2576,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "inquiryStorage",
+            "nameLocation": "300:14:14",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2563,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "314:2:14"
+            },
+            "returnParameters": {
+              "id": 2567,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2566,
+                  "mutability": "mutable",
+                  "name": "ds",
+                  "nameLocation": "363:2:14",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2576,
+                  "src": "340:25:14",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_InquiryStorage_$2562_storage_ptr",
+                    "typeString": "struct Inquiry.InquiryStorage"
+                  },
+                  "typeName": {
+                    "id": 2565,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 2564,
+                      "name": "InquiryStorage",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2562,
+                      "src": "340:14:14"
+                    },
+                    "referencedDeclaration": 2562,
+                    "src": "340:14:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_InquiryStorage_$2562_storage_ptr",
+                      "typeString": "struct Inquiry.InquiryStorage"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "339:27:14"
+            },
+            "scope": 2577,
+            "src": "291:189:14",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 2578,
+        "src": "75:410:14",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:446:14"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/credit/Inquiry.sol",
+    "exportedSymbols": {
+      "Inquiry": [
+        2577
+      ]
+    },
+    "id": 2578,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2550,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:32:14"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Inquiry",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 2577,
+        "linearizedBaseContracts": [
+          2577
+        ],
+        "name": "Inquiry",
+        "nameLocation": "83:7:14",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Inquiry.Inquiry",
+            "id": 2555,
+            "members": [
+              {
+                "constant": false,
+                "id": 2552,
+                "mutability": "mutable",
+                "name": "subscriber",
+                "nameLocation": "132:10:14",
+                "nodeType": "VariableDeclaration",
+                "scope": 2555,
+                "src": "124:18:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 2551,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "124:7:14",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2554,
+                "mutability": "mutable",
+                "name": "reqdate",
+                "nameLocation": "161:7:14",
+                "nodeType": "VariableDeclaration",
+                "scope": 2555,
+                "src": "153:15:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2553,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "153:7:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Inquiry",
+            "nameLocation": "105:7:14",
+            "nodeType": "StructDefinition",
+            "scope": 2577,
+            "src": "98:97:14",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Inquiry.InquiryStorage",
+            "id": 2562,
+            "members": [
+              {
+                "constant": false,
+                "id": 2561,
+                "mutability": "mutable",
+                "name": "inquiries",
+                "nameLocation": "266:9:14",
+                "nodeType": "VariableDeclaration",
+                "scope": 2562,
+                "src": "236:39:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Inquiry_$2555_storage_$dyn_storage_$",
+                  "typeString": "mapping(address => struct Inquiry.Inquiry[])"
+                },
+                "typeName": {
+                  "id": 2560,
+                  "keyType": {
+                    "id": 2556,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "244:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "236:29:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Inquiry_$2555_storage_$dyn_storage_$",
+                    "typeString": "mapping(address => struct Inquiry.Inquiry[])"
+                  },
+                  "valueType": {
+                    "baseType": {
+                      "id": 2558,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 2557,
+                        "name": "Inquiry",
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 2555,
+                        "src": "255:7:14"
+                      },
+                      "referencedDeclaration": 2555,
+                      "src": "255:7:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Inquiry_$2555_storage_ptr",
+                        "typeString": "struct Inquiry.Inquiry"
+                      }
+                    },
+                    "id": 2559,
+                    "nodeType": "ArrayTypeName",
+                    "src": "255:9:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Inquiry_$2555_storage_$dyn_storage_ptr",
+                      "typeString": "struct Inquiry.Inquiry[]"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "InquiryStorage",
+            "nameLocation": "210:14:14",
+            "nodeType": "StructDefinition",
+            "scope": 2577,
+            "src": "203:80:14",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2575,
+              "nodeType": "Block",
+              "src": "372:108:14",
+              "statements": [
+                {
+                  "assignments": [
+                    2569
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2569,
+                      "mutability": "mutable",
+                      "name": "position",
+                      "nameLocation": "391:8:14",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2575,
+                      "src": "383:16:14",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 2568,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "383:7:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2573,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "hexValue": "696e71756972792e73746f72616765",
+                        "id": 2571,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "412:17:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_c9bd89c8aa20bb12e3e84ed83a939d0b94623f7d7460b60dcb76099d9fe92b72",
+                          "typeString": "literal_string \"inquiry.storage\""
+                        },
+                        "value": "inquiry.storage"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_c9bd89c8aa20bb12e3e84ed83a939d0b94623f7d7460b60dcb76099d9fe92b72",
+                          "typeString": "literal_string \"inquiry.storage\""
+                        }
+                      ],
+                      "id": 2570,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967288,
+                      "src": "402:9:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 2572,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "402:28:14",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "383:47:14"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "450:23:14",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "452:19:14",
+                        "value": {
+                          "name": "position",
+                          "nodeType": "YulIdentifier",
+                          "src": "463:8:14"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "ds.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "452:7:14"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "byzantium",
+                  "externalReferences": [
+                    {
+                      "declaration": 2566,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "452:7:14",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 2569,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "463:8:14",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 2574,
+                  "nodeType": "InlineAssembly",
+                  "src": "441:32:14"
+                }
+              ]
+            },
+            "id": 2576,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "inquiryStorage",
+            "nameLocation": "300:14:14",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2563,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "314:2:14"
+            },
+            "returnParameters": {
+              "id": 2567,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2566,
+                  "mutability": "mutable",
+                  "name": "ds",
+                  "nameLocation": "363:2:14",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2576,
+                  "src": "340:25:14",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_InquiryStorage_$2562_storage_ptr",
+                    "typeString": "struct Inquiry.InquiryStorage"
+                  },
+                  "typeName": {
+                    "id": 2565,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 2564,
+                      "name": "InquiryStorage",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2562,
+                      "src": "340:14:14"
+                    },
+                    "referencedDeclaration": 2562,
+                    "src": "340:14:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_InquiryStorage_$2562_storage_ptr",
+                      "typeString": "struct Inquiry.InquiryStorage"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "339:27:14"
+            },
+            "scope": 2577,
+            "src": "291:189:14",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 2578,
+        "src": "75:410:14",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:446:14"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.10+commit.fc410830.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-12-24T19:17:45.415Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
