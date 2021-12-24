@@ -1,0 +1,3791 @@
+{
+  "contractName": "Shares",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Shares.sol\":\"Shares\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Securities.sol\":{\"keccak256\":\"0x11d597b13fc85c2363e2268c35b7d99cf982112dbafac559bead5f0bef992f78\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://ca5e83b475308f3cd9e941c7d67e200c3937d70f858e5f0f30c22dec838d7292\",\"dweb:/ipfs/QmRv4VmjjKS2ULpUEnRrpPxQRPQ7qwYf8J7ey6zXcyhvpL\"]},\"project:/contracts/Shares.sol\":{\"keccak256\":\"0xccb915c7b45732ff42513f4f965eb19bf061ad0ef47a6fc7abc42ddecaedc8a2\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://781ec4c8553a6b475c1ea3f8ed356f5c46503cbac340a11a5d2fbd6b5c2dcefd\",\"dweb:/ipfs/QmYjmptcrAAnY4rDiccmWXtgMX1DchJbVDYejagrcLaGQj\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220a86a1bd3cccbee4e2ce3263342ce8017e0425aeb6c1f4e4ee23a397026b2b09364736f6c634300080a0033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220a86a1bd3cccbee4e2ce3263342ce8017e0425aeb6c1f4e4ee23a397026b2b09364736f6c634300080a0033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "105:1666:6:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "105:1666:6:-:0;;;;;;;;",
+  "source": "// SPDX-License-Identifier: CC-BY-4.0\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\nimport \"./Securities.sol\";\r\n\r\nlibrary Shares {\r\n    struct ShareStorage {\r\n        mapping (address => string) CUSIP;\r\n        mapping (address => uint256) parValue;\r\n        mapping (address => bool) restricted;\r\n        mapping (address => mapping(address => bytes32)) certificate;\r\n    }\r\n    \r\n    function shareStorage()\r\n        internal\r\n        pure\r\n        returns (ShareStorage storage ds)\r\n    {\r\n        bytes32 position = keccak256(\"share.storage\");\r\n        assembly { ds.slot := position }\r\n    }\r\n\r\n\r\n    function isPriceBelowParValue(address _contract, uint amount)\r\n        internal\r\n        view\r\n        returns (bool)\r\n    {\r\n      return (amount > shareStorage().parValue[_contract]);\r\n    }\r\n\r\n    function isRestrictedSecurity(address _contract)\r\n        internal\r\n        view\r\n        returns (bool)\r\n    {\r\n      return (shareStorage().restricted[_contract]);\r\n    }\r\n\r\n    function assignedCUSIP(address _contract, string memory cusip)\r\n        internal\r\n    {\r\n        shareStorage().CUSIP[_contract] = cusip;\r\n    }\r\n\r\n    function saveCertificate(address _contract,address investor, bytes32 image)\r\n        internal\r\n    {\r\n        shareStorage().certificate[_contract][investor] = image;\r\n    }\r\n\r\n    function setParValue(address _contract, uint256 value)\r\n        internal\r\n    {\r\n        shareStorage().parValue[_contract] = value;\r\n    }\r\n\r\n    function getParValue(address _contract)\r\n        internal\r\n        view\r\n       returns (uint256)\r\n    {\r\n        return shareStorage().parValue[_contract];\r\n    }\r\n\r\n    function setRestricted(address _contract, bool value)\r\n        internal\r\n    {\r\n        shareStorage().restricted[_contract] = value;\r\n    }\r\n}",
+  "sourcePath": "G:\\projects\\pingleware-contracts\\contracts\\Shares.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Shares.sol",
+    "exportedSymbols": {
+      "Securities": [
+        445
+      ],
+      "Shares": [
+        1377
+      ]
+    },
+    "id": 1378,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1226,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:32:6"
+      },
+      {
+        "absolutePath": "project:/contracts/Securities.sol",
+        "file": "./Securities.sol",
+        "id": 1227,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1378,
+        "sourceUnit": 446,
+        "src": "75:26:6",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Shares",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 1377,
+        "linearizedBaseContracts": [
+          1377
+        ],
+        "name": "Shares",
+        "nameLocation": "113:6:6",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Shares.ShareStorage",
+            "id": 1246,
+            "members": [
+              {
+                "constant": false,
+                "id": 1231,
+                "mutability": "mutable",
+                "name": "CUSIP",
+                "nameLocation": "186:5:6",
+                "nodeType": "VariableDeclaration",
+                "scope": 1246,
+                "src": "158:33:6",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
+                  "typeString": "mapping(address => string)"
+                },
+                "typeName": {
+                  "id": 1230,
+                  "keyType": {
+                    "id": 1228,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "167:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "158:27:6",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
+                    "typeString": "mapping(address => string)"
+                  },
+                  "valueType": {
+                    "id": 1229,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "178:6:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1235,
+                "mutability": "mutable",
+                "name": "parValue",
+                "nameLocation": "231:8:6",
+                "nodeType": "VariableDeclaration",
+                "scope": 1246,
+                "src": "202:37:6",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                  "typeString": "mapping(address => uint256)"
+                },
+                "typeName": {
+                  "id": 1234,
+                  "keyType": {
+                    "id": 1232,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "211:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "202:28:6",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                    "typeString": "mapping(address => uint256)"
+                  },
+                  "valueType": {
+                    "id": 1233,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "222:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1239,
+                "mutability": "mutable",
+                "name": "restricted",
+                "nameLocation": "276:10:6",
+                "nodeType": "VariableDeclaration",
+                "scope": 1246,
+                "src": "250:36:6",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                  "typeString": "mapping(address => bool)"
+                },
+                "typeName": {
+                  "id": 1238,
+                  "keyType": {
+                    "id": 1236,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "259:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "250:25:6",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                    "typeString": "mapping(address => bool)"
+                  },
+                  "valueType": {
+                    "id": 1237,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "270:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1245,
+                "mutability": "mutable",
+                "name": "certificate",
+                "nameLocation": "346:11:6",
+                "nodeType": "VariableDeclaration",
+                "scope": 1246,
+                "src": "297:60:6",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bytes32_$_$",
+                  "typeString": "mapping(address => mapping(address => bytes32))"
+                },
+                "typeName": {
+                  "id": 1244,
+                  "keyType": {
+                    "id": 1240,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "306:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "297:48:6",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bytes32_$_$",
+                    "typeString": "mapping(address => mapping(address => bytes32))"
+                  },
+                  "valueType": {
+                    "id": 1243,
+                    "keyType": {
+                      "id": 1241,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "325:7:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Mapping",
+                    "src": "317:27:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_mapping$_t_address_$_t_bytes32_$",
+                      "typeString": "mapping(address => bytes32)"
+                    },
+                    "valueType": {
+                      "id": 1242,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "336:7:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "ShareStorage",
+            "nameLocation": "134:12:6",
+            "nodeType": "StructDefinition",
+            "scope": 1377,
+            "src": "127:238:6",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1259,
+              "nodeType": "Block",
+              "src": "481:106:6",
+              "statements": [
+                {
+                  "assignments": [
+                    1253
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1253,
+                      "mutability": "mutable",
+                      "name": "position",
+                      "nameLocation": "500:8:6",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1259,
+                      "src": "492:16:6",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 1252,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "492:7:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1257,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "hexValue": "73686172652e73746f72616765",
+                        "id": 1255,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "521:15:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_54970566f6be618430aa9102c0fa36928c087f0d98124c631513f83069647e10",
+                          "typeString": "literal_string \"share.storage\""
+                        },
+                        "value": "share.storage"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_54970566f6be618430aa9102c0fa36928c087f0d98124c631513f83069647e10",
+                          "typeString": "literal_string \"share.storage\""
+                        }
+                      ],
+                      "id": 1254,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967288,
+                      "src": "511:9:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 1256,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "511:26:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "492:45:6"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "557:23:6",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "559:19:6",
+                        "value": {
+                          "name": "position",
+                          "nodeType": "YulIdentifier",
+                          "src": "570:8:6"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "ds.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "559:7:6"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "byzantium",
+                  "externalReferences": [
+                    {
+                      "declaration": 1250,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "559:7:6",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 1253,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "570:8:6",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 1258,
+                  "nodeType": "InlineAssembly",
+                  "src": "548:32:6"
+                }
+              ]
+            },
+            "id": 1260,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "shareStorage",
+            "nameLocation": "386:12:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1247,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "398:2:6"
+            },
+            "returnParameters": {
+              "id": 1251,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1250,
+                  "mutability": "mutable",
+                  "name": "ds",
+                  "nameLocation": "472:2:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1260,
+                  "src": "451:23:6",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                    "typeString": "struct Shares.ShareStorage"
+                  },
+                  "typeName": {
+                    "id": 1249,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1248,
+                      "name": "ShareStorage",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1246,
+                      "src": "451:12:6"
+                    },
+                    "referencedDeclaration": 1246,
+                    "src": "451:12:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                      "typeString": "struct Shares.ShareStorage"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "450:25:6"
+            },
+            "scope": 1377,
+            "src": "377:210:6",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1278,
+              "nodeType": "Block",
+              "src": "720:69:6",
+              "statements": [
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 1275,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 1269,
+                          "name": "amount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1264,
+                          "src": "737:6:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "baseExpression": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "id": 1270,
+                                "name": "shareStorage",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1260,
+                                "src": "746:12:6",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                                }
+                              },
+                              "id": 1271,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "746:14:6",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                                "typeString": "struct Shares.ShareStorage storage pointer"
+                              }
+                            },
+                            "id": 1272,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "parValue",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 1235,
+                            "src": "746:23:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                              "typeString": "mapping(address => uint256)"
+                            }
+                          },
+                          "id": 1274,
+                          "indexExpression": {
+                            "id": 1273,
+                            "name": "_contract",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1262,
+                            "src": "770:9:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "746:34:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "src": "737:43:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "id": 1276,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "736:45:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 1268,
+                  "id": 1277,
+                  "nodeType": "Return",
+                  "src": "729:52:6"
+                }
+              ]
+            },
+            "id": 1279,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isPriceBelowParValue",
+            "nameLocation": "606:20:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1265,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1262,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "635:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1279,
+                  "src": "627:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1261,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "627:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1264,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "651:6:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1279,
+                  "src": "646:11:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1263,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "646:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "626:32:6"
+            },
+            "returnParameters": {
+              "id": 1268,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1267,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1279,
+                  "src": "709:4:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1266,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "709:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "708:6:6"
+            },
+            "scope": 1377,
+            "src": "597:192:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1293,
+              "nodeType": "Block",
+              "src": "907:62:6",
+              "statements": [
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "baseExpression": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 1286,
+                              "name": "shareStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1260,
+                              "src": "924:12:6",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                                "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                              }
+                            },
+                            "id": 1287,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "924:14:6",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                              "typeString": "struct Shares.ShareStorage storage pointer"
+                            }
+                          },
+                          "id": 1288,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "restricted",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 1239,
+                          "src": "924:25:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                            "typeString": "mapping(address => bool)"
+                          }
+                        },
+                        "id": 1290,
+                        "indexExpression": {
+                          "id": 1289,
+                          "name": "_contract",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1281,
+                          "src": "950:9:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "924:36:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "id": 1291,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "923:38:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 1285,
+                  "id": 1292,
+                  "nodeType": "Return",
+                  "src": "916:45:6"
+                }
+              ]
+            },
+            "id": 1294,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isRestrictedSecurity",
+            "nameLocation": "806:20:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1282,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1281,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "835:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1294,
+                  "src": "827:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1280,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "827:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "826:19:6"
+            },
+            "returnParameters": {
+              "id": 1285,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1284,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1294,
+                  "src": "896:4:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1283,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "896:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "895:6:6"
+            },
+            "scope": 1377,
+            "src": "797:172:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1309,
+              "nodeType": "Block",
+              "src": "1063:58:6",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1307,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 1301,
+                            "name": "shareStorage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1260,
+                            "src": "1074:12:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                              "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                            }
+                          },
+                          "id": 1302,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1074:14:6",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                            "typeString": "struct Shares.ShareStorage storage pointer"
+                          }
+                        },
+                        "id": 1303,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "CUSIP",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 1231,
+                        "src": "1074:20:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
+                          "typeString": "mapping(address => string storage ref)"
+                        }
+                      },
+                      "id": 1305,
+                      "indexExpression": {
+                        "id": 1304,
+                        "name": "_contract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1296,
+                        "src": "1095:9:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1074:31:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1306,
+                      "name": "cusip",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1298,
+                      "src": "1108:5:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1074:39:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 1308,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1074:39:6"
+                }
+              ]
+            },
+            "id": 1310,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "assignedCUSIP",
+            "nameLocation": "986:13:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1299,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1296,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1008:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1310,
+                  "src": "1000:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1295,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1000:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1298,
+                  "mutability": "mutable",
+                  "name": "cusip",
+                  "nameLocation": "1033:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1310,
+                  "src": "1019:19:6",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1297,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1019:6:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "999:40:6"
+            },
+            "returnParameters": {
+              "id": 1300,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1063:0:6"
+            },
+            "scope": 1377,
+            "src": "977:144:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1329,
+              "nodeType": "Block",
+              "src": "1228:74:6",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1327,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "baseExpression": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 1319,
+                              "name": "shareStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1260,
+                              "src": "1239:12:6",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                                "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                              }
+                            },
+                            "id": 1320,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1239:14:6",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                              "typeString": "struct Shares.ShareStorage storage pointer"
+                            }
+                          },
+                          "id": 1321,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "certificate",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 1245,
+                          "src": "1239:26:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bytes32_$_$",
+                            "typeString": "mapping(address => mapping(address => bytes32))"
+                          }
+                        },
+                        "id": 1323,
+                        "indexExpression": {
+                          "id": 1322,
+                          "name": "_contract",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1312,
+                          "src": "1266:9:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1239:37:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_bytes32_$",
+                          "typeString": "mapping(address => bytes32)"
+                        }
+                      },
+                      "id": 1325,
+                      "indexExpression": {
+                        "id": 1324,
+                        "name": "investor",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1314,
+                        "src": "1277:8:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1239:47:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1326,
+                      "name": "image",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1316,
+                      "src": "1289:5:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "src": "1239:55:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "id": 1328,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1239:55:6"
+                }
+              ]
+            },
+            "id": 1330,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "saveCertificate",
+            "nameLocation": "1138:15:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1317,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1312,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1162:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1330,
+                  "src": "1154:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1311,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1154:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1314,
+                  "mutability": "mutable",
+                  "name": "investor",
+                  "nameLocation": "1180:8:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1330,
+                  "src": "1172:16:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1313,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1172:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1316,
+                  "mutability": "mutable",
+                  "name": "image",
+                  "nameLocation": "1198:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1330,
+                  "src": "1190:13:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1315,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1190:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1153:51:6"
+            },
+            "returnParameters": {
+              "id": 1318,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1228:0:6"
+            },
+            "scope": 1377,
+            "src": "1129:173:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1345,
+              "nodeType": "Block",
+              "src": "1388:61:6",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1343,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 1337,
+                            "name": "shareStorage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1260,
+                            "src": "1399:12:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                              "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                            }
+                          },
+                          "id": 1338,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1399:14:6",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                            "typeString": "struct Shares.ShareStorage storage pointer"
+                          }
+                        },
+                        "id": 1339,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "parValue",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 1235,
+                        "src": "1399:23:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                          "typeString": "mapping(address => uint256)"
+                        }
+                      },
+                      "id": 1341,
+                      "indexExpression": {
+                        "id": 1340,
+                        "name": "_contract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1332,
+                        "src": "1423:9:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1399:34:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1342,
+                      "name": "value",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1334,
+                      "src": "1436:5:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1399:42:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 1344,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1399:42:6"
+                }
+              ]
+            },
+            "id": 1346,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setParValue",
+            "nameLocation": "1319:11:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1335,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1332,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1339:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1346,
+                  "src": "1331:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1331,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1331:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1334,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nameLocation": "1358:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1346,
+                  "src": "1350:13:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1333,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1350:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1330:34:6"
+            },
+            "returnParameters": {
+              "id": 1336,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1388:0:6"
+            },
+            "scope": 1377,
+            "src": "1310:139:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1359,
+              "nodeType": "Block",
+              "src": "1560:60:6",
+              "statements": [
+                {
+                  "expression": {
+                    "baseExpression": {
+                      "expression": {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 1353,
+                          "name": "shareStorage",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1260,
+                          "src": "1578:12:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                            "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                          }
+                        },
+                        "id": 1354,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1578:14:6",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                          "typeString": "struct Shares.ShareStorage storage pointer"
+                        }
+                      },
+                      "id": 1355,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "parValue",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1235,
+                      "src": "1578:23:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                        "typeString": "mapping(address => uint256)"
+                      }
+                    },
+                    "id": 1357,
+                    "indexExpression": {
+                      "id": 1356,
+                      "name": "_contract",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1348,
+                      "src": "1602:9:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1578:34:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1352,
+                  "id": 1358,
+                  "nodeType": "Return",
+                  "src": "1571:41:6"
+                }
+              ]
+            },
+            "id": 1360,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getParValue",
+            "nameLocation": "1466:11:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1349,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1348,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1486:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1360,
+                  "src": "1478:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1347,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1478:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1477:19:6"
+            },
+            "returnParameters": {
+              "id": 1352,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1351,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1360,
+                  "src": "1546:7:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1350,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1546:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1545:9:6"
+            },
+            "scope": 1377,
+            "src": "1457:163:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1375,
+              "nodeType": "Block",
+              "src": "1705:63:6",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1373,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 1367,
+                            "name": "shareStorage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1260,
+                            "src": "1716:12:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                              "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                            }
+                          },
+                          "id": 1368,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1716:14:6",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                            "typeString": "struct Shares.ShareStorage storage pointer"
+                          }
+                        },
+                        "id": 1369,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "restricted",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 1239,
+                        "src": "1716:25:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                          "typeString": "mapping(address => bool)"
+                        }
+                      },
+                      "id": 1371,
+                      "indexExpression": {
+                        "id": 1370,
+                        "name": "_contract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1362,
+                        "src": "1742:9:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1716:36:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1372,
+                      "name": "value",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1364,
+                      "src": "1755:5:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "1716:44:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 1374,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1716:44:6"
+                }
+              ]
+            },
+            "id": 1376,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setRestricted",
+            "nameLocation": "1637:13:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1365,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1362,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1659:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1376,
+                  "src": "1651:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1361,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1651:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1364,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nameLocation": "1675:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1376,
+                  "src": "1670:10:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1363,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1670:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1650:31:6"
+            },
+            "returnParameters": {
+              "id": 1366,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1705:0:6"
+            },
+            "scope": 1377,
+            "src": "1628:140:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 1378,
+        "src": "105:1666:6",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1732:6"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/Shares.sol",
+    "exportedSymbols": {
+      "Securities": [
+        445
+      ],
+      "Shares": [
+        1377
+      ]
+    },
+    "id": 1378,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1226,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:32:6"
+      },
+      {
+        "absolutePath": "project:/contracts/Securities.sol",
+        "file": "./Securities.sol",
+        "id": 1227,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1378,
+        "sourceUnit": 446,
+        "src": "75:26:6",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Shares",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 1377,
+        "linearizedBaseContracts": [
+          1377
+        ],
+        "name": "Shares",
+        "nameLocation": "113:6:6",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Shares.ShareStorage",
+            "id": 1246,
+            "members": [
+              {
+                "constant": false,
+                "id": 1231,
+                "mutability": "mutable",
+                "name": "CUSIP",
+                "nameLocation": "186:5:6",
+                "nodeType": "VariableDeclaration",
+                "scope": 1246,
+                "src": "158:33:6",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
+                  "typeString": "mapping(address => string)"
+                },
+                "typeName": {
+                  "id": 1230,
+                  "keyType": {
+                    "id": 1228,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "167:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "158:27:6",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
+                    "typeString": "mapping(address => string)"
+                  },
+                  "valueType": {
+                    "id": 1229,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "178:6:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1235,
+                "mutability": "mutable",
+                "name": "parValue",
+                "nameLocation": "231:8:6",
+                "nodeType": "VariableDeclaration",
+                "scope": 1246,
+                "src": "202:37:6",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                  "typeString": "mapping(address => uint256)"
+                },
+                "typeName": {
+                  "id": 1234,
+                  "keyType": {
+                    "id": 1232,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "211:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "202:28:6",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                    "typeString": "mapping(address => uint256)"
+                  },
+                  "valueType": {
+                    "id": 1233,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "222:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1239,
+                "mutability": "mutable",
+                "name": "restricted",
+                "nameLocation": "276:10:6",
+                "nodeType": "VariableDeclaration",
+                "scope": 1246,
+                "src": "250:36:6",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                  "typeString": "mapping(address => bool)"
+                },
+                "typeName": {
+                  "id": 1238,
+                  "keyType": {
+                    "id": 1236,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "259:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "250:25:6",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                    "typeString": "mapping(address => bool)"
+                  },
+                  "valueType": {
+                    "id": 1237,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "270:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1245,
+                "mutability": "mutable",
+                "name": "certificate",
+                "nameLocation": "346:11:6",
+                "nodeType": "VariableDeclaration",
+                "scope": 1246,
+                "src": "297:60:6",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bytes32_$_$",
+                  "typeString": "mapping(address => mapping(address => bytes32))"
+                },
+                "typeName": {
+                  "id": 1244,
+                  "keyType": {
+                    "id": 1240,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "306:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "297:48:6",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bytes32_$_$",
+                    "typeString": "mapping(address => mapping(address => bytes32))"
+                  },
+                  "valueType": {
+                    "id": 1243,
+                    "keyType": {
+                      "id": 1241,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "325:7:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Mapping",
+                    "src": "317:27:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_mapping$_t_address_$_t_bytes32_$",
+                      "typeString": "mapping(address => bytes32)"
+                    },
+                    "valueType": {
+                      "id": 1242,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "336:7:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "ShareStorage",
+            "nameLocation": "134:12:6",
+            "nodeType": "StructDefinition",
+            "scope": 1377,
+            "src": "127:238:6",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1259,
+              "nodeType": "Block",
+              "src": "481:106:6",
+              "statements": [
+                {
+                  "assignments": [
+                    1253
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1253,
+                      "mutability": "mutable",
+                      "name": "position",
+                      "nameLocation": "500:8:6",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1259,
+                      "src": "492:16:6",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 1252,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "492:7:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1257,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "hexValue": "73686172652e73746f72616765",
+                        "id": 1255,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "521:15:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_54970566f6be618430aa9102c0fa36928c087f0d98124c631513f83069647e10",
+                          "typeString": "literal_string \"share.storage\""
+                        },
+                        "value": "share.storage"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_54970566f6be618430aa9102c0fa36928c087f0d98124c631513f83069647e10",
+                          "typeString": "literal_string \"share.storage\""
+                        }
+                      ],
+                      "id": 1254,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967288,
+                      "src": "511:9:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 1256,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "511:26:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "492:45:6"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "557:23:6",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "559:19:6",
+                        "value": {
+                          "name": "position",
+                          "nodeType": "YulIdentifier",
+                          "src": "570:8:6"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "ds.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "559:7:6"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "byzantium",
+                  "externalReferences": [
+                    {
+                      "declaration": 1250,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "559:7:6",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 1253,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "570:8:6",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 1258,
+                  "nodeType": "InlineAssembly",
+                  "src": "548:32:6"
+                }
+              ]
+            },
+            "id": 1260,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "shareStorage",
+            "nameLocation": "386:12:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1247,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "398:2:6"
+            },
+            "returnParameters": {
+              "id": 1251,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1250,
+                  "mutability": "mutable",
+                  "name": "ds",
+                  "nameLocation": "472:2:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1260,
+                  "src": "451:23:6",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                    "typeString": "struct Shares.ShareStorage"
+                  },
+                  "typeName": {
+                    "id": 1249,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1248,
+                      "name": "ShareStorage",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1246,
+                      "src": "451:12:6"
+                    },
+                    "referencedDeclaration": 1246,
+                    "src": "451:12:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                      "typeString": "struct Shares.ShareStorage"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "450:25:6"
+            },
+            "scope": 1377,
+            "src": "377:210:6",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1278,
+              "nodeType": "Block",
+              "src": "720:69:6",
+              "statements": [
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 1275,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 1269,
+                          "name": "amount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1264,
+                          "src": "737:6:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "baseExpression": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "id": 1270,
+                                "name": "shareStorage",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1260,
+                                "src": "746:12:6",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                                }
+                              },
+                              "id": 1271,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "746:14:6",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                                "typeString": "struct Shares.ShareStorage storage pointer"
+                              }
+                            },
+                            "id": 1272,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "parValue",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 1235,
+                            "src": "746:23:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                              "typeString": "mapping(address => uint256)"
+                            }
+                          },
+                          "id": 1274,
+                          "indexExpression": {
+                            "id": 1273,
+                            "name": "_contract",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1262,
+                            "src": "770:9:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "746:34:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "src": "737:43:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "id": 1276,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "736:45:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 1268,
+                  "id": 1277,
+                  "nodeType": "Return",
+                  "src": "729:52:6"
+                }
+              ]
+            },
+            "id": 1279,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isPriceBelowParValue",
+            "nameLocation": "606:20:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1265,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1262,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "635:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1279,
+                  "src": "627:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1261,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "627:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1264,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "651:6:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1279,
+                  "src": "646:11:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1263,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "646:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "626:32:6"
+            },
+            "returnParameters": {
+              "id": 1268,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1267,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1279,
+                  "src": "709:4:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1266,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "709:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "708:6:6"
+            },
+            "scope": 1377,
+            "src": "597:192:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1293,
+              "nodeType": "Block",
+              "src": "907:62:6",
+              "statements": [
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "baseExpression": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 1286,
+                              "name": "shareStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1260,
+                              "src": "924:12:6",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                                "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                              }
+                            },
+                            "id": 1287,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "924:14:6",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                              "typeString": "struct Shares.ShareStorage storage pointer"
+                            }
+                          },
+                          "id": 1288,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "restricted",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 1239,
+                          "src": "924:25:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                            "typeString": "mapping(address => bool)"
+                          }
+                        },
+                        "id": 1290,
+                        "indexExpression": {
+                          "id": 1289,
+                          "name": "_contract",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1281,
+                          "src": "950:9:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "924:36:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "id": 1291,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "923:38:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 1285,
+                  "id": 1292,
+                  "nodeType": "Return",
+                  "src": "916:45:6"
+                }
+              ]
+            },
+            "id": 1294,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isRestrictedSecurity",
+            "nameLocation": "806:20:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1282,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1281,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "835:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1294,
+                  "src": "827:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1280,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "827:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "826:19:6"
+            },
+            "returnParameters": {
+              "id": 1285,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1284,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1294,
+                  "src": "896:4:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1283,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "896:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "895:6:6"
+            },
+            "scope": 1377,
+            "src": "797:172:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1309,
+              "nodeType": "Block",
+              "src": "1063:58:6",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1307,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 1301,
+                            "name": "shareStorage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1260,
+                            "src": "1074:12:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                              "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                            }
+                          },
+                          "id": 1302,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1074:14:6",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                            "typeString": "struct Shares.ShareStorage storage pointer"
+                          }
+                        },
+                        "id": 1303,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "CUSIP",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 1231,
+                        "src": "1074:20:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
+                          "typeString": "mapping(address => string storage ref)"
+                        }
+                      },
+                      "id": 1305,
+                      "indexExpression": {
+                        "id": 1304,
+                        "name": "_contract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1296,
+                        "src": "1095:9:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1074:31:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1306,
+                      "name": "cusip",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1298,
+                      "src": "1108:5:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1074:39:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 1308,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1074:39:6"
+                }
+              ]
+            },
+            "id": 1310,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "assignedCUSIP",
+            "nameLocation": "986:13:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1299,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1296,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1008:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1310,
+                  "src": "1000:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1295,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1000:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1298,
+                  "mutability": "mutable",
+                  "name": "cusip",
+                  "nameLocation": "1033:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1310,
+                  "src": "1019:19:6",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1297,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1019:6:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "999:40:6"
+            },
+            "returnParameters": {
+              "id": 1300,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1063:0:6"
+            },
+            "scope": 1377,
+            "src": "977:144:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1329,
+              "nodeType": "Block",
+              "src": "1228:74:6",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1327,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "baseExpression": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 1319,
+                              "name": "shareStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1260,
+                              "src": "1239:12:6",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                                "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                              }
+                            },
+                            "id": 1320,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1239:14:6",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                              "typeString": "struct Shares.ShareStorage storage pointer"
+                            }
+                          },
+                          "id": 1321,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "certificate",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 1245,
+                          "src": "1239:26:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bytes32_$_$",
+                            "typeString": "mapping(address => mapping(address => bytes32))"
+                          }
+                        },
+                        "id": 1323,
+                        "indexExpression": {
+                          "id": 1322,
+                          "name": "_contract",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1312,
+                          "src": "1266:9:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1239:37:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_bytes32_$",
+                          "typeString": "mapping(address => bytes32)"
+                        }
+                      },
+                      "id": 1325,
+                      "indexExpression": {
+                        "id": 1324,
+                        "name": "investor",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1314,
+                        "src": "1277:8:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1239:47:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1326,
+                      "name": "image",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1316,
+                      "src": "1289:5:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "src": "1239:55:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "id": 1328,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1239:55:6"
+                }
+              ]
+            },
+            "id": 1330,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "saveCertificate",
+            "nameLocation": "1138:15:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1317,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1312,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1162:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1330,
+                  "src": "1154:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1311,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1154:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1314,
+                  "mutability": "mutable",
+                  "name": "investor",
+                  "nameLocation": "1180:8:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1330,
+                  "src": "1172:16:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1313,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1172:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1316,
+                  "mutability": "mutable",
+                  "name": "image",
+                  "nameLocation": "1198:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1330,
+                  "src": "1190:13:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1315,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1190:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1153:51:6"
+            },
+            "returnParameters": {
+              "id": 1318,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1228:0:6"
+            },
+            "scope": 1377,
+            "src": "1129:173:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1345,
+              "nodeType": "Block",
+              "src": "1388:61:6",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1343,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 1337,
+                            "name": "shareStorage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1260,
+                            "src": "1399:12:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                              "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                            }
+                          },
+                          "id": 1338,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1399:14:6",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                            "typeString": "struct Shares.ShareStorage storage pointer"
+                          }
+                        },
+                        "id": 1339,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "parValue",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 1235,
+                        "src": "1399:23:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                          "typeString": "mapping(address => uint256)"
+                        }
+                      },
+                      "id": 1341,
+                      "indexExpression": {
+                        "id": 1340,
+                        "name": "_contract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1332,
+                        "src": "1423:9:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1399:34:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1342,
+                      "name": "value",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1334,
+                      "src": "1436:5:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1399:42:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 1344,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1399:42:6"
+                }
+              ]
+            },
+            "id": 1346,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setParValue",
+            "nameLocation": "1319:11:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1335,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1332,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1339:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1346,
+                  "src": "1331:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1331,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1331:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1334,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nameLocation": "1358:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1346,
+                  "src": "1350:13:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1333,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1350:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1330:34:6"
+            },
+            "returnParameters": {
+              "id": 1336,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1388:0:6"
+            },
+            "scope": 1377,
+            "src": "1310:139:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1359,
+              "nodeType": "Block",
+              "src": "1560:60:6",
+              "statements": [
+                {
+                  "expression": {
+                    "baseExpression": {
+                      "expression": {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 1353,
+                          "name": "shareStorage",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1260,
+                          "src": "1578:12:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                            "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                          }
+                        },
+                        "id": 1354,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1578:14:6",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                          "typeString": "struct Shares.ShareStorage storage pointer"
+                        }
+                      },
+                      "id": 1355,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "parValue",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1235,
+                      "src": "1578:23:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                        "typeString": "mapping(address => uint256)"
+                      }
+                    },
+                    "id": 1357,
+                    "indexExpression": {
+                      "id": 1356,
+                      "name": "_contract",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1348,
+                      "src": "1602:9:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1578:34:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1352,
+                  "id": 1358,
+                  "nodeType": "Return",
+                  "src": "1571:41:6"
+                }
+              ]
+            },
+            "id": 1360,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getParValue",
+            "nameLocation": "1466:11:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1349,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1348,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1486:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1360,
+                  "src": "1478:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1347,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1478:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1477:19:6"
+            },
+            "returnParameters": {
+              "id": 1352,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1351,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1360,
+                  "src": "1546:7:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1350,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1546:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1545:9:6"
+            },
+            "scope": 1377,
+            "src": "1457:163:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1375,
+              "nodeType": "Block",
+              "src": "1705:63:6",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1373,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 1367,
+                            "name": "shareStorage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1260,
+                            "src": "1716:12:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_ShareStorage_$1246_storage_ptr_$",
+                              "typeString": "function () pure returns (struct Shares.ShareStorage storage pointer)"
+                            }
+                          },
+                          "id": 1368,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1716:14:6",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_ShareStorage_$1246_storage_ptr",
+                            "typeString": "struct Shares.ShareStorage storage pointer"
+                          }
+                        },
+                        "id": 1369,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "restricted",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 1239,
+                        "src": "1716:25:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                          "typeString": "mapping(address => bool)"
+                        }
+                      },
+                      "id": 1371,
+                      "indexExpression": {
+                        "id": 1370,
+                        "name": "_contract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1362,
+                        "src": "1742:9:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1716:36:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1372,
+                      "name": "value",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1364,
+                      "src": "1755:5:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "1716:44:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 1374,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1716:44:6"
+                }
+              ]
+            },
+            "id": 1376,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setRestricted",
+            "nameLocation": "1637:13:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1365,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1362,
+                  "mutability": "mutable",
+                  "name": "_contract",
+                  "nameLocation": "1659:9:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1376,
+                  "src": "1651:17:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1361,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1651:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1364,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nameLocation": "1675:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1376,
+                  "src": "1670:10:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1363,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1670:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1650:31:6"
+            },
+            "returnParameters": {
+              "id": 1366,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1705:0:6"
+            },
+            "scope": 1377,
+            "src": "1628:140:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 1378,
+        "src": "105:1666:6",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1732:6"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.10+commit.fc410830.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-12-24T16:15:19.865Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

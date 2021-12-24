@@ -3,6 +3,8 @@ THERE IS A LOT OF INFORMATION DISCLOSED ON THIS PAGE. PLEASE SEEK THE ADVICE OF 
 # Exempt Offerings
 See more at https://www.sec.gov/smallbusiness/exemptofferings
 
+The perpose of creating exempt offerings on the blockchain even though they are restricted securities, is to offer liquidity to accredited investors after certain conditions have met, if any, for the accredited investors to liquidate with other investors, as well as to have a trading platform in-place when a public offering becomes effective and those existing securities become unrestricted.
+
 This readme has been shorten by creating additional markdown files
 
     AML.md
@@ -54,3 +56,22 @@ the new definition permits any order of funding based on the SEC regulation?
 
 # Project Structure
 This project is being built for both ethereum and solana blockchains, where the source code resides in the respective directories
+
+# Architecture
+Solidity is an object-oriented language with inheritance and encapsulation (like C++ and Java). Proper OOP is to break up complex operations into smaller units, hence a method should ONLY perform a single task. Bugs get introduced when a method becomes a multitasker?
+
+Solidity has contracts (like Classes in C++) and they can be abstract (which means they must be inherited), they have virtual and override functions, and they have library contracts which don't get inherited. If you are unfamaliar with OOP concepts and your parents were programmers, ask for the olde C++ and OOP methodologies as the same principles apply and can be adapted for Solidity smart contract programming.
+
+The hierarchy of these contacts is the exempt offering contract is the top level and has unique properties (methods and data) unique to that offering. There are common entities used in all exempt offerings.
+
+First, indetifying the main entities,
+
+    ExemptEquityOffering506C
+
+Second, identify the common entities all offerings include,
+
+    Transfer Agent = required when applying for a CUSIP number, otherwise not required for an exempt offering
+    Shareholder    = there are three distinct types: accredited, non-accredited and affiliate
+    Shares         = the equity of the offering
+    Transaction    = a record of each transaction (while this is kept on the blockchain, having a separate entity assists with recording keeping compliance)
+    Account        = account properties
