@@ -1,0 +1,3925 @@
+{
+  "contractName": "IERC1261",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256[]",
+          "name": "attributeIndexes",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "ApprovedMembership",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256[]",
+          "name": "attributeIndexes",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "Assigned",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        }
+      ],
+      "name": "Forfeited",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "attributeIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "attributeValueIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "ModifiedAttributes",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        }
+      ],
+      "name": "RequestedMembership",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        }
+      ],
+      "name": "Revoked",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_name",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "values",
+          "type": "bytes32[]"
+        }
+      ],
+      "name": "addAttributeSet",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_attributeIndex",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_modifiedValueIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "modifyAttributeByIndex",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "_attributeIndexes",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "requestMembership",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "forfeitMembership",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "approveRequest",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "discardRequest",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "_attributeIndexes",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "assignTo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_from",
+          "type": "address"
+        }
+      ],
+      "name": "revokeFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        }
+      ],
+      "name": "isCurrentMember",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_name",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getAttributeExhaustiveCollection",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllMembers",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCurrentMemberCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAttributeNames",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        }
+      ],
+      "name": "getAttributes",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_attributeIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getAttributeByIndex",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"attributeIndexes\",\"type\":\"uint256[]\"}],\"name\":\"ApprovedMembership\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"attributeIndexes\",\"type\":\"uint256[]\"}],\"name\":\"Assigned\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"Forfeited\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"attributeIndex\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"attributeValueIndex\",\"type\":\"uint256\"}],\"name\":\"ModifiedAttributes\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"RequestedMembership\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"Revoked\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_name\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"values\",\"type\":\"bytes32[]\"}],\"name\":\"addAttributeSet\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"approveRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"internalType\":\"uint256[]\",\"name\":\"_attributeIndexes\",\"type\":\"uint256[]\"}],\"name\":\"assignTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"discardRequest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"forfeitMembership\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllMembers\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_attributeIndex\",\"type\":\"uint256\"}],\"name\":\"getAttributeByIndex\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_name\",\"type\":\"bytes32\"}],\"name\":\"getAttributeExhaustiveCollection\",\"outputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"\",\"type\":\"bytes32[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAttributeNames\",\"outputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"\",\"type\":\"bytes32[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"getAttributes\",\"outputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"\",\"type\":\"bytes32[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCurrentMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"isCurrentMember\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_attributeIndex\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_modifiedValueIndex\",\"type\":\"uint256\"}],\"name\":\"modifyAttributeByIndex\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[]\",\"name\":\"_attributeIndexes\",\"type\":\"uint256[]\"}],\"name\":\"requestMembership\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"}],\"name\":\"revokeFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1261.md  The constructor should define the attribute set for this MVT.  Note: the ERC-165 identifier for this interface is 0x1d8362cf.\",\"events\":{\"ApprovedMembership(address,uint256[])\":{\"details\":\"This emits when a membership request is accepted\"},\"Assigned(address,uint256[])\":{\"details\":\"This emits when a token is assigned to a member.\"},\"Forfeited(address)\":{\"details\":\"This emits when a user forfeits his membership\"},\"ModifiedAttributes(address,uint256,uint256)\":{\"details\":\"This emits when data of a member is modified.  Doesn't emit when a new membership is created and data is assigned.\"},\"RequestedMembership(address)\":{\"details\":\"This emits when a membership is requested by an user\"},\"Revoked(address)\":{\"details\":\"This emits when a membership is revoked.\"}},\"kind\":\"dev\",\"methods\":{\"addAttributeSet(bytes32,bytes32[])\":{\"details\":\"Adds a new attribute at the end of the array of attributes and maps it to `values`.  Contract can set a max number of attributes and throw if limit is reached.\",\"params\":{\"_name\":\"Name of the attribute which is to be added.\",\"values\":\"List of values of the specified attribute.\"}},\"approveRequest(address)\":{\"details\":\"Throws if the `_user` doesn't have a pending request.  Throws if the `msg.sender` is not an owner.  Approves the pending request  Make oraclize callback call this function  When the token is assigned, this function emits the `ApprovedMembership` and `Assigned` events.\",\"params\":{\"_user\":\"the user whose membership request will be approved.\"}},\"assignTo(address,uint256[])\":{\"details\":\"Throws if the member already has the token.  Throws if `_to` is the zero address.  Throws if the `msg.sender` is not an owner.  The entity assigns the membership to each individual.  When the token is assigned, this function emits the Assigned event.\",\"params\":{\"_attributeIndexes\":\"The attribute data associated with the member.  This is an array which contains indexes of attributes.\",\"_to\":\"The address to which the token is assigned.\"}},\"discardRequest(address)\":{\"details\":\"Throws if the `_user` doesn't have a pending request.  Throws if the `msg.sender` is not an owner.  Discards the pending request  Make oraclize callback call this function if criteria are not satisfied\",\"params\":{\"_user\":\"the user whose membership request will be discarded.\"}},\"forfeitMembership()\":{\"details\":\"Throws if the `msg.sender` already doesn't have the token.  The individual `msg.sender` can revoke his/her membership.  When the token is revoked, this function emits the Revoked event.\"},\"getAllMembers()\":{\"details\":\"Use this function along with isCurrentMember to find wasMemberOf() in Js.  It can be calculated as present in getAllMembers() and !isCurrentMember().\",\"returns\":{\"_0\":\"List of addresses who have owned the token and currently own the token.\"}},\"getAttributeByIndex(address,uint256)\":{\"details\":\"Finds the index of the `attribute`.  Throws if the attribute is not present in the predefined attributes.  Returns the attributeValue for the specified `attribute`.\",\"params\":{\"_attributeIndex\":\"The attribute Index which is required.\",\"_to\":\"The address whose attribute is requested.\"},\"returns\":{\"_0\":\"The attribute value at the specified name.\"}},\"getAttributeExhaustiveCollection(bytes32)\":{\"details\":\"Returns the values of attributes as a bytes32 array.\",\"params\":{\"_name\":\"Name of the attribute whose values are to be fetched\"},\"returns\":{\"_0\":\"The values of attributes.\"}},\"getAttributeNames()\":{\"details\":\"Returns the names of attributes as a bytes32 array.  AttributeNames are stored in a bytes32 Array.  Possible values for each attributeName are stored in a mapping(attributeName => attributeValues).  AttributeName is bytes32 and attributeValues is bytes32[].  Attributes of a particular user are stored in bytes32[].  Which has a single attributeValue for each attributeName in an array.  Use web3.toAscii(data[0]).replace(/\\\\u0000/g, \\\"\\\") to convert to string in JS.\",\"returns\":{\"_0\":\"The names of attributes.\"}},\"getAttributes(address)\":{\"details\":\"Throws if `_to` is the zero address.  Use web3.toAscii(data[0]).replace(/\\\\u0000/g, \\\"\\\") to convert to string in JS.\",\"params\":{\"_to\":\"The address whose current attributes are to be returned.\"},\"returns\":{\"_0\":\"The attributes associated with `_to` address.\"}},\"getCurrentMemberCount()\":{\"details\":\"Use this function in polls as denominator to get percentage of members voted.\",\"returns\":{\"_0\":\"Count of current Members.\"}},\"isCurrentMember(address)\":{\"details\":\"MVT's assigned to the zero address are considered invalid, and this  function throws for queries about the zero address.\",\"params\":{\"_to\":\"An address for whom to query the membership.\"},\"returns\":{\"_0\":\"Whether the member owns the token.\"}},\"modifyAttributeByIndex(address,uint256,uint256)\":{\"details\":\"Use appropriate checks for whether a user/admin can modify the data.  Best practice is to use onlyOwner modifier from ERC173.\",\"params\":{\"_attributeIndex\":\"The index of attribute which is being modified.\",\"_modifiedValueIndex\":\"The index of the new value which is being assigned to the user attribute.\",\"_to\":\"The address whose attribute is being modified.\"}},\"requestMembership(uint256[])\":{\"details\":\"Throws if the `msg.sender` already has the token.  The individual `msg.sender` can request for a membership if some existing criteria are satisfied.  When a membership is requested, this function emits the RequestedMembership event.  dev can store the membership request and use `approveRequest` to assign membership later  dev can also oraclize the request to assign membership later\",\"params\":{\"_attributeIndexes\":\"the attribute data associated with the member.  This is an array which contains indexes of attributes.\"}},\"revokeFrom(address)\":{\"details\":\"This removes the membership of the user.  Throws if the `_from` is not an owner of the token.  Throws if the `msg.sender` is not an owner.  Throws if `_from` is the zero address.  When transaction is complete, this function emits the Revoked event.\",\"params\":{\"_from\":\"The current owner of the MVT.\"}}},\"title\":\"ERC-1261 MVT Standard\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"addAttributeSet(bytes32,bytes32[])\":{\"notice\":\"Adds a new attribute (key, value) pair to the set of pre-existing attributes.\"},\"approveRequest(address)\":{\"notice\":\"Owner approves membership from any address.\"},\"assignTo(address,uint256[])\":{\"notice\":\"Assigns membership of an MVT from owner address to another address.\"},\"discardRequest(address)\":{\"notice\":\"Owner discards membership from any address.\"},\"forfeitMembership()\":{\"notice\":\"User can forfeit his membership.\"},\"getAllMembers()\":{\"notice\":\"Returns the list of all past and present members.\"},\"getAttributeByIndex(address,uint256)\":{\"notice\":\"Returns the `attribute` stored against `_to` address.\"},\"getAttributeExhaustiveCollection(bytes32)\":{\"notice\":\"Gets the value collection of an attribute.\"},\"getAttributeNames()\":{\"notice\":\"Returns the list of all attribute names.\"},\"getAttributes(address)\":{\"notice\":\"Returns the attributes of `_to` address.\"},\"getCurrentMemberCount()\":{\"notice\":\"Returns the count of all current members.\"},\"isCurrentMember(address)\":{\"notice\":\"Queries whether a member is a current member of the organization.\"},\"modifyAttributeByIndex(address,uint256,uint256)\":{\"notice\":\"Modifies the attribute value of a specific attribute for a given `_to` address.\"},\"requestMembership(uint256[])\":{\"notice\":\"Requests membership from any address.\"},\"revokeFrom(address)\":{\"notice\":\"Only Owner can revoke the membership.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/membership/IERC1261.sol\":\"IERC1261\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/membership/IERC1261.sol\":{\"keccak256\":\"0xc530abbf40399d1b54e89f98da7bde1796a44c6a22e64030810f3bc3bd46ddc8\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://3ff166fc3a2bff2f12eb122b8ceb002caab7e3117c4e94ecf96f4786d4c04de5\",\"dweb:/ipfs/QmdTkm4e2wXmhiEQsfj7SK4NbwAshDRGt7H8xRhWhGPVBL\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: CC-BY-4.0\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\n/// @title ERC-1261 MVT Standard\r\n/// @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1261.md\r\n///  The constructor should define the attribute set for this MVT.\r\n///  Note: the ERC-165 identifier for this interface is 0x1d8362cf.\r\ninterface IERC1261 {/* is ERC173, ERC165 */\r\n    /// @dev This emits when a token is assigned to a member.\r\n    event Assigned(address indexed _to, uint[] attributeIndexes);\r\n\r\n    /// @dev This emits when a membership is revoked.\r\n    event Revoked(address indexed _to);\r\n\r\n    /// @dev This emits when a user forfeits his membership\r\n    event Forfeited(address indexed _to);\r\n\r\n    /// @dev This emits when a membership request is accepted\r\n    event ApprovedMembership(address indexed _to, uint[] attributeIndexes);\r\n\r\n    /// @dev This emits when a membership is requested by an user\r\n    event RequestedMembership(address indexed _to);\r\n\r\n    /// @dev This emits when data of a member is modified.\r\n    ///  Doesn't emit when a new membership is created and data is assigned.\r\n    event ModifiedAttributes(address indexed _to, uint attributeIndex, uint attributeValueIndex);\r\n\r\n    /// @notice Adds a new attribute (key, value) pair to the set of pre-existing attributes.\r\n    /// @dev Adds a new attribute at the end of the array of attributes and maps it to `values`.\r\n    ///  Contract can set a max number of attributes and throw if limit is reached.\r\n    /// @param _name Name of the attribute which is to be added.\r\n    /// @param values List of values of the specified attribute.\r\n    function addAttributeSet(bytes32 _name, bytes32[] calldata values) external;\r\n\r\n    /// @notice Modifies the attribute value of a specific attribute for a given `_to` address.\r\n    /// @dev Use appropriate checks for whether a user/admin can modify the data.\r\n    ///  Best practice is to use onlyOwner modifier from ERC173.\r\n    /// @param _to The address whose attribute is being modified.\r\n    /// @param _attributeIndex The index of attribute which is being modified.\r\n    /// @param _modifiedValueIndex The index of the new value which is being assigned to the user attribute.\r\n    function modifyAttributeByIndex(address _to, uint _attributeIndex, uint _modifiedValueIndex) external;\r\n\r\n    /// @notice Requests membership from any address.\r\n    /// @dev Throws if the `msg.sender` already has the token.\r\n    ///  The individual `msg.sender` can request for a membership if some existing criteria are satisfied.\r\n    ///  When a membership is requested, this function emits the RequestedMembership event.\r\n    ///  dev can store the membership request and use `approveRequest` to assign membership later\r\n    ///  dev can also oraclize the request to assign membership later\r\n    /// @param _attributeIndexes the attribute data associated with the member.\r\n    ///  This is an array which contains indexes of attributes.\r\n    function requestMembership(uint[] calldata _attributeIndexes) external payable;\r\n\r\n    /// @notice User can forfeit his membership.\r\n    /// @dev Throws if the `msg.sender` already doesn't have the token.\r\n    ///  The individual `msg.sender` can revoke his/her membership.\r\n    ///  When the token is revoked, this function emits the Revoked event.\r\n    function forfeitMembership() external payable;\r\n\r\n    /// @notice Owner approves membership from any address.\r\n    /// @dev Throws if the `_user` doesn't have a pending request.\r\n    ///  Throws if the `msg.sender` is not an owner.\r\n    ///  Approves the pending request\r\n    ///  Make oraclize callback call this function\r\n    ///  When the token is assigned, this function emits the `ApprovedMembership` and `Assigned` events.\r\n    /// @param _user the user whose membership request will be approved.\r\n    function approveRequest(address _user) external;\r\n\r\n    /// @notice Owner discards membership from any address.\r\n    /// @dev Throws if the `_user` doesn't have a pending request.\r\n    ///  Throws if the `msg.sender` is not an owner.\r\n    ///  Discards the pending request\r\n    ///  Make oraclize callback call this function if criteria are not satisfied\r\n    /// @param _user the user whose membership request will be discarded.\r\n    function discardRequest(address _user) external;\r\n\r\n    /// @notice Assigns membership of an MVT from owner address to another address.\r\n    /// @dev Throws if the member already has the token.\r\n    ///  Throws if `_to` is the zero address.\r\n    ///  Throws if the `msg.sender` is not an owner.\r\n    ///  The entity assigns the membership to each individual.\r\n    ///  When the token is assigned, this function emits the Assigned event.\r\n    /// @param _to The address to which the token is assigned.\r\n    /// @param _attributeIndexes The attribute data associated with the member.\r\n    ///  This is an array which contains indexes of attributes.\r\n    function assignTo(address _to, uint[] calldata _attributeIndexes) external;\r\n\r\n    /// @notice Only Owner can revoke the membership.\r\n    /// @dev This removes the membership of the user.\r\n    ///  Throws if the `_from` is not an owner of the token.\r\n    ///  Throws if the `msg.sender` is not an owner.\r\n    ///  Throws if `_from` is the zero address.\r\n    ///  When transaction is complete, this function emits the Revoked event.\r\n    /// @param _from The current owner of the MVT.\r\n    function revokeFrom(address _from) external;\r\n\r\n    /// @notice Queries whether a member is a current member of the organization.\r\n    /// @dev MVT's assigned to the zero address are considered invalid, and this\r\n    ///  function throws for queries about the zero address.\r\n    /// @param _to An address for whom to query the membership.\r\n    /// @return Whether the member owns the token.\r\n    function isCurrentMember(address _to) external view returns (bool);\r\n\r\n     /// @notice Gets the value collection of an attribute.\r\n    /// @dev Returns the values of attributes as a bytes32 array.\r\n    /// @param _name Name of the attribute whose values are to be fetched\r\n    /// @return The values of attributes.\r\n    function getAttributeExhaustiveCollection(bytes32 _name) external view returns (bytes32[] memory);\r\n\r\n    /// @notice Returns the list of all past and present members.\r\n    /// @dev Use this function along with isCurrentMember to find wasMemberOf() in Js.\r\n    ///  It can be calculated as present in getAllMembers() and !isCurrentMember().\r\n    /// @return List of addresses who have owned the token and currently own the token.\r\n    function getAllMembers() external view returns (address[] memory);\r\n\r\n    /// @notice Returns the count of all current members.\r\n    /// @dev Use this function in polls as denominator to get percentage of members voted.\r\n    /// @return Count of current Members.\r\n    function getCurrentMemberCount() external view returns (uint);\r\n\r\n    /// @notice Returns the list of all attribute names.\r\n    /// @dev Returns the names of attributes as a bytes32 array.\r\n    ///  AttributeNames are stored in a bytes32 Array.\r\n    ///  Possible values for each attributeName are stored in a mapping(attributeName => attributeValues).\r\n    ///  AttributeName is bytes32 and attributeValues is bytes32[].\r\n    ///  Attributes of a particular user are stored in bytes32[].\r\n    ///  Which has a single attributeValue for each attributeName in an array.\r\n    ///  Use web3.toAscii(data[0]).replace(/\\u0000/g, \"\") to convert to string in JS.\r\n    /// @return The names of attributes.\r\n    function getAttributeNames() external view returns (bytes32[] memory);\r\n\r\n    /// @notice Returns the attributes of `_to` address.\r\n    /// @dev Throws if `_to` is the zero address.\r\n    ///  Use web3.toAscii(data[0]).replace(/\\u0000/g, \"\") to convert to string in JS.\r\n    /// @param _to The address whose current attributes are to be returned.\r\n    /// @return The attributes associated with `_to` address.\r\n    function getAttributes(address _to) external view returns (bytes32[] memory);\r\n\r\n    /// @notice Returns the `attribute` stored against `_to` address.\r\n    /// @dev Finds the index of the `attribute`.\r\n    ///  Throws if the attribute is not present in the predefined attributes.\r\n    ///  Returns the attributeValue for the specified `attribute`.\r\n    /// @param _to The address whose attribute is requested.\r\n    /// @param _attributeIndex The attribute Index which is required.\r\n    /// @return The attribute value at the specified name.\r\n    function getAttributeByIndex(address _to, uint _attributeIndex) external view returns (bytes32);\r\n}",
+  "sourcePath": "G:\\projects\\pingleware-contracts\\contracts\\membership\\IERC1261.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/membership/IERC1261.sol",
+    "exportedSymbols": {
+      "IERC1261": [
+        15845
+      ]
+    },
+    "id": 15846,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 15690,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:32:32"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IERC1261",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 15691,
+          "nodeType": "StructuredDocumentation",
+          "src": "75:247:32",
+          "text": "@title ERC-1261 MVT Standard\n @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1261.md\n  The constructor should define the attribute set for this MVT.\n  Note: the ERC-165 identifier for this interface is 0x1d8362cf."
+        },
+        "fullyImplemented": false,
+        "id": 15845,
+        "linearizedBaseContracts": [
+          15845
+        ],
+        "name": "IERC1261",
+        "nameLocation": "332:8:32",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15692,
+              "nodeType": "StructuredDocumentation",
+              "src": "371:57:32",
+              "text": "@dev This emits when a token is assigned to a member."
+            },
+            "id": 15699,
+            "name": "Assigned",
+            "nameLocation": "440:8:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15698,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15694,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "465:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15699,
+                  "src": "449:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15693,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "449:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15697,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "attributeIndexes",
+                  "nameLocation": "477:16:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15699,
+                  "src": "470:23:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15695,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "470:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15696,
+                    "nodeType": "ArrayTypeName",
+                    "src": "470:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "448:46:32"
+            },
+            "src": "434:61:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15700,
+              "nodeType": "StructuredDocumentation",
+              "src": "503:49:32",
+              "text": "@dev This emits when a membership is revoked."
+            },
+            "id": 15704,
+            "name": "Revoked",
+            "nameLocation": "564:7:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15703,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15702,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "588:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15704,
+                  "src": "572:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15701,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "572:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "571:21:32"
+            },
+            "src": "558:35:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15705,
+              "nodeType": "StructuredDocumentation",
+              "src": "601:55:32",
+              "text": "@dev This emits when a user forfeits his membership"
+            },
+            "id": 15709,
+            "name": "Forfeited",
+            "nameLocation": "668:9:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15708,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15707,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "694:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15709,
+                  "src": "678:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15706,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "678:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "677:21:32"
+            },
+            "src": "662:37:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15710,
+              "nodeType": "StructuredDocumentation",
+              "src": "707:57:32",
+              "text": "@dev This emits when a membership request is accepted"
+            },
+            "id": 15717,
+            "name": "ApprovedMembership",
+            "nameLocation": "776:18:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15716,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15712,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "811:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15717,
+                  "src": "795:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15711,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "795:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15715,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "attributeIndexes",
+                  "nameLocation": "823:16:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15717,
+                  "src": "816:23:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15713,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "816:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15714,
+                    "nodeType": "ArrayTypeName",
+                    "src": "816:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "794:46:32"
+            },
+            "src": "770:71:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15718,
+              "nodeType": "StructuredDocumentation",
+              "src": "849:61:32",
+              "text": "@dev This emits when a membership is requested by an user"
+            },
+            "id": 15722,
+            "name": "RequestedMembership",
+            "nameLocation": "922:19:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15721,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15720,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "958:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15722,
+                  "src": "942:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15719,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "942:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "941:21:32"
+            },
+            "src": "916:47:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15723,
+              "nodeType": "StructuredDocumentation",
+              "src": "971:132:32",
+              "text": "@dev This emits when data of a member is modified.\n  Doesn't emit when a new membership is created and data is assigned."
+            },
+            "id": 15731,
+            "name": "ModifiedAttributes",
+            "nameLocation": "1115:18:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15730,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15725,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "1150:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15731,
+                  "src": "1134:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15724,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1134:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15727,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "attributeIndex",
+                  "nameLocation": "1160:14:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15731,
+                  "src": "1155:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15726,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1155:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15729,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "attributeValueIndex",
+                  "nameLocation": "1181:19:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15731,
+                  "src": "1176:24:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15728,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1176:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1133:68:32"
+            },
+            "src": "1109:93:32"
+          },
+          {
+            "documentation": {
+              "id": 15732,
+              "nodeType": "StructuredDocumentation",
+              "src": "1210:404:32",
+              "text": "@notice Adds a new attribute (key, value) pair to the set of pre-existing attributes.\n @dev Adds a new attribute at the end of the array of attributes and maps it to `values`.\n  Contract can set a max number of attributes and throw if limit is reached.\n @param _name Name of the attribute which is to be added.\n @param values List of values of the specified attribute."
+            },
+            "functionSelector": "00c6abf9",
+            "id": 15740,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addAttributeSet",
+            "nameLocation": "1629:15:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15738,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15734,
+                  "mutability": "mutable",
+                  "name": "_name",
+                  "nameLocation": "1653:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15740,
+                  "src": "1645:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 15733,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1645:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15737,
+                  "mutability": "mutable",
+                  "name": "values",
+                  "nameLocation": "1679:6:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15740,
+                  "src": "1660:25:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15735,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1660:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 15736,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1660:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1644:42:32"
+            },
+            "returnParameters": {
+              "id": 15739,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1695:0:32"
+            },
+            "scope": 15845,
+            "src": "1620:76:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15741,
+              "nodeType": "StructuredDocumentation",
+              "src": "1704:497:32",
+              "text": "@notice Modifies the attribute value of a specific attribute for a given `_to` address.\n @dev Use appropriate checks for whether a user/admin can modify the data.\n  Best practice is to use onlyOwner modifier from ERC173.\n @param _to The address whose attribute is being modified.\n @param _attributeIndex The index of attribute which is being modified.\n @param _modifiedValueIndex The index of the new value which is being assigned to the user attribute."
+            },
+            "functionSelector": "7851c0ed",
+            "id": 15750,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "modifyAttributeByIndex",
+            "nameLocation": "2216:22:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15748,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15743,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "2247:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15750,
+                  "src": "2239:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15742,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2239:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15745,
+                  "mutability": "mutable",
+                  "name": "_attributeIndex",
+                  "nameLocation": "2257:15:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15750,
+                  "src": "2252:20:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15744,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2252:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15747,
+                  "mutability": "mutable",
+                  "name": "_modifiedValueIndex",
+                  "nameLocation": "2279:19:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15750,
+                  "src": "2274:24:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15746,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2274:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2238:61:32"
+            },
+            "returnParameters": {
+              "id": 15749,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2308:0:32"
+            },
+            "scope": 15845,
+            "src": "2207:102:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15751,
+              "nodeType": "StructuredDocumentation",
+              "src": "2317:630:32",
+              "text": "@notice Requests membership from any address.\n @dev Throws if the `msg.sender` already has the token.\n  The individual `msg.sender` can request for a membership if some existing criteria are satisfied.\n  When a membership is requested, this function emits the RequestedMembership event.\n  dev can store the membership request and use `approveRequest` to assign membership later\n  dev can also oraclize the request to assign membership later\n @param _attributeIndexes the attribute data associated with the member.\n  This is an array which contains indexes of attributes."
+            },
+            "functionSelector": "7ec92e59",
+            "id": 15757,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requestMembership",
+            "nameLocation": "2962:17:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15755,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15754,
+                  "mutability": "mutable",
+                  "name": "_attributeIndexes",
+                  "nameLocation": "2996:17:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15757,
+                  "src": "2980:33:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15752,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2980:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15753,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2980:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2979:35:32"
+            },
+            "returnParameters": {
+              "id": 15756,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3031:0:32"
+            },
+            "scope": 15845,
+            "src": "2953:79:32",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15758,
+              "nodeType": "StructuredDocumentation",
+              "src": "3040:262:32",
+              "text": "@notice User can forfeit his membership.\n @dev Throws if the `msg.sender` already doesn't have the token.\n  The individual `msg.sender` can revoke his/her membership.\n  When the token is revoked, this function emits the Revoked event."
+            },
+            "functionSelector": "a324a9cf",
+            "id": 15761,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "forfeitMembership",
+            "nameLocation": "3317:17:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15759,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3334:2:32"
+            },
+            "returnParameters": {
+              "id": 15760,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3353:0:32"
+            },
+            "scope": 15845,
+            "src": "3308:46:32",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15762,
+              "nodeType": "StructuredDocumentation",
+              "src": "3362:448:32",
+              "text": "@notice Owner approves membership from any address.\n @dev Throws if the `_user` doesn't have a pending request.\n  Throws if the `msg.sender` is not an owner.\n  Approves the pending request\n  Make oraclize callback call this function\n  When the token is assigned, this function emits the `ApprovedMembership` and `Assigned` events.\n @param _user the user whose membership request will be approved."
+            },
+            "functionSelector": "061dff9a",
+            "id": 15767,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "approveRequest",
+            "nameLocation": "3825:14:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15765,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15764,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nameLocation": "3848:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15767,
+                  "src": "3840:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15763,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3840:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3839:15:32"
+            },
+            "returnParameters": {
+              "id": 15766,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3863:0:32"
+            },
+            "scope": 15845,
+            "src": "3816:48:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15768,
+              "nodeType": "StructuredDocumentation",
+              "src": "3872:373:32",
+              "text": "@notice Owner discards membership from any address.\n @dev Throws if the `_user` doesn't have a pending request.\n  Throws if the `msg.sender` is not an owner.\n  Discards the pending request\n  Make oraclize callback call this function if criteria are not satisfied\n @param _user the user whose membership request will be discarded."
+            },
+            "functionSelector": "6112e48f",
+            "id": 15773,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "discardRequest",
+            "nameLocation": "4260:14:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15771,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15770,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nameLocation": "4283:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15773,
+                  "src": "4275:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15769,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4275:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4274:15:32"
+            },
+            "returnParameters": {
+              "id": 15772,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "4298:0:32"
+            },
+            "scope": 15845,
+            "src": "4251:48:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15774,
+              "nodeType": "StructuredDocumentation",
+              "src": "4307:590:32",
+              "text": "@notice Assigns membership of an MVT from owner address to another address.\n @dev Throws if the member already has the token.\n  Throws if `_to` is the zero address.\n  Throws if the `msg.sender` is not an owner.\n  The entity assigns the membership to each individual.\n  When the token is assigned, this function emits the Assigned event.\n @param _to The address to which the token is assigned.\n @param _attributeIndexes The attribute data associated with the member.\n  This is an array which contains indexes of attributes."
+            },
+            "functionSelector": "15bc9406",
+            "id": 15782,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "assignTo",
+            "nameLocation": "4912:8:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15780,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15776,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "4929:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15782,
+                  "src": "4921:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15775,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4921:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15779,
+                  "mutability": "mutable",
+                  "name": "_attributeIndexes",
+                  "nameLocation": "4950:17:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15782,
+                  "src": "4934:33:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15777,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "4934:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15778,
+                    "nodeType": "ArrayTypeName",
+                    "src": "4934:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4920:48:32"
+            },
+            "returnParameters": {
+              "id": 15781,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "4977:0:32"
+            },
+            "scope": 15845,
+            "src": "4903:75:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15783,
+              "nodeType": "StructuredDocumentation",
+              "src": "4986:400:32",
+              "text": "@notice Only Owner can revoke the membership.\n @dev This removes the membership of the user.\n  Throws if the `_from` is not an owner of the token.\n  Throws if the `msg.sender` is not an owner.\n  Throws if `_from` is the zero address.\n  When transaction is complete, this function emits the Revoked event.\n @param _from The current owner of the MVT."
+            },
+            "functionSelector": "c89ed7aa",
+            "id": 15788,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "revokeFrom",
+            "nameLocation": "5401:10:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15786,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15785,
+                  "mutability": "mutable",
+                  "name": "_from",
+                  "nameLocation": "5420:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15788,
+                  "src": "5412:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15784,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5412:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5411:15:32"
+            },
+            "returnParameters": {
+              "id": 15787,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "5435:0:32"
+            },
+            "scope": 15845,
+            "src": "5392:44:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15789,
+              "nodeType": "StructuredDocumentation",
+              "src": "5444:338:32",
+              "text": "@notice Queries whether a member is a current member of the organization.\n @dev MVT's assigned to the zero address are considered invalid, and this\n  function throws for queries about the zero address.\n @param _to An address for whom to query the membership.\n @return Whether the member owns the token."
+            },
+            "functionSelector": "ae6b1143",
+            "id": 15796,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isCurrentMember",
+            "nameLocation": "5797:15:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15792,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15791,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "5821:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15796,
+                  "src": "5813:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15790,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5813:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5812:13:32"
+            },
+            "returnParameters": {
+              "id": 15795,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15794,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15796,
+                  "src": "5849:4:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 15793,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5849:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5848:6:32"
+            },
+            "scope": 15845,
+            "src": "5788:67:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15797,
+              "nodeType": "StructuredDocumentation",
+              "src": "5864:239:32",
+              "text": "@notice Gets the value collection of an attribute.\n @dev Returns the values of attributes as a bytes32 array.\n @param _name Name of the attribute whose values are to be fetched\n @return The values of attributes."
+            },
+            "functionSelector": "f0e72756",
+            "id": 15805,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAttributeExhaustiveCollection",
+            "nameLocation": "6118:32:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15800,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15799,
+                  "mutability": "mutable",
+                  "name": "_name",
+                  "nameLocation": "6159:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15805,
+                  "src": "6151:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 15798,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6151:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6150:15:32"
+            },
+            "returnParameters": {
+              "id": 15804,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15803,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15805,
+                  "src": "6189:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15801,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "6189:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 15802,
+                    "nodeType": "ArrayTypeName",
+                    "src": "6189:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6188:18:32"
+            },
+            "scope": 15845,
+            "src": "6109:98:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15806,
+              "nodeType": "StructuredDocumentation",
+              "src": "6215:323:32",
+              "text": "@notice Returns the list of all past and present members.\n @dev Use this function along with isCurrentMember to find wasMemberOf() in Js.\n  It can be calculated as present in getAllMembers() and !isCurrentMember().\n @return List of addresses who have owned the token and currently own the token."
+            },
+            "functionSelector": "7c0f6b35",
+            "id": 15812,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAllMembers",
+            "nameLocation": "6553:13:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15807,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "6566:2:32"
+            },
+            "returnParameters": {
+              "id": 15811,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15810,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15812,
+                  "src": "6592:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15808,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "6592:7:32",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 15809,
+                    "nodeType": "ArrayTypeName",
+                    "src": "6592:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6591:18:32"
+            },
+            "scope": 15845,
+            "src": "6544:66:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15813,
+              "nodeType": "StructuredDocumentation",
+              "src": "6618:188:32",
+              "text": "@notice Returns the count of all current members.\n @dev Use this function in polls as denominator to get percentage of members voted.\n @return Count of current Members."
+            },
+            "functionSelector": "cb695ef4",
+            "id": 15818,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCurrentMemberCount",
+            "nameLocation": "6821:21:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15814,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "6842:2:32"
+            },
+            "returnParameters": {
+              "id": 15817,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15816,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15818,
+                  "src": "6868:4:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15815,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6868:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6867:6:32"
+            },
+            "scope": 15845,
+            "src": "6812:62:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15819,
+              "nodeType": "StructuredDocumentation",
+              "src": "6882:627:32",
+              "text": "@notice Returns the list of all attribute names.\n @dev Returns the names of attributes as a bytes32 array.\n  AttributeNames are stored in a bytes32 Array.\n  Possible values for each attributeName are stored in a mapping(attributeName => attributeValues).\n  AttributeName is bytes32 and attributeValues is bytes32[].\n  Attributes of a particular user are stored in bytes32[].\n  Which has a single attributeValue for each attributeName in an array.\n  Use web3.toAscii(data[0]).replace(/\\u0000/g, \"\") to convert to string in JS.\n @return The names of attributes."
+            },
+            "functionSelector": "4e6762fa",
+            "id": 15825,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAttributeNames",
+            "nameLocation": "7524:17:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15820,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "7541:2:32"
+            },
+            "returnParameters": {
+              "id": 15824,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15823,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15825,
+                  "src": "7567:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15821,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "7567:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 15822,
+                    "nodeType": "ArrayTypeName",
+                    "src": "7567:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "7566:18:32"
+            },
+            "scope": 15845,
+            "src": "7515:70:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15826,
+              "nodeType": "StructuredDocumentation",
+              "src": "7593:330:32",
+              "text": "@notice Returns the attributes of `_to` address.\n @dev Throws if `_to` is the zero address.\n  Use web3.toAscii(data[0]).replace(/\\u0000/g, \"\") to convert to string in JS.\n @param _to The address whose current attributes are to be returned.\n @return The attributes associated with `_to` address."
+            },
+            "functionSelector": "446d5aa4",
+            "id": 15834,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAttributes",
+            "nameLocation": "7938:13:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15829,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15828,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "7960:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15834,
+                  "src": "7952:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15827,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "7952:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "7951:13:32"
+            },
+            "returnParameters": {
+              "id": 15833,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15832,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15834,
+                  "src": "7988:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15830,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "7988:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 15831,
+                    "nodeType": "ArrayTypeName",
+                    "src": "7988:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "7987:18:32"
+            },
+            "scope": 15845,
+            "src": "7929:77:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15835,
+              "nodeType": "StructuredDocumentation",
+              "src": "8014:455:32",
+              "text": "@notice Returns the `attribute` stored against `_to` address.\n @dev Finds the index of the `attribute`.\n  Throws if the attribute is not present in the predefined attributes.\n  Returns the attributeValue for the specified `attribute`.\n @param _to The address whose attribute is requested.\n @param _attributeIndex The attribute Index which is required.\n @return The attribute value at the specified name."
+            },
+            "functionSelector": "04c017c9",
+            "id": 15844,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAttributeByIndex",
+            "nameLocation": "8484:19:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15840,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15837,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "8512:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15844,
+                  "src": "8504:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15836,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8504:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15839,
+                  "mutability": "mutable",
+                  "name": "_attributeIndex",
+                  "nameLocation": "8522:15:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15844,
+                  "src": "8517:20:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15838,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8517:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "8503:35:32"
+            },
+            "returnParameters": {
+              "id": 15843,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15842,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15844,
+                  "src": "8562:7:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 15841,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8562:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "8561:9:32"
+            },
+            "scope": 15845,
+            "src": "8475:96:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 15846,
+        "src": "322:8252:32",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:8535:32"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/membership/IERC1261.sol",
+    "exportedSymbols": {
+      "IERC1261": [
+        15845
+      ]
+    },
+    "id": 15846,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 15690,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:32:32"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IERC1261",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 15691,
+          "nodeType": "StructuredDocumentation",
+          "src": "75:247:32",
+          "text": "@title ERC-1261 MVT Standard\n @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1261.md\n  The constructor should define the attribute set for this MVT.\n  Note: the ERC-165 identifier for this interface is 0x1d8362cf."
+        },
+        "fullyImplemented": false,
+        "id": 15845,
+        "linearizedBaseContracts": [
+          15845
+        ],
+        "name": "IERC1261",
+        "nameLocation": "332:8:32",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15692,
+              "nodeType": "StructuredDocumentation",
+              "src": "371:57:32",
+              "text": "@dev This emits when a token is assigned to a member."
+            },
+            "id": 15699,
+            "name": "Assigned",
+            "nameLocation": "440:8:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15698,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15694,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "465:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15699,
+                  "src": "449:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15693,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "449:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15697,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "attributeIndexes",
+                  "nameLocation": "477:16:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15699,
+                  "src": "470:23:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15695,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "470:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15696,
+                    "nodeType": "ArrayTypeName",
+                    "src": "470:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "448:46:32"
+            },
+            "src": "434:61:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15700,
+              "nodeType": "StructuredDocumentation",
+              "src": "503:49:32",
+              "text": "@dev This emits when a membership is revoked."
+            },
+            "id": 15704,
+            "name": "Revoked",
+            "nameLocation": "564:7:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15703,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15702,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "588:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15704,
+                  "src": "572:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15701,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "572:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "571:21:32"
+            },
+            "src": "558:35:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15705,
+              "nodeType": "StructuredDocumentation",
+              "src": "601:55:32",
+              "text": "@dev This emits when a user forfeits his membership"
+            },
+            "id": 15709,
+            "name": "Forfeited",
+            "nameLocation": "668:9:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15708,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15707,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "694:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15709,
+                  "src": "678:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15706,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "678:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "677:21:32"
+            },
+            "src": "662:37:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15710,
+              "nodeType": "StructuredDocumentation",
+              "src": "707:57:32",
+              "text": "@dev This emits when a membership request is accepted"
+            },
+            "id": 15717,
+            "name": "ApprovedMembership",
+            "nameLocation": "776:18:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15716,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15712,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "811:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15717,
+                  "src": "795:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15711,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "795:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15715,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "attributeIndexes",
+                  "nameLocation": "823:16:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15717,
+                  "src": "816:23:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15713,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "816:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15714,
+                    "nodeType": "ArrayTypeName",
+                    "src": "816:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "794:46:32"
+            },
+            "src": "770:71:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15718,
+              "nodeType": "StructuredDocumentation",
+              "src": "849:61:32",
+              "text": "@dev This emits when a membership is requested by an user"
+            },
+            "id": 15722,
+            "name": "RequestedMembership",
+            "nameLocation": "922:19:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15721,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15720,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "958:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15722,
+                  "src": "942:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15719,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "942:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "941:21:32"
+            },
+            "src": "916:47:32"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 15723,
+              "nodeType": "StructuredDocumentation",
+              "src": "971:132:32",
+              "text": "@dev This emits when data of a member is modified.\n  Doesn't emit when a new membership is created and data is assigned."
+            },
+            "id": 15731,
+            "name": "ModifiedAttributes",
+            "nameLocation": "1115:18:32",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 15730,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15725,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "1150:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15731,
+                  "src": "1134:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15724,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1134:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15727,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "attributeIndex",
+                  "nameLocation": "1160:14:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15731,
+                  "src": "1155:19:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15726,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1155:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15729,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "attributeValueIndex",
+                  "nameLocation": "1181:19:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15731,
+                  "src": "1176:24:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15728,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1176:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1133:68:32"
+            },
+            "src": "1109:93:32"
+          },
+          {
+            "documentation": {
+              "id": 15732,
+              "nodeType": "StructuredDocumentation",
+              "src": "1210:404:32",
+              "text": "@notice Adds a new attribute (key, value) pair to the set of pre-existing attributes.\n @dev Adds a new attribute at the end of the array of attributes and maps it to `values`.\n  Contract can set a max number of attributes and throw if limit is reached.\n @param _name Name of the attribute which is to be added.\n @param values List of values of the specified attribute."
+            },
+            "functionSelector": "00c6abf9",
+            "id": 15740,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addAttributeSet",
+            "nameLocation": "1629:15:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15738,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15734,
+                  "mutability": "mutable",
+                  "name": "_name",
+                  "nameLocation": "1653:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15740,
+                  "src": "1645:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 15733,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1645:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15737,
+                  "mutability": "mutable",
+                  "name": "values",
+                  "nameLocation": "1679:6:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15740,
+                  "src": "1660:25:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15735,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1660:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 15736,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1660:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1644:42:32"
+            },
+            "returnParameters": {
+              "id": 15739,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1695:0:32"
+            },
+            "scope": 15845,
+            "src": "1620:76:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15741,
+              "nodeType": "StructuredDocumentation",
+              "src": "1704:497:32",
+              "text": "@notice Modifies the attribute value of a specific attribute for a given `_to` address.\n @dev Use appropriate checks for whether a user/admin can modify the data.\n  Best practice is to use onlyOwner modifier from ERC173.\n @param _to The address whose attribute is being modified.\n @param _attributeIndex The index of attribute which is being modified.\n @param _modifiedValueIndex The index of the new value which is being assigned to the user attribute."
+            },
+            "functionSelector": "7851c0ed",
+            "id": 15750,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "modifyAttributeByIndex",
+            "nameLocation": "2216:22:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15748,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15743,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "2247:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15750,
+                  "src": "2239:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15742,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2239:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15745,
+                  "mutability": "mutable",
+                  "name": "_attributeIndex",
+                  "nameLocation": "2257:15:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15750,
+                  "src": "2252:20:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15744,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2252:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15747,
+                  "mutability": "mutable",
+                  "name": "_modifiedValueIndex",
+                  "nameLocation": "2279:19:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15750,
+                  "src": "2274:24:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15746,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2274:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2238:61:32"
+            },
+            "returnParameters": {
+              "id": 15749,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2308:0:32"
+            },
+            "scope": 15845,
+            "src": "2207:102:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15751,
+              "nodeType": "StructuredDocumentation",
+              "src": "2317:630:32",
+              "text": "@notice Requests membership from any address.\n @dev Throws if the `msg.sender` already has the token.\n  The individual `msg.sender` can request for a membership if some existing criteria are satisfied.\n  When a membership is requested, this function emits the RequestedMembership event.\n  dev can store the membership request and use `approveRequest` to assign membership later\n  dev can also oraclize the request to assign membership later\n @param _attributeIndexes the attribute data associated with the member.\n  This is an array which contains indexes of attributes."
+            },
+            "functionSelector": "7ec92e59",
+            "id": 15757,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requestMembership",
+            "nameLocation": "2962:17:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15755,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15754,
+                  "mutability": "mutable",
+                  "name": "_attributeIndexes",
+                  "nameLocation": "2996:17:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15757,
+                  "src": "2980:33:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15752,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2980:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15753,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2980:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2979:35:32"
+            },
+            "returnParameters": {
+              "id": 15756,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3031:0:32"
+            },
+            "scope": 15845,
+            "src": "2953:79:32",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15758,
+              "nodeType": "StructuredDocumentation",
+              "src": "3040:262:32",
+              "text": "@notice User can forfeit his membership.\n @dev Throws if the `msg.sender` already doesn't have the token.\n  The individual `msg.sender` can revoke his/her membership.\n  When the token is revoked, this function emits the Revoked event."
+            },
+            "functionSelector": "a324a9cf",
+            "id": 15761,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "forfeitMembership",
+            "nameLocation": "3317:17:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15759,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3334:2:32"
+            },
+            "returnParameters": {
+              "id": 15760,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3353:0:32"
+            },
+            "scope": 15845,
+            "src": "3308:46:32",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15762,
+              "nodeType": "StructuredDocumentation",
+              "src": "3362:448:32",
+              "text": "@notice Owner approves membership from any address.\n @dev Throws if the `_user` doesn't have a pending request.\n  Throws if the `msg.sender` is not an owner.\n  Approves the pending request\n  Make oraclize callback call this function\n  When the token is assigned, this function emits the `ApprovedMembership` and `Assigned` events.\n @param _user the user whose membership request will be approved."
+            },
+            "functionSelector": "061dff9a",
+            "id": 15767,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "approveRequest",
+            "nameLocation": "3825:14:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15765,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15764,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nameLocation": "3848:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15767,
+                  "src": "3840:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15763,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3840:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3839:15:32"
+            },
+            "returnParameters": {
+              "id": 15766,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3863:0:32"
+            },
+            "scope": 15845,
+            "src": "3816:48:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15768,
+              "nodeType": "StructuredDocumentation",
+              "src": "3872:373:32",
+              "text": "@notice Owner discards membership from any address.\n @dev Throws if the `_user` doesn't have a pending request.\n  Throws if the `msg.sender` is not an owner.\n  Discards the pending request\n  Make oraclize callback call this function if criteria are not satisfied\n @param _user the user whose membership request will be discarded."
+            },
+            "functionSelector": "6112e48f",
+            "id": 15773,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "discardRequest",
+            "nameLocation": "4260:14:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15771,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15770,
+                  "mutability": "mutable",
+                  "name": "_user",
+                  "nameLocation": "4283:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15773,
+                  "src": "4275:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15769,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4275:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4274:15:32"
+            },
+            "returnParameters": {
+              "id": 15772,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "4298:0:32"
+            },
+            "scope": 15845,
+            "src": "4251:48:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15774,
+              "nodeType": "StructuredDocumentation",
+              "src": "4307:590:32",
+              "text": "@notice Assigns membership of an MVT from owner address to another address.\n @dev Throws if the member already has the token.\n  Throws if `_to` is the zero address.\n  Throws if the `msg.sender` is not an owner.\n  The entity assigns the membership to each individual.\n  When the token is assigned, this function emits the Assigned event.\n @param _to The address to which the token is assigned.\n @param _attributeIndexes The attribute data associated with the member.\n  This is an array which contains indexes of attributes."
+            },
+            "functionSelector": "15bc9406",
+            "id": 15782,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "assignTo",
+            "nameLocation": "4912:8:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15780,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15776,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "4929:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15782,
+                  "src": "4921:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15775,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4921:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15779,
+                  "mutability": "mutable",
+                  "name": "_attributeIndexes",
+                  "nameLocation": "4950:17:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15782,
+                  "src": "4934:33:32",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15777,
+                      "name": "uint",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "4934:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15778,
+                    "nodeType": "ArrayTypeName",
+                    "src": "4934:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4920:48:32"
+            },
+            "returnParameters": {
+              "id": 15781,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "4977:0:32"
+            },
+            "scope": 15845,
+            "src": "4903:75:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15783,
+              "nodeType": "StructuredDocumentation",
+              "src": "4986:400:32",
+              "text": "@notice Only Owner can revoke the membership.\n @dev This removes the membership of the user.\n  Throws if the `_from` is not an owner of the token.\n  Throws if the `msg.sender` is not an owner.\n  Throws if `_from` is the zero address.\n  When transaction is complete, this function emits the Revoked event.\n @param _from The current owner of the MVT."
+            },
+            "functionSelector": "c89ed7aa",
+            "id": 15788,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "revokeFrom",
+            "nameLocation": "5401:10:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15786,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15785,
+                  "mutability": "mutable",
+                  "name": "_from",
+                  "nameLocation": "5420:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15788,
+                  "src": "5412:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15784,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5412:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5411:15:32"
+            },
+            "returnParameters": {
+              "id": 15787,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "5435:0:32"
+            },
+            "scope": 15845,
+            "src": "5392:44:32",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15789,
+              "nodeType": "StructuredDocumentation",
+              "src": "5444:338:32",
+              "text": "@notice Queries whether a member is a current member of the organization.\n @dev MVT's assigned to the zero address are considered invalid, and this\n  function throws for queries about the zero address.\n @param _to An address for whom to query the membership.\n @return Whether the member owns the token."
+            },
+            "functionSelector": "ae6b1143",
+            "id": 15796,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isCurrentMember",
+            "nameLocation": "5797:15:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15792,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15791,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "5821:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15796,
+                  "src": "5813:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15790,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5813:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5812:13:32"
+            },
+            "returnParameters": {
+              "id": 15795,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15794,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15796,
+                  "src": "5849:4:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 15793,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5849:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5848:6:32"
+            },
+            "scope": 15845,
+            "src": "5788:67:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15797,
+              "nodeType": "StructuredDocumentation",
+              "src": "5864:239:32",
+              "text": "@notice Gets the value collection of an attribute.\n @dev Returns the values of attributes as a bytes32 array.\n @param _name Name of the attribute whose values are to be fetched\n @return The values of attributes."
+            },
+            "functionSelector": "f0e72756",
+            "id": 15805,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAttributeExhaustiveCollection",
+            "nameLocation": "6118:32:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15800,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15799,
+                  "mutability": "mutable",
+                  "name": "_name",
+                  "nameLocation": "6159:5:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15805,
+                  "src": "6151:13:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 15798,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6151:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6150:15:32"
+            },
+            "returnParameters": {
+              "id": 15804,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15803,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15805,
+                  "src": "6189:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15801,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "6189:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 15802,
+                    "nodeType": "ArrayTypeName",
+                    "src": "6189:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6188:18:32"
+            },
+            "scope": 15845,
+            "src": "6109:98:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15806,
+              "nodeType": "StructuredDocumentation",
+              "src": "6215:323:32",
+              "text": "@notice Returns the list of all past and present members.\n @dev Use this function along with isCurrentMember to find wasMemberOf() in Js.\n  It can be calculated as present in getAllMembers() and !isCurrentMember().\n @return List of addresses who have owned the token and currently own the token."
+            },
+            "functionSelector": "7c0f6b35",
+            "id": 15812,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAllMembers",
+            "nameLocation": "6553:13:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15807,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "6566:2:32"
+            },
+            "returnParameters": {
+              "id": 15811,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15810,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15812,
+                  "src": "6592:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15808,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "6592:7:32",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 15809,
+                    "nodeType": "ArrayTypeName",
+                    "src": "6592:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6591:18:32"
+            },
+            "scope": 15845,
+            "src": "6544:66:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15813,
+              "nodeType": "StructuredDocumentation",
+              "src": "6618:188:32",
+              "text": "@notice Returns the count of all current members.\n @dev Use this function in polls as denominator to get percentage of members voted.\n @return Count of current Members."
+            },
+            "functionSelector": "cb695ef4",
+            "id": 15818,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCurrentMemberCount",
+            "nameLocation": "6821:21:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15814,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "6842:2:32"
+            },
+            "returnParameters": {
+              "id": 15817,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15816,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15818,
+                  "src": "6868:4:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15815,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6868:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6867:6:32"
+            },
+            "scope": 15845,
+            "src": "6812:62:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15819,
+              "nodeType": "StructuredDocumentation",
+              "src": "6882:627:32",
+              "text": "@notice Returns the list of all attribute names.\n @dev Returns the names of attributes as a bytes32 array.\n  AttributeNames are stored in a bytes32 Array.\n  Possible values for each attributeName are stored in a mapping(attributeName => attributeValues).\n  AttributeName is bytes32 and attributeValues is bytes32[].\n  Attributes of a particular user are stored in bytes32[].\n  Which has a single attributeValue for each attributeName in an array.\n  Use web3.toAscii(data[0]).replace(/\\u0000/g, \"\") to convert to string in JS.\n @return The names of attributes."
+            },
+            "functionSelector": "4e6762fa",
+            "id": 15825,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAttributeNames",
+            "nameLocation": "7524:17:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15820,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "7541:2:32"
+            },
+            "returnParameters": {
+              "id": 15824,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15823,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15825,
+                  "src": "7567:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15821,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "7567:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 15822,
+                    "nodeType": "ArrayTypeName",
+                    "src": "7567:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "7566:18:32"
+            },
+            "scope": 15845,
+            "src": "7515:70:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15826,
+              "nodeType": "StructuredDocumentation",
+              "src": "7593:330:32",
+              "text": "@notice Returns the attributes of `_to` address.\n @dev Throws if `_to` is the zero address.\n  Use web3.toAscii(data[0]).replace(/\\u0000/g, \"\") to convert to string in JS.\n @param _to The address whose current attributes are to be returned.\n @return The attributes associated with `_to` address."
+            },
+            "functionSelector": "446d5aa4",
+            "id": 15834,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAttributes",
+            "nameLocation": "7938:13:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15829,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15828,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "7960:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15834,
+                  "src": "7952:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15827,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "7952:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "7951:13:32"
+            },
+            "returnParameters": {
+              "id": 15833,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15832,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15834,
+                  "src": "7988:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 15830,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "7988:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 15831,
+                    "nodeType": "ArrayTypeName",
+                    "src": "7988:9:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "7987:18:32"
+            },
+            "scope": 15845,
+            "src": "7929:77:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 15835,
+              "nodeType": "StructuredDocumentation",
+              "src": "8014:455:32",
+              "text": "@notice Returns the `attribute` stored against `_to` address.\n @dev Finds the index of the `attribute`.\n  Throws if the attribute is not present in the predefined attributes.\n  Returns the attributeValue for the specified `attribute`.\n @param _to The address whose attribute is requested.\n @param _attributeIndex The attribute Index which is required.\n @return The attribute value at the specified name."
+            },
+            "functionSelector": "04c017c9",
+            "id": 15844,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAttributeByIndex",
+            "nameLocation": "8484:19:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15840,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15837,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "8512:3:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15844,
+                  "src": "8504:11:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15836,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8504:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15839,
+                  "mutability": "mutable",
+                  "name": "_attributeIndex",
+                  "nameLocation": "8522:15:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15844,
+                  "src": "8517:20:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15838,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8517:4:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "8503:35:32"
+            },
+            "returnParameters": {
+              "id": 15843,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15842,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15844,
+                  "src": "8562:7:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 15841,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8562:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "8561:9:32"
+            },
+            "scope": 15845,
+            "src": "8475:96:32",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 15846,
+        "src": "322:8252:32",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:8535:32"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.10+commit.fc410830.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-12-25T15:51:04.381Z",
+  "devdoc": {
+    "details": "See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1261.md  The constructor should define the attribute set for this MVT.  Note: the ERC-165 identifier for this interface is 0x1d8362cf.",
+    "events": {
+      "ApprovedMembership(address,uint256[])": {
+        "details": "This emits when a membership request is accepted"
+      },
+      "Assigned(address,uint256[])": {
+        "details": "This emits when a token is assigned to a member."
+      },
+      "Forfeited(address)": {
+        "details": "This emits when a user forfeits his membership"
+      },
+      "ModifiedAttributes(address,uint256,uint256)": {
+        "details": "This emits when data of a member is modified.  Doesn't emit when a new membership is created and data is assigned."
+      },
+      "RequestedMembership(address)": {
+        "details": "This emits when a membership is requested by an user"
+      },
+      "Revoked(address)": {
+        "details": "This emits when a membership is revoked."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "addAttributeSet(bytes32,bytes32[])": {
+        "details": "Adds a new attribute at the end of the array of attributes and maps it to `values`.  Contract can set a max number of attributes and throw if limit is reached.",
+        "params": {
+          "_name": "Name of the attribute which is to be added.",
+          "values": "List of values of the specified attribute."
+        }
+      },
+      "approveRequest(address)": {
+        "details": "Throws if the `_user` doesn't have a pending request.  Throws if the `msg.sender` is not an owner.  Approves the pending request  Make oraclize callback call this function  When the token is assigned, this function emits the `ApprovedMembership` and `Assigned` events.",
+        "params": {
+          "_user": "the user whose membership request will be approved."
+        }
+      },
+      "assignTo(address,uint256[])": {
+        "details": "Throws if the member already has the token.  Throws if `_to` is the zero address.  Throws if the `msg.sender` is not an owner.  The entity assigns the membership to each individual.  When the token is assigned, this function emits the Assigned event.",
+        "params": {
+          "_attributeIndexes": "The attribute data associated with the member.  This is an array which contains indexes of attributes.",
+          "_to": "The address to which the token is assigned."
+        }
+      },
+      "discardRequest(address)": {
+        "details": "Throws if the `_user` doesn't have a pending request.  Throws if the `msg.sender` is not an owner.  Discards the pending request  Make oraclize callback call this function if criteria are not satisfied",
+        "params": {
+          "_user": "the user whose membership request will be discarded."
+        }
+      },
+      "forfeitMembership()": {
+        "details": "Throws if the `msg.sender` already doesn't have the token.  The individual `msg.sender` can revoke his/her membership.  When the token is revoked, this function emits the Revoked event."
+      },
+      "getAllMembers()": {
+        "details": "Use this function along with isCurrentMember to find wasMemberOf() in Js.  It can be calculated as present in getAllMembers() and !isCurrentMember().",
+        "returns": {
+          "_0": "List of addresses who have owned the token and currently own the token."
+        }
+      },
+      "getAttributeByIndex(address,uint256)": {
+        "details": "Finds the index of the `attribute`.  Throws if the attribute is not present in the predefined attributes.  Returns the attributeValue for the specified `attribute`.",
+        "params": {
+          "_attributeIndex": "The attribute Index which is required.",
+          "_to": "The address whose attribute is requested."
+        },
+        "returns": {
+          "_0": "The attribute value at the specified name."
+        }
+      },
+      "getAttributeExhaustiveCollection(bytes32)": {
+        "details": "Returns the values of attributes as a bytes32 array.",
+        "params": {
+          "_name": "Name of the attribute whose values are to be fetched"
+        },
+        "returns": {
+          "_0": "The values of attributes."
+        }
+      },
+      "getAttributeNames()": {
+        "details": "Returns the names of attributes as a bytes32 array.  AttributeNames are stored in a bytes32 Array.  Possible values for each attributeName are stored in a mapping(attributeName => attributeValues).  AttributeName is bytes32 and attributeValues is bytes32[].  Attributes of a particular user are stored in bytes32[].  Which has a single attributeValue for each attributeName in an array.  Use web3.toAscii(data[0]).replace(/\\u0000/g, \"\") to convert to string in JS.",
+        "returns": {
+          "_0": "The names of attributes."
+        }
+      },
+      "getAttributes(address)": {
+        "details": "Throws if `_to` is the zero address.  Use web3.toAscii(data[0]).replace(/\\u0000/g, \"\") to convert to string in JS.",
+        "params": {
+          "_to": "The address whose current attributes are to be returned."
+        },
+        "returns": {
+          "_0": "The attributes associated with `_to` address."
+        }
+      },
+      "getCurrentMemberCount()": {
+        "details": "Use this function in polls as denominator to get percentage of members voted.",
+        "returns": {
+          "_0": "Count of current Members."
+        }
+      },
+      "isCurrentMember(address)": {
+        "details": "MVT's assigned to the zero address are considered invalid, and this  function throws for queries about the zero address.",
+        "params": {
+          "_to": "An address for whom to query the membership."
+        },
+        "returns": {
+          "_0": "Whether the member owns the token."
+        }
+      },
+      "modifyAttributeByIndex(address,uint256,uint256)": {
+        "details": "Use appropriate checks for whether a user/admin can modify the data.  Best practice is to use onlyOwner modifier from ERC173.",
+        "params": {
+          "_attributeIndex": "The index of attribute which is being modified.",
+          "_modifiedValueIndex": "The index of the new value which is being assigned to the user attribute.",
+          "_to": "The address whose attribute is being modified."
+        }
+      },
+      "requestMembership(uint256[])": {
+        "details": "Throws if the `msg.sender` already has the token.  The individual `msg.sender` can request for a membership if some existing criteria are satisfied.  When a membership is requested, this function emits the RequestedMembership event.  dev can store the membership request and use `approveRequest` to assign membership later  dev can also oraclize the request to assign membership later",
+        "params": {
+          "_attributeIndexes": "the attribute data associated with the member.  This is an array which contains indexes of attributes."
+        }
+      },
+      "revokeFrom(address)": {
+        "details": "This removes the membership of the user.  Throws if the `_from` is not an owner of the token.  Throws if the `msg.sender` is not an owner.  Throws if `_from` is the zero address.  When transaction is complete, this function emits the Revoked event.",
+        "params": {
+          "_from": "The current owner of the MVT."
+        }
+      }
+    },
+    "title": "ERC-1261 MVT Standard",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "addAttributeSet(bytes32,bytes32[])": {
+        "notice": "Adds a new attribute (key, value) pair to the set of pre-existing attributes."
+      },
+      "approveRequest(address)": {
+        "notice": "Owner approves membership from any address."
+      },
+      "assignTo(address,uint256[])": {
+        "notice": "Assigns membership of an MVT from owner address to another address."
+      },
+      "discardRequest(address)": {
+        "notice": "Owner discards membership from any address."
+      },
+      "forfeitMembership()": {
+        "notice": "User can forfeit his membership."
+      },
+      "getAllMembers()": {
+        "notice": "Returns the list of all past and present members."
+      },
+      "getAttributeByIndex(address,uint256)": {
+        "notice": "Returns the `attribute` stored against `_to` address."
+      },
+      "getAttributeExhaustiveCollection(bytes32)": {
+        "notice": "Gets the value collection of an attribute."
+      },
+      "getAttributeNames()": {
+        "notice": "Returns the list of all attribute names."
+      },
+      "getAttributes(address)": {
+        "notice": "Returns the attributes of `_to` address."
+      },
+      "getCurrentMemberCount()": {
+        "notice": "Returns the count of all current members."
+      },
+      "isCurrentMember(address)": {
+        "notice": "Queries whether a member is a current member of the organization."
+      },
+      "modifyAttributeByIndex(address,uint256,uint256)": {
+        "notice": "Modifies the attribute value of a specific attribute for a given `_to` address."
+      },
+      "requestMembership(uint256[])": {
+        "notice": "Requests membership from any address."
+      },
+      "revokeFrom(address)": {
+        "notice": "Only Owner can revoke the membership."
+      }
+    },
+    "version": 1
+  }
+}
