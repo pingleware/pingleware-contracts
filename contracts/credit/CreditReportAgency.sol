@@ -21,6 +21,10 @@ contract CreditReportAgency is Version, Owned {
     event SubscriberNotified(address addr, string message);
     event ConsumerNotified(address addr, string message);
 
+    uint256 private subscriber_lastreq = 0;
+    uint256 private consumer_total = 0;
+    uint256 private consumer_lastreq = 0;
+
 
     constructor()
     {
@@ -38,22 +42,27 @@ contract CreditReportAgency is Version, Owned {
     }
 
     // A consumer is entitled
-    modifier freeReportCheck(address consumer, address subscriber, uint256 reqtime) {
-      //bool found = false;
-      //uint256 subscriber_lastreq = reqtime;
-      //for (uint i = inquiries[consumer].length; i > 0; i--) {
-      //  if (!found && subscribers[inquiries[consumer][i].subscriber] != 0) {
-      //      subscriber_lastreq = inquiries[consumer][i].reqdate;
-      //      found = true;
-      //  }
-      //}
+    function freeReportCheck(address consumer, address subscriber, uint256 reqtime)
+      internal
+      returns(bool)
+    {
+      bool found = false;
+      subscriber_lastreq = reqtime;
 
-      //uint consumer_total = inquiries[consumer].length - 1;
-      //uint256 consumer_lastreq = inquiries[consumer][consumer_total].reqdate;
-      //require(
-      //  consumer_lastreq == 0 || (consumer_lastreq + 52 weeks) > reqtime || (subscriber_lastreq + 90 days) < reqtime,
-      //"not eligible for a free report");
-      _;
+      for (uint i = CreditInquiry.getTotalInquiry(consumer); i > 0; i--) {
+        if (!found && (CreditInquiry.getInquiryofSubscriber(consumer,i) == subscriber)) {
+            subscriber_lastreq = CreditInquiry.getInquiryofReqDate(consumer,i);
+            found = true;
+        }
+      }
+
+      consumer_total = CreditInquiry.getTotalInquiry(consumer) - 1;
+      consumer_lastreq = CreditInquiry.getInquiryofReqDate(consumer,consumer_total);
+
+      if (consumer_lastreq == 0 || (consumer_lastreq + 52 weeks) > reqtime || (subscriber_lastreq + 90 days) < reqtime) {
+        return true;
+      }
+      return false;
     }
 
     
@@ -121,9 +130,10 @@ contract CreditReportAgency is Version, Owned {
       public
       payable
       onlyOwner(encrypted,signature)
-      freeReportCheck(_consumer, subscriber, reqtime)
       returns (bytes32)
     {
+      require(freeReportCheck(_consumer, subscriber, reqtime), "not eligible for a free consumer report");
+
       CreditInquiry.add(_consumer, subscriber, reqtime);
       return CreditReport.getConsumerReport(_consumer);
     }
@@ -147,19 +157,18 @@ contract CreditReportAgency is Version, Owned {
       onlyOwner(encrypted,signature)
     {
       CreditDispute.openDispute(consumer, subscriber,CreditReport.getConsumerReportItem(consumer,index),disputeDate,reason);
-      //message[report.subscriber].push(
-      //  keccak256(
-      //    abi.encodePacked(
-      //      "Dispute Opened:",
-      //      index,
-      //      report.subscriber,
-      //      consumer,
-      //      disputeDate,
-      //      report.item,
-      //      reason
-      //    )
-      //  )
-      //);
+      message[subscriber].push(
+        keccak256(
+          abi.encodePacked(
+            "Dispute Opened:",
+            index,
+            subscriber,
+            consumer,
+            disputeDate,
+            reason
+          )
+        )
+      );
       emit SubscriberNotified(subscriber, "new dispute opened");
     }
 
@@ -172,13 +181,9 @@ contract CreditReportAgency is Version, Owned {
     {
       require(consumer != ZERO_ADDRESS,"missing address");
       require(Subscriber.onlySubscriber(), "access denied for subscriber");
-      //if (consumers[consumer] == 0) {
-      //  consumers[consumer] = 1;
-      //  _consumers.push(consumer);
-      //  total_consumers++;
-      //}
-      //ReportItem memory ritem = ReportItem(msg.sender, item);
-      //reports[consumer].push(ritem);
+      // add consumer, if not exist?
+      Consumer.addConsumer(consumer);
+      CreditReport.addConsumerItem(consumer, item);
       emit ConsumerNotified(consumer, "new item was added to your report");
     }
 
@@ -248,23 +253,7 @@ contract CreditReportAgency is Version, Owned {
       public
     {
       require(Subscriber.onlySubscriber(), "access denied for subscriber");
-      /*
-      Dispute memory dispute = Dispute(
-        index,
-        disputes[consumer][index].subscriber,
-        disputes[consumer][index].consumer,
-        disputes[consumer][index].disputeDate,
-        disputes[consumer][index].item,
-        disputes[consumer][index].reason,
-        status
-      );
-
-      if (purge) {
-        delete disputes[consumer][index];
-      } else {
-        disputes[consumer][index] = dispute;
-      }
-      */
+      CreditDispute.finalizeDispute(consumer,index,status,purge);
       emit ConsumerNotified(consumer, "dispute finalized");
     }
 
@@ -281,33 +270,6 @@ contract CreditReportAgency is Version, Owned {
       onlyOwner(encrypted,signature)
       returns (bytes32)
     {
-      bytes32 output = "";
-      /*
-      for (uint i = 0; i < disputes[consumer].length; i++) {
-        Dispute memory _dispute = Dispute(
-          disputes[consumer][i].index,
-          disputes[consumer][i].subscriber,
-          disputes[consumer][i].consumer,
-          disputes[consumer][i].disputeDate,
-          disputes[consumer][i].item,
-          disputes[consumer][i].reason,
-          disputes[consumer][i].status
-        );
-        output = keccak256(
-          abi.encodePacked(
-            output,
-            "[",
-            _dispute.index,
-            _dispute.subscriber,
-            _dispute.consumer,
-            _dispute.disputeDate,
-            _dispute.reason,
-            _dispute.status,
-            "]"
-          )
-        );
-      }
-      */
-      return output;
+      return CreditDispute.getDisputes(consumer);
     }
 }

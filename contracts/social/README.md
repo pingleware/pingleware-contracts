@@ -1,5 +1,5 @@
 # Social Network Token
-The Social Network token is targeted to replace popular social networks by offering a community-driven content validation.
+The Social Network token is targeted to replace popular social networks by offering a community-driven content validation. An ideal blockchain social network woudl have each user mint a new token which creates a new contract and new address and now that user's data is segragated from the other users (see https://docs.tatum.io/guides/blockchain/how-to-create-erc-1155-multi-tokens about multi-tokens). While the social network is decentralized especially when deployed using IPFS and can be referenced using IPFS-contract address scheme, a centralized access point is used via a domain name. While an advertiser scheme can be built into  the contract, with the contract being opened source and viewable, transparency is automatic, so the users know when and how data integrity is maintained and protected.
 
 # What is a Community-driven content validation?
 The users decide which content is shown through thumps up and down voting. No voting status is shown to prevent mean spiritedness actions, and only one thumbs up and down vote is permitted per user. A thumbs up and down vote on a post, cancels that vote.

@@ -53,4 +53,55 @@ library CreditDispute {
         delete creditDisputeStorage().disputes[consumer][index];
     }
 
+    function getDisputes(address consumer)
+        internal
+        view
+        returns (bytes32)
+    {
+      bytes32 output = "";
+      for (uint i = 0; i < creditDisputeStorage().disputes[consumer].length; i++) {
+        DisputeItem memory _dispute = DisputeItem(
+          creditDisputeStorage().disputes[consumer][i].subscriber,
+          creditDisputeStorage().disputes[consumer][i].consumer,
+          creditDisputeStorage().disputes[consumer][i].disputeDate,
+          creditDisputeStorage().disputes[consumer][i].item,
+          creditDisputeStorage().disputes[consumer][i].reason,
+          creditDisputeStorage().disputes[consumer][i].status
+        );
+        output = keccak256(
+          abi.encodePacked(
+            output,
+            "[",
+            _dispute.subscriber,
+            _dispute.consumer,
+            _dispute.disputeDate,
+            _dispute.reason,
+            _dispute.status,
+            "]"
+          )
+        );
+      }
+      return output;
+
+    }
+
+    function finalizeDispute(address consumer,uint index,string memory status, bool purge)
+        internal
+    {
+      DisputeItem memory dispute = DisputeItem(
+        creditDisputeStorage().disputes[consumer][index].subscriber,
+        creditDisputeStorage().disputes[consumer][index].consumer,
+        creditDisputeStorage().disputes[consumer][index].disputeDate,
+        creditDisputeStorage().disputes[consumer][index].item,
+        creditDisputeStorage().disputes[consumer][index].reason,
+        status
+      );
+
+      if (purge) {
+        delete creditDisputeStorage().disputes[consumer][index];
+      } else {
+        creditDisputeStorage().disputes[consumer][index] = dispute;
+      }
+    }
+
 }

@@ -52,5 +52,12 @@ library Consumer {
         return consumerStorage()._consumers;
     }
 
+    function addConsumer(address addr)
+        internal
+    {
+        if (consumerStorage().consumers[addr] == 0) {
+            consumerStorage()._consumers.push(addr);
+        }
+    }
 
 }

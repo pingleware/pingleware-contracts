@@ -110,7 +110,7 @@ interface IERC1261 {/* is ERC173, ERC165 */
     /// @dev Use this function along with isCurrentMember to find wasMemberOf() in Js.
     ///  It can be calculated as present in getAllMembers() and !isCurrentMember().
     /// @return List of addresses who have owned the token and currently own the token.
-    function getAllMembers() external view returns (address[]);
+    function getAllMembers() external view returns (address[] memory);
 
     /// @notice Returns the count of all current members.
     /// @dev Use this function in polls as denominator to get percentage of members voted.
@@ -133,7 +133,7 @@ interface IERC1261 {/* is ERC173, ERC165 */
     ///  Use web3.toAscii(data[0]).replace(/\u0000/g, "") to convert to string in JS.
     /// @param _to The address whose current attributes are to be returned.
     /// @return The attributes associated with `_to` address.
-    function getAttributes(address _to) external view returns (bytes32[]);
+    function getAttributes(address _to) external view returns (bytes32[] memory);
 
     /// @notice Returns the `attribute` stored against `_to` address.
     /// @dev Finds the index of the `attribute`.

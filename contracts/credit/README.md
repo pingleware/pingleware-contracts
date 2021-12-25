@@ -18,6 +18,10 @@ In order to remain in compliance with the FCRA, the consumer cannot be charge a 
 
 A modifier is added called consumerFreeAnnualCheck passing a local epoch timestamp (Date.toTime() / 1000) and check against the last consumer inquiry date (inquiries[consumer][inquiries[consumer].length - 1].time) if s year has elapsed or no previous request on the free request method (gas fees paid by owner) and new inquiry entry is added and the report return. A consumer credit report inquiry is available, which assesses gas fees from the consumer. The free method for the consumer, the gas fees are paid by the owner.
 
+UPDATE:
+
+The use of diamond storage in libraries avoids gas fees and hence can provide a consumer direct request to their credit report and disputes without incurring gas fees.
+
 # The Future of Blockchain
 Blockchain technologies is NOT a new technology, but a twist on an old technology, repackaged in different wrapping. Blockchain uses RPC or remote procedure calls, which is as old as myself. The abilities of blockchain are reminensent of the old CORBA days which refers to common object-oriented request broker architecture. Unlike CORBA, blockchain is expensive to use because of the gas fees. A better blockchain would be to eliminate the gas fees? and the mining?
 

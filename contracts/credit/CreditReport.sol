@@ -68,7 +68,6 @@ library CreditReport {
         return _report(consumer);
     }
 
-
     function _report(address consumer)
         internal
         view

@@ -40,4 +40,29 @@ library CreditInquiry {
       }
       return output;
     }
+
+    function getInquiryofSubscriber(address _consumer,uint index)
+      internal
+      view
+      returns (address)
+    {
+      return creditInquiryStorage().inquiries[_consumer][index].subscriber;
+    }
+
+    function getInquiryofReqDate(address _consumer,uint index)
+      internal
+      view
+      returns (uint256)
+    {
+      return creditInquiryStorage().inquiries[_consumer][index].reqdate;
+    }
+
+
+    function getTotalInquiry(address _consumer)
+      internal
+      view
+      returns (uint256)
+    {
+      return creditInquiryStorage().inquiries[_consumer].length;
+    }
 }
