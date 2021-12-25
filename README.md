@@ -37,6 +37,7 @@ There are prebuilt smart contracts for Exempt Equity and Debt Offerings, a Credi
 # Release Schedule
 
         Date        Version                 Notes
+    12/25/2021       1.0.5         Refactoring credit, social and some equity contracts
     12/21/2021       1.0.4         Fixes identified through remix debugging; added followers and friends;
     12/19/2021       1.0.3         General fixes and compiler warnings cleanup
     12/19/2021       1.0.2         Employee Benefit Plan contract implemented
