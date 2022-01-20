@@ -110,7 +110,7 @@ Security Token Offerings (STO) at https://itsblockchain.com/security-token-offer
 
 STO Market https://stomarket.com/market
 
-# Wha is different between pingleware-contracts and other contract frameworks?
+# What is different between pingleware-contracts and other contract frameworks?
 While the other contract frameworks provide templates to help you build contracts, they fall short from real world model implementation. pingleware-contracts provide a template for real world use of smart contracts across many industries, saving you development time and expense?
 
 # End-of-Life Doctrine
