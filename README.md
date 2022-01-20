@@ -37,11 +37,22 @@ Before developing the Equity token smart contracts for exempt offerings, I resea
 The remix desktop was rebuilt as a webapp because I found the straight-browser version to become slow and non-responsive. The webapp version can be downloaded from https://github.com/pingleware/remix-desktop. You should try installing the official desktop version from the Remix Team at https://github.com/ethereum/remix-desktop. If the application will no launch, then download the webapp version.
 
 # What's included?
-There are prebuilt smart contracts for Exempt Equity and Debt Offerings, a Credit Report and a Social network. Before launching an exempt equity or debt offering you are required to submit the appropriate form to the Security and Exchange Commission as well as to have a Private Placement Memorandum. Using a DAPP or decentralized application on the IPFS or interplanetary file system, to maintain KYC, AML and accredied investor vetting compliance for your restricted securities.
+There are prebuilt smart contracts 
+
+    Exempt Equity and Debt Offerings
+    Credit Report
+    Social network
+    Membership
+    Pharma
+    Real Estate
+    Supply Chain
+    
+Before launching an exempt equity or debt offering you are required to submit the appropriate form to the Security and Exchange Commission as well as to have a Private Placement Memorandum. Using a DAPP or decentralized application on the IPFS or interplanetary file system, to maintain KYC, AML and accredited investor vetting compliance for your restricted securities.
 
 # Release Schedule
 
         Date        Version                 Notes
+    ??/??/????       1.0.6         Refactor equity, debt and membership; added supply chain, real estate and pharma
     12/25/2021       1.0.5         Refactoring credit, social and some equity contracts
     12/21/2021       1.0.4         Fixes identified through remix debugging; added followers and friends;
     12/19/2021       1.0.3         General fixes and compiler warnings cleanup
@@ -54,16 +65,38 @@ The project is currently in an alpha-beta state, which means that production use
 NPMJS.COM repository permits the tagging of releases as stable. See the workflow.
 
 ## Workflow
+Skip to step #5, if deploying on a DEX like polymath.network,
 
     1. Create the contracts for each exempt offering in accordance with SEC rules; complete the Credit Report contract in compliance with the FCRA; complete the Social Network contract that support community driven choice.
     2. Test the contracts on remix.ethereum.org to fix implementation issues? To import a contract from github.com into remix, naivgate to the desired contract and press the view raw button, no copy and paste the URL of the raw file view.
     3. Implement a DAPP using HTML, CSS, and JavaScript (jQuery and vanilla - no other JS frameworks) that connect to each contract deployed on a local truffle-ganache configuration.
     4. Deploy on an ethereum testnet for further testing and public preview.
-    5. Create a private placement memorandum with a qualified attorney review.
-    6. File the appropriate exempt offering with the Security and Exchange Commission (SEC) via EDGAR.
-    7. Deploy the contract on an ethereum mainnet.
-    8. Contact preselect accredited investors for participation.
-    9. Tag this project as stable.
+
+    5. Create a private placement memorandum with a qualified attorney review, https://theppmattorney.com/
+    6. Register with the SEC as an EDGAR filer, obtain a CIK number, https://www.sec.gov/edgar/filer-information/how-do-i
+    7. File the appropriate exempt offering with the Security and Exchange Commission (SEC) via EDGAR, https://www.portal.edgarfiling.sec.gov/Welcome/EDGAROnlineFormsLogin.htm
+    8. Register as a Transfer Agent with the SEC using https://www.sec.gov/about/forms/formta-1.pdf
+    9. Apply for a CUSIP at http://cusip.com/apply
+    10. Prepare most recent balance sheet, profit and loss and retained earnings statements, equivalent financial information for the two prior fiscal years
+            Balance sheet - https://www.investopedia.com/terms/b/balancesheet.asp
+            Profit and Loss - https://corporatefinanceinstitute.com/resources/knowledge/accounting/profit-and-loss-statement-pl/
+            Retained Earnings Statement - https://www.accountingformanagement.org/statement-of-retained-earnings
+    11. Apply for a Ticker Symbol from FINRA using https://www.finra.org/sites/default/files/p126234.pdf
+    12. Signup at polymath.network and reserve your symbol at https://eth-tokenstudio.polymath.network/ticker, finalized STO process on this network.
+
+    12-A. (alternative). Deploy on ethereum mainnet using the symbol assigned by FINRA, integrate with a custom DAPP.
+
+    13. Contact preselect accredited investors for participation.
+    14. Tag this project as stable.
+
+Initial DEX Offering at https://coinmarketcap.com/alexandria/glossary/initial-dex-offering
+CoinMarketCap listing criteria at https://support.coinmarketcap.com/hc/en-us/articles/360043659351-Listings-Criteria#section_b3
+Security Token Offerings (STO) at https://itsblockchain.com/security-token-offerings-stos/
+
+STO Market https://stomarket.com/market
+
+# Wha is different between pingleware-contracts and other contract frameworks?
+While the other contract frameworks provide templates to help you build contracts, they fall short from real world model implementation. pingleware-contracts provide a template for real world use of smart contracts across many industries, saving you development time and expense?
 
 # End-of-Life Doctrine
 When a piece of software is useful, there should never be an EOL doctrine. The intention for this application is to achieve immoratlity ;).
