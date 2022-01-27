@@ -12,7 +12,7 @@ library FriendsFollowers {
 
     function friendsFollowersStorage() internal pure returns (FriendsFollowersStorage storage ds)
     {
-        bytes32 position = keccak256("advertiser.storage");
+        bytes32 position = keccak256("friendsfollowers.storage");
         assembly { ds.slot := position }
     }
 

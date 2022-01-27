@@ -59,5 +59,4 @@ abstract contract Owned {
         previous_block_timestamp = block.timestamp;
         return owner;
     }
-
 }

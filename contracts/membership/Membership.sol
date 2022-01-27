@@ -16,6 +16,7 @@ contract Membership is Version, Owned {
 
     event Forfeited(address sender);
     event Revoked(address sender);
+    event Request(address sender);
     event ApprovedMembership(address member,uint value);
 
     constructor(string memory _name, string memory _symbol, uint256 _fee)
@@ -73,9 +74,9 @@ contract Membership is Version, Owned {
         notMember()
     {
         require(msg.sender.balance > 0.001 ether,"insufficient balance");
-        bool status = payable(msg.sender).send(fee);
-        require(status,"failed to pay membership fee?");
+        payable(msg.sender).transfer(0.001 ether);
         membership_requests[msg.sender] = 1;
+        emit Request(msg.sender);
     }
 
     function forfeitMembership()

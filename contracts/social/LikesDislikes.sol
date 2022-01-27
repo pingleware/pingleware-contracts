@@ -10,7 +10,7 @@ library LikesDislikes {
 
     function likesDislikesStorage() internal pure returns (LikesDislikesStorage storage ds)
     {
-        bytes32 position = keccak256("diamond.standard.account.storage");
+        bytes32 position = keccak256("likesdislikes.storage");
         assembly { ds.slot := position }
     }
 

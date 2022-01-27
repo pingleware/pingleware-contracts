@@ -19,7 +19,7 @@ library User {
 
     function userStorage() internal pure returns (UserStorage storage ds)
     {
-        bytes32 position = keccak256("advertiser.storage");
+        bytes32 position = keccak256("user.storage");
         assembly { ds.slot := position }
     }
 

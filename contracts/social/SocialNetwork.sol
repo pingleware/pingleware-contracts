@@ -20,8 +20,6 @@ contract SocialNetwork is Version {
     address public _owner;
     bool private initialized;
 
-  
-
     mapping (address => uint256) private balances;
 
     //uint256 public totalSupply = 0;

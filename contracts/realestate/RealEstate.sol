@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
@@ -8,7 +7,24 @@ import "../Owned.sol";
 // current status: 2 different states.
 contract RealEstate is Version, Owned {
     bool public active;
-    enum STATUS {PENDING, SOLD}
+    enum STATUS {
+        OFFMARKET,
+        LISTED,
+        PENDING,
+        SOLD
+    }
+
+    enum PROPERTY_TYPE {
+        SINGLEFAMILY,
+        DUPLEX,
+        TRIPLEX,
+        QUADPLEX,
+        MULTIFAMILY,
+        CONDO,
+        COOP,
+        MOBILEHOME,
+        LAND
+    }
 
     constructor ()
     {
@@ -20,24 +36,66 @@ contract RealEstate is Version, Owned {
     address public owner;
     uint[] private myArray;
 
+    // A lien should be a separate contract?
+    struct Lien {
+        uint position;
+        address lienholder;
+        uint256 origination_date;
+        uint256 terms;
+        uint256 amount;
+    }
+
     struct NewProperty {
         uint propertyId;
         uint cost;
         string location;
         STATUS status;
+        PROPERTY_TYPE property_type;
         address ownerAddr;
+    }
+
+    struct Sale {
+        address property;
+        uint256 sale_date;
+        address seller;
+        address buyer;
+        uint256 amount;
+    }
+
+    struct Taxes {
+        address taxcollector;
+        address property;
+        uint256 amount;
+    }
+
+    struct TaxRecord {
+        Taxes tax;
+        address payer;
+        uint256 duedate;
+        uint256 date_paid;
+        uint256 amount;
+    }
+
+    struct TaxDeliquency {
+        Taxes tax;
+        uint256 date;
+        uint256 amount;
+        bool    certificate_issued;
+        bool    taxdeed_issued;
     }
 
     mapping(uint => NewProperty) public property;
     mapping(address => NewProperty[]) public house;
+    mapping(uint => Lien) public liens;
 
     //Add new property..
-    function addNewProperty(uint _cost, string memory _location, STATUS _status, address _ownerAddr, bytes32 encrypted, bytes memory signature)
+    function addNewProperty(uint _cost, string memory _location, STATUS _status, PROPERTY_TYPE _type, address _ownerAddr,
+                            bytes32 encrypted, bytes memory signature)
         public
         isOwner(_ownerAddr,encrypted,signature)
     {
-        propertyCount+=1;
-        property[propertyCount] = NewProperty(propertyCount, _cost, _location, _status, _ownerAddr);
+        propertyCount += 1;
+        property[propertyCount] = NewProperty(propertyCount, _cost, _location, _status, _type, _ownerAddr);
 
         NewProperty memory houses = NewProperty(
             {
@@ -45,6 +103,7 @@ contract RealEstate is Version, Owned {
                 cost: _cost,
                 location: _location,
                 status: _status,
+                property_type: _type,
                 ownerAddr: _ownerAddr
             });
         house[_ownerAddr].push(houses);

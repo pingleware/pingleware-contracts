@@ -19,7 +19,7 @@ library Account {
 
     function accountStorage() internal pure returns (AccountStorage storage ds)
     {
-        bytes32 position = keccak256("diamond.standard.account.storage");
+        bytes32 position = keccak256("account.storage");
         assembly { ds.slot := position }
     }
 

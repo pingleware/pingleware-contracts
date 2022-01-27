@@ -33,6 +33,11 @@ module.exports = {
    *
    * $ truffle test --network <network-name>
    */
+   plugins: [
+  ],
+  api_keys: {
+  },
+
 
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
@@ -120,4 +125,7 @@ module.exports = {
     //   }
     // }
   // }
+  authors: [
+    "PressPage Entertainment Inc DBA PINGLEWARE <maintainers@pingleware.work>"
+  ]
 };

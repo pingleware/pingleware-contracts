@@ -16,7 +16,7 @@ library Comment {
 
     function commentStorage() internal pure returns (CommentStorage storage ds)
     {
-        bytes32 position = keccak256("advertiser.storage");
+        bytes32 position = keccak256("comment.storage");
         assembly { ds.slot := position }
     }
 
