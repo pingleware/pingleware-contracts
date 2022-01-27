@@ -17,6 +17,7 @@ contract Donation is Version, Owned {
         if (msg.value == 0) {
             revert("insufficient funds");
         }
+        // transfer donation to the contract from the sender (donor)
         payable(address(this)).transfer(msg.value);
         addGiver(msg.sender);
     }
