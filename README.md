@@ -8,7 +8,7 @@ The following is a collection od smart contracts for solidity that will help acc
 # Usage
 In your truffle project, import the appropriate smart contract in your new contract
 
-    imports "@pingleware/contracts/contracts/debt/ExemptDebtOfferingBond.sol";
+    imports "@pingleware/contracts/contracts/finance/debt/ExemptDebtOfferingBond.sol";
 
     contract MyExemptBond is ExemptDebtOfferingBond {
         constructor() public {
@@ -19,7 +19,7 @@ In your truffle project, import the appropriate smart contract in your new contr
 
 When using remix.ethereum.org, you can import directly from github.com
 
-    imports "https://raw.githubusercontent.com/pingleware/pingleware-contracts/main/contracts/debt/ExemptDebtOffering.sol";
+    imports "https://raw.githubusercontent.com/pingleware/pingleware-contracts/main/contracts/finance/debt/ExemptDebtOffering.sol";
 
     contract MyExemptBond is ExemptDebtOfferingBond {
         constructor() public {
@@ -38,22 +38,28 @@ Before developing the Equity token smart contracts for exempt offerings, I resea
 The remix desktop was rebuilt as a webapp because I found the straight-browser version to become slow and non-responsive. The webapp version can be downloaded from https://github.com/pingleware/remix-desktop. You should try installing the official desktop version from the Remix Team at https://github.com/ethereum/remix-desktop. If the application will no launch, then download the webapp version.
 
 # What's included?
+I have search github.com for other smart contract implementations in various industries, and copied to this repository ensuring they compile cleanly without errors and warnings.
 There are prebuilt smart contracts 
 
-    Exempt Equity and Debt Offerings
-    Credit Report
-    Social network
+    Agriculture
+    Energy
+    Finance - Credit, Exempt Equity and Debt Offerings, Public Offering
+    Healthcare
+    Insurance
     Membership
-    Pharma
+    Non-Profit
     Real Estate
-    Supply Chain
+    Retail
+    Supply Chain Management
+    Social network
+    Transportation
     
 Before launching an exempt equity or debt offering you are required to submit the appropriate form to the Security and Exchange Commission as well as to have a Private Placement Memorandum. Using a DAPP or decentralized application on the IPFS or interplanetary file system, to maintain KYC, AML and accredited investor vetting compliance for your restricted securities.
 
 # Release Schedule
 
         Date        Version                 Notes
-    ??/??/????       1.0.6         Refactor equity, debt and membership; added supply chain, real estate and pharma
+    ??/??/????       1.0.6         Refactor equity, debt and membership; added additional industry smart contracts
     12/25/2021       1.0.5         Refactoring credit, social and some equity contracts
     12/21/2021       1.0.4         Fixes identified through remix debugging; added followers and friends;
     12/19/2021       1.0.3         General fixes and compiler warnings cleanup
