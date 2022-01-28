@@ -59,6 +59,7 @@ Before launching an exempt equity or debt offering you are required to submit th
 # Release Schedule
 
         Date        Version                 Notes
+    01/28/2022       1.0.7         Remove third-party dependencies; added placeholder contracts for insurance industry;
     01/27/2022       1.0.6         Refactor equity, debt and membership; added additional industry smart contracts
     12/25/2021       1.0.5         Refactoring credit, social and some equity contracts
     12/21/2021       1.0.4         Fixes identified through remix debugging; added followers and friends;

@@ -2,6 +2,10 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 // See https://github.com/Rishabh42/HealthCare-Insurance-Ethereum for the DAPP
+
+
+
+
 contract HealthCare {
 
     address private hospitalAdmin;

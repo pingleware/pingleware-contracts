@@ -2,8 +2,9 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "../Version.sol";
-import "./User.sol";
+import "../User.sol";
 import "./Advertiser.sol";
+
 
 contract SocialNetwork is Version {
 

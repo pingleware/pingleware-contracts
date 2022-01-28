@@ -4,11 +4,15 @@ pragma solidity >=0.4.22 <0.9.0;
 
 // See https://github.com/luigidarco96/HealthcareEnabledBlockchain
 
-import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract PersonalInfo is ERC20, AccessControl {
 
+import "../Version.sol";
+import "../Owned.sol";
+import "../User.sol";
+
+contract PersonalInfo is Version, Owned {
+
+    bytes32 public constant DEFAULT_ADMIN_ROLE = keccak256("ADMIN_ROLE98765");
     bytes32 public constant PATIENT_ROLE = keccak256("PATIENT_ROLE98765");
 
     // Record count
@@ -28,20 +32,20 @@ contract PersonalInfo is ERC20, AccessControl {
     mapping(uint => Record) public records;
 
     constructor()
-        ERC20("MyToken", "TKN")
     {
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _setupRole(PATIENT_ROLE, msg.sender);
+        User.addUserByAddress(msg.sender);
+        User.updateUserMeta("", "", "", "", "", DEFAULT_ADMIN_ROLE);
+        User.updateUserMeta("", "", "", "", "", PATIENT_ROLE);
     }
 
     // Return `true` if the account belongs to the admin role.
     function isAdmin(address account) public virtual view returns (bool) {
-        return hasRole(DEFAULT_ADMIN_ROLE, account);
+        return User.hasRole(DEFAULT_ADMIN_ROLE, account);
     }
 
     // Return `true` if the account belongs to the patient role.
     function isPatient(address account) public virtual view returns (bool) {
-        return hasRole(PATIENT_ROLE, account);
+        return User.hasRole(PATIENT_ROLE, account);
     }
 
     // Restricted to members of the admin role.
@@ -62,7 +66,7 @@ contract PersonalInfo is ERC20, AccessControl {
         virtual
         onlyAdmin
     {
-        grantRole(PATIENT_ROLE, account);
+        User.grantRole(PATIENT_ROLE, account);
     }
 
     // Add an account to the admin role. Restricted to admins.
@@ -71,7 +75,7 @@ contract PersonalInfo is ERC20, AccessControl {
         virtual
         onlyAdmin
     {
-        grantRole(DEFAULT_ADMIN_ROLE, account);
+        User.grantRole(DEFAULT_ADMIN_ROLE, account);
     }
 
     // Remove an account from the patient role. Restricted to admins.
@@ -80,7 +84,7 @@ contract PersonalInfo is ERC20, AccessControl {
         virtual
         onlyAdmin
     {
-        revokeRole(PATIENT_ROLE, account);
+        User.revokeRole(PATIENT_ROLE, account);
     }
 
     // Remove oneself from the admin role.
@@ -88,7 +92,7 @@ contract PersonalInfo is ERC20, AccessControl {
         public
         virtual
     {
-        renounceRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        User.renounceRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
 
     // Insert a record in the list
