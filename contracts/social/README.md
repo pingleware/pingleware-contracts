@@ -5,6 +5,8 @@ The Social Network token is targeted to replace popular social networks by offer
 # What is a Community-driven content validation?
 The users decide which content is shown through thumps up and down voting. No voting status is shown to prevent mean spiritedness actions, and only one thumbs up and down vote is permitted per user. A thumbs up and down vote on a post, cancels that vote.
 
+Additionally, having community owned data, anyone can create a new social network and interfacce with the existing libraries to leverage the existing user base and user news feeds. You new network will receive existing advertisements in your social network DAPP, and new advertisers that your network recruiters will be able to leverage the existing user based created by all social networks inetrfacing with the existing libraries. Everyone is sharing user stories and advertisements, and getting paid when a new post originates from your social network DAPP. Is this not what the definition of a Metaverse? (https://www.merriam-webster.com/words-at-play/meaning-of-metaverse)
+
 # User roles
 The are three user roles: owner (single account), advertiser and user. The advertiser places text-only advertisements that are viewable at a dedicated location of the user's page.
 

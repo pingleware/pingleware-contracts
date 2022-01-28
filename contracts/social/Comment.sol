@@ -3,6 +3,8 @@ pragma solidity >=0.4.22 <0.9.0;
 
 library Comment {
 
+    event NewCommentAdded(address poster);
+
     struct CommentItem {
         address comment_author;
         uint256 post_index;
@@ -38,6 +40,7 @@ library Comment {
         address comment_author = msg.sender;
         CommentItem memory comment = CommentItem(comment_author, index, message);
         commentStorage().comments[poster].push(comment);
+        emit NewCommentAdded(poster);
     }
 
     function getCommentTotal(address poster)

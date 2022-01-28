@@ -3,11 +3,19 @@ pragma solidity >=0.4.22 <0.9.0;
 
 library FriendsFollowers {
 
+
+
+
+
+    event FriendRequestApproved(address requestor);
+    event NewFollowerAdded(address user, address follower);
+    event NotifyFriends(address friend, string message);
+
+
     struct FriendsFollowersStorage {
-        mapping (address => address) followers;
-        mapping (address => mapping(address => bool)) friend_request;
-        mapping (address => address) friends;
-        address[] _friends;
+        mapping (address => address[]) followers;
+        mapping (address => address[]) friend_requests;
+        mapping (address => address[]) friends;
     }
 
     function friendsFollowersStorage() internal pure returns (FriendsFollowersStorage storage ds)
@@ -17,20 +25,27 @@ library FriendsFollowers {
     }
 
 
-
     /**
      * Followers
      */
     function addFollower(address user)
         external
     {
-        friendsFollowersStorage().followers[msg.sender] = user;
+        bool found = false;
+        for (uint i = 0; i < friendsFollowersStorage().followers[user].length; i++) {
+            if (friendsFollowersStorage().followers[user][i] == msg.sender) {
+                found = true;
+            }
+        }
+        require(found == false,"user is already being followed");
+        friendsFollowersStorage().followers[user].push(msg.sender);
+        emit NewFollowerAdded(user, msg.sender);
     }
 
     function getFollowers()
         external
         view
-        returns (address)
+        returns (address[] memory)
     {
         return friendsFollowersStorage().followers[msg.sender];
     }
@@ -39,24 +54,14 @@ library FriendsFollowers {
     function addFriendRequest(address user)
         external
     {
-        bool found1 = false;
-        bool found2 = false;
-        for (uint i = 0; i < friendsFollowersStorage()._friends.length; i++) {
-            if (friendsFollowersStorage()._friends[i] == user) {
-                found1 = true;
-            }
-            if (friendsFollowersStorage()._friends[1] == msg.sender) {
-                found2 = true;
+        bool found = false;
+        for (uint i = 0; i < friendsFollowersStorage().friend_requests[user].length; i++) {
+            if (friendsFollowersStorage().friend_requests[user][i] == msg.sender) {
+                found = true;
             }
         }
-        if (found1) {
-            friendsFollowersStorage()._friends.push(user);
-        }
-        if (found2) {
-            friendsFollowersStorage()._friends.push(msg.sender);
-        }
-        friendsFollowersStorage().friend_request[user][msg.sender] = true;
-        friendsFollowersStorage().friend_request[msg.sender][user] = true;
+        require(found == false,"friend request is pending for this user");
+        friendsFollowersStorage().friend_requests[user].push(msg.sender);
     }
 
     function getTotalFriendRequest()
@@ -64,13 +69,23 @@ library FriendsFollowers {
         view
         returns (uint256)
     {
-        uint total = 0;
-        for (uint i = 0; i < friendsFollowersStorage()._friends.length; i++) {
-            if (friendsFollowersStorage().friend_request[msg.sender][friendsFollowersStorage()._friends[i]]) {
-                total++;
-            }
-        }
-        return total;
+        return friendsFollowersStorage().friend_requests[msg.sender].length;
+    }
+
+    function getTotalFriends()
+        external
+        view
+        returns (uint256)
+    {
+        return friendsFollowersStorage().friends[msg.sender].length;
+    }
+
+    function getTotalFollowers()
+        external
+        view
+        returns (uint256)
+    {
+        return friendsFollowersStorage().followers[msg.sender].length;
     }
 
     function getFriends()
@@ -78,21 +93,52 @@ library FriendsFollowers {
         view
         returns (address[] memory)
     {
-        return friendsFollowersStorage()._friends;
+        return friendsFollowersStorage().friends[msg.sender];
     }
 
     function getFriendRequest()
         external
         view
-        returns (string memory)
+        returns (address[] memory)
     {
-        string memory output = "";
-        for (uint i = 0; i < friendsFollowersStorage()._friends.length; i++) {
-            if (friendsFollowersStorage().friend_request[msg.sender][friendsFollowersStorage()._friends[i]]) {
-                output = string(abi.encodePacked(friendsFollowersStorage()._friends[1]));
-            }
-        }
-        return output;
+        return friendsFollowersStorage().friend_requests[msg.sender];
     }
 
+    function approveFriendRequest(address requestor)
+        external
+    {
+        for (uint i = 0; i < friendsFollowersStorage().friend_requests[msg.sender].length; i++) {
+            if (friendsFollowersStorage().friend_requests[msg.sender][i] == requestor) {
+                delete friendsFollowersStorage().friend_requests[msg.sender][i];
+            }
+        }
+        friendsFollowersStorage().friends[msg.sender].push(requestor);
+        emit FriendRequestApproved(requestor);
+    }
+
+    function deleteFriendRequest(address requestor)
+        external
+    {
+        for (uint i = 0; i < friendsFollowersStorage().friend_requests[msg.sender].length; i++) {
+            if (friendsFollowersStorage().friend_requests[msg.sender][i] == requestor) {
+                delete friendsFollowersStorage().friend_requests[msg.sender][i];
+            }
+        }
+    }
+
+    function notifyFriends(string memory message)
+        external
+    {
+        for (uint i = 0; i < friendsFollowersStorage().friends[msg.sender].length; i++) {
+            emit NotifyFriends(friendsFollowersStorage().friends[msg.sender][i], message);
+        }
+    }
+
+    function notifyFollowers(string memory message)
+        external
+    {
+        for (uint i = 0; i < friendsFollowersStorage().followers[msg.sender].length; i++) {
+            emit NotifyFriends(friendsFollowersStorage().followers[msg.sender][i], message);
+        }
+    }
 }

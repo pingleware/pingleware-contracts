@@ -58,12 +58,28 @@ library SocialFeeds {
         return postStorage().postsV2[msg.sender];
     }
 
+    function getPostsv2ByOwner(address owner)
+        external
+        view
+        returns (Post[] memory)
+    {
+        return postStorage().postsV2[owner];
+    }
+
     function getTotalPostsv2()
         external
         view
         returns (uint256)
     {
         return postStorage().postsV2[msg.sender].length;
+    }
+
+    function getTotalPostsv2ByOwner(address owner)
+        external
+        view
+        returns (uint256)
+    {
+        return postStorage().postsV2[owner].length;
     }
 
     function addPostByOwner(string memory message)

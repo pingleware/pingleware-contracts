@@ -87,12 +87,20 @@ library User {
 
     /**
     * interests is comma dellimited string, e.g. "girls,technology,stage plays"
+    * use keccak256 to convert a string role to bytes32
     */
     function updateUserMeta(string memory fullname, string memory profession, string memory location, string memory dob, string memory interests, bytes32 role)
         external
     {
         UserMeta memory meta = UserMeta(fullname, profession, location, dob, interests, role);
         userStorage().user_meta[msg.sender] = meta;
+    }
+
+    function updateUserMetaByAddress(address _useraddress, string memory fullname, string memory profession, string memory location, string memory dob, string memory interests, bytes32 role)
+        external
+    {
+        UserMeta memory meta = UserMeta(fullname, profession, location, dob, interests, role);
+        userStorage().user_meta[_useraddress] = meta;
     }
 
     function getUserMeta()

@@ -32,11 +32,15 @@ library Advertiser {
         return (advertiserStorage().advertisers[msg.sender] == 0);
     }
 
-    function addAdvertiser()
+    function addAdvertiser(address requestor)
         external
     {
-        advertiserStorage().advertisers[msg.sender] = 1;
-        advertiserStorage()._advertisers.push(msg.sender);
+        address advertiser = msg.sender;
+        if (requestor != address(0x0)) {
+            advertiser = requestor;
+        }
+        advertiserStorage().advertisers[advertiser] = 1;
+        advertiserStorage()._advertisers.push(advertiser);
     }
 
     function newAdvertisement(string memory message)

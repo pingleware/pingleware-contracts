@@ -26,6 +26,6 @@ abstract contract Version {
     }
 
     constructor() {
-        versionStorage().version = "1.0.6";
+        versionStorage().version = "1.0.8";
     }
 }

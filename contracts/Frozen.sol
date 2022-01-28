@@ -14,13 +14,13 @@ contract Frozen {
     }
 
     function start()
-        external
+        internal
     {
         running = true;
     }
 
     function stop()
-        external
+        internal
     {
         running = false;
     }
