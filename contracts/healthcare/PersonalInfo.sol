@@ -9,11 +9,12 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../Version.sol";
 import "../Owned.sol";
 import "../User.sol";
+import "../StringUtils.sol";
 
 contract PersonalInfo is Version, Owned {
 
-    bytes32 public constant DEFAULT_ADMIN_ROLE = keccak256("ADMIN_ROLE98765");
-    bytes32 public constant PATIENT_ROLE = keccak256("PATIENT_ROLE98765");
+    string public constant DEFAULT_ADMIN_ROLE = string("ADMIN_ROLE98765");
+    string public constant PATIENT_ROLE = string("PATIENT_ROLE98765");
 
     // Record count
     uint public recordCount = 0;
@@ -39,12 +40,20 @@ contract PersonalInfo is Version, Owned {
     }
 
     // Return `true` if the account belongs to the admin role.
-    function isAdmin(address account) public virtual view returns (bool) {
+    function isAdmin(address account)
+        public
+        virtual
+        returns (bool)
+    {
         return User.hasRole(DEFAULT_ADMIN_ROLE, account);
     }
 
     // Return `true` if the account belongs to the patient role.
-    function isPatient(address account) public virtual view returns (bool) {
+    function isPatient(address account)
+        public
+        virtual
+        returns (bool)
+    {
         return User.hasRole(PATIENT_ROLE, account);
     }
 

@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
+import "./StringUtils.sol";
+
 library User {
-
-
-
 
     struct UserMeta {
         string  fullname;
@@ -12,7 +11,7 @@ library User {
         string  location;
         string  dob;
         string  interests;
-        bytes32 role;
+        string  role;
     }
 
     struct UserStorage {
@@ -89,14 +88,14 @@ library User {
     * interests is comma dellimited string, e.g. "girls,technology,stage plays"
     * use keccak256 to convert a string role to bytes32
     */
-    function updateUserMeta(string memory fullname, string memory profession, string memory location, string memory dob, string memory interests, bytes32 role)
+    function updateUserMeta(string memory fullname, string memory profession, string memory location, string memory dob, string memory interests, string memory role)
         external
     {
         UserMeta memory meta = UserMeta(fullname, profession, location, dob, interests, role);
         userStorage().user_meta[msg.sender] = meta;
     }
 
-    function updateUserMetaByAddress(address _useraddress, string memory fullname, string memory profession, string memory location, string memory dob, string memory interests, bytes32 role)
+    function updateUserMetaByAddress(address _useraddress, string memory fullname, string memory profession, string memory location, string memory dob, string memory interests, string memory role)
         external
     {
         UserMeta memory meta = UserMeta(fullname, profession, location, dob, interests, role);
@@ -114,7 +113,7 @@ library User {
     function getUserRole()
         external
         view
-        returns (bytes32)
+        returns (string memory)
     {
         return userStorage().user_meta[msg.sender].role;
     }
@@ -122,20 +121,20 @@ library User {
     function getUserRoleByAddress(address _useraddress)
         external
         view
-        returns (bytes32)
+        returns (string memory)
     {
         return userStorage().user_meta[_useraddress].role;
     }
 
-    function hasRole(bytes32 role, address _useraddress)
+    function hasRole(string memory role, address _useraddress)
         external
         view
         returns (bool)
     {
-        return (userStorage().user_meta[_useraddress].role == role);
+        return (StringUtils.equal(userStorage().user_meta[_useraddress].role,role));
     }
 
-    function grantRole(bytes32 role, address _useraddress)
+    function grantRole(string memory role, address _useraddress)
         external
     {
         require(userStorage().users[_useraddress] == 0,"user already exists");
@@ -145,19 +144,19 @@ library User {
         userStorage().user_meta[_useraddress] = meta;
     }
 
-    function revokeRole(bytes32 role, address _useraddress)
+    function revokeRole(string memory role, address _useraddress)
         external
     {
         require(userStorage().users[_useraddress] != 0,"user does not exists");
-        require(userStorage().user_meta[_useraddress].role != role,"role does not match");
+        require(StringUtils.equal(userStorage().user_meta[_useraddress].role, role),"role does not match");
         delete userStorage().users[_useraddress];
         delete userStorage().user_meta[_useraddress];
     }
 
-    function renounceRole(bytes32 role, address _useraddress)
+    function renounceRole(string memory role, address _useraddress)
         external
     {
-        require(userStorage().user_meta[_useraddress].role != role,"role does not match");
-        userStorage().user_meta[_useraddress].role = keccak256("UNDEFINED_ROLE");
+        require(StringUtils.equal(userStorage().user_meta[_useraddress].role, role),"role does not match");
+        userStorage().user_meta[_useraddress].role = string("UNDEFINED_ROLE");
     }
 }
