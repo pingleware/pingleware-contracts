@@ -24,7 +24,7 @@ library SocialFeeds {
         assembly { ds.slot := position }
     }
 
-    event PostAdded(address sender, string message);
+    event PostAdded(address sender, string message, uint index);
 
     function getPosters()
         external
@@ -45,9 +45,11 @@ library SocialFeeds {
 
     function addPostv2(uint256 epoch,bool visible,string memory content)
         external
+        returns (uint)
     {
         Post memory _post = Post(epoch,visible,content);
         postStorage().postsV2[msg.sender].push(_post);
+        return postStorage().postsV2[msg.sender].length - 1;
     }
 
     function getPostsv2()

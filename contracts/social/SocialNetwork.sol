@@ -35,6 +35,7 @@ contract SocialNetwork is Version, Owned, Frozen {
     event Approval(address sender,address recipient,uint256 amount);
     event FallbackEvent(address sender, uint256 amount);
     event ReceiveEvent(address sender, uint256 amount);
+    event CashOut(address owner, uint256 amount);
 
     mapping(address => uint256) private _balances;
     mapping(address => mapping (address => uint256)) allowed;
@@ -101,6 +102,25 @@ contract SocialNetwork is Version, Owned, Frozen {
         onlyOwner(encrypted,signature)
     {
         start();
+    }
+
+    /**
+     * Registration, advertisement and posting fees are made payable to the contract address.
+     * The owner will have to withdraw and pay taxes on the earnings from these fees.
+     * This method permits an authenticated cash out of the contract balance to the contract owner.
+     *
+     * The comment, friend, followers, likes and dislike fees are paid to the originating user at the time
+     * of the event. The user is responsible for reporting earnings.
+     */
+    function cashoutToOwner(bytes32 encrypted, bytes memory signature)
+        public
+        payable
+        onlyOwner(encrypted,signature)
+    {
+        require(address(this).balance > 0,"no balance to transfer to owner");
+        uint256 balance = address(this).balance;
+        payable(getOwner()).transfer(balance);
+        emit CashOut(getOwner(),balance);
     }
 
     function addUser(address _useraddress,string memory fullname, string memory profession, string memory location,
@@ -171,8 +191,8 @@ contract SocialNetwork is Version, Owned, Frozen {
     {
         require(msg.value == 0.001 ether,"insufficient amount? posting fee is 0.001 ether");
         payable(address(this)).transfer(msg.value);
-        SocialFeeds.addPostv2(timestamp, visibility, message);
-        emit NewUserPost(msg.sender,message);
+        uint index = SocialFeeds.addPostv2(timestamp, visibility, message);
+        emit SocialFeeds.PostAdded(msg.sender,message,index);
     }
 
     /**
@@ -188,7 +208,14 @@ contract SocialNetwork is Version, Owned, Frozen {
     {
         require(StringUtils.equal(User.getUserRoleByAddress(poster), USER_ROLE), "user is not valid");
         require(msg.value == 0.0001 ether,"insufficient amount? comment posting fee is 0.0001 ether");
-        payable(poster).transfer(msg.value);
+
+        if (User.isBackupWithholding(poster)) {
+            // poster (receiver) is subject to backup withholding, so keep a running balance, transfer to contract address
+            payable(address(this)).transfer(msg.value);
+            balances[poster] += msg.value;
+        } else {
+            payable(poster).transfer(msg.value);
+        }
         Comment.addComment(poster,index,message);
     }
 
@@ -229,7 +256,14 @@ contract SocialNetwork is Version, Owned, Frozen {
     {
         require(StringUtils.equal(User.getUserRoleByAddress(user), USER_ROLE), "user is not valid");
         require(msg.value == 0.0001 ether,"insufficient amount? follower fee is 0.0001 ether");
-        payable(user).transfer(msg.value); // send a small compensation to the user you are following
+
+        if (User.isBackupWithholding(user)) {
+            // poster (receiver) is subject to backup withholding, so keep a running balance, transfer to contract address
+            payable(address(this)).transfer(msg.value);
+            balances[user] += msg.value;
+        } else {
+            payable(user).transfer(msg.value); // send a small compensation to the user you are following
+        }
         FriendsFollowers.addFollower(user);
     }
 
@@ -243,7 +277,14 @@ contract SocialNetwork is Version, Owned, Frozen {
     {
         require(StringUtils.equal(User.getUserRoleByAddress(user), USER_ROLE), "user is not valid");
         require(msg.value == 0.0001 ether,"insufficient amount? friend request fee is 0.0001 ether");
-        payable(user).transfer(msg.value); // send a small compensation to the user you are following
+
+        if (User.isBackupWithholding(user)) {
+            // poster (receiver) is subject to backup withholding, so keep a running balance, transfer to contract address
+            payable(address(this)).transfer(msg.value);
+            balances[user] += msg.value;
+        } else {
+            payable(user).transfer(msg.value); // send a small compensation to the user you are following
+        }
         FriendsFollowers.addFriendRequest(user);
     }
 
@@ -257,6 +298,7 @@ contract SocialNetwork is Version, Owned, Frozen {
     {
         return account.balance;
     }
+    /*
     function allowance(address owner, address spender)
         public
         view
@@ -303,5 +345,6 @@ contract SocialNetwork is Version, Owned, Frozen {
         } else {
         return false;
         } 
-    }     
+    }  
+    */   
 }

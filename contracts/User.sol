@@ -12,6 +12,7 @@ library User {
         string  dob;
         string  interests;
         string  role;
+        bool    backup_withholding;
     }
 
     struct UserStorage {
@@ -91,14 +92,14 @@ library User {
     function updateUserMeta(string memory fullname, string memory profession, string memory location, string memory dob, string memory interests, string memory role)
         external
     {
-        UserMeta memory meta = UserMeta(fullname, profession, location, dob, interests, role);
+        UserMeta memory meta = UserMeta(fullname, profession, location, dob, interests, role, false);
         userStorage().user_meta[msg.sender] = meta;
     }
 
     function updateUserMetaByAddress(address _useraddress, string memory fullname, string memory profession, string memory location, string memory dob, string memory interests, string memory role)
         external
     {
-        UserMeta memory meta = UserMeta(fullname, profession, location, dob, interests, role);
+        UserMeta memory meta = UserMeta(fullname, profession, location, dob, interests, role, false);
         userStorage().user_meta[_useraddress] = meta;
     }
 
@@ -140,7 +141,7 @@ library User {
         require(userStorage().users[_useraddress] == 0,"user already exists");
         userStorage().users[_useraddress] = 1;
         userStorage()._users.push(_useraddress);
-        UserMeta memory meta = UserMeta("", "", "", "", "", role);
+        UserMeta memory meta = UserMeta("", "", "", "", "", role, false);
         userStorage().user_meta[_useraddress] = meta;
     }
 
@@ -158,5 +159,23 @@ library User {
     {
         require(StringUtils.equal(userStorage().user_meta[_useraddress].role, role),"role does not match");
         userStorage().user_meta[_useraddress].role = string("UNDEFINED_ROLE");
+    }
+
+    /**
+     * Required by the IRS for US-based wallets, when a notification is received from the IRS that a wallet address is
+     * subject to backup withholding?
+     */
+    function changeBackupWithholding(address _useraddress,bool backup_withholding)
+        external
+    {
+        userStorage().user_meta[_useraddress].backup_withholding = backup_withholding;
+    }
+
+    function isBackupWithholding(address _useraddress)
+        external
+        view
+        returns (bool)
+    {
+        return userStorage().user_meta[_useraddress].backup_withholding;
     }
 }
