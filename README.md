@@ -1,5 +1,5 @@
 # PINGLEWARE Smart Contracts for Solidity
-The following is a collection od smart contracts for solidity that will help accelerate blockchain development and deployment.
+The following is a collection of smart contracts for solidity that will help accelerate blockchain development and deployment.
 
 # Installation
 
