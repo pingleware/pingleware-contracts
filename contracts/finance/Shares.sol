@@ -1,36 +1,49 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "./Securities.sol";
+import "../interfaces/SecuritiesInterface.sol";
+import "../interfaces/TransferAgentInterface.sol";
 
-library Shares {
+contract Shares {
+    enum AssetClass {
+        Equity,
+        Bonds,
+        Commodity,
+        RealEstate,
+        PreferredStocks,
+        MultiAssets,
+        Alternatives,
+        Volatile,
+        Currency
+    }
+
     struct Security {
-        string class;
-        uint256 shares;
-        uint256 max_ppu;
-        uint256 max_aggregate;
-        uint256 fee;
-        uint256 totalSupply;
+        AssetClass  class;
+        string      FILENUMBER;     // the File Number assigned by the SEC for this offering
+        string      CUSIP;
+        string      ISIN;
+        uint256     parValue;
+        uint256     shares;
+        bool        restricted;
+        uint256     authorized;
+        uint256     outstanding;
+        uint256     max_ppu;
+        uint256     max_aggregate;
+        uint256     fee;
+        uint256     totalSupply;
     }
 
     struct ShareStorage {
-        mapping (address => string)     CUSIP;
-        mapping (address => string)     ISIN;
-        mapping (address => uint256)    parValue;
-        mapping (address => bool)       restricted;
-        mapping (address => uint256)    authorized;
-        mapping (address => uint256)    outstanding;
-
-        mapping (address => string)     class;
-        mapping (address => uint256)    shares;
-        mapping (address => uint256)    max_ppu;
-        mapping (address => uint256)    max_aggregate;
-        mapping (address => uint256)    fee;
-        mapping (address => uint256)    totalSupply;
-
+        mapping (address => Security) securities;
         mapping (address => mapping(address => bytes32)) certificate;
     }
-    
+
+    TransferAgentInterface TransferAgent;
+
+    constructor(address transferagent_contract) {
+        TransferAgent = TransferAgentInterface(transferagent_contract);
+    }
+
     function shareStorage()
         internal
         pure
@@ -40,140 +53,158 @@ library Shares {
         assembly { ds.slot := position }
     }
 
-    function getClass(address _contract)
-        internal
+    function getClass(address offering)
+        external
         view
-        returns (string memory)
+        returns (AssetClass)
     {
-        return shareStorage().class[_contract];
+        return shareStorage().securities[offering].class;
     }
 
-    function setClass(address _contract,string memory _class)
-        internal
+    function setClass(address offering,AssetClass _class)
+        external
     {
-        shareStorage().class[_contract] = _class;
+        shareStorage().securities[offering].class = _class;
     }
 
-    function getShares(address _contract)
-        internal
-        view
-        returns (uint256)
-    {
-        return shareStorage().shares[_contract];
-    }
-
-    function getMaxPPU(address _contract)
-        internal
+    function getShares(address offering)
+        external
         view
         returns (uint256)
     {
-        return shareStorage().max_ppu[_contract];
+        return shareStorage().securities[offering].shares;
     }
 
-    function getMaxAggregate(address _contract)
-        internal
+    function getMaxPPU(address offering)
+        external
         view
         returns (uint256)
     {
-        return shareStorage().max_aggregate[_contract];
+        return shareStorage().securities[offering].max_ppu;
     }
 
-    function getFee(address _contract)
-        internal
+    function getMaxAggregate(address offering)
+        external
         view
         returns (uint256)
     {
-        return shareStorage().fee[_contract];
+        return shareStorage().securities[offering].max_aggregate;
     }
 
-    function getTotalSupply(address _contract)
-        internal
+    function getFee(address offering)
+        external
         view
         returns (uint256)
     {
-        return shareStorage().totalSupply[_contract];
+        return shareStorage().securities[offering].fee;
+    }
+
+    function getTotalSupply(address offering)
+        external
+        view
+        returns (uint256)
+    {
+        return shareStorage().securities[offering].totalSupply;
+    }
+
+    function addTotalSupply(address offering, uint256 amount)
+        external
+    {
+        shareStorage().securities[offering].totalSupply += amount;
     }
 
 
-    function isPriceBelowParValue(address _contract, uint amount)
-        internal
+    function isPriceBelowParValue(address offering, uint amount)
+        external
         view
         returns (bool)
     {
-      return (amount > shareStorage().parValue[_contract]);
+      return (amount > shareStorage().securities[offering].parValue);
     }
 
-    function getTotalAuthorized(address _contract)
-        internal
+    function getTotalAuthorized(address offering)
+        external
         view
         returns (uint256)
     {
-        return (shareStorage().authorized[_contract]);
+        return (shareStorage().securities[offering].authorized);
     }
 
-    function getOutstanding(address _contract)
-        internal
+    function getOutstanding(address offering)
+        external
         view
         returns (uint256)
     {
-        return (shareStorage().outstanding[_contract]);
+        return (shareStorage().securities[offering].outstanding);
     }
 
-    function addOutstanding(address _contract, uint256 amount)
-        internal
+    function addOutstanding(address offering, uint256 amount)
+        external
     {
-        shareStorage().outstanding[_contract] += amount;
+        require(msg.sender != address(0),"invalid transfer agent");
+        require(msg.sender  == TransferAgent.getTransferAgent(offering),"not a valid transfer agent");
+        shareStorage().securities[offering].outstanding += amount;
     }
 
-    function subOutstanding(address _contract, uint256 amount)
-        internal
+    function subOutstanding(address offering, uint256 amount)
+        external
     {
-        shareStorage().outstanding[_contract] -= amount;
+        shareStorage().securities[offering].outstanding-= amount;
     }
 
-    function isRestrictedSecurity(address _contract)
-        internal
+    function isRestrictedSecurity(address offering)
+        external
         view
         returns (bool)
     {
-      return (shareStorage().restricted[_contract]);
+      return (shareStorage().securities[offering].restricted);
     }
 
-    function assignCUSIP(address _contract, string memory cusip)
-        internal
+    function assignCUSIP(address offering, string memory cusip)
+        external
     {
-        shareStorage().CUSIP[_contract] = cusip;
+        require(msg.sender != address(0),"invalid transfer agent");
+        require(msg.sender  == TransferAgent.getTransferAgent(offering),"not a valid transfer agent");
+        shareStorage().securities[offering].CUSIP = cusip;
     }
 
-    function assignISIN(address _contract, string memory isin)
-        internal
+    function assignISIN(address offering,  string memory isin)
+        external
     {
-        shareStorage().ISIN[_contract] = isin;
+        require(msg.sender != address(0),"invalid transfer agent");
+        require(msg.sender  == TransferAgent.getTransferAgent(offering),"not a valid transfer agent");
+        shareStorage().securities[offering].ISIN = isin;
     }
 
-    function saveCertificate(address _contract,address investor, bytes32 image)
-        internal
+    function saveCertificate(address offering,address investor, bytes32 image)
+        external
     {
-        shareStorage().certificate[_contract][investor] = image;
+        require(msg.sender != address(0),"invalid transfer agent");
+        require(msg.sender  == TransferAgent.getTransferAgent(offering),"not a valid transfer agent");
+        shareStorage().certificate[offering][investor] = image;
     }
 
-    function setParValue(address _contract, uint256 value)
-        internal
+    function setParValue(address offering, uint256 value)
+        external
     {
-        shareStorage().parValue[_contract] = value;
+        require(msg.sender != address(0),"invalid transfer agent");
+        require(msg.sender == TransferAgent.getTransferAgent(offering),"not a valid transfer agent");
+        shareStorage().securities[offering].parValue = value;
     }
 
-    function getParValue(address _contract)
-        internal
+    function getParValue(address offering)
+        external
         view
        returns (uint256)
     {
-        return shareStorage().parValue[_contract];
+        return shareStorage().securities[offering].parValue;
     }
 
-    function setRestricted(address _contract, bool value)
-        internal
+    function setRestricted(address offering, bool value)
+        external
     {
-        shareStorage().restricted[_contract] = value;
+        require(msg.sender != address(0),"invalid transfer agent");
+        require(msg.sender == TransferAgent.getTransferAgent(offering),"not a valid transfer agent");
+        shareStorage().securities[offering].restricted = value;
     }
 }

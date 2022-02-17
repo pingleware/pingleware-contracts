@@ -1,3 +1,18 @@
+# Deployed Contract Addresses
+The smart contracts are being designed to be shared with any contract that follows the method signature rules, hence saving gas fees from multiple deployments.
+To invoke a deployed contract on the blockchain, you will need the contract address and an interface definition.
+
+The deployed contract addresses will be listed here, while the interface definitions are listed in the contracts/interfaces directory.
+
+    <InterfaceDefinition> Contract = <InterfaceDefinition>([contract_address]);
+    Contract.<method>([any arguments])
+
+The <InterfaceDefinition> is replaced with the name of interface in the contracts/interfaces directory.
+
+        Version             Deployed Date       Name                    Contract Address
+        -------             -------------       ----                    ----------------
+
+
 # Ethereum Programming
 A 10-hour course for learning ethereum programming by DAPP University
 
@@ -22,6 +37,7 @@ Asset Classes: List, Characteristics, Asset Allocation at https://www.macroption
 
 # Smart Contract Best Practices
 From: https://consensys.github.io/smart-contract-best-practices/known_attacks/
+See SOLIDITY.md
 
     1. Reentrancy
     2. Front-Running
@@ -42,3 +58,6 @@ See https://openzeppelin.com/defender/
 
 # NFA Commodity Trading Advisor Registration
 See https://www.nfa.futures.org/registration-membership/who-has-to-register/cta.html
+
+# Access External Data in Solidity
+See https://hackernoon.com/access-external-data-in-solidity-a-how-to-guide-jh193zio

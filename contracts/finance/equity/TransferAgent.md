@@ -13,8 +13,8 @@ A CUSIP number is needed for each offering, especially when Rule 144 is applicab
 
 To apply for a CUSIP number for this offering, there are prerequisites:
 
-    - Must have a transfer agent
-    - Must have an underwriter
+    - Must have a transfer agent (for a blockchain offering, the owner can register with the SEC as a Transfer Agent using form ATS-N)
+    - Must have an underwriter (Self-underwirting is best suited for DPO see https://www.rysgp.com/blog/2018/9/4/self-underwriting)
     - Must have an attorney that prepared the Private Placement Memorandum (PPM)
     - Cost is $168 and requires a credit card
 

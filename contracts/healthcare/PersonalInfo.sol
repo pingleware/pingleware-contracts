@@ -6,10 +6,10 @@ pragma solidity >=0.4.22 <0.9.0;
 
 
 
-import "../Version.sol";
-import "../Owned.sol";
-import "../User.sol";
-import "../StringUtils.sol";
+import "../common/Version.sol";
+import "../common/Owned.sol";
+import "../libs/User.sol";
+import "../libs/StringUtils.sol";
 
 contract PersonalInfo is Version, Owned {
 

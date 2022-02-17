@@ -3,9 +3,13 @@ pragma solidity >=0.4.22 <0.9.0;
 
 library Advertiser {
 
+    event AdvertiserAdded(address sender);
+    event AdvertisementAdded(address sender, string message);
+    event AdvertisementDeleted(address useraddress,string message,uint index);
+
     struct AdvertiserStorage {
         mapping (address => uint256) advertisers;
-        mapping (address => string) advertisements;
+        mapping (address => string[]) advertisements;
         address[] _advertisers;
     }
 
@@ -41,12 +45,32 @@ library Advertiser {
         }
         advertiserStorage().advertisers[advertiser] = 1;
         advertiserStorage()._advertisers.push(advertiser);
+        emit AdvertiserAdded(advertiser);
     }
 
     function newAdvertisement(string memory message)
         external
     {
-        advertiserStorage().advertisements[msg.sender] = message;
+        advertiserStorage().advertisements[msg.sender].push(message);
+        emit AdvertisementAdded(msg.sender, message);
+    }
+
+    function deleteAdvertisement(address advertiseraddr,uint index)
+        external
+    {
+        if (advertiserStorage().advertisements[advertiseraddr].length > 0) {
+            string memory message = advertiserStorage().advertisements[advertiseraddr][index];
+            delete advertiserStorage().advertisements[advertiseraddr][index];
+            emit AdvertisementDeleted(advertiseraddr,message,index);
+        }
+    }
+
+    function getAdvertisements()
+        external
+        view
+        returns (string[] memory)
+    {
+        return advertiserStorage().advertisements[msg.sender];
     }
 
     function getAdvertisers()

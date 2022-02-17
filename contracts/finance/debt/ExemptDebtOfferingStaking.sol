@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../../Version.sol";
-import "../../Owned.sol";
-import "../Transaction.sol";
+import "../../common/Version.sol";
+import "../../common/Owned.sol";
+import "../../interfaces/TransactionInterface.sol";
 
 /**
  * Mechanics of a Private Placement Debt Offering
@@ -48,13 +48,17 @@ contract ExemptDebtOfferingStaking is Version, Owned {
     event Transfer(address receiver,address account,uint256 amount);
     event Minted(address account,uint256 amount);
 
-    constructor(uint _interest, uint256 _initial_supply)
+    TransactionInterface Transaction;
+
+    constructor(address transaction_contract, uint _interest, uint256 _initial_supply)
     {
 
         _availableTokens = maximumOffering / minimumInvestment;
         interest = _interest;
         _totalSupply = _initial_supply;
         _totalInvested = 0;
+
+        Transaction = TransactionInterface(transaction_contract);
     }
 
     modifier isMinimumInvestment() {

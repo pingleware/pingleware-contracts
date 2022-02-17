@@ -15,8 +15,8 @@ pragma solidity >=0.4.22 <0.9.0;
   * Investment instruments for Annuities include: Stocks, Bonds and Currency trding
   */
 
-import "../Version.sol";
-import "../Owned.sol";
+import "../common/Version.sol";
+import "../common/Owned.sol";
 
 contract Annuities is Version, Owned {
 

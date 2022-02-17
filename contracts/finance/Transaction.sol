@@ -2,7 +2,7 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 
-library Transaction {
+contract Transaction {
     uint constant public year = 52 weeks;
 
     struct TransactionItem {
@@ -26,6 +26,10 @@ library Transaction {
         assembly { ds.slot := position }
     }
     
+    modifier isValidAddress(address addr) {
+        require (addr != address(0), "zero address not permitted");
+        _;
+    }
 
 
     function isHoldingPeriodOver(address addr)
@@ -50,8 +54,9 @@ library Transaction {
         return transactionStorage()._transactions;
     }
 
-    function addTransaction(address _to,uint256 _shares,uint256 _amount,uint256 _epoch)
+    function addTransaction(address _to, uint256 _shares, uint256 _amount, uint256 _epoch)
         external
+        isValidAddress(_to)
         returns (uint256)
     {
         //transactionStorage().transactions[_to] = TransactionItem(_to, _shares, _amount, _epoch);

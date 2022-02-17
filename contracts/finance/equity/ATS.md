@@ -46,3 +46,8 @@ A quaterly report must also be filed,
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://www.sec.gov/about/forms/formats-r.pdf">Download PDF</a>.</p>
     </embed>
 </object>
+
+# Money Transmitter License (MTL)
+A Money Transmitter License is a state regulated license and while two US-based DEX have obtained a MTL, the Pennsylvania Department of Banking made a ruling that a DEX is NOT a Money Transmitter business (https://www.financemagnates.com/cryptocurrency/news/crypto-exchanges-are-not-money-transmitters-clarifies-pennsylvania/)
+
+Under US law, when a state makes a law, other state must abide their ruling. Ask an attorney on lawyers.com or avvo.com to explain this?

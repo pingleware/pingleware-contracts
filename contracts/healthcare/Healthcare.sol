@@ -3,9 +3,6 @@ pragma solidity >=0.4.22 <0.9.0;
 
 // See https://github.com/Rishabh42/HealthCare-Insurance-Ethereum for the DAPP
 
-
-
-
 contract HealthCare {
 
     address private hospitalAdmin;
@@ -28,9 +25,9 @@ contract HealthCare {
         _;
     }
 
-    constructor() {
+    constructor(address _labAdmin) {
         hospitalAdmin = msg.sender;
-        labAdmin = 0xF6F2F51c07e44efE7BC25E0EC6B332f39d930ac0;     //assigning a hard coded address from ganache
+        labAdmin = _labAdmin;     //assigning a hard coded address from ganache
     }
 
 

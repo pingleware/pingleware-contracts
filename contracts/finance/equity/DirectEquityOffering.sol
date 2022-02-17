@@ -1,19 +1,6 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-
-
-
-import "../../Version.sol";
-import "../../Owned.sol";
-import "../Offering.sol";
-import "../../Frozen.sol";
-import "../../Account.sol";
-import "../Shares.sol";
-import "../Shareholder.sol";
-import "../Transaction.sol";
-import "../TransferAgent.sol";
-
 /**
  * S-1 Offering:
  * Corporate Finance Reporting Manual at https://www.sec.gov/page/corpfin-section-landing
@@ -25,42 +12,177 @@ import "../TransferAgent.sol";
  * Liquidity is most important in a public offering!
  */
 
-contract DirectEquityOffering is Version, Owned, Offering, TransferAgent {
+
+import "../../common/Version.sol";
+import "../../common/Owned.sol";
+import "../../common/Frozen.sol";
+import "../../common/Token.sol";
+import "../../interfaces/IERC20.sol";
+import "../../interfaces/OfferingContractInterface.sol";
+import "../../interfaces/TransferAgentInterface.sol";
+
+
+contract DirectEquityOffering is Version, Owned, Frozen {
+
+   
+    // Price feeds from https://blog.chain.link/fetch-current-crypto-price-data-solidity/
+    // Quote ETH to USD at https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD, returns amount of USD for 1 ETH
+    // https://api.kraken.com/0/public/Ticker?pair=ETHUSD
+    /**
+     * 2771.5 USD/ETH , 0.0003609 ETH/USD
+     * USD -> ETH = $5 USD * 0.0003609 ETH/USD = 0.0018045 ETH, using https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=ETH
+     */
+    
+    
+    
+    uint256 public tokenPrice; // 1 equity token (min $5 par value) for 0.00180870 ETH, 1808700 Gwei
+    uint256 public _initial_supply;
+
 
     mapping (address => uint256) public _balances;
-    mapping (address => uint256) public _tokens;
+    mapping (address => Token) public _tokens;
 
-    modifier onlyIPO(OfferingType _type) {
-        require(_type == OfferingType.S1, "Exempt offerings are not permitted!");
+    event Bought(address sender, uint256 amount);
+    event Sold(address sender, uint256 amount);
+
+
+    modifier onlyDPO(OfferingContractInterface.OfferingType _type) {
+        require(_type == OfferingContractInterface.OfferingType.S1, "Exempt offerings are not permitted!");
         _;
     }
 
-    constructor(string memory name, string memory symbol, uint256 maxShares, OfferingType offeringType)
-        onlyIPO(offeringType)
+    TransferAgentInterface TransferAgent;
+    OfferingContractInterface Offering;
+
+    constructor(OfferingContractInterface.OfferingType _type, address offering_contract, address transferagent_contract, uint256 initial_supply)
+        onlyDPO(_type)
     {
-        setOffering(address(this),name,symbol,maxShares,offeringType);
+        _initial_supply = initial_supply;
+        Offering = OfferingContractInterface(offering_contract);
+        TransferAgent = TransferAgentInterface(transferagent_contract);
     }
 
+    function updateTokenPrice(uint256 updatePrice)
+        public
+    {
+        tokenPrice = updatePrice;
+    }
+
+    function startOffering(bytes32 encrypted, bytes memory signature)
+        public
+        onlyOwner(encrypted,signature)
+    {
+        start();
+    }
+
+    function stopOffering(bytes32 encrypted, bytes memory signature)
+        public
+        onlyOwner(encrypted,signature)
+    {
+        stop();
+    }
+
+    function assignTransferAgent(address transferagent, bytes32 encrypted, bytes memory signature)
+        public
+        onlyOwner(encrypted,signature)
+    {
+        TransferAgent.addTransferAgent(address(this), transferagent);
+    }
+
+    function initialize(string memory name, string memory symbol, uint256 maxShares, OfferingContractInterface.OfferingType offeringType)
+        public
+        onlyDPO(offeringType)
+    {
+        //if (_tokens[address(this)] == 0) {
+        //    _tokens[address(this)] = new Token();
+        //}
+        _tokens[address(this)].setTotalSupply(maxShares);
+        Offering.setOffering(address(this),name,symbol,maxShares,offeringType);
+    }
+
+    // The transfer agent is responsible for minting the token for the investor
     function mint(address account, uint256 amount, uint256 epoch, bytes32 encrypted, bytes memory signature)
         public
         payable
-        onlyTransferAgent(encrypted,signature)
+        isRunning
     {
         require(account != address(0), "mint to the zero address");
+        require(TransferAgent.checkTransferAgent(address(this),encrypted,signature),"unauthroized, transfer agent is not valid");
+        TransferAgent.mint(address(this), account, amount, epoch, _initial_supply, encrypted, signature);
+    }
 
-        uint256 shares = amount / Shares.shareStorage().max_ppu[address(this)];
-        require((shares + Shares.shareStorage().totalSupply[address(this)]) <= Shares.shareStorage().shares[address(this)],
-                "exceeds maximum offering amount");
+    function buy()
+        payable
+        public
+        isRunning
+    {
+        uint256 amountTobuy = msg.value;
+        require(amountTobuy > 0, "You need to send some ether");
+        require(amountTobuy <= _tokens[address(this)].totalSupply(), "Not enough tokens in the reserve");
+        //if (_tokens[msg.sender] != 0) {
+        //    _tokens[msg.sender] = new Token();
+        //}
+        _tokens[address(this)].transfer(msg.sender, amountTobuy);
+        emit Bought(msg.sender,amountTobuy);
+    }
+
+    function sell(uint256 amount)
+        public
+        payable
+        isRunning
+    {
+        require(amount > 0, "You need to sell at least some tokens");
+        uint256 allowance = _tokens[address(this)].allowance(msg.sender, address(this));
+        require(allowance >= amount, "Check the token allowance");
+        //if (_tokens[msg.sender] != 0) {
+        //    _tokens[msg.sender] = new Token();
+        //}
+        _tokens[address(this)].transferFrom(msg.sender, address(this), amount);
+        payable(msg.sender).transfer(amount);
+        emit Sold(msg.sender,amount);
+    }
 
 
-        Shares.shareStorage().totalSupply[address(this)] += shares; // convert amount to debt tokens
-        _balances[account] += amount;
-        _tokens[account] += shares;
-        payable(account).transfer(amount);
 
-        Transaction.addTransaction(account,shares,amount,epoch);
+    // Once an investor holds a token, they can freely swap it with another investor on the open market
+    // The receiving investor will need to be added to the stockholder list and when the sending investor
+    // no longer holds any tokens, they are removed from the shareholder list
+    //
+    //this function will allow 2 people to trade 2 tokens as the same time (atomic) and swap them between accounts
+    //Bob holds token 1 and needs to send to alice
+    //Alice holds token 2 and needs to send to Bob
+    //this allows them to swap an amount of both tokens at the same time
+    //
+    //*** Important ***
+    //this contract needs an allowance to send tokens at token 1 and token 2 that is owned by owner 1 and owner 2
+    //
+    // See https://ethereum.org/en/developers/tutorials/transfers-and-approval-of-erc-20-tokens-from-a-solidity-smart-contract/
+    function swap(address investor2, IERC20 token1, uint _amount1, IERC20 token2, uint _amount2)
+        public
+        payable
+        isRunning
+    {
 
-        emit Transfer(account, amount);
-        emit Minted(account, amount);
+            address investor1 = msg.sender;
+            // TODO: check is investor1 and investor2 are shareholders?
+            //require(msg.sender == investor1 || msg.sender == TransferAgent.getTransferAgent(address(this)), "Not authorized");
+            require(token1.allowance(investor1, address(this)) >= _amount1, "Token 1 allowance too low");
+            require(token2.allowance(investor2, address(this)) >= _amount2, "Token 2 allowance too low");
+
+            //transfer TokenSwap
+            //token1, owner1, amount 1 -> owner2.  needs to be in same order as function
+            _safeTransferFrom(token1, investor1, investor2, _amount1);
+            //token2, owner2, amount 2 -> owner1.  needs to be in same order as function
+            _safeTransferFrom(token2, investor2, investor1, _amount2);
+    }
+
+    //This is a private function that the function above is going to call
+    //the result of this transaction(bool) is assigned in a variable called sent
+    //then we require the transfer to be successful
+    function _safeTransferFrom(IERC20 token, address sender, address recipient, uint amount)
+        private
+    {
+        bool sent = token.transferFrom(sender, recipient, amount);
+        require(sent, "Token transfer failed");
     }
 }

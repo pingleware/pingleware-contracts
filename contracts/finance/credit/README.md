@@ -14,9 +14,13 @@ Only a consumer can create a dispute while a subscriber can finalize and update 
 The contract owner can poll disputes and delete any disputes that have been opened for longer than thrty days.
 
 # Benefit for Consumers
-The consumers can get paid a portion of the inquiry, add item, and finalize dispute fees paid by the subscriber (creditor/collector). This income will offset the gas fees the consumer uses when making their own inquiries essentially keeping the credit inquiry free to consumers. In certain tax jurisdictions, any income remaining (not spent) will have to reported to the appropriate tax agency.
+The consumers can get paid a portion of the inquiry, add item, and finalize dispute fees paid by the subscriber (creditor/collector). Consumers can request their credit report as well as inquiries as much as they wish because no record is made for a consumer request at the blockchain level. This allows a consumer request to avoid fees and expense.
+
+The DAPP should log consumer requests for compliance requests.
 
 A centralized database of authorized users must still be maintained to prevent bad actors from gaining access to a consumer report.
+
+To give an incentive for adaptation by Consumers, is the receipt of a portion of the fee paid by subsribers (creditors/collectors). Using the DAPP, a consumer can register with their ethereum wallet, which will be their consumer credit ID. They can submit a notarized form of identity verification, so a creditor/collector knows the identity has been verified. Additional public records can be added to this blockchain contract and will be useful to validate the true identity of a consumer.
 
 ## Important Discoveries
 In order to remain in compliance with the FCRA, the consumer cannot be charge a fee for requesting a once per year report nor when submitting a dispute. When a contract method changes the contract instance state, gas fees are assessed and paid. When a query for contract private data is requested, then no gas fee is assessed and it is a free action.

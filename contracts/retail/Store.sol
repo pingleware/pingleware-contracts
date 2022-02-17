@@ -3,8 +3,8 @@ pragma solidity >=0.4.22 <0.9.0;
 
 // See https://github.com/brakmic/BlockchainStore
 
-import "../Version.sol";
-import "../Owned.sol";
+import "../common/Version.sol";
+import "../common/Owned.sol";
 
 /**
     @notice This contract implements a simple store that can interact with

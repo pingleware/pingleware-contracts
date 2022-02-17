@@ -8,9 +8,9 @@ The following is a collection od smart contracts for solidity that will help acc
 # Usage
 In your truffle project, import the appropriate smart contract in your new contract
 
-    imports "@pingleware/contracts/contracts/finance/debt/ExemptDebtOfferingBond.sol";
+    imports "@pingleware/contracts/contracts/finance/debt/ExemptDebtOffering.sol";
 
-    contract MyExemptBond is ExemptDebtOfferingBond {
+    contract MyExemptBond is ExemptDebtOffering {
         constructor() public {
             name = "My Exempt Bond";
             symbol = "MYB";
@@ -37,6 +37,11 @@ Before developing the Equity token smart contracts for exempt offerings, I resea
 # REMIX Webapp
 The remix desktop was rebuilt as a webapp because I found the straight-browser version to become slow and non-responsive. The webapp version can be downloaded from https://github.com/pingleware/remix-desktop. You should try installing the official desktop version from the Remix Team at https://github.com/ethereum/remix-desktop. If the application will no launch, then download the webapp version.
 
+### REMIXD
+Use the following command to interface with remix,
+
+    > remixd -s ./ --remix-ide https://remix.ethereum.org
+
 # What's included?
 I have search github.com for other smart contract implementations in various industries, and copied to this repository ensuring they compile cleanly without errors and warnings.
 There are prebuilt smart contracts 
@@ -59,6 +64,9 @@ Before launching an exempt equity or debt offering you are required to submit th
 # Release Schedule
 
         Date        Version                 Notes
+    02/17/2022       1.1.0         Refactor of contracts to permit sharing when deployed; add new contracts for:
+                                        agriculture, energy, finance.currency, healthcare, insurance, non-profit, real estate,
+                                        retail, scm and transportation
     01/28/2022       1.0.7         Remove third-party dependencies; added placeholder contracts for insurance industry;
     01/27/2022       1.0.6         Refactor equity, debt and membership; added additional industry smart contracts
     12/25/2021       1.0.5         Refactoring credit, social and some equity contracts

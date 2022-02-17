@@ -1,5 +1,19 @@
 THERE IS A LOT OF INFORMATION DISCLOSED ON THIS PAGE. PLEASE SEEK THE ADVICE OF A QUALIFIED LICENSED PROFESSIONAL TO ANSWER YOUR QUESTIONS.
 
+# Asset Allocation
+Recommended asset allocation,
+
+    Total Authorized Shares   = 1,000,000,000,000 (1 trillion)  * $5 par value = $5,000,000,000,000
+
+
+
+    Treasury Shares  (51%)        =   501,000,000,000 (501 billion) * $5 = $2.5 trillion
+    Preferred Shares (10%)        =   100,000,000,000 (100 billion) * $5 = $500 billion
+    
+    Common Shares (20%)           =   200,000,000,000 (200 billion) * $5 = $1 trillion
+    Employee Benefits (5%)        =        50,000,000 (50 million) * $5  = $250 million
+    Mergers & Acquisitions (14%)  =       140,000,000 (140 million) * $5 = $700 million
+
 # Exempt Offerings
 See more at https://www.sec.gov/smallbusiness/exemptofferings
 
@@ -9,9 +23,17 @@ This readme has been shorten by creating additional markdown files
 
     AML.md
     ATS.md
-    BUILDING.md
+    CFTC.md
+    DRS.md
+    FINRA.md
     GLOSSARY.md
+    NFA.md
+    PPM.md
+    PROSPECTUS.md
+    REFERENCES.md
+    RIA.md
     SEC.md
+    FINRA.md
     TransferAgent.md
 
 A traditional private placement offering involves filing a FORM D on the SEC.GOV EDGAR filing system, creating a private placement memorandum and then searching for qualified and accredited investors. Prior to cryptocurrency and blockchain, liquidity in the private equity markets was limited until the company initiated an IPO. Under rule 144, creates liquidity in a private equity offering after twelve months from each sale of restricted securities. Using cryptocurrency for the private equity offering on the Ethereum network can create compliance liquidity before an IPO as well as generate a market value.
@@ -200,3 +222,20 @@ Second, identify the common entities all offerings include,
     Transaction    = a record of each transaction (while this is kept on the blockchain, having a separate entity assists with recording keeping compliance)
     Account        = account 
     
+# Advantages and Disadvantages of Dividends
+See https://www.letslearnfinance.com/advantages-and-disadvantages-of-dividends.html
+
+# Mergers and Aquisitions Course
+See https://corporatefinanceinstitute.com/course/advanced-financial-modeling-mergers-acquisitions/
+
+# Blockchain News
+See https://blockchain.news/
+
+# Maintaining Compliance
+Maintaining complkiance involves references to the SEC, FINRA, NFA, and CFTC. 
+
+# Current Developments
+There are many offshore companies setting up domestic offices to create a registered blockchain listing and trading infrastructure, by being controlled by a foreign parent, the American public is reluctant to trust these entities. The purpose of these contracts is to provide direction for original domestic organized entities to offer blockchain trading and listing infrastructure under the goverance of both Federal and State government. Questions that arise through the implemented should be directed to qualified persons.
+
+# Crypto Burning
+Crypto burning is the same when an equity share is allocated as a treasury share, thus removing it from the public float. Though crypto burning is a permanent removal, equity allocation to treasury shares can be reversed through a corporate action.

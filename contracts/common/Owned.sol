@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "./ecverify.sol";
+import "../libs/ecverify.sol";
 
 abstract contract Owned {
     uint256 constant public WAIT = 30 seconds;
@@ -10,9 +10,7 @@ abstract contract Owned {
 
     uint256 private previous_block_timestamp = 0;
 
-    constructor()
-        payable
-    {
+    constructor() {
         owner = msg.sender;
         previous_block_timestamp = block.timestamp;
     }

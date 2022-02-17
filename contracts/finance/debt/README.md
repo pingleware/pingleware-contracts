@@ -9,6 +9,8 @@ Debt offerings are also called fixed-income securities. Institutional investors 
 
 Interest on the Debt offering can be paid through staking.
 
+A typical debt offering is an Asset-backed security (ABS)
+
 # Preview of Exempt Debt Offering Contract
 ![(Preview)](./debt.svg)
 

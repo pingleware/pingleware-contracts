@@ -4,7 +4,9 @@ pragma solidity >=0.4.22 <0.9.0;
 library SocialFeeds {
     bytes32 constant private ZERO_BYTES = bytes32(0);
     address constant private ZERO_ADDRESS = address(0);
-    uint256 constant private negative = type(uint256).max;
+
+    event PostAdded(address sender, string message, uint index);
+    event PostDeleted(address post, string message, uint index);
 
     struct Post {
         uint256 epoch;
@@ -15,7 +17,7 @@ library SocialFeeds {
     struct PostStorage {
         mapping (address => Post[]) postsV2;
         mapping (address => string[]) posts;
-        address[] _posters;
+        address[] _authors;
     }
 
     function postStorage() internal pure returns (PostStorage storage ds)
@@ -24,14 +26,13 @@ library SocialFeeds {
         assembly { ds.slot := position }
     }
 
-    event PostAdded(address sender, string message, uint index);
 
     function getPosters()
         external
         view
         returns (address[] memory)
     {
-        return postStorage()._posters;
+        return postStorage()._authors;
     }
 
     function getTotalPosters()
@@ -39,7 +40,7 @@ library SocialFeeds {
         view
         returns (uint256)
     {
-        return postStorage()._posters.length;
+        return postStorage()._authors.length;
     }
 
 
@@ -47,6 +48,7 @@ library SocialFeeds {
         external
         returns (uint)
     {
+        
         Post memory _post = Post(epoch,visible,content);
         postStorage().postsV2[msg.sender].push(_post);
         return postStorage().postsV2[msg.sender].length - 1;
@@ -88,6 +90,8 @@ library SocialFeeds {
         external
     {
         postStorage().posts[msg.sender].push(message);
+        uint index = postStorage().posts[msg.sender].length - 1;
+        emit PostAdded(msg.sender,message,index);
     }
 
     function addPost(string memory message)
@@ -95,18 +99,40 @@ library SocialFeeds {
         returns (uint256)
     {
         bool found = false;
-        if (postStorage()._posters.length > 0) {
-            for (uint i = 0; i < postStorage()._posters.length; i++) {
-                if (postStorage()._posters[i] == ZERO_ADDRESS) {
+        if (postStorage()._authors.length > 0) {
+            for (uint i = 0; i < postStorage()._authors.length; i++) {
+                if (postStorage()._authors[i] == ZERO_ADDRESS) {
                     found = true;
                 }
             }
         }
         if (!found) {
-            postStorage()._posters.push(msg.sender);
+            postStorage()._authors.push(msg.sender);
         }
         postStorage().posts[msg.sender].push(message);
-        return postStorage().posts[msg.sender].length - 1;
+        uint index = postStorage().posts[msg.sender].length - 1;
+        emit PostAdded(msg.sender,message,index);
+        return index;
+    }
+
+    function removePost(address poster,uint index)
+        external
+    {
+        if (postStorage().posts[poster].length > 0) {
+            string memory message = postStorage().posts[poster][index];
+            delete postStorage().posts[poster][index];
+            emit PostDeleted(poster,message,index);
+        }
+    }
+
+    function removePostByUser(uint index)
+        external
+    {
+        if (postStorage().posts[msg.sender].length > 0) {
+            string memory message = postStorage().posts[msg.sender][index];
+            delete postStorage().posts[msg.sender][index];
+            emit PostDeleted(msg.sender,message,index);
+        }
     }
 
     function getTotalPosts()
@@ -133,9 +159,9 @@ library SocialFeeds {
         returns (string memory)
     {
         string memory output = "";
-        uint256 total = postStorage()._posters.length;
+        uint256 total = postStorage()._authors.length;
         for (uint i = 0; i < total; i++) {
-            address key = postStorage()._posters[i];
+            address key = postStorage()._authors[i];
             string[] memory post = postStorage().posts[key];
             if (post.length > 0) {
                 for (uint l = 0; l < post.length; l++) {

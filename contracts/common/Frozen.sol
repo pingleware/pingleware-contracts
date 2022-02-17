@@ -6,12 +6,8 @@ pragma solidity >=0.4.22 <0.9.0;
  *
  */
 
-contract Frozen {
+abstract contract Frozen {
     bool private running = false;
-
-    constructor() {
-        running = false;
-    }
 
     function start()
         internal

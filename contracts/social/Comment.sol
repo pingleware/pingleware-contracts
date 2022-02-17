@@ -3,7 +3,8 @@ pragma solidity >=0.4.22 <0.9.0;
 
 library Comment {
 
-    event NewCommentAdded(address poster);
+    event CommentAdded(address sender,address user,string comment);
+    event CommentDeleted(address author,string message,uint index);
 
     struct CommentItem {
         address comment_author;
@@ -40,7 +41,7 @@ library Comment {
         address comment_author = msg.sender;
         CommentItem memory comment = CommentItem(comment_author, index, message);
         commentStorage().comments[poster].push(comment);
-        emit NewCommentAdded(poster);
+        emit CommentAdded(comment_author,poster,message);
     }
 
     function getCommentTotal(address poster)
@@ -67,5 +68,23 @@ library Comment {
         return commentStorage().comments[poster];
     }
 
+    function deleteComment(address author, uint index)
+        external
+    {
+        if (commentStorage().comments[author].length > 0) {
+            string memory message = commentStorage().comments[author][index].message;
+            delete commentStorage().comments[author][index];
+            emit CommentDeleted(author,message,index);
+        }
+    }
 
+    function deleteCommentByUser(uint index)
+        external
+    {
+        if (commentStorage().comments[msg.sender].length > 0) {
+            string memory message = commentStorage().comments[msg.sender][index].message;
+            delete commentStorage().comments[msg.sender][index];
+            emit CommentDeleted(msg.sender,message,index);
+        }
+    }
 }

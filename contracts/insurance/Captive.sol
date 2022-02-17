@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../Version.sol";
-import "../Owned.sol";
+import "../common/Version.sol";
+import "../common/Owned.sol";
 
 /**
  * Florida Law for Captive Insurance Company at http://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0628/0628PartVContentsIndex.html&StatuteYear=2016&Title=-%3E2016-%3EChapter%20628-%3EPart%20V

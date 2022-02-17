@@ -3,14 +3,11 @@ pragma solidity >=0.4.22 <0.9.0;
 
 library FriendsFollowers {
 
-
-
-
-
     event FriendRequestApproved(address requestor);
     event NewFollowerAdded(address user, address follower);
     event NotifyFriends(address friend, string message);
-
+    event FollowerDeleted(address sender,address _follower);
+    event FriendDeleted(address sender,address _friend);
 
     struct FriendsFollowersStorage {
         mapping (address => address[]) followers;
@@ -40,6 +37,28 @@ library FriendsFollowers {
         require(found == false,"user is already being followed");
         friendsFollowersStorage().followers[user].push(msg.sender);
         emit NewFollowerAdded(user, msg.sender);
+    }
+
+    function removeFollower(address _user, address _follower)
+        external
+    {
+        for (uint i = 0; i < friendsFollowersStorage().followers[_user].length; i++) {
+            if (friendsFollowersStorage().followers[_user][i] == _follower) {
+                delete friendsFollowersStorage().followers[_user][i];
+                emit FollowerDeleted(_user, _follower);
+            }
+        }
+    }
+
+    function removeFriend(address _user, address _friend)
+        external
+    {
+        for(uint i = 0; i < friendsFollowersStorage().friends[_user].length; i++) {
+            if (friendsFollowersStorage().friends[_user][i] == _friend) {
+                delete friendsFollowersStorage().friends[_user][i];
+                emit FriendDeleted(_user,_friend);
+            }
+        }
     }
 
     function getFollowers()
@@ -130,6 +149,7 @@ library FriendsFollowers {
         external
     {
         for (uint i = 0; i < friendsFollowersStorage().friends[msg.sender].length; i++) {
+            payable(friendsFollowersStorage().friends[msg.sender][i]).transfer(0.0001 ether);
             emit NotifyFriends(friendsFollowersStorage().friends[msg.sender][i], message);
         }
     }
@@ -138,6 +158,7 @@ library FriendsFollowers {
         external
     {
         for (uint i = 0; i < friendsFollowersStorage().followers[msg.sender].length; i++) {
+            payable(friendsFollowersStorage().followers[msg.sender][i]).transfer(0.0001 ether);
             emit NotifyFriends(friendsFollowersStorage().followers[msg.sender][i], message);
         }
     }

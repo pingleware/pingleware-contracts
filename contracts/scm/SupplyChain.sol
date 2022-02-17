@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../Owned.sol";
+import "../common/Owned.sol";
+import "../common/Version.sol";
 import "./SupplierRole.sol";
 import "./ManufacturerRole.sol";
 import "./DistributorRole.sol";

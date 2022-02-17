@@ -66,7 +66,17 @@ The number of shares outstanding minus closely-held shares – a large number of
 When a company cancels shares, thus reducing the total available number of shares. This action is non-reversible.
 
 ## Treasury Shares
-The number of shares that are held by the company. Treasury stock has no voting authority.
+The number of shares that are held by the company. The benefits of a corporation increasing its holdings of treasury stock include the ability to positively affect the per share price of the remaining stock on the market, to use the stock to provide incentives to employees in lieu of cash, to protect the company against hostile takeover attempts and to return capital to shareholders in a way that has a more positive tax result. Seee more at https://www.wise-geek.com/what-are-the-benefits-of-holding-treasury-stock.htm
 
 ## Private Placement Memorandum
 Is like a prospectus for private equity offerings. If you have set a high a par value say $5 per share and allocated 100,000 shares for your private equity offering, the minimum valuation is $500,000. If your company does not have $500,000 in assets, you may wish to specify in your private placement memorandum "use of proceeds," a budget to acquired assets to increase total company net asset value above $500,000?
+
+## Over-the-counter (OTC)
+From: https://en.wikipedia.org/wiki/Over-the-counter_(finance)
+
+Over-the-counter (OTC) or off-exchange trading is done directly between two parties, without the supervision of an exchange. It is contrasted with exchange trading, which occurs via exchanges. A stock exchange has the benefit of facilitating liquidity, providing transparency, and maintaining the current market price. In an OTC trade, the price is not necessarily publicly disclosed.
+
+See more at https://www.sec.gov/divisions/marketreg/mrotc.shtml
+
+## Securities Underwriters
+A different form of underwriter from all of these are securities underwriters, who work frequently with initial public offerings (IPOs). They will assess the investment's riskiness to help determine the appropriate price for an IPO, buy securities and then sell them. Often, the underwriter for securities is the investment bank and the specialists they employ. One of the bigger risks here is that should there not be as much fanfare for these securities, the investment bank may be stuck owning more of it than they anticipated.

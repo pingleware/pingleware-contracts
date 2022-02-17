@@ -44,3 +44,32 @@ The following methods are available, and accessible by the user role.
     addFriendRequest - set a friend request
     getTotalFriendRequest - get your total friend requests
     getFriendRequest - get your friend request
+
+# Earning Potential
+To increase adoption of a new social network, there must be a direct benefit for the users. The earnings is an incentivizing benefit where a user can earn real money (cryptocurrency) for using the network.
+
+## Owner/Contract Earnings
+The owner of the contract want to earn for the time to develop and deploy this contract and dapp, and will earn in the following ways,
+
+    - earns from user and advertiser registration
+    - earns from user posting
+    - earns from advertiser posting
+    - earns from user list of wallets
+
+## User Earnings
+Unlike existing social networks that provide free, censored access and make money from your data without compensation, this social network contract
+pays the user when
+
+    - from comments to the posts
+    - for each friend requests
+    - for each follower
+    - when a message is received from friend and follower via the wallet address
+    - when a likes and dislikes are flag on your posts and comments
+
+while the original post author receives earnings from comments, the comment author receives earnings from dislikes and likes on their comment
+
+
+## Advertiser Earning
+Using text-based advertising, an advertiser can post an advertisement that is shown in a designated area on the user's dapp,
+
+  - earns from the sale of the product or service in their advertisement

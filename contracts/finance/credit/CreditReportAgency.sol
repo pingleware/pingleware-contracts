@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../../Version.sol";
-import "../../Owned.sol";
+import "../../common/Version.sol";
+import "../../common/Owned.sol";
 import "./Consumer.sol";
 import "./Subscriber.sol";
 import "./CreditInquiry.sol";
@@ -13,16 +13,23 @@ contract CreditReportAgency is Version, Owned {
     bytes32 constant private ZERO_BYTES = bytes32(0);
     address constant private ZERO_ADDRESS = address(0);
 
+    uint256 constant public YEAR = 52 weeks;
+    uint256 constant public THIRTY_DAYS = 30 days;
+    uint256 constant public NINETY_DAYS = 90 days;
+
     uint total_consumers;
 
     mapping (address => uint256) public balances;
     mapping (address => bytes32[]) message;
+    mapping (address => bool) optout;
 
     event SubscriberAdded(address addr, string message);
     event SubscriberNotified(address addr, string message);
     event ConsumerNotified(address addr, string message, bytes data);
 
-    event Received(uint value);
+    event Received(address addr, uint value);
+
+    event MessageConsumer(address addr,string message);
 
     uint256 private subscriber_lastreq = 0;
     uint256 private consumer_total = 0;
@@ -45,11 +52,11 @@ contract CreditReportAgency is Version, Owned {
     }
 
     fallback() external payable {
-        emit Received(msg.value);
+        emit Received(msg.sender,msg.value);
     }
     
     receive() external payable {
-        emit Received(msg.value);
+        emit Received(msg.sender,msg.value);
     }
 
     // A consumer is entitled
@@ -70,7 +77,7 @@ contract CreditReportAgency is Version, Owned {
       consumer_total = CreditInquiry.getTotalInquiry(consumer) - 1;
       consumer_lastreq = CreditInquiry.getInquiryofReqDate(consumer,consumer_total);
 
-      if (consumer_lastreq == 0 || (consumer_lastreq + 52 weeks) > reqtime || (subscriber_lastreq + 90 days) < reqtime) {
+      if (consumer_lastreq == 0 || (consumer_lastreq + YEAR) > reqtime || (subscriber_lastreq + NINETY_DAYS) < reqtime) {
         return true;
       }
       return false;
@@ -101,7 +108,7 @@ contract CreditReportAgency is Version, Owned {
       pure
       returns(bool)
     {
-      if (LastTimeStamp + 30 days >= currentTime) {
+      if (LastTimeStamp + THIRTY_DAYS >= currentTime) {
         return true;
       } else {
         return false;
@@ -111,22 +118,19 @@ contract CreditReportAgency is Version, Owned {
     //
     // adds a new subscriber
     //
-    function addSubscriber(address addr, uint256 _type,bytes32 encrypted, bytes memory signature)
+    function addSubscriber(uint256 _type)
       public
-      onlyOwner(encrypted,signature)
+      validSender
+      requiresFee(0.001 ether)
     {
-      require(addr != ZERO_ADDRESS,"missing address");
-      if (Subscriber.addSubscriber(addr, _type)) {
-        emit SubscriberAdded(addr, "subscriber added");
+      require(_type <= 1,"incorrect subscriber type? 0=creditor,1=collector, DONT MISREPRESENT!");
+      payable(address(this)).transfer(0.001 ether);
+      balances[address(this)] += 0.001 ether;
+      if (Subscriber.addSubscriber(msg.sender, _type)) {
+        emit SubscriberAdded(msg.sender, "subscriber added");
       }
     }
 
-    //
-    // retrieves consumer report for the consumer by the owner so the consumer does not incur gas fees.
-    // to abide by law and allow free credit report to the consumer, cannot change the state on the contract,
-    // otherwise the method must pay gas fee. By not recording consumer self requests in the contract, keeps
-    // this function free.
-    //
     function getFreeCreditReport(address _consumer, address subscriber, uint256 reqtime,bytes32 encrypted, bytes memory signature)
       public
       payable
@@ -245,27 +249,28 @@ contract CreditReportAgency is Version, Owned {
 
     // Consumer previlieges
     //
-    // When the consumer is not entitled to a free annual report
-    // Since the consumer is getting paid for inquiries and credit items added, these payments will cover gas fees.
+    // retrieves consumer report for the consumer by the owner so the consumer does not incur gas fees.
+    // to abide by law and allow free credit report to the consumer, cannot change the state on the contract,
+    // otherwise the method must pay gas fee. By not recording consumer self requests in the contract, keeps
+    // this function free.
     //
-    function getCreditReport(uint256 reqtime)
+    //  No gas feesm because when a consumer requests their report, no record is made on the blockchain, hence
+    // no gas fees
+    function getCreditReport()
       public
-      payable
+      view
       returns (bytes32)
     {
       require(Consumer.onlyConsumer(), "access denied for consumer");
-      require(balances[msg.sender] > 0, "insufficient baalance to cover gas fees?");
-      CreditInquiry.add(msg.sender, msg.sender, reqtime);
       return CreditReport.getConsumerReport(msg.sender);
     }
 
     function getInquiries()
       public
-      payable
+      view
       returns (string memory)
     {
       require(Consumer.onlyConsumer(), "access denied for consumer");
-      require(balances[msg.sender] > 0, "insufficient baalance to cover gas fees?");
       return CreditInquiry.getAll(msg.sender);
     }
 
@@ -293,12 +298,57 @@ contract CreditReportAgency is Version, Owned {
     // check if the dispute is expired by more than 30 days from current time,
     // if dispute is expired, delete the dispute and notifiy consumer
     //
-    function getDisputes(address consumer,bytes32 encrypted, bytes memory signature)
+    function getDisputes()
       public
-      payable
-      onlyOwner(encrypted,signature)
+      view
       returns (bytes32)
     {
-      return CreditDispute.getDisputes(consumer);
+      require(Consumer.onlyConsumer(), "access denied for consumer");
+      return CreditDispute.getDisputes(msg.sender);
+    }
+
+    function consumerOptsOut(address consumer, bool status, bytes32 encrypted, bytes memory signature)
+      public
+      onlyOwner(encrypted,signature)
+    {
+      optout[consumer] = status;
+    }
+
+    /**
+     * Permits third party marketers to send messages to consumers via the connected DAPP for a fee paid to a verified consumer.
+     * Consumer has option to opt-out, if they choose to receive communication, they can now get paid for each message received.
+     *
+     * Since no Personal Identifying Information (PII) is linked to the wallet on the public chain, there is no matching demographics and
+     * just plain blind advertising which is most email campaigns.
+     */
+    function sendConsumerMessage(address consumer, string memory _message)
+      public
+      payable
+      validSender
+      requiresFee(0.0001 ether)
+    {
+      require(optout[consumer] == false,"consumer has opted-out to received any external messages or communication");
+      require(consumer != ZERO_ADDRESS,"invalid consumer address");
+      payable(consumer).transfer(0.0001 ether);
+
+      bytes32 bmessage = keccak256(abi.encodePacked(_message));
+      message[consumer].push(bmessage);      
+      emit MessageConsumer(consumer, _message);
+    }
+
+    /**
+     * A marketer can buy the consumer list of wallet addresses. No PII is attached and no demographics.
+     * Though a marketer can query the blockchain for matching transactions and develop their own demographics?
+     * The next analytic metric?
+     */
+    function getConsumerList()
+      public
+      payable
+      validSender
+      requiresFee(0.001 ether)
+      returns (address[] memory)
+    {
+      payable(address(this)).transfer(0.001 ether);
+      return Consumer.getConsumers();
     }
 }

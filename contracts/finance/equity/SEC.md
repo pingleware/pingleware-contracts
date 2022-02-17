@@ -1,5 +1,5 @@
 # Security Exchange Commission
-The following are relative references to SEC rules for exempt offerings.
+The following are relative references to SEC rules for exempt offerings. A blockchain offering whether exempt or direct can be consider an OTC or over-the-counter market transaction.
 
 ## General Solicitation - Rule 506(c)
 From https://www.sec.gov/smallbusiness/exemptofferings/rule506c
@@ -172,3 +172,35 @@ Using EIP-2569, the SEC Form 144 can be attached to token transaction when an ac
 
 ## EDGAR Form TA XML Technical Specification
 See https://www.sec.gov/info/edgar/specifications/form-ta-xml-tech-specs.htm
+
+## Broker-Dealer Registration
+See https://www.sec.gov/fast-answers/answersbdregishtm.html
+
+A Broker-Dealer must register with an SRO. Register as a Commodity Trading Advisor (CTA) at https://www.nfa.futures.org/registration-membership/who-has-to-register/cta.html
+
+A CTA Firm registration:
+    $200 application fee
+    $750 annual fee
+
+Additional, the principal of the CTA firm must register:
+A CTA is required to file the following for its principals and associated persons:
+
+Complete online Form 8-R for each principal and AP
+ - Submit fingerprint cards
+ - Satisfy proficiency requirements for each sole proprietor, AP, forex AP and swap AP
+ - Pay non-refundable application fee of $85 for each principal or AP
+
+An application fee for principals and APs is not required if the individual is currently registered with the CFTC in any capacity or is listed as a principal of a current CFTC registrant. Only one application fee is required if the individual is filing an application as both an AP and Principal. One principal of the CTA must be an AP. One principal of a forex CTA must be a forex AP. One principal of a swap CTA must be a swap AP.
+
+### Guide to Broker-Dealer Registration
+See https://www.sec.gov/reportspubs/investor-publications/divisionsmarketregbdguidehtm.html
+
+#### 5. Issuer's "Exemption" and Associated Persons of Issuers (Rule 3a4-1)
+Issuers generally are not "brokers" because they sell securities for their own accounts and not for the accounts of others. Moreover, issuers generally are not "dealers" because they do not buy and sell their securities for their own accounts as part of a regular business. Issuers whose activities go beyond selling their own securities, however, need to consider whether they would need to register as broker-dealers. This includes issuers that purchase their securities from investors, as well as issuers that effectively operate markets in their own securities or in securities whose features or terms can change or be altered. The so-called issuer's exemption does not apply to the personnel of a company who routinely engage in the business of effecting securities transactions for the company or related companies (such as general partners seeking investors in limited partnerships). The employees and other related persons of an issuer who assist in selling its securities may be "brokers," especially if they are paid for selling these securities and have few other duties.
+
+Exchange Act Rule 3a4-1 provides that an associated person (or employee) of an issuer who participates in the sale of the issuer's securities would not have to register as a broker-dealer if that person, at the time of participation: (1) is not subject to a "statutory disqualification," as defined in Section 3(a)(39) of the Act; (2) is not compensated by payment of commissions or other remuneration based directly or indirectly on securities transactions; (3) is not an associated person of a broker or dealer; and (4) limits its sales activities as set forth in the rule.
+
+Some issuers offer dividend reinvestment and stock purchase programs. Under certain conditions, an issuer may purchase and sell its own securities through a dividend reinvestment or stock purchase program without registering as a broker-dealer. These conditions, regarding solicitation, fees and expenses, and handling of participants' funds and securities, are explained in Securities Exchange Act Release No. 35041 (December 1, 1994), 59 FR 63393 ("1994 STA Letter"). Although Regulation M2 replaced Rule 10b-6 and superseded the 1994 STA Letter, the staff positions taken in this letter regarding the application of Section 15(a) of the Exchange Act remain in effect. See 17 CFR 242.102(c) and Securities Exchange Act Release No. 38067 (December 20, 1996), 62 FR 520, 532 n.100 (January 3, 1997).
+
+## Self Regulatory Organization
+See https://www.sec.gov/rules/sro.shtml
