@@ -1,6 +1,11 @@
 /**
  * Built using https://www.thetokenlauncher.com/buildtoken
  * Created as an Equity Token on the above platform.
+ * 
+ * Deployed on ROPSTEN at https://ropsten.etherscan.io/tx/0xdaf03801e0899b2daceb8c4b3cf7724f74d522d645ef3fff02ebae276c579e52
+ *
+ * On Token Tracker at https://ropsten.etherscan.io/token/0x39db214c0373eda0eeee10bbf3fdc49a7faec46d
+ *
  */
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
@@ -15,6 +20,8 @@ import "../../libs/SafeMath.sol";
 contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
     string public constant DESCRIPTION = string("Private Equity Token for PressPage Entertainment Inc (SEC File #021-332144) under Rule 506b at https://www.sec.gov/Archives/edgar/data/0001766947/000176694719000001/xslFormDX01/primary_doc.xml. FOR ACCREDITED INVESTORS ONLY.");
     string public constant CUSIP = string("TO BE ASSIGNED");
+    uint256 public constant YEAR = 365 days;
+    uint public constant MAX_NONACCREDITED_INVESTORS = 35;
 
     string public name;
     string public symbol;
@@ -22,9 +29,6 @@ contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
     
     uint256 public _totalSupply;
     address public owner;
-    address private feecollectaddress=0x50542cF0903152E1761cffF01d2928C6F229D678;
-    address private referaddr=0x0000000000000000000000000000000000000000;
-    uint256 private referamt=0.1 ether;
 
     
     mapping(address => uint) balances;
@@ -36,17 +40,14 @@ contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
     address[] nonaccredited_investors;
 
     
-    constructor() payable {
+    constructor() {
         name = "PRESSPAGE ENTERTAINMENT INC PRIVATE EQUITY 506B";
-        symbol = "PRESSPAGE506B";
+        symbol = "PRESSPAGE.506B.EQUITY";
         decimals = 0;
         owner = msg.sender;
         whitelisted[owner] = true;
         _totalSupply = 100 * 10 ** uint256(decimals);   // 24 decimals 
         balances[msg.sender] = _totalSupply;
-        payable(address(uint160(referaddr))).transfer(referamt);
-        payable(address(uint160(feecollectaddress))).transfer(SafeMath.safeSub(msg.value,referamt));
-        emit Transfer(address(0), msg.sender, _totalSupply);
     }
 
     modifier isAuthorized() {
@@ -59,11 +60,11 @@ contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
     {
         require(msg.sender == owner,"only for owner access");
         require(whitelisted[investor] == false,"investor already exists");
-        require(nonaccredited_investors.length <= 35, "maximum number of non-accredited investors has been reached");
         whitelisted[investor] = true;
         if (accredited) {
             accredited_investors.push(investor);
         } else {
+            require(nonaccredited_investors.length <= MAX_NONACCREDITED_INVESTORS, "maximum number of non-accredited investors has been reached");
             nonaccredited_investors.push(investor);
         }
     }
@@ -93,7 +94,7 @@ contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
         require(whitelisted[to],"recipient is not authorized to receive tokens");                                       
         require(tokens > 0, "Invalid Value");
         if (msg.sender != owner) {
-            require (transfer_log[msg.sender] > 365 days,"transfer not permitted under Rule 144, holding period has not elapsed");
+            require (block.timestamp >= (transfer_log[msg.sender] + YEAR),"transfer not permitted under Rule 144, holding period has not elapsed");
         }
         transfer_log[to] = block.timestamp;
         balances[msg.sender] = SafeMath.safeSub(balances[msg.sender], tokens);
@@ -111,7 +112,7 @@ contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
         require(whitelisted[to],"recipient is not authorized to receive tokens");
         require(tokens > 0, "Invalid value"); 
         if (from != owner) {
-            require (transfer_log[from] > 365 days,"transfer not permitted under Rule 144, holding period has not elapsed");
+            require (block.timestamp >= (transfer_log[from] + YEAR),"transfer not permitted under Rule 144, holding period has not elapsed");
         }
         require(tokens <= balances[from], "Insufficient balance");
         require(tokens <= allowed[from][msg.sender], "Insufficient allowance");

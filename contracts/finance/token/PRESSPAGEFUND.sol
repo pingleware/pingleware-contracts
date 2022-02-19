@@ -48,11 +48,11 @@ contract PRESSPAGEENTERTAINMENTINCDEBT506B is IERC20TOKEN {
     {
         require(msg.sender == owner,"only for owner access");
         require(whitelisted[investor] == false,"investor already exists");
-        require(nonaccredited_investors.length <= 35, "maximum number of non-accredited investors has been reached");
         whitelisted[investor] = true;
         if (accredited) {
             accredited_investors.push(investor);
         } else {
+            require(nonaccredited_investors.length <= 35, "maximum number of non-accredited investors has been reached");
             nonaccredited_investors.push(investor);
         }
     }

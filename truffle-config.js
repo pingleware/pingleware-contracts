@@ -58,6 +58,17 @@ module.exports = {
       gas: 0,
       gasPrice: 0,
     },
+    ropsten:  {
+      network_id: 3,
+      host: "localhost",
+      port: 8545,
+      gas:  2900000,
+      from: 0x50542cF0903152E1761cffF01d2928C6F229D678
+    },
+    rpc: {
+      host: 'localhost',
+      post:8080
+    },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
