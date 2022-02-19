@@ -17,6 +17,17 @@ contract Shares {
         Currency
     }
 
+    enum PrivateAssetClass {
+        Equity,
+        Debt,
+  	    OptionWarrantRightAcquireAnotherSecurity,
+  	    AcquireSecurityUponExerciseOfOptionWarrantAcquireSecurity,
+      	PooledInvestmentFundInterests,
+        TenantinCommon,
+        MineralProperty,
+        Other
+    }
+
     struct Security {
         AssetClass  class;
         string      FILENUMBER;     // the File Number assigned by the SEC for this offering

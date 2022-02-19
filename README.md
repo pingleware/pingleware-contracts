@@ -32,7 +32,7 @@ When using remix.ethereum.org, you can import directly from github.com
 ## Why Blockchain Could Prevent Another Theranos
 From: https://investorplace.com/2022/01/why-blockchain-could-prevent-another-theranos/
 
-Before developing the Equity token smart contracts for exempt offerings, I research existing use cases and to my suprise, there were no existing use case. There were plenty of discussions without the implementation. The smart contract is open source, available for inspection by anyone. Also the smart contract can stay in compliance with the rules of an exempt offering by incorporating those restrictions whether timed or not, into the contract code. The most beneficial feature is the blockchain exempt equity token can offer liquidity of restricted securities when conditions have been satisfied to permit such transfers? The blockchain exempt equity token can also provide a future mechanism for exempt equity token conversion to public shares after an IPO/DPO has become effective. The blockchain exempt offering can be the first choice for unicorn startups, because the smart contract can be coded to restrict verified accredited investors ONLY from buying, selling and transferring the exempt equity tokens. Publishing an exempt equity token contract to the public blockchain does not violate the General Solicitation as long as no reference is made to solicitation of investors? A Defi DAPP is needed in conjunction with the exempt equity token contract to maintain the exemption of the offering through use restriction by accredited and qualified investors only! The Defi DAPP can be a mobile app which validates the investor one time on in a hosted environment and then adds their wallet to the authroized investor queue on the blockchain, further interaction is perform execlusively with the blockchain without any need to revisit the hosted environment unless changes and intervention are required?
+Before developing the Equity token smart contracts for exempt offerings, I research existing use cases and to my surprise, there were no existing use case. There were plenty of discussions without the implementation. The smart contract is open source, available for inspection by anyone. Also the smart contract can stay in compliance with the rules of an exempt offering by incorporating those restrictions whether timed or not, into the contract code. The most beneficial feature is the blockchain exempt equity token can offer liquidity of restricted securities when conditions have been satisfied to permit such transfers? The blockchain exempt equity token can also provide a future mechanism for exempt equity token conversion to public shares after an IPO/DPO has become effective. The blockchain exempt offering can be the first choice for unicorn startups, because the smart contract can be coded to restrict verified accredited investors ONLY from buying, selling and transferring the exempt equity tokens. Publishing an exempt equity token contract to the public blockchain does not violate the General Solicitation as long as no reference is made to solicitation of investors? A Defi DAPP is needed in conjunction with the exempt equity token contract to maintain the exemption of the offering through use restriction by accredited and qualified investors only! The Defi DAPP can be a mobile app which validates the investor one time on in a hosted environment and then adds their wallet to the authroized investor queue on the blockchain, further interaction is perform execlusively with the blockchain without any need to revisit the hosted environment unless changes and intervention are required?
 
 # REMIX Webapp
 The remix desktop was rebuilt as a webapp because I found the straight-browser version to become slow and non-responsive. The webapp version can be downloaded from https://github.com/pingleware/remix-desktop. You should try installing the official desktop version from the Remix Team at https://github.com/ethereum/remix-desktop. If the application will no launch, then download the webapp version.
@@ -124,6 +124,68 @@ CoinMarketCap listing criteria at https://support.coinmarketcap.com/hc/en-us/art
 Security Token Offerings (STO) at https://itsblockchain.com/security-token-offerings-stos/
 
 STO Market https://stomarket.com/market
+
+# Liquidity and the Blockchain
+While a private placement has restricted liquidity, a public offering token using a S-1 filing does not have restricted liquidity, hence a CUSIP and ISIN numbers are both needed. The ideal method for unrestricted liquidity is to issue your public offering (S-1) on an established DEX, but I am discovering this to be more tedious and sometimes more costly than listing on NYSE, NASDAQ, AMEX, Pinksheets or any other brick and mortar exchange? The other option is create an alternative trading system (ATS) with an orderbook and order matching and register your ATS with the SEC. If your ATS is solely for your own company's securities, than FINRA, CFTC and NFA registration may not be needed? (check with your attorney)
+
+# Crowdfunding
+Crowdfunding is an exempt offering and highly regulated meaning, to perform a successful equity crowdfund campaign, you must use a registered SEC funding portal. A funding portal is registered with the SEC and regulated by FINRA. The list of current and expired crowdfunding portals/platforms can be found at https://www.finra.org/about/firms-we-regulate/funding-portals-we-regulate. 
+
+One such funding portal, https://cryptolaunch.us/ offering crowd funding on the blockchain through an Security Token Offering (STO). They also offer a Mini-STO. See the difference between the two at https://cryptolaunch.us/help/article/44,
+
+    "It depends on your situation.
+ 
+    If a max total raise of $5 million USD is enough for your company to reach a meaningful milestone, or if you do not have up to $100,000 to spend upfront or if you have to move fast with your fundraising campaign, then Mini-STO is better. Otherwise and STO is better solution for your situation.
+ 
+    Basically, the difference between the Mini-STO and STO boils down to the difference between Reg CF and Reg A+. Simple like that. ", - cryptolaunch.us
+
+CRYPTOLAUNCH.US is the easiest crowwdfunding platform for equity offerings.
+
+See https://www.sec.gov/divisions/marketreg/tmcompliance/fpregistrationguide.htm
+
+# Online Token Builder
+The following service, https://www.thetokenlauncher.com/buildtoken, a user can build a token, download the source code and launch through the platform (cost 0.1 ETH to launch)
+
+The available tokens include,
+
+    - Asset Backed Currency
+    - Equity Token
+    - Fan Token
+    - Fund
+    - Game Token
+    - Utility Token
+    - Other Security Token
+
+with an option to make any offering into an ICO crowdsale.
+
+## Asset Backed Currency
+See https://medium.com/ico-launch-malta/what-is-an-asset-backed-token-a-complete-guide-to-security-token-assets-f7a0f111d443
+
+An Asset-backed currency would be considered as an Asset-back security (ABS) as defined by the SEC. See finance/debt/ABS.md
+
+SEC Asset-backed securities disclosure rules at https://www.sec.gov/rules/final/2014/33-9638.pdf
+
+ABS public registration uses form ABS-15G and ABS-EE
+ABS private registration uses form D
+
+## Equity Token
+A Security Token represents an asset or an entitlement to an earning stream or dividends. In terms of their economic function, the tokens are comparable to equities, bonds or derivatives, and are expected to make a profit.
+
+## Fan Token
+Fan tokens are a form of cryptocurrency that gives holders access to a variety of fan-related membership perks like voting on club decisions, rewards, merchandise designs and unique experiences.
+
+See more at https://coinmarketcap.com/alexandria/article/what-are-fan-tokens
+
+Fan Tokens are typically an NFT.
+
+## Fund
+
+## Game Token
+An old incentive for the blockchain. User purchases a game token to be used in a game.
+
+## Utility Token
+A Utility Token provides access to the goods and services that a project launched or will launch in the future, and can be used as a type of discount or premium access to the services. A lot of tokens tend to be used specifically as a funding mechanism for companies.
+
 
 # What is different between pingleware-contracts and other contract frameworks?
 While the other contract frameworks provide templates to help you build contracts, they fall short from real world model implementation. pingleware-contracts provide a template for real world use of smart contracts across many industries, saving you development time and expense?
