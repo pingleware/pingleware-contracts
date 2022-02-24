@@ -65,6 +65,7 @@ Before launching an exempt equity or debt offering you are required to submit th
 # Release Schedule
 
         Date        Version                 Notes
+    02/23/2022       1.2.1         Maintenance; merge fixes;
     02/23/2022       1.2.0         Add News contract; example tokens under finance/token; Token Exchange contract; Added CommercialPaper in Debt financing;
                                         Deployment of exempt offering token at https://ropsten.etherscan.io/address/0x39db214c0373eda0eeee10bbf3fdc49a7faec46d
     02/23/2022       1.1.1	   Fixed additional subdirectory files not being included during the packing.
