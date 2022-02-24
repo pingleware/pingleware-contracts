@@ -3,6 +3,9 @@ Simplify and accelerate cross-border payments; execute transactions and agreemen
 
 [![SEC Filings | Importance | Top 7 Types of SEC Filings]()](https://www.youtube.com/watch?v=V8-yNIkMWdI)
 
+# SEC Warns About Online Platforms for Trading Digital Assets
+See https://clsbluesky.law.columbia.edu/2018/03/08/sec-warns-about-online-platforms-for-trading-digital-assets/
+
 # Security Token Ecosystem
 From: https://tokeny.com/the-security-token-ecosystem
 A global look at the players involved within security tokens

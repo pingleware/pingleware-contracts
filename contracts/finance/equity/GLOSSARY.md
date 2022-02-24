@@ -30,6 +30,9 @@ Amendments to the Accredited Investor definition from https://www.sec.gov/corpfi
 - certain family offices and family clients, and
 - entities owning investments in excess of $5 million.
 
+## Sophisticated Investor
+See https://corporatefinanceinstitute.com/resources/knowledge/trading-investing/sophisticated-investor
+
 ## Par Value
 The value of a company's stock as defined in the registration documents such as the Article of Incorporation. The par value is the minimum price that a company has deemed their equity may be sold. Placing a high par value raises the bar of valuation. Depending on the juisdiction of incorporation, a company's franchise tax liability may be affected by the par value assigned?
 

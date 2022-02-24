@@ -21,7 +21,7 @@ contract PRESSPAGEENTERTAINMENTINCICOCF is IERC20CF {
     uint256 public _totalSupply;
     uint256 public _circulating_supply;
     uint256 public _sold;
-    address public owner;
+
     address private feecollectaddress=0x222926cA4E89Dc1D6099b98C663efd3b0f60f474;
     bool public isMinting;
     uint256 public RATE; // must be at least the par value!

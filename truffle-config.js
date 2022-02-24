@@ -69,6 +69,14 @@ module.exports = {
       host: 'localhost',
       post:8080
     },
+    dashboard: {
+      port: 24012,
+    },
+    nodeploy: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 9545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+    }
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port

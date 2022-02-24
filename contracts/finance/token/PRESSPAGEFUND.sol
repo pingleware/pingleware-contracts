@@ -11,7 +11,7 @@ contract PRESSPAGEENTERTAINMENTINCDEBT506B is IERC20TOKEN {
     uint8 public decimals; 
     
     uint256 public _totalSupply;
-    address public owner;
+
     address private feecollectaddress=0x50542cF0903152E1761cffF01d2928C6F229D678;
     address private referaddr=0x0000000000000000000000000000000000000000;
     uint256 private referamt=0.1 ether;

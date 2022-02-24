@@ -2,6 +2,8 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 abstract contract IERC20CF {
+    address public owner;
+
     function totalSupply() virtual public view returns (uint256);
     function balanceOf(address account) virtual public view returns (uint256);
     function allowance(address owner, address spender) virtual public view returns (uint256);
