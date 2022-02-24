@@ -64,6 +64,7 @@ Before launching an exempt equity or debt offering you are required to submit th
 # Release Schedule
 
         Date        Version                 Notes
+    02/23/2022       1.1.1	   Fixed additional subdirectory files not being included during the packing.
     02/17/2022       1.1.0         Refactor of contracts to permit sharing when deployed; add new contracts for:
                                         agriculture, energy, finance.currency, healthcare, insurance, non-profit, real estate,
                                         retail, scm and transportation
