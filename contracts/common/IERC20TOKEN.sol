@@ -2,6 +2,8 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 abstract contract IERC20TOKEN {
+    address public owner;
+
     function totalSupply() virtual public view returns (uint);
     function balanceOf(address tokenOwner) virtual public view returns (uint);
     function allowance(address tokenOwner, address spender) virtual public view returns (uint);

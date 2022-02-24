@@ -11,6 +11,44 @@ Interest on the Debt offering can be paid through staking.
 
 A typical debt offering is an Asset-backed security (ABS)
 
+# Commercial Paper
+Introduction to Commercial Paper at https://www.investopedia.com/articles/investing/070313/introduction-commercial-paper.asp
+
+Accounting for Commercial Paper at https://www.fe.training/free-resources/accounting/commercial-paper/
+
+Commercial paper is another form of a debt security. An example is at https://www.gru.com/Portals/0/CP%20Offering%20Memorandum%20for%20Series%20C%20and%20Series%20D%20November%202015.pdf
+
+When issuing commercial paper, a credit rating is needed by a NRSRO. The two main agencies are Moody's and Standard & Poor's.
+
+Current NRSRO list at https://www.sec.gov/ocr/ocr-current-nrsros.html
+
+Standard & Poor's information at https://www.spglobal.com/ratings/en/products-benefits/persona/issuer
+
+SEC Office of Credit Ratings (OCR) at https://www.sec.gov/page/ocr-section-landing
+
+Example of Commercial Paper being traded on the blockchain at https://github.com/IBM-Blockchain-Archive/cp-web
+
+The major parties to a commercial paper programme issuance are: 
+    - the issuer, 
+    - the promoter (where applicable), 
+    - the Issuing and Placing Agent (IPA),
+    - the Collecting and Paying Agent (CPA) (which when combined with the responsibilities of an IPA becomes an Issuing, Placing, Paying, and Collecting Agent (IPCA)),
+    - the licensed securities depository (called the Central Securities Depository or CSD under the FMDQ Rules),
+    - the Credit Rating Agency,
+    - the commercial paper investors.
+    
+Other parties include a guarantor and an underwriter, where applicable, solicitors and an auditor
+
+Example of Commercial Paper Policy and Procedures at https://www.sfmta.com/sites/default/files/agendaitems/SFMTA%20-%20Commercial%20Paper%20-%20Policies%20%20Procedures%20v3%202%20-%20Attachment%20C.pdf
+
+India is an early adoptor of commercial paper on the blockchain and heavy investor of commercial paper, https://www.rknglobal.org/deploying-blockchain-for-issuing-commercial-paper/
+
+Commercial Paper Rates and Outstanding Summary - https://www.federalreserve.gov/releases/CP/volumestats.htm
+
+SEC Primer on Commercial Paper - https://www.sec.gov/files/primer-money-market-funds-commercial-paper-market.pdf
+
+Columbia University report on Commercial Paper - https://www0.gsb.columbia.edu/faculty/ccalomiris/papers/Commercial%20Paper%20Corporate%20Finance%20Business%20Cycle.pdf
+
 # Preview of Exempt Debt Offering Contract
 ![(Preview)](./debt.svg)
 

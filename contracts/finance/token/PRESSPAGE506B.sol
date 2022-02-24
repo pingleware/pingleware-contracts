@@ -28,8 +28,6 @@ contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
     uint8  public decimals; 
     
     uint256 public _totalSupply;
-    address public owner;
-
     
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
@@ -42,7 +40,7 @@ contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
     
     constructor() {
         name = "PRESSPAGE ENTERTAINMENT INC PRIVATE EQUITY 506B";
-        symbol = "PRESSPAGE.506B.EQUITY";
+        symbol = "PRESSPAGE.506B.EQUITY"; // Maximum 11 characters
         decimals = 0;
         owner = msg.sender;
         whitelisted[owner] = true;

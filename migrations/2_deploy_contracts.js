@@ -8,6 +8,7 @@ var User = artifacts.require('./User');
 var SocialNetwork = artifacts.require('./SocialNetwork');
 
 module.exports = function(deployer, network, accounts) {
+     if (network == "nodeploy") return;
      // deploy libraries
      deployer.deploy(StringUtils);
      deployer.deploy(Advertiser);

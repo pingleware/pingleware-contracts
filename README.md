@@ -52,6 +52,7 @@ There are prebuilt smart contracts
     Healthcare
     Insurance
     Membership
+    News
     Non-Profit
     Real Estate
     Retail
@@ -64,6 +65,8 @@ Before launching an exempt equity or debt offering you are required to submit th
 # Release Schedule
 
         Date        Version                 Notes
+    02/23/2022       1.2.0         Add News contract; example tokens under finance/token; Token Exchange contract; Added CommercialPaper in Debt financing;
+                                        Deployment of exempt offering token at https://ropsten.etherscan.io/address/0x39db214c0373eda0eeee10bbf3fdc49a7faec46d
     02/23/2022       1.1.1	   Fixed additional subdirectory files not being included during the packing.
     02/17/2022       1.1.0         Refactor of contracts to permit sharing when deployed; add new contracts for:
                                         agriculture, energy, finance.currency, healthcare, insurance, non-profit, real estate,
@@ -177,16 +180,18 @@ Fan tokens are a form of cryptocurrency that gives holders access to a variety o
 
 See more at https://coinmarketcap.com/alexandria/article/what-are-fan-tokens
 
-Fan Tokens are typically an NFT.
+Fan Tokens are typically an NFT. NFT is like a trading card or collectible, any gains made on the sale of the NFT is taxable. See https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/
 
 ## Fund
+A fund token would be a donation for a tax exempt non-profit organization, and a security for all others.
 
 ## Game Token
-An old incentive for the blockchain. User purchases a game token to be used in a game.
+An old incentive for the blockchain. User purchases a game token to be used in a game. As long as the game token is used for game play and redemption inside the game with no perceived financial gains, the game token would not be a security. See https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/
 
 ## Utility Token
 A Utility Token provides access to the goods and services that a project launched or will launch in the future, and can be used as a type of discount or premium access to the services. A lot of tokens tend to be used specifically as a funding mechanism for companies.
 
+A Utility token would not be a security as long as trading/swapping with third parties is not provided. Utility token would be like a discount coupon book where you prepaid to get a future discount. See https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/
 
 # What is different between pingleware-contracts and other contract frameworks?
 While the other contract frameworks provide templates to help you build contracts, they fall short from real world model implementation. pingleware-contracts provide a template for real world use of smart contracts across many industries, saving you development time and expense?
