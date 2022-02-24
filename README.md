@@ -65,21 +65,22 @@ Before launching an exempt equity or debt offering you are required to submit th
 # Release Schedule
 
         Date        Version                 Notes
-    02/23/2022       1.2.1         Maintenance; merge fixes;
-    02/23/2022       1.2.0         Add News contract; example tokens under finance/token; Token Exchange contract; Added CommercialPaper in Debt financing;
+    02/23/2022       1.2.2          Maintenance fixes and refactoring; added SimpleBond.sol under finance|debt
+    02/23/2022       1.2.1          Maintenance; merge fixes;
+    02/23/2022       1.2.0          Add News contract; example tokens under finance/token; Token Exchange contract; Added CommercialPaper in Debt financing;
                                         Deployment of exempt offering token at https://ropsten.etherscan.io/address/0x39db214c0373eda0eeee10bbf3fdc49a7faec46d
-    02/23/2022       1.1.1	   Fixed additional subdirectory files not being included during the packing.
-    02/17/2022       1.1.0         Refactor of contracts to permit sharing when deployed; add new contracts for:
+    02/23/2022       1.1.1	        Fixed additional subdirectory files not being included during the packing.
+    02/17/2022       1.1.0          Refactor of contracts to permit sharing when deployed; add new contracts for:
                                         agriculture, energy, finance.currency, healthcare, insurance, non-profit, real estate,
                                         retail, scm and transportation
-    01/28/2022       1.0.7         Remove third-party dependencies; added placeholder contracts for insurance industry;
-    01/27/2022       1.0.6         Refactor equity, debt and membership; added additional industry smart contracts
-    12/25/2021       1.0.5         Refactoring credit, social and some equity contracts
-    12/21/2021       1.0.4         Fixes identified through remix debugging; added followers and friends;
-    12/19/2021       1.0.3         General fixes and compiler warnings cleanup
-    12/19/2021       1.0.2         Employee Benefit Plan contract implemented
-    12/19/2021       1.0.1         The remaining ExemptOffering contracts implemented with the exception of Employee Benefit Plan
-    12/19/2021       1.0.0         Initial release with only ExemptEquityOffering506C contract implemented
+    01/28/2022       1.0.7          Remove third-party dependencies; added placeholder contracts for insurance industry;
+    01/27/2022       1.0.6          Refactor equity, debt and membership; added additional industry smart contracts
+    12/25/2021       1.0.5          Refactoring credit, social and some equity contracts
+    12/21/2021       1.0.4          Fixes identified through remix debugging; added followers and friends;
+    12/19/2021       1.0.3          General fixes and compiler warnings cleanup
+    12/19/2021       1.0.2          Employee Benefit Plan contract implemented
+    12/19/2021       1.0.1          The remaining ExemptOffering contracts implemented with the exception of Employee Benefit Plan
+    12/19/2021       1.0.0          Initial release with only ExemptEquityOffering506C contract implemented
 
 # State of the Project
 The project is currently in an alpha-beta state, which means that production use is not recommended. Production ready will be tagged as stable.

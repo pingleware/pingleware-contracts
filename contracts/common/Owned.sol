@@ -47,6 +47,11 @@ abstract contract Owned {
         _;
     }
 
+    modifier okOwner() {
+        require(msg.sender == owner,"unauthorized, not the owner");
+        _;
+    }
+
     function getOwner()
         public
         payable

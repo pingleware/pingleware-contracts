@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../interfaces/IERC20.sol";
+import "../interfaces/IToken.sol";
 
-contract Token is IERC20 {
+contract Token is IToken {
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowances;
 
