@@ -49,4 +49,22 @@ The minimum rerquirements,
     - extract RIN pricing from EPA.GOV
 
 
-* IMPRTANT: for any and all Retail RIN Trading platforms created on and after the date of February 25, 2022, credit must be given to Patrick O. Ingle (profit sharing is NOT a requirement). Failure to give proper credit will result in judicial intervention with the State of Florida, County of Alachua retaining exclusive jurisdiction.
+# Blockchain News on Renewable Energy
+
+See more at https://blockchain.news/search/renewable%20energy
+
+## Australian Blockchain Startup Power Ledger Deploys Blockchain Grid to Audit Renewable Energy
+An Australian-based blockchain energy firm has bought a 250kW photovoltaic system, which will use the firm’s new energy data management and settlement system to offer greater transparency on renewable energy sold to consumers. Read at https://blockchain.news/news/australian-blockchain-startup-power-ledger-deploys-blockchain-grid-to-audit-renewable-energy
+
+## Spanish Renewable Energy Firm Partners with Climate Blockchain Initiatives to Boost Carbon Offset Sales on Blockchain
+Acciona, a leading Spanish renewable energy company, has joined hands with Climate Blockchain Initiatives (CBI), a Valencia-based startup, to boost the sale of its carbon offsets using the latter’s blockchain-powered trading platform. Read at https://blockchain.news/news/spanish-renewable-energy-company-climate-blockchain-initiatives-boost-carbon-offset-blockchain
+
+## Global Energy Sector: Blockchain Application to hit $6.29 Billion by 2024
+BIS Research has presented a new market intelligence report dubbed ‘Global Blockchain in Energy Market - Analysis and Forecast, 2018-2024.’ It reveals that blockchain application in the energy market was worth $518.6 million in 2018 and its value will reach $6.29 billion in 2024. Read at https://blockchain.news/news/global-energy-sector-blockchain-application-to-hit-6.29-billion-by-2024
+
+## EU Market Watchdog Speaks Against Renewable Energy Mining for PoW
+The Vice-Chair of the European Securities and Markets Authority (ESMA), Erik Thedéen has taken a stance against the use of renewable energy for all PoW mining operations.
+Read at https://blockchain.news/news/eu-market-watchdog-speaks-against-renewable-energy-mining-for-pow
+
+## Greyp Teams Up with Blockchain Entities for Automated Payment System
+Greyp, a Croatian mobility tech startup and electric bike manufacturer, has partnered with two blockchain firms, the Energy Web Foundation (EWF) and slock.it, to establish an automated payment structure for IoT vehicles. Read at https://blockchain.news/news/greyp-teams-up-with-blockchain-entities-for-automated-payment-system
