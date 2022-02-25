@@ -13,7 +13,7 @@ A Quick Guide to Smart Contracts, Blockchain and the Supply Chain - https://www.
 ## Raw Materials
 
 
-## Manuafacturing
+## Manufacturing
 
 
 ## Distribution
