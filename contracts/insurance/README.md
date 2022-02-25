@@ -20,4 +20,14 @@ Since I am located in the State of Florida, I will refer to Florida Insurance La
     (7) Any plan which is primarily for the purpose of providing first aid care and treatment, at a dispensary of an employer, for injury or sickness of employees while engaged in their employment.
     (8) Any plan established and maintained for the purpose of providing malpractice coverage or professional liability coverage.
 
+# Blockchain News on Insurance
+Read more at https://blockchain.news/search/insurance
 
+## Oxfam's Blockchain-Based Agricultural Insurance Firms in Sri Lanka Pay Farmers with Crypto
+Insurance in the agricultural sector is becoming digitized through blockchain based solutions in Sri Lanka as Oxfam pays farmers in cryptocurrencies. Read at https://blockchain.news/news/oxfams-blockchain-based-agricultural-insurance-firms-in-sri-lanka-pay-farmers-with-crypto
+
+## Allianz Advances with Blockchain-Based Token System
+As the growing adoption of blockchain technology approaches the mainstream enterprises, the insurance giant, Allianz has also entered the blockchain sector. Read at https://blockchain.news/news/Allianz-Advances-with-BlockchainBased-Token-System
+
+## Nasdaq-Listed Metromile Backs Bitcoin for its Insurance Products
+Auto insurance company Metromile is thinking of investing in Bitcoin. Read at https://blockchain.news/news/nasdaq-listed-metromile-backs-bitcoin-its-insurance-products
