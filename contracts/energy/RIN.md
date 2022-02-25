@@ -39,3 +39,14 @@ When you buy or sell an RIN, both the buyer and seller must log into the EMTS sy
     D Code
     Vintage (Year produced)
     
+# Future Opportunity
+Create a consumer retail secondary market for RIN trading, just as a retail market was created for FOREX. There exists a retail market for resellers,
+Just as with FOREX where the retail trader doesn't or possess the currency, the consumer RIN trader trades on the speculation of the price fluctations of the available RINS, withou ever possessing or owning any RINS. This consumer RINS trading can prevent the whales from price controlling and make the RINS marker more efficient.
+
+The minimum rerquirements,
+
+    - registered the trading platform as an ATS with the SEC
+    - extract RIN pricing from EPA.GOV
+
+
+* IMPRTANT: for any and all Retail RIN Trading platforms created on and after the date of February 25, 2022, credit must be given to Patrick O. Ingle (profit sharing is NOT a requirement). Failure to give proper credit will result in judicial intervention with the State of Florida, County of Alachua retaining exclusive jurisdiction.
