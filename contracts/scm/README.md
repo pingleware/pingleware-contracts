@@ -31,7 +31,7 @@ A Quick Guide to Smart Contracts, Blockchain and the Supply Chain - https://www.
 ## End User
 
 
-# Blockchain in Supply Chain Management
+# Blockchain News in Supply Chain Management
 Read more at https://blockchain.news/search/Supply%20Chain%20Management
 
 ## IOTA On How Distributed Ledger Technology Will Transform Supply Chain
