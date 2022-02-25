@@ -116,3 +116,12 @@ Also with the Private Placement Memorandum, the following documents are needed f
 (2) A Donee; or
 
 (3) A company established by the Transferor exclusively for the benefit of (or owned exclusively by) the Transferor and the persons specified in paragraphs (b)(1) and (b)(2) of this section at https://www.law.cornell.edu/definitions/index.php?width=840&height=800&iframe=true&def_id=ae77e4ab315ae0b3a3e66d2e23fa9ec3&term_occur=999&term_src=Title:17:Chapter:II:Part:270:270.3c-6
+
+# Blockchain News on Debt
+Read more at https://blockchain.news/search/debt%20funding
+
+## Digital Currency Group Lands $600M Debt Funding
+Grayscale Investments’ parent company Digital Currency Group (DCG) said it has secured a $600 million credit funding, billed to power its many diverse operations. Read at https://blockchain.news/news/digital-currency-group-lands-$600m-debt-funding
+
+## NASA is Funding a Blockchain Solution for Space Communication
+The United States National Aeronautics and Space Administration (NASA) is funding two US-based companies to develop a blockchain solution to enhance space communication. Read at https://blockchain.news/news/nasa-funding-blockchain-solution-satellite-space-communication

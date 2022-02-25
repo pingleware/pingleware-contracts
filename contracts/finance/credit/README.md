@@ -35,3 +35,12 @@ The use of diamond storage in libraries avoids gas fees and hence can provide a 
 Blockchain technologies is NOT a new technology, but a twist on an old technology, repackaged in different wrapping. Blockchain uses RPC or remote procedure calls, which is as old as myself. The abilities of blockchain are reminensent of the old CORBA days which refers to common object-oriented request broker architecture. Unlike CORBA, blockchain is expensive to use because of the gas fees. A better blockchain would be to eliminate the gas fees? and the mining?
 
 Blockchain is easier to implement than CORBA.
+
+# Blackchain News on Credit
+Read more at https://blockchain.news/search/credit
+
+## HSBC Successfully Executes First Blockchain Letter of Credit in Malaysia
+HSBC announced its successful execution of a pilot live blockchain letter of credit (LC) transaction in Malaysia on Oct. 14. Read at https://blockchain.news/news/hsbc-successfully-executes-first-blockchain-letter-of-credit-in-malaysia
+
+## Islamic Development Bank to Create Blockchain Smart Credit Platform with Samsung's Blocko
+The Islamic Research and Training Institute partnered with Samsung backed Blocko to develop a functional Credit Management System for Saudi Arabia. Read at https://blockchain.news/news/islamic-development-bank-blockchain-smart-credit-platform-samsung-blocko

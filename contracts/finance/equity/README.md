@@ -239,3 +239,19 @@ There are many offshore companies setting up domestic offices to create a regist
 
 # Crypto Burning
 Crypto burning is the same when an equity share is allocated as a treasury share, thus removing it from the public float. Though crypto burning is a permanent removal, equity allocation to treasury shares can be reversed through a corporate action.
+
+# Blackchain News on Finance
+Read more at https://blockchain.news/search/finance
+
+## Decentralized Finance (DeFi)
+DeFi stands for decentralized finance, which owns the blockchain advantages, thus removes trusted third parties and more. DeFi will have profound impact to traditional financial industries. Read at https://blockchain.news/wiki/Decentralized-Finance-DeFi
+
+# Blockchain News on Equity Funding
+Read more at https://blockchain.news/search/equity%20funding
+
+## Crypto Wallet and Data Giant Reported to Raise $50M Funding Round
+According to a report by Yahoo Finance, Blockchain is raising a VC fund to invest in both equity and crypto coins. Read at https://blockchain.news/news/crypto-wallet-and-data-giant-reported-to-raise-50m-funding-round
+
+## Goldman Sachs and Citigroup Perform the First Equity Swap on Blockchain
+Traditional equity swaps have to be continuously updated for multiple variables. These include different interest rates, end-of-day market prices, and corporate actions like stock splits and dividend payments. Financial institutions need to hire many people to verify the process until the swap completion, which in some rare cases, could take months.
+Read at https://blockchain.news/news/goldman-sachs-and-citigroup-perform-the-first-equity-swap-on-blockchain
