@@ -73,3 +73,18 @@ while the original post author receives earnings from comments, the comment auth
 Using text-based advertising, an advertiser can post an advertisement that is shown in a designated area on the user's dapp,
 
   - earns from the sale of the product or service in their advertisement
+
+# Blockchain News on Social Network
+Read more at https://blockchain.news/search/Social%20Network
+
+## Steemit & Dtube: Social Networking, Blogging, and Video Sharing in the Blockchain Era
+Steemit and Dtube allow users to be rewarded for sharing content. These social media networks are decentralized and censorship-resistant. Read at https://blockchain.news/news/steemit-dtube-social-networking-blogging-and-video-sharing-in-the-blockchain-era
+
+STEEMIT Terms of Service at https://steemit.com/tos.html, privacy policy at https://steemit.com/privacy.html and whitepaper at https://steem.com/SteemWhitePaper.pdf
+
+Additional documents,
+    
+    - Bluepaper at https://steem.com/steem-bluepaper.pdf
+    - SMT Whitepaper at https://smt.steem.com/ for STEEM Media Tokens
+    
+
