@@ -20,7 +20,7 @@ contract NewsFeed {
         Technology,
         Traffic_Roads,
         Weather,
-        Weblogs        
+        Weblogs
     }
 
     address public owner;
