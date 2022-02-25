@@ -3,6 +3,12 @@ From: http://en.wikipedia.org/wiki/Renewable_Identification_Number
 
 A Renewable Identification Number (or RIN) is a serial number assigned to a batch of biofuel for the purpose of tracking its production, use, and trading as required by the United States Environmental Protection Agency's Renewable Fuel Standard (RFS) implemented according to the Energy Policy Act of 2005 and the Energy Independence and Security Act of 2007.
 
+![RIN Lifecycle](https://www.epa.gov/sites/default/files/2015-08/example_lifecycle_of_a_rin_0.png)
+Read more at https://www.epa.gov/renewable-fuel-standard-program/renewable-identification-numbers-rins-under-renewable-fuel-standard
+
+![RINs 101: The Basics of Renewable Identification Numbers](https://growthenergy.org/wp-content/uploads/2018/07/072418-RIN-Chart.png)
+Read more at https://growthenergy.org/2018/07/24/rins-101-the-basics-of-renewable-identification-numbers/
+
 # Trading
 Trading occurs using Renewal Energy Credits (REC) for which a RIN is assigned.See more at https://www.kirkcoburn.com/2021/02/04/recs-101-intro-renewable-energy-credits-2021
 
