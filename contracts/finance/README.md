@@ -130,3 +130,9 @@ Issuance
 STOScope
 
 Token Market
+
+# Blackchain News on Finance
+Read more at https://blockchain.news/search/finance
+
+## Decentralized Finance (DeFi)
+DeFi stands for decentralized finance, which owns the blockchain advantages, thus removes trusted third parties and more. DeFi will have profound impact to traditional financial industries. Read at https://blockchain.news/wiki/Decentralized-Finance-DeFi

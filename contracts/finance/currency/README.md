@@ -28,6 +28,9 @@ See https://www.xignite.com/product/forex#/DeveloperResources/request/GetForward
 # Blockchain News on Currency Exchange
 Read more at https://blockchain.news/search/currency%20exchange
 
+## Fortex Launches Crypto Non-Deliverable Forwards
+Fortex Technologies, a globally recognized multi-asset trading provider, has announced the expansion of its crypto services to include crypto non-deliverable forwards (NDFs), as well as an institutional platform for cryptocurrencies and digital assets. Read at https://blockchain.news/news/fortex-launches-crypto-non-deliverable-forwards-
+
 ## SEC Chair Gary Gensler Asks Congress to Regulate Crypto Exchanges
 Gary Gensler, the chairman of the SEC, has urged US Congress to create a regulatory framework for crypto exchanges in the United States. Read at https://blockchain.news/news/sec-chair-gary-gensler-asks-congress-regulate-crypto-exchanges
 

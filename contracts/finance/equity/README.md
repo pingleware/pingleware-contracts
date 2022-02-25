@@ -240,11 +240,6 @@ There are many offshore companies setting up domestic offices to create a regist
 # Crypto Burning
 Crypto burning is the same when an equity share is allocated as a treasury share, thus removing it from the public float. Though crypto burning is a permanent removal, equity allocation to treasury shares can be reversed through a corporate action.
 
-# Blackchain News on Finance
-Read more at https://blockchain.news/search/finance
-
-## Decentralized Finance (DeFi)
-DeFi stands for decentralized finance, which owns the blockchain advantages, thus removes trusted third parties and more. DeFi will have profound impact to traditional financial industries. Read at https://blockchain.news/wiki/Decentralized-Finance-DeFi
 
 # Blockchain News on Equity Funding
 Read more at https://blockchain.news/search/equity%20funding
