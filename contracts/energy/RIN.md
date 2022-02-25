@@ -8,6 +8,8 @@ Trading occurs using Renewal Energy Credits (REC) for which a RIN is assigned.Se
 
 ![](https://www.kirkcoburn.com/hs-fs/hubfs/Imported_Blog_Media/RPS-Map-in-US-1024x666.png?width=1200&name=RPS-Map-in-US-1024x666.png)
 
+## RIN Live Pricing
+To view the RIN pricing via D-codes visit https://edap.epa.gov/public/single/?appid=73b2b6a5-70c6-4820-b3fa-186ac094f10d&sheet=58ef1313-1e6c-409f-821c-25d207891966&opt=currsel&select=clearall
 
 # Typical RIN transactions and terms: 
 
