@@ -65,6 +65,7 @@ Before launching an exempt equity or debt offering you are required to submit th
 # Release Schedule
 
         Date        Version                 Notes
+    02/23/2022       1.3.0          Add RINS (Renewal Identification Number) contract
     02/23/2022       1.2.2          Maintenance fixes and refactoring; added SimpleBond.sol under finance|debt
     02/23/2022       1.2.1          Maintenance; merge fixes;
     02/23/2022       1.2.0          Add News contract; example tokens under finance/token; Token Exchange contract; Added CommercialPaper in Debt financing;

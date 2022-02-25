@@ -25,10 +25,10 @@ contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
 
     string public name;
     string public symbol;
-    uint8  public decimals; 
-    
+    uint8  public decimals;
+
     uint256 public _totalSupply;
-    
+
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
 
@@ -44,7 +44,7 @@ contract PRESSPAGEENTERTAINMENTINCPRIVATEEQUITY506B is IERC20TOKEN {
         decimals = 0;
         owner = msg.sender;
         whitelisted[owner] = true;
-        _totalSupply = 100 * 10 ** uint256(decimals);   // 24 decimals 
+        _totalSupply = 100 * 10 ** uint256(decimals);   // 24 decimals
         balances[msg.sender] = _totalSupply;
     }
 
