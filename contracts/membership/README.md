@@ -5,3 +5,9 @@ The Membership token present is NOT a tradeable security but a method for creati
 
 # General Solicatitation
 Private investment clubs typically do no have the privilege of general solicitation or their club announcement may be interpreted as a public offering requiring registration. Typically private investment clubs must market to investors who the club already has an existing relationship? What investment clubs have done, is to offer free courses requiring a user registration or a free newsletter subscription (abiding by CAN SPAM ACT laws, including opt-out), with a waiting period of at least 12 months or more, before the invitation to the investment club is sent? (please refer to a qualified attorney for the mechanics on lawyers.com or avvo.com)
+
+# Blockchain News on Membership
+Read more at https://blockchain.news/search/membership
+
+## Singapore-based Online Press Initium Media Accepts Membership Subscription in Crypto
+Online Chinese-language press Initium media announced the digital media platform had accepted cryptocurrencies to pay for membership subscriptions. Read at https://blockchain.news/news/singapore-based-online-press-initium-media-accepts-membership-subscription-crypto
