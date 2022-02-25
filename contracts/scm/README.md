@@ -31,3 +31,11 @@ A Quick Guide to Smart Contracts, Blockchain and the Supply Chain - https://www.
 ## End User
 
 
+# Blockchain in Supply Chain Management
+Read more at https://blockchain.news/search/Supply%20Chain%20Management
+
+## IOTA On How Distributed Ledger Technology Will Transform Supply Chain
+Distributed ledger technology could potentially revolutionize the supply chain industry by providing several upgrades, according to industry experts. Read at https://blockchain.news/news/iota-distributed-ledger-technology-will-transform-supply-chain
+
+## Coca-Cola Leverages Enterprise Ethereum Blockchain to Optimize Supply Chain
+Coke One North America (CONA), partner of Coca Cola’s largest US-based bottling company has announced it will use the enterprise Ethereum blockchain platform the Baseline Protocol—to enhance transparency and minimize friction in its supply chain transactions. Read at https://blockchain.news/news/coca-cola-enterprise-ethereum-blockchain-optimize-supply-chain
