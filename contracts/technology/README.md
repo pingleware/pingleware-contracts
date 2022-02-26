@@ -13,5 +13,14 @@ Using the above procedure, PressPage Entertainment Inc DBA PINGLEWARE created a 
 
 ![Ethereum Smart Contract Creator license](https://lh3.googleusercontent.com/SecbtdSE3pjMwTjXx3aMu8rhGTjbslhLvYGebx59vAqZNteCpIugZ8wdksRU-RfNrHFwj_UrqBxX8mUGPvQlrOvy-fhtyB8A01xW=w600)
 
+# Listing NFT Software License on OpenSea
+The instructions from https://github.com/vantezzen/nftlicense self explanatory for creating a new NFT token. If you are creating your first NFT, your token is placed in an unnamed collection. You can edit that collection and update your collection metadata. Once your NFT license is created, it is not ready for sale until your freeze and press sell to list the NFT.
+
+I recommend finalizing your metadata, including hiring a professional logo designer for the artwork and a writer for the bio and marketing prose (fiverr.com)
+
+When you list your NFT license token for sale, you will then pay some gas fee, using the gas tracker at https://etherscan.io/gastracker, you can deploy when gas is the lowest.
+
+A helpful description for selling digital art which can be applied to NFT license tokens is available at https://opensea.io/blog/guides/the-beginners-guide-to-creating-selling-digital-art-nfts/
+
 # Blockchain News in Technology
 Read more at https://blockchain.news/search/Technology
