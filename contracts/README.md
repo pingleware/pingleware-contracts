@@ -35,6 +35,8 @@ Build an Invicable Company at https://www.strategyzer.com/
 
 Asset Classes: List, Characteristics, Asset Allocation at https://www.macroption.com/asset-classes/#infrastructure
 
+Mock Test Data at https://mockaroo.com/
+
 # Smart Contract Best Practices
 From: https://consensys.github.io/smart-contract-best-practices/known_attacks/
 See SOLIDITY.md
@@ -61,3 +63,6 @@ See https://www.nfa.futures.org/registration-membership/who-has-to-register/cta.
 
 # Access External Data in Solidity
 See https://hackernoon.com/access-external-data-in-solidity-a-how-to-guide-jh193zio
+
+## GraphQL
+GraphQL is the preferred indexing service which collects Ethereum events and exports them through GraphQL endpoints. It is widely used in the Ethereum ecosystem which supports fast and cheap queries for DApps.
