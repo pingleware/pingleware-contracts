@@ -64,6 +64,10 @@ Issuing preferred stock only during the private equity offering adds protection 
 
 A private equity offering should limit the maximum preferred shares to 10% of the total authorized shares specified in the company's charter, otherwise additional reporting requirements will be needed when new investors are vested. For example, a company with 1,000,000 authorized shares listed in it's charter, should limit private equity preferred outstanding shares to 100,000. The remaining 900,000 authorized shares can used for other offerings at a later date.
 
+An example of an exempt offering on the Ropsten Test Network at https://ropsten.etherscan.io/address/0x39db214c0373eda0eeee10bbf3fdc49a7faec46d
+
+Anyone using a metamask can connect to the wallet, but they cannot buy an Equity Token unless they have been whitelisted. Whitelisting investor wallets maintain the safe harbor exemption.
+
 ## Intrastate:Section 3(a)(11)
 See https://www.sec.gov/smallbusiness/exemptofferings/intrastateofferings
 
