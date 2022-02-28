@@ -5,14 +5,30 @@ Recommended asset allocation,
 
     Total Authorized Shares   = 1,000,000,000,000 (1 trillion)  * $5 par value = $5,000,000,000,000
 
-
-
     Treasury Shares  (51%)        =   501,000,000,000 (501 billion) * $5 = $2.5 trillion
     Preferred Shares (10%)        =   100,000,000,000 (100 billion) * $5 = $500 billion
     
     Common Shares (20%)           =   200,000,000,000 (200 billion) * $5 = $1 trillion
     Employee Benefits (5%)        =        50,000,000 (50 million) * $5  = $250 million
+        (includes Founder shares)
     Mergers & Acquisitions (14%)  =       140,000,000 (140 million) * $5 = $700 million
+
+Recommend the state charter or Articles of Incorporation should be amended to list your asset allocation. The admendment to an Articles of Incorporation becomes public record and adds transparency to your organization. When dealing with security offerings and laws, the more public transparency the board can bring without disclosing trade secrets, the better!
+
+An example of an amendment to the Articles of Incorporation at https://search.sunbiz.org/Inquiry/CorporationSearch/ConvertTiffToPDF?storagePath=COR%5C2022%5C0121%5C78645822.Tif&documentNumber=P18000065008
+
+## Preferred vs Common Shares
+
+                    	        Common Shares	Preferred Shares
+                                -------------   ----------------
+    Company Ownership	            Yes	               Yes
+    Voting Rights	                Yes	               No
+    Dividend	                  Variable	          Fixed
+    Order of Claim to Earnings     Second	          First
+    Returns based on	          Earnings	         Earnings
+ 
+Preferred shares are best suited for exempt offerings since a limited number of investors can participate while Common shares are best reseerved for public offerings including crowdfunding where any investor can participate.
+
 
 # Exempt Offerings
 See more at https://www.sec.gov/smallbusiness/exemptofferings
@@ -25,10 +41,12 @@ This readme has been shorten by creating additional markdown files
     ATS.md
     CFTC.md
     DRS.md
+    DTCC.md
     FINRA.md
     GLOSSARY.md
     NFA.md
     PPM.md
+    PRIVATEPLACEMENT.md
     PROSPECTUS.md
     REFERENCES.md
     RIA.md
