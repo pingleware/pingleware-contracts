@@ -68,7 +68,7 @@ A private equity offering should limit the maximum preferred shares to 10% of th
 
 An example of an exempt offering on the Ropsten Test Network at https://ropsten.etherscan.io/address/0x39db214c0373eda0eeee10bbf3fdc49a7faec46d
 
-Anyone using a metamask can connect to the wallet, but they cannot buy an Equity Token unless they have been whitelisted. Whitelisting investor wallets maintain the safe harbor exemption.
+Anyone using a metamask can connect to the contract, but they cannot buy any Equity Tokens unless they have been whitelisted. Whitelisting investor wallets maintain the safe harbor exemption.
 
 ## Intrastate:Section 3(a)(11)
 See https://www.sec.gov/smallbusiness/exemptofferings/intrastateofferings
