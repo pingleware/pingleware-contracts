@@ -43,11 +43,13 @@ contract ExemptEquityOffering is Version, Owned, Frozen {
     // using a shared library containing the shareholders, will permit current shareholders to participate in future offerings
     // that is, accredited investors can participate in future exempt offerings, as well as non-accredited investors can participate
     // in future public offerings and certain exempt offerings?
-    ShareholderInterface Shareholder; 
+    ShareholderInterface Shareholder;
     TransactionInterface Transaction;
     OfferingContractInterface Offering;
 
-    constructor(OfferingContractInterface.OfferingType offeringType, address account_contract, address transferagent_contract, address shares_contract, uint256 initial_supply)
+    constructor(OfferingContractInterface.OfferingType offeringType,
+                address account_contract, address transferagent_contract, address shares_contract,
+                uint256 initial_supply)
         notDPO(offeringType)
     {
         _initial_supply = initial_supply;
@@ -115,8 +117,8 @@ contract ExemptEquityOffering is Version, Owned, Frozen {
     }
 
     function buy()
-        payable
         public
+        payable
         isRunning
     {
         uint256 amountTobuy = msg.value;

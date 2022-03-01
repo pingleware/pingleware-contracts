@@ -19,13 +19,13 @@ An example of an amendment to the Articles of Incorporation at https://search.su
 
 ## Preferred vs Common Shares
 
-                    	        Common Shares	Preferred Shares
-                                -------------   ----------------
-    Company Ownership	            Yes	               Yes
-    Voting Rights	                Yes	               No
-    Dividend	                  Variable	          Fixed
-    Order of Claim to Earnings     Second	          First
-    Returns based on	          Earnings	         Earnings
+                    	        Common Shares       Preferred Shares
+                                -------------       ----------------
+    Company Ownership               Yes                 Yes
+    Voting Rights                   Yes                 No
+    Dividend                        Variable            Fixed
+    Order of Claim to Earnings      Second              First
+    Returns based on                Earnings            Earnings
  
 Preferred shares are best suited for exempt offerings since a limited number of investors can participate while Common shares are best reseerved for public offerings including crowdfunding where any investor can participate.
 
@@ -41,7 +41,8 @@ This readme has been shorten by creating additional markdown files
     ATS.md
     CFTC.md
     DRS.md
-    DTCC.md
+    DTCC.
+    ESOP.md
     FINRA.md
     GLOSSARY.md
     NFA.md
@@ -51,6 +52,7 @@ This readme has been shorten by creating additional markdown files
     REFERENCES.md
     RIA.md
     SEC.md
+    STO.md
     FINRA.md
     TransferAgent.md
 
@@ -191,6 +193,12 @@ See https://www.sec.gov/rules/final/33-7505.htm
 Regulation S offering permits US-based issuers to sell securities to off-shore investors while 506(c) is restricted to US-ONLY investors.
 
 Regulation D 504(c) and Regulation S are typically conducted simultaneously.
+
+While a Regulation S offering is a restricted security that can freely be traded in the offshore markets, there is no safe harbor for resale back into the USA, unless the Reg S equity token has an exchange proivision with a Reg 506 Equity Token to a whitelisted wallet. A neww DEX exchange contract needs to be created to handle transfers between a Regulation S off-shore wallet and a whitelisted Regulation 506 domestic wallet. The exchange would need to be a one-way transfer to the whitelisted domestic wallet.
+
+Additional information at https://www.pillsburylaw.com/images/content/4/7/v2/476/RobbinsRegS2013.pdf
+
+Singapore Guide to Digital Token Offerings - https://www.mas.gov.sg/regulation/explainers/a-guide-to-digital-token-offerings
 
 # Why an Exempt Offering on the Blockchain?
 Prior to exempt blockchain offering, the accredited investor would have to wait for the company to conduct an unrestricted IPO before they can sell their holdings. Using the blockchain for exempt offerings, liquidity is automatically available based on the exemption?

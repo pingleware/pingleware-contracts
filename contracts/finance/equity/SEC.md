@@ -1,6 +1,8 @@
 # Security Exchange Commission
 The following are relative references to SEC rules for exempt offerings. A blockchain offering whether exempt or direct can be consider an OTC or over-the-counter market transaction.
 
+SEC Quick Form Index - https://www.intelligize.com/wp-content/uploads/2021/05/SEC-Forms_Quick-Reference.pdf
+
 ## General Solicitation - Rule 506(c)
 From https://www.sec.gov/smallbusiness/exemptofferings/rule506c
 
@@ -69,6 +71,8 @@ Other exchanges for acredited investors to sell private equity tokens include,
     Second BTC (https://secondbtc.com/market)
     IDEX (https://idex.io/)
     EtherDelta (https://etherdelta.com/)
+    Securitize.io (https://securitize.io/resources/security-token-offering)
+    OKCoin.com (https://go.okcoin.com/listing)
 
 Keep in mind, that private equity tokens may only be sold publicly after the accredited investor has held them for 12 months.
 
