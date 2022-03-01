@@ -9,9 +9,15 @@ The deployed contract addresses will be listed here, while the interface definit
 
 The <InterfaceDefinition> is replaced with the name of interface in the contracts/interfaces directory.
 
+On Ethereum Mainnet,
+
         Version             Deployed Date       Name                    Contract Address
         -------             -------------       ----                    ----------------
 
+On Ropsten Testnet,
+
+        Version             Deployed Date       Name                    Contract Address
+        -------             -------------       ----                    ----------------
 
 # Ethereum Programming
 A 10-hour course for learning ethereum programming by DAPP University
