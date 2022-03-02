@@ -17,6 +17,11 @@ Recommend the state charter or Articles of Incorporation should be amended to li
 
 An example of an amendment to the Articles of Incorporation at https://search.sunbiz.org/Inquiry/CorporationSearch/ConvertTiffToPDF?storagePath=COR%5C2022%5C0121%5C78645822.Tif&documentNumber=P18000065008
 
+PressPage Entertainment Inc SEC filings at https://www.sec.gov/cgi-bin/browse-edgar?filenum=021-332144&action=getcompany
+
+# Equity Management Software
+When conducting a private equity offering, you need to manage the investors and requires equity management software. A youtube link of possible solutions at https://www.youtube.com/results?search_query=%22equity+management+software%22
+
 ## Preferred vs Common Shares
 
                     	        Common Shares       Preferred Shares

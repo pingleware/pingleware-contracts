@@ -3,6 +3,9 @@ Simplify inventory tracking; automate consumer and B2B payments using smart cont
 
 See https://github.com/brakmic/BlockchainStore
 
+## Blockchain can save Retail Brands
+One method for saving retail brands, is when the retail brand offers a virtual equivalent of their brand to be used within the metaverse and consumers of these brands purchase tokens.
+
 # Blockchain News in Retail
 Read more at https://blockchain.news/search/Retail
 
