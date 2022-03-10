@@ -7,7 +7,7 @@ Watch
 ## What is a CUSIP number?
 A CUSIP numbers are unique identifiers for public and private offerings (Rule 144). An offering with a CUSIP number adds additional validity and legitimacy to the offering, but risks are still determined by the investor.
 
-To obtain a CUSIP number, visit http://cusip.com/apply
+To obtain a CUSIP number, visit https://www.cusip.com/apply/
 
 A CUSIP number is needed for each offering, especially when Rule 144 is applicable?
 
@@ -35,6 +35,13 @@ For a blockchain offering, the investor name on the stock certificate is replace
 *The stock certificate must use the ANSI format for stock certificates.
 
 An example of a Form D Preferred Stock Certificate is available at https://www.sec.gov/Archives/edgar/data/0001685040/000119312521336813/d229967dex31.htm
+
+## What is an ISIN?
+The ISIN standard is used worldwide to identify specific securities such as bonds, stocks (common and preferred), futures, warrant, rights, trusts, commercial paper and options. ISINs are assigned to securities to facilitate unambiguous clearing and settlement procedures. They are composed of a 12-digit alphanumeric code and act to unify different ticker symbols “which can vary by exchange and currency” for the same security. In the United States, ISINs are extended versions of 9-character CUSIP (Committee on Uniform Security Identification Procedures) numbers; ISINs can be formed by adding a country code and check digit to the beginning and end of a CUSIP, respectively.
+
+To obtain an ISIN number, visit https://www.isin.org/apply-for-isin/
+
+Securities with which ISINs can be used include debt securities, such as notes or bonds as well shares, such as common stock or shares of a fund, options, derivatives and futures. The ISIN identifies a security. An ISIN should not be confused with a ticker symbol which identifies the stock at the exchange level. For instance, IBM common stock trades through almost 25 trading platforms and exchanges worldwide. IBM stock has different ticker symbols depending on where it is traded, but has only a single ISIN for each security. The ISIN code acts an identifier for the securities and as such is the only common denominator securities identification number that is universally recognized. ISINs are used for numerous reasons such as for clearing and settlement.
 
 ## Transfer Agents
 The following two services can act as a transfer agent: securitize.io, templum.com; 

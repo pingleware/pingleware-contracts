@@ -7,18 +7,24 @@ Aurora.dev is the first decentralized blockchain banking platform. Aurora is NOT
 From https://smartasset.com/checking-account/types-of-banks
 
     Central Bank
+        Central banks manage the money supply in a single country or a series of nations. They supervise commercial banks, set interest rates and control the flow of currency.
+        Central banks also implement a government’s monetary policy goals, whether that involves combating deflation or keeping prices from fluctuating. 
     Retail Bank
+        Retail banks offer members of the general public financial products and services such as bank accounts, loans, credit cards and insurance. In some cases, they can set up checking accounts and make loans for small-scale businesses as well.
     Commercial Bank
+        Although there are some types of commercial banks that help everyday consumers, commercial banks tend to concentrate on supporting businesses. Both large corporations and small businesses can turn to commercial banks if they need to open a checking or savings account, borrow money, get access to credit or transfer funds to companies in foreign markets.
     Shadow Bank
         The shadow banking system consists of financial groups that aren’t bound by the same strict rules and regulations that other banks have to comply with. Much like the standard regulated banks, shadow banks deal with credit and different kinds of assets. But they get their funding by borrowing it, connecting with investors or making their own funds instead of using money issued by the central bank.
 
         Money market funds and hedge funds are two kinds of shadow banks. More recently, they’ve been a source of controversy for quite a few people. Many folks blame the less-regulated shadow banking industry for playing a role in the mortgage crisis leading up to the Great Recession.
     Investment Bank
+        Investment banks like Morgan Stanley and Goldman Sachs have many responsibilities. On one hand, they manage the trading of stocks, bonds and other securities between companies and investors. On the other hand, they might focus their energy on advising individuals and corporations who need financial guidance, reorganizing companies through mergers and acquisitions, managing investment portfolios or raising money for certain businesses and the federal government.
     Cooperative Bank
         Cooperatives can be either retail banks or commercial banks. What distinguishes them from other entities in the financial system is the fact that they’re typically local or community-based associations whose members help determine how the business is operated. They’re run democratically and they offer loans and banks accounts, among other things. They’re popular in countries throughout the world and in the U.S. they usually take the form of credit unions.
-
     Credit Unions
+        Like banks, credit unions issue loans, provide savings and checking accounts and meet other financial needs for consumers and businesses. The difference is that banks are for-profit companies while credit unions are not. 
     Savings and Loan Associations
+        Technically speaking, savings and loan associations aren’t banks. Often referred to as thrifts or S&Ls, they’re financial institutions that primarily use deposited savings to create mortgages, refinance loans and other home loans that their customers can use to build or renovate their homes. Some thrifts have additional functions and some are publicly traded companies.
 
 # Peer-to-Peer Lending
 This type of lending falls under the shadow banking paradigm and most suitable for blockchain. A legitimate peer-to-peer lending operation is licensed at least by the state.

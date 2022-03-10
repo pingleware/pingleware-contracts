@@ -5,6 +5,15 @@ A private placement registration is accomplished by filing Form D on EDGAR.
 
 ![Startup Funding with Non-Accredited Investors - 504, 506b, Regulation Crowdfunding & Rule 147/147A](https://img.youtube.com/vi/ya7zQtnNz8Y/sddefault.jpg)(https://www.youtube.com/watch?v=ya7zQtnNz8Y)
 
+# Equity Management Software
+Prior to accepting investors for your equity offering, you should have an equity management software installed. The components of any EMS will include,
+
+    - Investor Relations Management/CRM
+    - Investor Portal
+    - Risk and Compliance
+    - Document Management
+    - Reports and Analytics
+
 ## Section 6. Federal Exemption(s) and Exclusion(s) Claimed (select all that apply)
 Multiple options may be chosen.
 

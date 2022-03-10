@@ -1,6 +1,8 @@
 # Blockchain in the Legal Arena
 This README.md is NOT a legal guideline for the @pingleware/contracts but a representation for potential implementation in the Legal arena, including but not limited to, arbitration, trial courts, will and last testament, etc.
 
+Blockchain Arbitration at https://github.com/RychardHunt/blockchain-arbitration
+
 # U.S. Code: Title 28
 From https://www.law.cornell.edu/uscode/text/28
 

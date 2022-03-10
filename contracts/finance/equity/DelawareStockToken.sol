@@ -1,51 +1,101 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../interfaces/IToken.sol";
+import "../../libs/SafeMath.sol";
+import "../../common/IdentityRegistry.sol";
+//import "../../common/Token.sol";
+import "../../common/IERC20TOKEN.sol";
+import "../../common/Whitelistable.sol";
 
-contract Token is IToken {
-    mapping(address => uint256) private _balances;
+abstract contract DelawareStockToken is IERC20TOKEN, Whitelistable {
+    string public symbol;
+    string public name;
+    string public byLawsHash;
+    uint public decimals;
+    bool public isPrivateCompany = true;
+    
+    uint256  _totalSupply;
+
+    mapping(address => uint) tokenOwnersIndex;
+    mapping(address => uint256) public balances;
     mapping(address => mapping(address => uint256)) private _allowances;
+    address[] public tokenOwners;
+    
+    IdentityRegistry public platformWhitelist;
 
-    uint256 private _totalSupply;
+    event ChangedCompanyStatus(address authorizedBy, bool newStatus);
 
-    string private _name;
-    string private _symbol;
+    constructor(string memory _symbol, string memory _name, uint _supply, string memory _hash, address _registry)
+        Whitelistable()
+    {
+        symbol = _symbol;
+        name = _name;
+        _totalSupply = _supply;
+        byLawsHash = _hash;
+        balances[msg.sender] = _supply;
+        platformWhitelist = IdentityRegistry(_registry);
+        tokenOwners.push(address(0));
+        tokenOwners.push(msg.sender);
+        uint index = tokenOwners.length;
+        tokenOwnersIndex[msg.sender] = index - 1;
 
-    constructor(string memory name_, string memory symbol_) {
-        _name = name_;
-        _symbol = symbol_;
     }
 
-    function name() public view virtual override returns (string memory) {
-        return _name;
+    modifier onlyIfWhitelisted(address _address) { // modifier to restrict access only to whitelisted accounts
+        require(platformWhitelist.isWhitelisted(_address));
+        if(isPrivateCompany){
+            require(isWhitelisted(_address), "Address not in private shareholders whitelist");
+        }
+        _;
     }
 
-    function symbol() public view virtual override returns (string memory) {
-        return _symbol;
+    function transfer(address _to, uint256 _value) onlyIfWhitelisted(_to) public virtual override returns (bool){
+        uint index = 0;
+        if(tokenOwnersIndex[_to] == 0) {
+            tokenOwners.push(_to);
+            index = tokenOwners.length - 1;
+            tokenOwnersIndex[_to] = index;
+        }
+        _transfer(msg.sender, _to, _value);
+        if(balanceOf(msg.sender) == 0){
+            removeTokenOwner(msg.sender);
+        }
+        return true;
     }
 
-    function decimals() public view virtual override returns (uint8) {
-        return 18;
+    function togglePrivateCompany() okOwner() public {
+        isPrivateCompany = !isPrivateCompany;
+        emit ChangedCompanyStatus(msg.sender, isPrivateCompany);
     }
 
-    function totalSupply() public view virtual override returns (uint256) {
+    // Return the number of shareholders in the company
+    function ownersCount() public view returns(uint){
+        return tokenOwners.length - 1;
+    }
+    
+    // Return an array with all the token owners
+    function getTokenOwners() public view returns(address[] memory){
+        return tokenOwners;
+    }
+
+    // Removes entry from array at index and resizes the array appropriatly
+    function removeFromTokenOwnersArray(uint index) internal {
+        address lastElement = tokenOwners[tokenOwners.length - 1];
+        tokenOwners[index] = lastElement;
+        delete tokenOwners[tokenOwners.length - 1];
+    }
+    function totalSupply() virtual public override view returns (uint) {
         return _totalSupply;
     }
-
     function setTotalSupply(uint256 amount) public {
         _totalSupply = amount;
     }
-    function balanceOf(address account) public view virtual override returns (uint256) {
-        return _balances[account];
-    }
-    function setBalance(address account, uint256 amount) public {
-        _balances[account] = amount;
-    }
-    function transfer(address to, uint256 amount) public virtual override returns (bool) {
-        address owner = msg.sender;
-        _transfer(owner, to, amount);
-        return true;
+
+    // Removes a token owner from the list of shareholders
+    function removeTokenOwner(address holder) internal {
+        uint i = tokenOwnersIndex[holder];
+        removeFromTokenOwnersArray(i);
+        tokenOwnersIndex[holder] = 0;
     }
     function allowance(address owner, address spender) public view virtual override returns (uint256) {
         return _allowances[owner][spender];
@@ -90,12 +140,12 @@ contract Token is IToken {
 
         _beforeTokenTransfer(from, to, amount);
 
-        uint256 fromBalance = _balances[from];
+        uint256 fromBalance = balances[from];
         require(fromBalance >= amount, "ERC20: transfer amount exceeds balance");
         unchecked {
-            _balances[from] = fromBalance - amount;
+            balances[from] = fromBalance - amount;
         }
-        _balances[to] += amount;
+        balances[to] += amount;
 
         emit Transfer(from, to, amount);
 
@@ -107,7 +157,7 @@ contract Token is IToken {
         _beforeTokenTransfer(address(0), account, amount);
 
         _totalSupply += amount;
-        _balances[account] += amount;
+        balances[account] += amount;
         emit Transfer(address(0), account, amount);
 
         _afterTokenTransfer(address(0), account, amount);
@@ -117,10 +167,10 @@ contract Token is IToken {
 
         _beforeTokenTransfer(account, address(0), amount);
 
-        uint256 accountBalance = _balances[account];
+        uint256 accountBalance = balances[account];
         require(accountBalance >= amount, "ERC20: burn amount exceeds balance");
         unchecked {
-            _balances[account] = accountBalance - amount;
+            balances[account] = accountBalance - amount;
         }
         _totalSupply -= amount;
 
@@ -162,4 +212,5 @@ contract Token is IToken {
         address to,
         uint256 amount
     ) internal virtual {}
+
 }

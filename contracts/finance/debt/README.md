@@ -117,6 +117,18 @@ Also with the Private Placement Memorandum, the following documents are needed f
 
 (3) A company established by the Transferor exclusively for the benefit of (or owned exclusively by) the Transferor and the persons specified in paragraphs (b)(1) and (b)(2) of this section at https://www.law.cornell.edu/definitions/index.php?width=840&height=800&iframe=true&def_id=ae77e4ab315ae0b3a3e66d2e23fa9ec3&term_occur=999&term_src=Title:17:Chapter:II:Part:270:270.3c-6
 
+# Collaterized Debt Obkigations (CDO)
+See more at https://smartasset.com/investing/cdo and https://github.com/vyomshm/CDO_ETH
+
+![](https://github.com/vyomshm/CDO_ETH/blob/master/sequence_diagram.png?raw=true)
+
+# Dharma Protocol
+See https://medium.com/@espitia7/dharma-protocol-an-overview-d761c39426ac
+
+Dharma is a protocol for tokenized debt. It creates a common standard that all stakeholders can use to administer tokenized debt assets throughout their life cycle.
+
+![A model of how the debt issuance process flows, beginning with the debtor.](https://miro.medium.com/max/1400/1*YbM1DgCCp0p4VYKWs-Da-Q.png)
+
 # Blockchain News on Debt
 Read more at https://blockchain.news/search/debt%20funding
 

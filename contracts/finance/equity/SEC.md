@@ -3,6 +3,8 @@ The following are relative references to SEC rules for exempt offerings. A block
 
 SEC Quick Form Index - https://www.intelligize.com/wp-content/uploads/2021/05/SEC-Forms_Quick-Reference.pdf
 
+SEC Forms List - https://www.sec.gov/forms
+
 ## General Solicitation - Rule 506(c)
 From https://www.sec.gov/smallbusiness/exemptofferings/rule506c
 

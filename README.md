@@ -65,6 +65,7 @@ Before launching an exempt equity or debt offering you are required to submit th
 # Release Schedule
 
         Date        Version                 
+    03/09/2022       1.5.0          Added  Aviation, Education, Hospitality and Blockchain arbitration; social network, newfeed, and token deployments;
     02/27/2022       1.4.0          Added BAToken and Peer-to-Peer lending to finance/token and finance/banking, respectively
     02/23/2022       1.3.0          Add RINS (Renewal Identification Number) contract
     02/23/2022       1.2.2          Maintenance fixes and refactoring; added SimpleBond.sol under finance|debt

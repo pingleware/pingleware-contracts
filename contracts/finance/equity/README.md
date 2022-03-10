@@ -19,6 +19,8 @@ An example of an amendment to the Articles of Incorporation at https://search.su
 
 PressPage Entertainment Inc SEC filings at https://www.sec.gov/cgi-bin/browse-edgar?filenum=021-332144&action=getcompany
 
+Private Stock Market - https://carta.com/blog/what-is-a-private-stock-market/
+
 # Equity Management Software
 When conducting a private equity offering, you need to manage the investors and requires equity management software. A youtube link of possible solutions at https://www.youtube.com/results?search_query=%22equity+management+software%22
 
@@ -217,7 +219,7 @@ See https://medium.com/ethereum-developers/the-ultimate-end-to-end-tutorial-to-c
 
 # Funding Categories
 
-The former meaning,
+The former meaning, (see more at https://www.startups.com/library/expert-advice/series-funding-a-b-c-d-e)
 
     Series A - pre-seed funding private individuals and entities
     Series B - private equity

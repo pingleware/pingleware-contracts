@@ -3,6 +3,24 @@ Currently being implemented through Security Token Offerings or STO. Since real 
 
 A blockchain real estate market place could be the Multiple Listing Service (MLS) and public records repository of deeds, mortgages, etc.
 
+# Timeshares
+Important to verify the licensing requirements for timeshares by state, see https://advantagevacation.com/timeshare-license-requirements-by-state
+
+The following States do not require any special license in order to sell timeshares or timeshare resales:
+
+    - Illinois
+    - Louisiana
+    - Minnesota
+    - Missouri
+    - New Hampshire
+    - North Dakota
+    - Oklahoma
+    - South Carolina
+    - Texas
+    - Utah
+    - Virginia
+    - Wisconsin
+
 # Blockchain News in Real Estate
 Read more at https://blockchain.news/search/Real%20Estate
 
