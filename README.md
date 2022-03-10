@@ -47,17 +47,21 @@ I have search github.com for other smart contract implementations in various ind
 There are prebuilt smart contracts 
 
     Agriculture
+    Aviation
+    Education
     Energy
-    Finance - Banking, Credit, Exempt Equity and Debt Offerings, Public Offering
+    Finance - Banking, Credit, Currency, Debt, Equity and Utility
     Healthcare
+    Hospitality
     Insurance
+    Legal
     Membership
     News
     Non-Profit
     Real Estate
     Retail
     Supply Chain Management
-    Social network
+    Social Network
     Transportation
     
 Before launching an exempt equity or debt offering you are required to submit the appropriate form to the Security and Exchange Commission as well as to have a Private Placement Memorandum. Using a DAPP or decentralized application on the IPFS or interplanetary file system, to maintain KYC, AML and accredited investor vetting compliance for your restricted securities.
