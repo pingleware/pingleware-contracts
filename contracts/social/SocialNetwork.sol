@@ -55,12 +55,58 @@ contract SocialNetwork is Version, Owned, Frozen {
     address public payable_address;
     bool    public active = false;
 
+    uint256 private registrationUserFee = 0.0001 ether;
+    uint256 private registrationAdvertiserFee = 0.01 ether;
+    uint256 private postingFee = 0.0005 ether;
+    uint256 private commentFee = 0.0001 ether;
+    uint256 private newAdvertisementFee = 0.01 ether;
+    uint256 private addFollowerFee = 0.0001 ether;
+    uint256 private friendRequestFee = 0.0001 ether;
+    uint256 private sendUserMessageFee = 0.0001 ether;
+    uint256 private userListingFee = 0.001 ether;
+
     constructor()
         payable
     {
         User.addUser();
         User.addUserMeta(SOCIAL_NETWORK_NAME,"","","","",string("Owner"));
         payable_address = msg.sender;
+    }
+
+    function updateFees(uint fee, uint256 amount)
+        public
+        payable
+        okOwner
+    {
+        switch(fee) {
+            case 0:
+                registrationUserFee = amount;
+                break;
+            case 1:
+                registrationAdvertiserFee = amount;
+                break;
+            case 2:
+                postingFee = amount;
+                break;
+            case 3:
+                commentFee = amount;
+                break;
+            case 4:
+                newAdvertisementFee = amount;
+                break;
+            case 5:
+                addFollowerFee = amount;
+                break;
+            case 6:
+                friendRequestFee = amount;
+                break;
+            case 7:
+                sendUserMessageFee = amount;
+                break;
+            case 8:
+                userListingFee = amount;
+                break;
+        }
     }
 
     modifier addressValid() {
@@ -125,6 +171,27 @@ contract SocialNetwork is Version, Owned, Frozen {
         active = true;
         emit ContractThawed(msg.sender);
     }
+
+    function freeze_insecure()
+        payable
+        public
+        okOwner
+    {
+        stop();
+        active = false;
+        emit ContractFrozen(msg.sender);
+    }
+
+    function unfreeze_insecure()
+        payable
+        public
+        okOwner
+    {
+        start();
+        active = true;
+        emit ContractThawed(msg.sender);
+    }
+
 
     /**
      * Registration, advertisement and posting fees are made payable to the contract address.
@@ -211,8 +278,8 @@ contract SocialNetwork is Version, Owned, Frozen {
         addressValid
         advertiserNoExist
     {
-        require(msg.value == 0.01 ether,"insufficient registration amount, requires 0.01 ether!");
-        //payable(address(this)).transfer(msg.value);
+        require(msg.value == registrationAdvertiserFee,"insufficient advertiser registration amount!");
+        payable(address(this)).transfer(msg.value);
         User.addUser();
         User.updateUserMeta(fullname,string("Advertiser"),location,dob,string("advertising"),User.ADVERTISER_ROLE);
         Advertiser.addAdvertiser(msg.sender);
@@ -226,8 +293,8 @@ contract SocialNetwork is Version, Owned, Frozen {
         addressValid
         userNotExist
     {
-        require(msg.value == 0.001 ether,"insufficient registration amount, requires 0.001 ether!");
-        //payable(address(this)).transfer(msg.value);
+        require(msg.value == registrationUserFee,"insufficient user registration amount!");
+        payable(address(this)).transfer(msg.value);
         User.addUser();
         User.updateUserMeta(fullname,profession,location,dob,interests,User.USER_ROLE);
     }
@@ -242,7 +309,7 @@ contract SocialNetwork is Version, Owned, Frozen {
         addressValid
         isUser
     {
-        require(msg.value == 0.001 ether,"insufficient posting amount, requires 0.001 ether!");
+        require(msg.value == postingFee,"insufficient posting fee");
         payable(address(this)).transfer(msg.value);
         uint index = SocialFeeds.addPostv2(timestamp, visibility, message);
         emit SocialFeeds.PostAdded(msg.sender,message,index);
@@ -277,7 +344,7 @@ contract SocialNetwork is Version, Owned, Frozen {
         addressValid
         isUser
     {
-        require(msg.value == 0.0001 ether,"insufficient comment posting amount, requires 0.0001 ether!");
+        require(msg.value == commentFee,"insufficient comment posting amount!");
         if (User.isBackupWithholding(poster)) {
             // poster (receiver) is subject to backup withholding, so keep a running balance, transfer to contract address
             payable(address(this)).transfer(msg.value);
@@ -329,7 +396,7 @@ contract SocialNetwork is Version, Owned, Frozen {
         isRunning
     {
         require(Advertiser.isAdvertiser(),"unauthorized, not an advertiser");
-        require(msg.value == 0.01 ether,"insufficient amount? friend request fee is 0.01 ether");
+        require(msg.value == newAdvertisementFee,"insufficient new advertisement fee!");
         payable(address(this)).transfer(msg.value);
         Advertiser.newAdvertisement(message);
     }
@@ -397,7 +464,7 @@ contract SocialNetwork is Version, Owned, Frozen {
         canPayFee
     {
         require(StringUtils.equal(User.getUserRoleByAddress(user), User.USER_ROLE), "user is not valid");
-        require(msg.value == 0.0001 ether,"insufficient amount? follower fee is 0.0001 ether");
+        require(msg.value == addFollowerFee,"insufficient follower fee!");
 
         if (User.isBackupWithholding(user)) {
             // poster (receiver) is subject to backup withholding, so keep a running balance, transfer to contract address
@@ -432,7 +499,7 @@ contract SocialNetwork is Version, Owned, Frozen {
         canPayFee
     {
         require(StringUtils.equal(User.getUserRoleByAddress(user), User.USER_ROLE), "user is not valid");
-        require(msg.value == 0.0001 ether,"insufficient amount? friend request fee is 0.0001 ether");
+        require(msg.value == friendRequestFee,"insufficient friend request fee!");
 
         if (User.isBackupWithholding(user)) {
             // poster (receiver) is subject to backup withholding, so keep a running balance, transfer to contract address
@@ -563,8 +630,8 @@ contract SocialNetwork is Version, Owned, Frozen {
     {
       require(optout[user] == false,"consumer has opted-out to received any external messages or communication");
       require(user != ZERO_ADDRESS,"invalid consumer address");
-      require(msg.value == 0.0001 ether,"insufficient message amount, requires 0.0001 ether!");
-      payable(user).transfer(0.0001 ether);
+      require(msg.value == sendUserMessageFee,"insufficient user message fee!");
+      payable(user).transfer(msg.value);
       emit MessageUser(msg.sender,user,message);
     }
 
@@ -579,7 +646,7 @@ contract SocialNetwork is Version, Owned, Frozen {
       addressValid
       returns (address[] memory)
     {
-      require(msg.value == 0.001 ether,"insufficient user list amount, requires 0.001 ether!");
+      require(msg.value == userListingFee,"insufficient user list fee!");
       payable(address(this)).transfer(0.001 ether);
       return User.getUsers();
     }
