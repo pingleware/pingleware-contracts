@@ -3,7 +3,10 @@ pragma solidity >=0.4.22 <0.9.0;
 
 // See https://github.com/Rishabh42/HealthCare-Insurance-Ethereum for the DAPP
 
-contract HealthCare {
+import "../common/Version.sol";
+import "../common/Frozen.sol";
+
+contract HealthCare is Version, Frozen {
 
     address private hospitalAdmin;
     address private labAdmin;

@@ -15,11 +15,13 @@ pragma solidity >=0.4.22 <0.9.0;
  * Calculation of the FX Forward Rate involves querying the related central bank interest rate and the spot rate for the ccy pair
  *
  * Central Bank Interest Rates at https://www.global-rates.com/en/interest-rates/central-banks/central-banks.aspx
- * 
+ *
  */
+import "../../common/Version.sol";
+import "../../common/Frozen.sol";
 
 
-contract Forward {
+contract Forward is Version, Frozen {
 
     uint256 public constant DAY             = 60*60*24;
     uint256 public constant WEEK            = 60*60*24*7;
@@ -63,7 +65,7 @@ contract Forward {
         uint256  Ask;        // 1.357118,
         uint256  Mid;        // 1.357072,
         uint256  Bid;        // 1.357026,
-        uint256  Expiration; // "Overnight"        
+        uint256  Expiration; // "Overnight"
     }
 
     struct InterestRate {
@@ -77,17 +79,15 @@ contract Forward {
 
 
     mapping (address => ForwardToken) public tokens;
-    ForwardRates[] fwdrates;
-    InterestRate[] public interestRates;
+    mapping (string => ForwardRates) public fwdrates;
+    mapping (string => InterestRate) public interestRates;
 
     bool private inWithdrawal = false;
 
     event ForwardTokenMinted(address investor, string ccypair, uint256 lots, uint256 maturity, ForwardToken token);
     event Withdrawal(address investor, uint256 amount);
     event Deposit(address wallet, uint256 amount);
-    event FallbackEvent(address sender, uint256 amount);
-    event ReceiveEvent(address sender, uint256 amount);
-    
+
     constructor()
     {
         /*
@@ -150,24 +150,6 @@ contract Forward {
     }
 
 
-    // @notice Will receive any eth sent to the contract
-    // https://ethereum.stackexchange.com/questions/42995/how-to-send-ether-to-a-contract-in-truffle-test
-    // https://www.codegrepper.com/code-examples/whatever/Expected+a+state+variable+declaration.+If+you+intended+this+as+a+fallback+function+or+a+function+to+handle+plain+ether+transactions%2C+use+the+%22fallback%22+keyword+or+the+%22receive%22+keyword+instead.
-    fallback()
-        external
-        payable
-    {
-        require(tx.origin == msg.sender, "phishing attack detected?");
-        emit FallbackEvent(msg.sender,msg.value);
-    }
-
-    receive()
-        external
-        payable
-    {
-        emit ReceiveEvent(msg.sender,msg.value);
-    }
-
     modifier isCorrectMaturity(uint256 epoch) {
         require(epoch == NEXT_DAY ||
                 epoch == ONE_WEEK ||
@@ -206,7 +188,31 @@ contract Forward {
         _;
     }
 
-    /*
+    function updateForwardRate(string calldata ccyPair,
+                               uint256 Points,
+                               uint256  SpotRate,
+                               uint256  Ask,
+                               uint256  Mid,
+                               uint256  Bid,
+                               uint256  Expiration)
+        public
+        payable
+    {
+        fwdrates[ccyPair] = ForwardRates(Points, SpotRate, Ask, Mid, Bid, Expiration);
+    }
+
+    function updateInterestRate(string calldata name,
+                                string calldata country,
+                                string calldata symbol,
+                                uint256 current_rate,
+                                uint256 previous_rate,
+                                string calldata change)
+        public
+        payable
+    {
+        interestRates[symbol] = InterestRate(name, country, symbol, current_rate, previous_rate, change);
+    }
+
     function quote(string memory ccypair, uint256 maturity)
         public
         view
@@ -214,17 +220,18 @@ contract Forward {
     {
         // https://api.kraken.com/0/public/Ticker?pair=GBPUSD
         // {"error":[],"result":{"ZGBPZUSD":{"a":["1.35553","1033","1033.000"],"b":["1.35526","132","132.000"],"c":["1.35555","2.74000000"],"v":["646400.53966339","1521216.22766749"],"p":["1.35725","1.35846"],"t":[1226,3036],"l":["1.35448","1.35448"],"h":["1.36080","1.36109"],"o":"1.35966"}}}
-        return _quote(maturity);
+        return _quote(ccypair,maturity);
     }
 
 
-    function _quote(uint256 maturity)
+    function _quote(string memory ccypair, uint256 maturity)
         internal
+        view
         returns (uint256)
     {
-        uint256 tquote = 1.35555;
-        uint256 base_interest = 0.500;
-        uint256 quote_interest = 0.250;
+        uint256 tquote = fwdrates[ccypair].SpotRate;
+        uint256 base_interest = interestRates[ccypair].current_rate;
+        uint256 quote_interest = 1 / interestRates[ccypair].current_rate;
         return tquote * ( ( (1 + base_interest * (maturity / ONE_YEAR)) / (1 + quote_interest * (maturity/ONE_YEAR)) ));
     }
 
@@ -235,26 +242,27 @@ contract Forward {
         isCorrectMaturity(maturity)
     {
         require(msg.sender != address(0),"wallet address not valid");
-        uint256 rate = _quote(maturity); // current forware rate for ccypair obtain from a similar source as https://www.fxempire.com/currencies/eur-usd/forward-rates
+         // current forware rate for ccypair obtain from a similar source as https://www.fxempire.com/currencies/eur-usd/forward-rates
+        uint256 rate = _quote(ccypair,maturity);
         require(msg.sender.balance > (lots * rate * uint256(10000)),"insufficient balance");
         uint256 _rate = uint256(rate * 10000);
         require(msg.value == (lots * _rate), "not enough funds");
-        payable(address(this)).transfer(msg.value); // transfer payment to contract 
+        payable(address(this)).transfer(msg.value); // transfer payment to contract
 
-        tokens[msg.sender] = ForwardToken(ccypair, lots, maturity, fixed24x5(msg.value));
+        tokens[msg.sender] = ForwardToken(ccypair, lots, maturity, msg.value);
         emit ForwardTokenMinted(msg.sender,ccypair,lots,maturity,tokens[msg.sender]);
     }
 
     // current forward rate for tokens[msg.sender].ccypair from a similar source as https://www.fxempire.com/currencies/eur-usd/forward-rates
-    function profitLoss(uint256forward_rate)
+    function profitLoss(uint256 forward_rate)
         public
         view
         returns (uint256)
     {
         require(msg.sender != address(0),"wallet address not valid");
-        require(tokens[msg.sender] != address(0),"no forward contract token exists?");
+        //require(tokens[msg.sender] != bytes(0x0),"no forward contract token exists?");
 
-        uint256investor_rate = tokens[msg.sender].rate;
+        uint256 investor_rate = tokens[msg.sender].rate;
         return (forward_rate - investor_rate);
     }
 
@@ -264,26 +272,26 @@ contract Forward {
         returns (bool)
     {
         require(msg.sender != address(0),"wallet address not valid");
-        require(tokens[msg.sender] != address(0),"no forward contract token exists?");
+        //require(tokens[msg.sender] != bytes(0),"no forward contract token exists?");
 
         uint256 maturity_date = tokens[msg.sender].maturity;
         return (maturity_date > block.timestamp);
     }
 
     // current forward rate for tokens[msg.sender].ccypair from a similar source as https://www.fxempire.com/currencies/eur-usd/forward-rates
-    function withdraw(uint256forward_rate)
+    function withdraw(uint256 forward_rate)
         public
         payable
         notWithdrawing
     {
         require(msg.sender != address(0),"wallet address not valid");
-        require(tokens[msg.sender] != address(0),"no forward contract token exists?");
+        //require(tokens[msg.sender],"no forward contract token exists?");
 
         inWithdrawal = true; // prevents re-entrancy
 
         uint256 maturity_date = tokens[msg.sender].maturity;
         if (maturity_date > block.timestamp) {
-            uint256investor_rate = tokens[msg.sender].rate;
+            uint256 investor_rate = tokens[msg.sender].rate;
             
             if (forward_rate >= investor_rate) {
                 uint256 amount = forward_rate * tokens[msg.sender].lots * uint256(10000);
@@ -324,5 +332,4 @@ contract Forward {
     {
         return address(this).balance;
     }
-    */
 }

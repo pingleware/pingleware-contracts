@@ -2,12 +2,12 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "../../common/Version.sol";
-import "../../common/Owned.sol";
+import "../../common/Frozen.sol";
 //import "../../common/IERC20TOKEN.sol";
 import "../../libs/SafeMath.sol";
 import "../equity/DelawareStockToken.sol";
 
-contract PRESSPAGE506C is Version, Owned, DelawareStockToken {
+contract PRESSPAGE506C is Version, Frozen, DelawareStockToken {
     string public constant DESCRIPTION = string("Rule 506(c) exempt offering for PressPage Entertainment Inc. FOR ACCREDITED INVESTORS ONLY.");
     string public constant SEC_FILENUMBER = string("021-332144");
     string public constant SEC_URL = string("https://www.sec.gov/Archives/edgar/data/0001766947/000176694722000003/xslFormDX01/primary_doc.xml");
@@ -40,7 +40,7 @@ contract PRESSPAGE506C is Version, Owned, DelawareStockToken {
     event CUSIPChanged(address sender,string old_number,string new_number);
     event ISINChanged(address sender,string old_number,string new_number);
 
-    constructor(uint _supply, string memory _hash, address _registry)
+    constructor(uint _supply, string memory _hash, address payable _registry)
         DelawareStockToken("PRESS.506CE","PRESSPAGE ENTERTAINMENT INC EXEMPT EQUITY 506(C)",SafeMath.mul(_supply, 10 ** uint256(decimals)),_hash,_registry)
     {
         setTotalSupply(SafeMath.mul(_supply, 10 ** uint256(decimals)));

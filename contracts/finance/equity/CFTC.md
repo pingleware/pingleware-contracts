@@ -7,6 +7,8 @@ Three important registrations with the CFTC,
     Designated Contract Market (DCM)
     Swap Execution Facility (SEF)
 
+Public Comments at https://comments.cftc.gov/PublicComments/ReleasesWithComments.aspx
+
 ## Derivatives Clearing Organization (DCO)
 See https://www.cftc.gov/IndustryOversight/ClearingOrganizations/index.htm
 

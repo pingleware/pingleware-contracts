@@ -2,14 +2,14 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "../../common/Version.sol";
-import "../../common/Owned.sol";
+import "../../common/Frozen.sol";
 import "./Consumer.sol";
 import "./Subscriber.sol";
 import "./CreditInquiry.sol";
 import "./CreditReport.sol";
 import "./CreditDispute.sol";
 
-contract CreditReportAgency is Version, Owned {
+contract CreditReportAgency is Version, Frozen {
     bytes32 constant private ZERO_BYTES = bytes32(0);
     address constant private ZERO_ADDRESS = address(0);
 
@@ -49,14 +49,6 @@ contract CreditReportAgency is Version, Owned {
     modifier requiresFee(uint fee) {
       require(msg.sender.balance > fee, "insufficient balance/amount");
       _;
-    }
-
-    fallback() external payable {
-        emit Received(msg.sender,msg.value);
-    }
-    
-    receive() external payable {
-        emit Received(msg.sender,msg.value);
     }
 
     // A consumer is entitled

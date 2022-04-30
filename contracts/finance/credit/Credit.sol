@@ -2,11 +2,10 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "../../common/Version.sol";
-import "../../common/Owned.sol";
-import "../../common/Destructible.sol";
+import "../../common/Frozen.sol";
 import "../../libs/SafeMath.sol";
 
-contract Credit is Version, Owned, Destructible {
+contract Credit is Version, Frozen {
     // Using SafeMath for our calculations with uints.
     using SafeMath for uint;
 
@@ -44,8 +43,6 @@ contract Credit is Version, Owned, Destructible {
     // Description of the credit.
     bytes32 description;
 
-    // Active state of the credit.
-    bool active = true;
 
     /** Stages that every credit contract gets trough.
       *   investment - During this state only investments are allowed.
@@ -106,55 +103,50 @@ contract Credit is Version, Owned, Destructible {
     /** @dev Modifiers
     *
     */
-    modifier isActive() {
-        require(active == true);
-        _;
-    }
-
     modifier onlyBorrower() {
-        require(msg.sender == borrower);
+        require(msg.sender == borrower,"not a borrower");
         _;
     }
 
     modifier onlyLender() {
-        require(lenders[msg.sender] == true);
+        require(lenders[msg.sender] == true,"not a lender");
         _;
     }
 
     modifier canAskForInterest() {
-        require(state == State.interestReturns);
-        require(lendersInvestedAmount[msg.sender] > 0);
+        require(state == State.interestReturns,"interest is not payable");
+        require(lendersInvestedAmount[msg.sender] > 0,"invested amount must be greater than zero");
         _;
     }
 
     modifier canInvest() {
-        require(state == State.investment);
+        require(state == State.investment,"cannot invest");
         _;
     }
 
     modifier canRepay() {
-        require(state == State.repayment);
+        require(state == State.repayment,"cannot repay");
         _;
     }
 
     modifier canWithdraw() {
-        require(address(this).balance >= requestedAmount);
+        require(address(this).balance >= requestedAmount,"requested amount exceeds balance");
         _;
     }
 
     modifier isNotFraud() {
-        require(state != State.fraud);
+        require(state != State.fraud,"fraud detected");
         _;
     }
 
     modifier isRevokable() {
-        require(block.timestamp >= revokeTimeNeeded);
-        require(state == State.investment);
+        require(block.timestamp >= revokeTimeNeeded,"revocation time expired");
+        require(state == State.investment,"not an inveestment");
         _;
     }
 
     modifier isRevoked() {
-        require(state == State.revoked);
+        require(state == State.revoked,"revoked");
         _;
     }
 
@@ -336,7 +328,7 @@ contract Credit is Version, Owned, Destructible {
       * It can only be executed once.
       * Transfers the gathered amount to the borrower.
       */
-    function withdraw() public isActive onlyBorrower canWithdraw isNotFraud {
+    function withdraw() public isRunning onlyBorrower canWithdraw isNotFraud {
         // Set the state to repayment so we can avoid reentrancy.
         state = State.repayment;
 
@@ -357,7 +349,7 @@ contract Credit is Version, Owned, Destructible {
       * It can only be executed once.
       * Transfers the lended amount + interest to the lender.
       */
-    function requestInterest() public isActive onlyLender canAskForInterest {
+    function requestInterest() public isRunning onlyLender canAskForInterest {
 
         // Calculate the amount to be returned to lender.
 //        uint lenderReturnAmount = lendersInvestedAmount[msg.sender].mul(returnAmount.div(lendersCount).div(lendersInvestedAmount[msg.sender]));
@@ -376,10 +368,10 @@ contract Credit is Version, Owned, Destructible {
         if (address(this).balance == 0) {
 
             // Set the active state to false.
-            active = false;
+            stop();
 
             // Log active state change.
-            emit LogCreditStateActiveChanged(active, block.timestamp);
+            emit LogCreditStateActiveChanged(status(), block.timestamp);
 
             // Set the contract stage to expired e.g. its lifespan is over.
             state = State.expired;
@@ -412,14 +404,14 @@ contract Credit is Version, Owned, Destructible {
         interest,
         returnAmount,
         state,
-        active,
+        status(),
         address(this).balance
         );
     }
 
     /** @dev Function for revoking the credit.
       */
-    function revokeVote() public isActive isRevokable onlyLender {
+    function revokeVote() public isRunning isRevokable onlyLender {
         // Require only one vote per lender.
         require(revokeVoters[msg.sender] == false);
 
@@ -450,7 +442,7 @@ contract Credit is Version, Owned, Destructible {
     }
 
     /** @dev Function for refunding people. */
-    function refund() public isActive onlyLender isRevoked {
+    function refund() public isRunning onlyLender isRevoked {
         // assert the contract have enough balance.
         assert(address(this).balance >= lendersInvestedAmount[msg.sender]);
 
@@ -464,10 +456,10 @@ contract Credit is Version, Owned, Destructible {
         if (address(this).balance == 0) {
 
             // Set the active state to false.
-            active = false;
+            stop();
 
             // Log active status change.
-            emit LogCreditStateActiveChanged(active, block.timestamp);
+            emit LogCreditStateActiveChanged(status(), block.timestamp);
 
             // Set the contract stage to expired e.g. its lifespan is over.
             state = State.expired;
@@ -479,9 +471,9 @@ contract Credit is Version, Owned, Destructible {
 
     /** @dev Function for voting the borrower as fraudster.
      */
-    function fraudVote() public isActive onlyLender returns (bool) {
+    function fraudVote() public isRunning onlyLender returns (bool) {
         // A lender could vote only once.
-        require(fraudVoters[msg.sender] == false);
+        require(fraudVoters[msg.sender] == false,"borrower is a fraudster");
 
         // Increment fraudVotes count.
         fraudVotes++;
@@ -533,12 +525,16 @@ contract Credit is Version, Owned, Destructible {
       * @return bool
       */
     function toggleActive() external okOwner returns (bool) {
-        active = !active;
+      if (status()) {
+        stop();
+      } else {
+        start();
+      }
 
-        // Log active status change.
-        emit LogCreditStateActiveChanged(active, block.timestamp);
+      // Log active status change.
+      emit LogCreditStateActiveChanged(status(), block.timestamp);
 
-        return active;
+        return status();
     }
 
 }

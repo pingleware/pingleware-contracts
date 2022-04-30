@@ -5,7 +5,6 @@ pragma solidity >=0.4.22 <0.9.0;
 
 
 import "../../common/Version.sol";
-import "../../common/Owned.sol";
 import "../../common/Frozen.sol";
 import "../../common/Token.sol";
 import "../../interfaces/AccountInterface.sol";
@@ -17,7 +16,7 @@ import "../../interfaces/TransactionInterface.sol";
 import "../../interfaces/TransferAgentInterface.sol";
 
 
-contract ExemptEquityOffering is Version, Owned, Frozen {
+contract ExemptEquityOffering is Version, Frozen {
 
     uint256 public tokenPrice; // 1 equity token (min $5 par value) for 0.00180870 ETH, 1808700 Gwei
     uint256 public _initial_supply;

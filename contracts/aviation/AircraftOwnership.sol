@@ -2,10 +2,10 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "../common/Version.sol";
-import "../common/Owned.sol";
+import "../common/Frozen.sol";
 import "../libs/SafeMath.sol";
 
-contract AircraftOwnership is Version, Owned {
+contract AircraftOwnership is Version, Frozen {
     string public symbol;   // The aircraft serial or N-number
     string public name;     // Brand and model of aircraft
     uint256 public constant totalSupply = 1;

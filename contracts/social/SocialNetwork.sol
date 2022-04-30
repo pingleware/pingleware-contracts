@@ -18,7 +18,6 @@ pragma solidity >=0.4.22 <0.9.0;
  */
 
 import "../common/Version.sol";
-import "../common/Owned.sol";
 import "../libs/User.sol";
 import "../common/Frozen.sol";
 import "../libs/StringUtils.sol";
@@ -28,7 +27,7 @@ import "./FriendsFollowers.sol";
 import "./Comment.sol";
 import "./LikesDislikes.sol";
 
-contract SocialNetwork is Version, Owned, Frozen {
+contract SocialNetwork is Version, Frozen {
 
     event ContractCallback(address sender);
 
@@ -42,8 +41,6 @@ contract SocialNetwork is Version, Owned, Frozen {
 
     event ContractFrozen(address sender);
     event ContractThawed(address sender);
-    event FallbackEvent(address sender, uint256 amount);
-    event ReceiveEvent(address sender, uint256 amount);
     event CashOut(address owner, uint256 amount);
 
     event MessageUser(address sender, address user, string message);
@@ -134,23 +131,6 @@ contract SocialNetwork is Version, Owned, Frozen {
         _;
     }
 
-    // @notice Will receive any eth sent to the contract
-    // https://ethereum.stackexchange.com/questions/42995/how-to-send-ether-to-a-contract-in-truffle-test
-    // https://www.codegrepper.com/code-examples/whatever/Expected+a+state+variable+declaration.+If+you+intended+this+as+a+fallback+function+or+a+function+to+handle+plain+ether+transactions%2C+use+the+%22fallback%22+keyword+or+the+%22receive%22+keyword+instead.
-    fallback()
-        external
-        payable
-    {
-        require(tx.origin == msg.sender, "phishing attack detected?");
-        emit FallbackEvent(msg.sender,msg.value);
-    }
-
-    receive()
-        external
-        payable
-    {
-        emit ReceiveEvent(msg.sender,msg.value);
-    }
 
     function freeze(bytes32 encrypted, bytes memory signature)
         payable
@@ -561,7 +541,7 @@ contract SocialNetwork is Version, Owned, Frozen {
     }
 
     /**
-     * User sends 0.0001 ether to each follower; 
+     * User sends 0.0001 ether to each follower;
      */
     function notifyFollowers(string memory message)
         public

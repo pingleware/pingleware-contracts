@@ -2,9 +2,9 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "../common/Version.sol";
-import "../common/Owned.sol";
+import "../common/Frozen.sol";
 
-contract AccidentHealth is Version, Owned {
+contract AccidentHealth is Version, Frozen {
     enum HEALTH_MANAGED_PLANS {
         HMO,    // Health Maintenance Organizations (HMOs)
         EPO,    // Exclusive Provider Organizations (EPOs)
@@ -29,7 +29,7 @@ contract AccidentHealth is Version, Owned {
         B2,	// Life & Health Product Review
         B3,	// Market Investigations
         C1,	// Applications Coordination
-        D0 	// Forms with cross-unit usage        
+        D0 	// Forms with cross-unit usage
     }
 
     enum HEALTH_CHECKLIST {
@@ -68,7 +68,7 @@ contract AccidentHealth is Version, Owned {
         OIR_B2_162, //1 Medicare Supplement Outline of Coverage Checklist
         OIR_B2_1622, // Small Group Advertisement Checklist
         OIR_B2_1623, // Health Flex Plan Checklist
-        OIR_B2_1650 // Residency Contract Checklist (CCRC)        
+        OIR_B2_1650 // Residency Contract Checklist (CCRC)
     }
 
 }

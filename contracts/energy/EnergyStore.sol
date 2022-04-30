@@ -2,9 +2,9 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "../common/Version.sol";
-import "../common/Owned.sol";
+import "../common/Frozen.sol";
 
-contract consumerRegistry is Version, Owned {
+contract consumerRegistry is Version, Frozen {
   event consumerRegistered(address indexed consumer);
   event consumerDeregistered(address indexed consumer);
 

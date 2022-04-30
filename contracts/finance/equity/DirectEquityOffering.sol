@@ -14,7 +14,6 @@ pragma solidity >=0.4.22 <0.9.0;
 
 
 import "../../common/Version.sol";
-import "../../common/Owned.sol";
 import "../../common/Frozen.sol";
 import "../../common/Token.sol";
 import "../../interfaces/IERC20.sol";
@@ -22,9 +21,8 @@ import "../../interfaces/OfferingContractInterface.sol";
 import "../../interfaces/TransferAgentInterface.sol";
 
 
-contract DirectEquityOffering is Version, Owned, Frozen {
+contract DirectEquityOffering is Version, Frozen {
 
-   
     // Price feeds from https://blog.chain.link/fetch-current-crypto-price-data-solidity/
     // Quote ETH to USD at https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD, returns amount of USD for 1 ETH
     // https://api.kraken.com/0/public/Ticker?pair=ETHUSD
@@ -32,9 +30,9 @@ contract DirectEquityOffering is Version, Owned, Frozen {
      * 2771.5 USD/ETH , 0.0003609 ETH/USD
      * USD -> ETH = $5 USD * 0.0003609 ETH/USD = 0.0018045 ETH, using https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=ETH
      */
-    
-    
-    
+
+
+
     uint256 public tokenPrice; // 1 equity token (min $5 par value) for 0.00180870 ETH, 1808700 Gwei
     uint256 public _initial_supply;
 
@@ -44,6 +42,7 @@ contract DirectEquityOffering is Version, Owned, Frozen {
 
     event Bought(address sender, uint256 amount);
     event Sold(address sender, uint256 amount);
+    event Swapping(address token,address sender, address receiver, uint256 amount);
 
 
     modifier onlyDPO(OfferingContractInterface.OfferingType _type) {
@@ -112,8 +111,8 @@ contract DirectEquityOffering is Version, Owned, Frozen {
     }
 
     function buy()
-        payable
         public
+        payable
         isRunning
     {
         uint256 amountTobuy = msg.value;
@@ -174,6 +173,7 @@ contract DirectEquityOffering is Version, Owned, Frozen {
             _safeTransferFrom(token1, investor1, investor2, _amount1);
             //token2, owner2, amount 2 -> owner1.  needs to be in same order as function
             _safeTransferFrom(token2, investor2, investor1, _amount2);
+            emit Swapping(address(token1),investor1,investor2,_amount1);
     }
 
     //This is a private function that the function above is going to call

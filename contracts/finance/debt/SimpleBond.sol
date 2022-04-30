@@ -6,13 +6,13 @@ pragma solidity >=0.4.22 <0.9.0;
  */
 
 import "../../common/Version.sol";
-import "../../common/Owned.sol";
+import "../../common/Frozen.sol";
 import "../../libs/SafeMath.sol";
 import "../../common/Token.sol";
 import "../../interfaces/ISimpleBond.sol";
 import "../../interfaces/IToken.sol";
 
-contract SimpleBond is ISimpleBond, Owned {
+contract SimpleBond is ISimpleBond, Version, Frozen {
 
    using SafeMath for uint256;
    string name;
@@ -180,11 +180,6 @@ contract SimpleBond is ISimpleBond, Owned {
 
     function donate() public override payable {
         require(address(token) == address(0),"undefined contract address");
-    }
-
-    fallback() external payable { revert(); }
-    receive() external payable {
-        require(tx.origin == msg.sender,"spoofing attempted");
     }
 
     //PRIVATE

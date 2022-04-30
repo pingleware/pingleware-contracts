@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 import "../../libs/SafeMath.sol";
-import "../../common/Destructible.sol";
+import "../../common/Frozen.sol";
 import "../credit/Credit.sol";
 
-contract PeerToPeerLending is Destructible {
+contract PeerToPeerLending is Frozen {
     /** @dev Usings */
     // Using SafeMath for our calculations with uints.
     using SafeMath for uint;

@@ -6,9 +6,11 @@ Recommended asset allocation,
     Total Authorized Shares   = 1,000,000,000,000 (1 trillion)  * $5 par value = $5,000,000,000,000
 
     Treasury Shares  (51%)        =   501,000,000,000 (501 billion) * $5 = $2.5 trillion
-    Preferred Shares (10%)        =   100,000,000,000 (100 billion) * $5 = $500 billion
+    Preferred Shares* (10%)       =   100,000,000,000 (100 billion) * $5 = $500 billion
     
-    Common Shares (20%)           =   200,000,000,000 (200 billion) * $5 = $1 trillion
+    Common Shares* (10%)          =   100,000,000,000 (100 billion) * $5 = $500 billion
+    Debt Assets** (5%)            =        50,000,000 (50 million) * $5  = $250 million
+    Commodities*** (5%)           =        50,000,000 (50 million) * $5  = $250 million
     Employee Benefits (5%)        =        50,000,000 (50 million) * $5  = $250 million
         (includes Founder shares)
     Mergers & Acquisitions (14%)  =       140,000,000 (140 million) * $5 = $700 million
@@ -20,6 +22,44 @@ An example of an amendment to the Articles of Incorporation at https://search.su
 PressPage Entertainment Inc SEC filings at https://www.sec.gov/cgi-bin/browse-edgar?filenum=021-332144&action=getcompany
 
 Private Stock Market - https://carta.com/blog/what-is-a-private-stock-market/
+
+*Preferred and Common shares may also include Equity tokens issued on a blockchain network.
+
+**Debt asset class is not entitled to voting, ownership and profit sharing privileges that an equity asset is entitled and defines the debt ceiling of public debt that may
+be incurred. Debt securities include Debt tokens issued on a blockchain network. Debt security holders have first rights before preferred and common equity holders.
+
+***Commodity asset class is not entitled to voting, ownership and profit sharing privileges that an equity asset is entitled. Cryptocurrency assets are defined as non-Equity or non-Debt tokens which are considered a commodity.
+
+Correlating debt and cryptocurrency asset classes to company shares will maintain an efficient market and established a market price, because there will be a higher number of market participants that act based on the information flows that reach the market.
+
+Adding cryptocurrency to a company asset class, will legitimize an NFT. FIX.US permits minitng NFT's, see https://help.ftx.us/hc/en-us/sections/1500002395502-NFTs.
+
+## Dividend Calculation
+Preferred shares dividend,
+
+    Annual Dividend = (Dividend Rate) * (Par Value)
+
+the par value is set in the Corporate charter, while the dividend rate is defined in the Prospectus or Private Placement Memoradum,
+
+To make investing attractive, let's set a dividend rate of 10%,
+
+    Annual Dividend = 0.1 * 5 = $0.50 cents per share
+
+    Total Expected Preferred Dividend Payout = 100,000,000,000 * 0.5 = $50,000,000,000 ($50 billion)
+
+    Quartly payouts = Annual Dividend Payout / 4 = 50,000,000,000 / 4 = $12,500,000,000 ($12.5 billion)
+
+Common shares dividends,
+
+    Dividend Per Share = Preferred Total Payout / (Outstanding Common Shares Weighted Average) = 50,000,000,000 / 100,000,000,000 = $0.50
+
+# Characteristics of an efficient market
+For a market to be efficient, the following premises must be met:
+
+    - The information must be available to all participants.
+    - Access to information is free of charge.
+    - Prices have to be adjusted quickly upon arrival of new information.
+    - There must be a high number of market participants that act based on the information flows that reach the market.
 
 # Equity Management Software
 When conducting a private equity offering, you need to manage the investors and requires equity management software. A youtube link of possible solutions at https://www.youtube.com/results?search_query=%22equity+management+software%22

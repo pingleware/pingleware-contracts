@@ -2,9 +2,9 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "../common/Version.sol";
-import "../common/Owned.sol";
+import "../common/Frozen.sol";
 
-contract NewsFeed is Version, Owned {
+contract NewsFeed is Version, Frozen {
     string public constant name = string("PressPage.NEWS");
     string public constant symbol = string("PRESS.NEWS");
     uint256 public totalSupply = 0;
@@ -43,7 +43,7 @@ contract NewsFeed is Version, Owned {
         string   topic_sentence_3;
     }
 
-    mapping (uint256 => StoryNews[]) private newslist;
+    mapping(address => mapping (uint256 => StoryNews[])) private newslist;
     mapping (uint256 => address) private storytimes;
     uint256[] private _storytimes;
 
@@ -141,19 +141,29 @@ contract NewsFeed is Version, Owned {
         whitelisted[publisher] = false;
     }
 
-    function addStory(Category _category,string memory _title,uint256 _epoch,string memory _topic1,string memory _topic2,string memory _topic3)
+    function addStory(address _reporter,
+                      Category _category,
+                      string memory _title,
+                      uint256 _epoch,
+                      string memory _topic1,
+                      string memory _topic2,
+                      string memory _topic3)
         public
+        payable
         isWhitelisted
     {
         require(storytimes[_epoch] == address(0),"new stories already published in that time slot");
-        StoryNews memory news = StoryNews(msg.sender, _category,_title,_epoch,_topic1,_topic2,_topic3);
-        newslist[_epoch].push(news);
+        require(msg.value == 0.00005 ether,"not enough for payment");
+        payable(address(this)).transfer(msg.value);
+
+        StoryNews memory news = StoryNews(msg.sender,_category,_title,_epoch,_topic1,_topic2,_topic3);
+        newslist[_reporter][_epoch].push(news);
         storytimes[_epoch] = msg.sender;
         _storytimes.push(_epoch);
         totalSupply++;
     }
 
-    function getStories(uint256 _epoch)
+    function getStories(address _reporter,uint256 _epoch)
         public
         payable
         returns (StoryNews[] memory)
@@ -162,7 +172,7 @@ contract NewsFeed is Version, Owned {
         require(msg.value == 0.0001 ether,"not enough for payment");
         payable(address(this)).transfer(msg.value);
         payable(storytimes[_epoch]).transfer(0.00005 ether); // transfer half of the polling fee to the publisher
-        return newslist[_epoch];
+        return newslist[_reporter][_epoch];
     }
 
     function getStoryTimes()

@@ -68,7 +68,8 @@ Before launching an exempt equity or debt offering you are required to submit th
 
 # Release Schedule
 
-        Date        Version                 
+        Date        Version
+    04/03/2022       1.6.0          Added Government contracts; refactor Frozen to include selfdestruct while extending Owned;
     03/09/2022       1.5.0          Added  Aviation, Education, Hospitality and Blockchain arbitration; social network, newfeed, and token deployments;
     02/27/2022       1.4.0          Added BAToken and Peer-to-Peer lending to finance/token and finance/banking, respectively
     02/23/2022       1.3.0          Add RINS (Renewal Identification Number) contract
@@ -209,7 +210,41 @@ While the other contract frameworks provide templates to help you build contract
 The following network faucet(s) give the most and permit one request per twenty four hours,
 
     https://faucet.egorfine.com/
-    
+
+# Private Ethereum Network
+See https://geth.ethereum.org/docs/interface/private-network for more information.
+
+    1. Create a unique chainID and symbol, see https://chainid.network to check for uniqueness. You chainID and networkID will be the same.
+    2. (optional) If you want credibility for your private network, then consider taking your cryptocurrency public through an S-1, where the asset class is cryptocurrency.
+        Then get a symbol assigned from FINRA (https://www.securitieslawyer101.com/2015/market-maker). Since you have a private network (private meaning separate from mainnet)
+        you will need to register the network as an ATS (alternative trading system), as well as the issuer of the cryptocurrency, register as a transfer agent. You will
+        also need to get a license as a Money Transmitter the jurisdictions that you conduct business. When you perform an S-1 the quantity is the maximum number of tokens that
+        will be issued. The fee for filing an S-1 is $92.70 per $1,000,000 (https://www.sec.gov/ofm/Article/feeamt.html), or
+
+            total offering = token initial price * number of tokens (if you have a par value, then the minimum price is the par value)
+
+            total_offering = $5 * 200,000 = $1,000,000
+            filing_fee = (total_offering / 1000000) * 92.70 
+
+        You can have multiple offerings of S-1, the first S-1 makes your company a public company.
+
+        When you apply for a trading symbol from FINRA, requires a market maker (https://www.finra.org/about/firms-we-regulate/broker-dealer-firms-we-regulate), because they will handle the KYC and AML for your clients, buying your token at a discount or par value. 
+
+Command line option,
+
+    > geth --networkid <chainID>
+
+## List Private Network on chainid.network
+
+    1. Clone the project https://github.com/ethereum-lists/chains
+    2. Create a new file in ./_data/chains directory using the file convention of eip115-<chainID>.json
+    3. Create a logo for your private network
+    4. Copyright the logo.
+    5. Publish your logo to a publicly accessible IPFS network
+    6. Create a new file in ./_data/icons directory using the file convetion of <symbol>.json
+    7. Check in changes to your github.com account
+    8. Create a pull request.
+    9. Wait for your changes to be merged.
 
 # End-of-Life Doctrine
 When a piece of software is useful, there should never be an EOL doctrine. The intention for this application is to achieve immoratlity ;).

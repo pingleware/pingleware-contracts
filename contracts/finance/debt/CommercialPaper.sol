@@ -29,11 +29,13 @@ pragma solidity >=0.4.22 <0.9.0;
   *     the IPA can be eliminated, and repayment comes directly from the issuer wallet.
   */
 
+import "../../common/Version.sol";
+import "../../common/Frozen.sol";
 import "../../common/IERC20TOKEN.sol";
 import "../../libs/SafeMath.sol";
 
 
-contract CommercialPaperToken is IERC20TOKEN {
+contract CommercialPaperToken is Version, Frozen, IERC20TOKEN {
     string public constant DESCRIPTION =
         string("Private Debt Token (Commercial Paper) for PressPage Entertainment Inc (SEC File #021-332144) under Rule 506b at https://www.sec.gov/Archives/edgar/data/0001766947/000176694719000001/xslFormDX01/primary_doc.xml. FOR ACCREDITED INVESTORS ONLY.");
     string public constant CUSIP = string("TO BE ASSIGNED");
@@ -45,8 +47,8 @@ contract CommercialPaperToken is IERC20TOKEN {
 
     string public name = "Promissary Note for ABC Corporation";
     string public symbol = "ABC.NOTE.S1"; // maximum 11 character
-    uint8  public decimals; 
-   
+    uint8  public decimals;
+
     uint256 public _totalSupply;
 
 
@@ -66,7 +68,7 @@ contract CommercialPaperToken is IERC20TOKEN {
     uint256 public exchangeRate = 36750000000; // in GWEI, 1 USD = 370000 GWEI
 
     CommercialPaperInfo cp;
-   
+
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
 
@@ -83,14 +85,8 @@ contract CommercialPaperToken is IERC20TOKEN {
     event ExchangeRateUpdated(uint256 exchangeRate);
 
     constructor() {
-        owner = msg.sender;
-        whitelisted[owner] = true;
+        whitelisted[msg.sender] = true;
         mint(SafeMath.safeDiv(MAX_SIZE_OF_OFFERING, denomination) * 10 ** uint256(decimals));
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == owner,"unauthorized access, owner access only");
-        _;
     }
 
     modifier isAuthorized() {
@@ -100,7 +96,7 @@ contract CommercialPaperToken is IERC20TOKEN {
 
     function addPromoter(address _promoter)
         public
-        onlyOwner
+        okOwner
     {
         require(_promoter != address(0),"invalid address");
         cp.promoter = _promoter;
@@ -109,7 +105,7 @@ contract CommercialPaperToken is IERC20TOKEN {
 
     function addCreditReportingAgency(address _cra)
         public
-        onlyOwner
+        okOwner
     {
         require(_cra != address(0),"invalid address");
         cp.cra = _cra;
@@ -118,7 +114,7 @@ contract CommercialPaperToken is IERC20TOKEN {
     
     function addInvestor(address investor, bool accredited)
         public
-        onlyOwner
+        okOwner
     {
         require(whitelisted[investor] == false,"investor already exists");
         whitelisted[investor] = true;
@@ -133,7 +129,7 @@ contract CommercialPaperToken is IERC20TOKEN {
 
     function updateExchangeRate(uint256 _swapRate)
         public
-        onlyOwner
+        okOwner
     {
         exchangeRate = _swapRate;
         emit ExchangeRateUpdated(exchangeRate);
@@ -141,7 +137,7 @@ contract CommercialPaperToken is IERC20TOKEN {
     
     function commercialPaper(uint256 pFaceValue, uint256 pValueDate, uint256 pMaturityDate, uint256 rate)
         public
-        onlyOwner
+        okOwner
     {
         require(pMaturityDate <= 270 days,"maturity date extends beyond the acceptable time of 270 days or less");
         cp = CommercialPaperInfo(address(0), address(0), pFaceValue, pValueDate, pMaturityDate, rate, "created","unrated");
@@ -159,21 +155,19 @@ contract CommercialPaperToken is IERC20TOKEN {
    
     function updateStatus(bytes32 pStatus)
         public
-        onlyOwner
+        okOwner
     {
         cp.status = pStatus;
         emit StatusUpdated(address(this),pStatus);
     }
-    
-    
-    
+
     function kill()
         public
-        onlyOwner
+        okOwner
     {
         selfdestruct(payable(owner));
     }
-   
+
     function getContract()
         public
         view
@@ -215,29 +209,48 @@ contract CommercialPaperToken is IERC20TOKEN {
     /**
      * @dev allowance : Check approved balance
      */
-    function allowance(address tokenOwner, address spender) virtual override public view returns (uint remaining) {
+    function allowance(address tokenOwner, address spender)
+        public
+        virtual
+        override
+        view
+        returns (uint remaining)
+    {
         return allowed[tokenOwner][spender];
     }
-    
+
     /**
      * @dev approve : Approve token for spender
-     */ 
-    function approve(address spender, uint tokens) virtual override public isAuthorized returns (bool success) {
+     */
+    function approve(address spender, uint tokens)
+        public
+        virtual
+        override
+        isAuthorized
+        returns (bool success)
+    {
         require(tokens >= 0, "Invalid value");
         allowed[msg.sender][spender] = tokens;
         emit Approval(msg.sender, spender, tokens);
         return true;
     }
-    
+
     /**
      * @dev transfer : Transfer token to another etherum address
-     */ 
-    function transfer(address to, uint tokens) virtual override public isAuthorized returns (bool success) {
-        require(to != address(0), "Null address");  
-        require(whitelisted[to],"recipient is not authorized to receive tokens");                                       
+     */
+    function transfer(address to, uint tokens)
+        public
+        virtual
+        override
+        isAuthorized
+        returns (bool success)
+    {
+        require(to != address(0), "Null address");
+        require(whitelisted[to],"recipient is not authorized to receive tokens");
         require(tokens > 0, "Invalid Value");
         if (msg.sender != owner) {
-            require (block.timestamp >= (transfer_log[msg.sender] + YEAR),"transfer not permitted under Rule 144, holding period has not elapsed");
+            require (block.timestamp >= (transfer_log[msg.sender] + YEAR),
+                "transfer not permitted under Rule 144, holding period has not elapsed");
         }
         transfer_log[to] = block.timestamp;
         balances[msg.sender] = SafeMath.safeSub(balances[msg.sender], tokens);
@@ -245,17 +258,24 @@ contract CommercialPaperToken is IERC20TOKEN {
         emit Transfer(msg.sender, to, tokens);
         return true;
     }
-    
+
     /**
-     * @dev transferFrom : Transfer token after approval 
-     */ 
-    function transferFrom(address from, address to, uint tokens) virtual override public isAuthorized returns (bool success) {
+     * @dev transferFrom : Transfer token after approval
+     */
+    function transferFrom(address from, address to, uint tokens)
+        public
+        virtual
+        override
+        isAuthorized
+        returns (bool success)
+    {
         require(to != address(0), "Null address");
         require(from != address(0), "Null address");
         require(whitelisted[to],"recipient is not authorized to receive tokens");
-        require(tokens > 0, "Invalid value"); 
+        require(tokens > 0, "Invalid value");
         if (from != owner && to != owner) {
-            require (block.timestamp >= (transfer_log[from] + YEAR),"transfer not permitted under Rule 144, holding period has not elapsed");
+            require (block.timestamp >= (transfer_log[from] + YEAR),
+                "transfer not permitted under Rule 144, holding period has not elapsed");
         }
         require(tokens <= balances[from], "Insufficient balance");
         require(tokens <= allowed[from][msg.sender], "Insufficient allowance");
@@ -269,33 +289,53 @@ contract CommercialPaperToken is IERC20TOKEN {
 
     /**
      * @dev totalSupply : Display total supply of token
-     */ 
-    function totalSupply() virtual override public view returns (uint) {
+     */
+    function totalSupply()
+        public
+        virtual
+        override
+        view
+        returns (uint)
+    {
         return _totalSupply;
     }
-    
+
     /**
      * @dev balanceOf : Displya token balance of given address
-     */ 
-    function balanceOf(address tokenOwner) virtual override public view returns (uint balance) {
+     */
+    function balanceOf(address tokenOwner)
+        public
+        virtual
+        override
+        view
+        returns (uint balance)
+    {
         return balances[tokenOwner];
     }
-    
+
     /**
      * @dev mint : To increase total supply of tokens
-     */ 
-    function mint(uint256 _amount) public onlyOwner returns (bool) {
+     */
+    function mint(uint256 _amount)
+        public
+        okOwner
+        returns (bool)
+    {
         require(_amount >= 0, "Invalid amount");
         _totalSupply = SafeMath.safeAdd(_totalSupply, _amount);
         balances[owner] = SafeMath.safeAdd(balances[owner], _amount);
         emit Transfer(address(0), owner, _amount);
         return true;
     }
-    
+
      /**
      * @dev mint : To increase total supply of tokens
-     */ 
-    function burn(uint256 _amount) public onlyOwner returns (bool) {
+     */
+    function burn(uint256 _amount)
+        public
+        okOwner
+        returns (bool)
+    {
         require(_amount >= 0, "Invalid amount");
         require(_amount <= balances[msg.sender], "Insufficient Balance");
         _totalSupply = SafeMath.safeSub(_totalSupply, _amount);

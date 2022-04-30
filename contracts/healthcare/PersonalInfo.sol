@@ -7,11 +7,11 @@ pragma solidity >=0.4.22 <0.9.0;
 
 
 import "../common/Version.sol";
-import "../common/Owned.sol";
+import "../common/Frozen.sol";
 import "../libs/User.sol";
 import "../libs/StringUtils.sol";
 
-contract PersonalInfo is Version, Owned {
+contract PersonalInfo is Version, Frozen {
 
     string public constant DEFAULT_ADMIN_ROLE = string("ADMIN_ROLE98765");
     string public constant PATIENT_ROLE = string("PATIENT_ROLE98765");

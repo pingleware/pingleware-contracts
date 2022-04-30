@@ -25,7 +25,7 @@ abstract contract DelawareStockToken is IERC20TOKEN, Whitelistable {
 
     event ChangedCompanyStatus(address authorizedBy, bool newStatus);
 
-    constructor(string memory _symbol, string memory _name, uint _supply, string memory _hash, address _registry)
+    constructor(string memory _symbol, string memory _name, uint _supply, string memory _hash, address payable _registry)
         Whitelistable()
     {
         symbol = _symbol;

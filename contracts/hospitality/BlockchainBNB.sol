@@ -5,11 +5,10 @@ pragma solidity >=0.4.22 <0.9.0;
  * Migrated from https://github.com/skfarhat/ethbnb
  */
 
+import "../common/Version.sol";
+import "../common/Frozen.sol";
 
-/**
- *
- */
-contract BlockchainBNB {
+contract BlockchainBNB is Version, Frozen {
   bytes32 constant private ZERO_BYTES = bytes32(0);
   address constant private ZERO_ADDRESS = address(0);
 

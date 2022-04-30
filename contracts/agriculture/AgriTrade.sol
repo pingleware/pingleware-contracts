@@ -4,7 +4,10 @@ pragma solidity >=0.4.22 <0.9.0;
 // See https://github.com/soniaRbii/Agri-Trade and
 // https://github.com/VivekSJ292018/Atmanirbharinnovation/tree/master/App/app for DAPP
 
-contract AgriTrade {
+import "../common/Version.sol";
+import "../common/Frozen.sol";
+
+contract AgriTrade is Version, Owned {
 
     uint256 public s = 1;
     uint256 public c;
@@ -55,9 +58,6 @@ contract AgriTrade {
         bytes32 expdate;
     }
 
-    address public tester;
-    address owner;
-
     mapping (bytes => farmer) f1;
     farmer[] public fm;
 
@@ -97,6 +97,6 @@ contract AgriTrade {
         view
         returns(bytes memory,bytes memory,uint,bytes32,bytes32)
     {
-         return(l1[k].lotno,l1[k].grade,l1[k].mrp,l1[k].testdate,l1[k].expdate);
+        return(l1[k].lotno,l1[k].grade,l1[k].mrp,l1[k].testdate,l1[k].expdate);
     }
 }

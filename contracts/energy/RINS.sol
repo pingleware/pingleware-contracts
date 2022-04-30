@@ -2,11 +2,11 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "../common/Version.sol";
-import "../common/Owned.sol";
+import "../common/Frozen.sol";
 import "../common/IERC20TOKEN.sol";
 import "../libs/SafeMath.sol";
 
-contract RINS is Version, Owned, IERC20TOKEN {
+contract RINS is Version, Frozen, IERC20TOKEN {
     string public constant DESCRIPTION = string("");
 
     string public name;
@@ -82,24 +82,42 @@ contract RINS is Version, Owned, IERC20TOKEN {
     /**
      * @dev allowance : Check approved balance
      */
-    function allowance(address tokenOwner, address spender) virtual override public view returns (uint remaining) {
+    function allowance(address tokenOwner, address spender)
+        public
+        virtual
+        override
+        view
+        returns (uint remaining)
+    {
         return allowed[tokenOwner][spender];
     }
-    
+
     /**
      * @dev approve : Approve token for spender
-     */ 
-    function approve(address spender, uint tokens) virtual override public isAuthorized returns (bool success) {
+     */
+    function approve(address spender, uint tokens)
+        public
+        virtual
+        override
+        isAuthorized
+        returns (bool success)
+    {
         require(tokens >= 0, "Invalid value");
         allowed[msg.sender][spender] = tokens;
         emit Approval(msg.sender, spender, tokens);
         return true;
     }
-    
+
     /**
      * @dev transfer : Transfer token to another etherum address
-     */ 
-    function transfer(address to, uint tokens) virtual override public isAuthorized returns (bool success) {
+     */
+    function transfer(address to, uint tokens)
+        public
+        virtual
+        override
+        isAuthorized
+        returns (bool success)
+    {
         require(to != address(0), "Null address");
         require(whitelisted[to],"recipient is not authorized to receive tokens");
         require(tokens > 0, "Invalid Value");
@@ -109,11 +127,17 @@ contract RINS is Version, Owned, IERC20TOKEN {
         emit Transfer(msg.sender, to, tokens);
         return true;
     }
-    
+
     /**
-     * @dev transferFrom : Transfer token after approval 
-     */ 
-    function transferFrom(address from, address to, uint tokens) virtual override public isAuthorized returns (bool success) {
+     * @dev transferFrom : Transfer token after approval
+     */
+    function transferFrom(address from, address to, uint tokens)
+        public
+        virtual
+        override
+        isAuthorized
+        returns (bool success)
+    {
         require(to != address(0), "Null address");
         require(from != address(0), "Null address");
         require(whitelisted[to],"recipient is not authorized to receive tokens");
@@ -130,20 +154,37 @@ contract RINS is Version, Owned, IERC20TOKEN {
 
     /**
      * @dev totalSupply : Display total supply of token
-     */ 
-    function totalSupply() virtual override public view returns (uint) {
+     */
+    function totalSupply()
+        public
+        virtual
+        override
+        view
+        returns (uint)
+    {
         return _totalSupply;
     }
-    
+
     /**
      * @dev balanceOf : Displya token balance of given address
-     */ 
-    function balanceOf(address tokenOwner) virtual override public view returns (uint balance) {
+     */
+    function balanceOf(address tokenOwner)
+        public
+        virtual
+        override
+        view
+        returns (uint balance)
+    {
         return balances[tokenOwner];
     }
 
 
-    function mint(uint256 _amount) public payable isProducer returns (bool) {
+    function mint(uint256 _amount)
+        public
+        payable
+        isProducer
+        returns (bool)
+    {
         require(_amount >= 0, "Invalid amount");
         rins[msg.sender].push(RINType(block.timestamp, msg.value ,_amount));
         balances[msg.sender] = SafeMath.safeAdd(balances[msg.sender],_amount);
@@ -152,7 +193,11 @@ contract RINS is Version, Owned, IERC20TOKEN {
         return true;
     }
 
-    function burn(uint256 _amount) public isComplianceOfficer returns (bool) {
+    function burn(uint256 _amount)
+        public
+        isComplianceOfficer
+        returns (bool)
+    {
         require(_amount >= 0, "Invalid amount");
         require(_amount <= balances[msg.sender], "Insufficient Balance");
         _totalSupply = SafeMath.safeSub(_totalSupply, _amount);

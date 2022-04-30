@@ -4,6 +4,8 @@ pragma solidity >=0.4.22 <0.9.0;
 // Refactored from https://cryptomarketpool.com/flash-loan-arbitrage-on-uniswap-and-sushiswap/
 
 // import required interfaces
+import "../../common/Version.sol";
+import "../../common/Frozen.sol";
 import "../../interfaces/IERC20.sol";
 import "../../interfaces/IUniswapV2Router02.sol";
 import "../../interfaces/IUniswapV2Pair.sol";
@@ -11,7 +13,7 @@ import "../../interfaces/IUniswapV2Factory.sol";
 import "../../libs/UniswapV2Library.sol";
 import "../../libs/SafeMath.sol";
 
-contract FlashLoanArbitrage {
+contract FlashLoanArbitrage is Version, Frozen {
 
     //uniswap factory address
     address public factory;

@@ -3,7 +3,10 @@ pragma solidity >=0.4.22 <0.9.0;
 
 // See https://github.com/bazinga776/AgriChain-Blockchain
 
-contract AgriChain {
+import "../common/Version.sol";
+import "../common/Frozen.sol";
+
+contract AgriChain is Version, Frozen {
     uint[16] public productIds;
 
     struct Data{

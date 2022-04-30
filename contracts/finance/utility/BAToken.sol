@@ -8,14 +8,14 @@ pragma solidity >=0.4.22 <0.9.0;
  */
 
 import "../../common/Version.sol";
-import "../../common/Owned.sol";
+import "../../common/Frozen.sol";
 import "../../common/Token.sol";
 import "../../libs/SafeMath.sol";
 
-abstract contract BAToken is Version, Owned, Token {
+contract BAToken is Version, Frozen, Token {
     uint256 public constant DECIMALS = 18;
     // contracts
-    address public ethFundDeposit;      // deposit address for ETH 
+    address public ethFundDeposit;      // deposit address for ETH
     address public batFundDeposit;      // deposit address for BAT User Fund
 
     // crowdsale parameters
