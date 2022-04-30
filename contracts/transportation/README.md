@@ -14,3 +14,6 @@ Shipping in some cases is not restricted to the transportation of cargo by ships
 
 ## New Ride-Hailing App to Transform Payments by Offering Blockchain Direct Transactions
 Bayride has revealed RideNode, a new transportation virtual and blockchain currency that seeks to transform the payment structures in this sector. America’s ride-hailing industry is touted to be revolutionized because RideNode will offer direct transactions between the service provider and consumers. Read at https://blockchain.news/news/ridenode-touted-to-be-america-pioneer-transportation-digital-currency
+
+# Rideshare Commodity Trading
+Commodities are hard assets that you can touch or use. Rideshare services definitely fall into the commodity category. While Oil, Metals and Food commodities are determinant in setting prices, so can a rideshare commodity be a determinant of setting prices instead of the transportation network company or TNC. Using the AgriTrade contract in this package as a guideline, a RideshareTrade smart contract can be created to handle trading Rideshare commodity.

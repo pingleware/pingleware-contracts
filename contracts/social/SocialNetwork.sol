@@ -75,35 +75,15 @@ contract SocialNetwork is Version, Frozen {
         payable
         okOwner
     {
-        switch(fee) {
-            case 0:
-                registrationUserFee = amount;
-                break;
-            case 1:
-                registrationAdvertiserFee = amount;
-                break;
-            case 2:
-                postingFee = amount;
-                break;
-            case 3:
-                commentFee = amount;
-                break;
-            case 4:
-                newAdvertisementFee = amount;
-                break;
-            case 5:
-                addFollowerFee = amount;
-                break;
-            case 6:
-                friendRequestFee = amount;
-                break;
-            case 7:
-                sendUserMessageFee = amount;
-                break;
-            case 8:
-                userListingFee = amount;
-                break;
-        }
+        if (fee == 0) registrationUserFee = amount;
+        else if (fee == 1) registrationAdvertiserFee = amount;
+        else if (fee == 2) postingFee = amount;
+        else if (fee == 3) commentFee = amount;
+        else if (fee == 4) newAdvertisementFee = amount;
+        else if (fee == 5) addFollowerFee = amount;
+        else if (fee == 6) friendRequestFee = amount;
+        else if (fee == 7) sendUserMessageFee = amount;
+        else if (fee == 8) userListingFee = amount;
     }
 
     modifier addressValid() {
