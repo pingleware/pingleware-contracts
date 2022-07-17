@@ -70,6 +70,7 @@ Before launching an exempt equity or debt offering you are required to submit th
 # Release Schedule
 
         Date        Version
+    07/17/2022       1.6.3          Added finance/banking/SavingsAccount.sol, libs/DateTime.sol. and useful documents
     04/30/2022       1.6.2          Added RideshareTrade contract under Transportation category
     04/29/2022       1.6.1          Remove package.json dependencies not needed; added package keywords
     04/29/2022       1.6.0          Added Government contracts; refactor Frozen to include selfdestruct while extending Owned;

@@ -43,7 +43,7 @@ Allowing a small entity operations to compete in the financial marketplace once 
 Where all players are following the rules to ensure accountability and integrity is maintained in the financial marketsm which keeps an efficient market.
 
 # Authorative Powers
-The current regulations are sufficient for most DeFi businessm while some may need adjustments For example, traditionally a stock transaction is not instance and is commonly referred to as a one or two day clearance. This involves additional regulation to ensure abuses are not incorporated in the process. While on the blockchain, transfer is instance resulting in zero day clearance.
+The current regulations are sufficient for most DeFi business while some may need adjustments For example, traditionally a stock transaction is not instant and is commonly referred to as a one or two day clearance. This involves additional regulation to ensure abuses are not incorporated in the process. While on the blockchain, transfer is instant resulting in zero day clearance.
 
 # Tutorial
 A simplified tutorial
@@ -63,7 +63,7 @@ Five Pillars of DeFi
 ## Stable Coins
 SEC stated cryptocurrency is NOT a security but a commodity, https://finance.yahoo.com/news/sec-announces-ether-not-security-162658147.html
 
-Commodities are still regulated by thee CFTC, see https://www.cftc.gov/digitalassets/index.htm
+Commodities are still regulated by the CFTC, see https://www.cftc.gov/digitalassets/index.htm
 
 An exemption would be needed to eliminate the Clearing Organization registration (https://www.cftc.gov/IndustryOversight/ClearingOrganizations/index.htm), since blockchain transactions are instantenous.
 
@@ -115,7 +115,7 @@ from https://www.law.cornell.edu/cfr/text/17/242.304
 No exemption is available to an NMS Stock ATS pursuant to § 240.3a1-1(a)(2) unless the NMS Stock ATS files with the Commission an initial Form ATS-N, in accordance with the conditions of this section, and the initial Form ATS-N is effective pursuant to paragraph (a)(1)(iii) or (a)(1)(iv)(A) of this section.
 
 ## Insurance
-See ../insrance/README.md
+See ../insurance/README.md
 
 ## Margin Trading
 Margin trading is coded in the smart contract.

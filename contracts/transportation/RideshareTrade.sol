@@ -32,11 +32,13 @@ contract RideshareTrade is Version, Frozen {
         bytes   id;
         string  name;
         string  contact;
+        uint    status; // 0=unverified,1=verified,2=approved,3=active,4=inactive,5=suspended
     }
 
     struct TripData {
         address payable driver;
         bytes32 tripno;
+        uint256 tripdate;
         string  pickup;
         string  dropoff;
         uint256 miles;
@@ -102,7 +104,7 @@ contract RideshareTrade is Version, Frozen {
         returns (uint256)
     {
         require(msg.sender != address(0),"zero address not permitted");
-        DriverData memory _driver = DriverData(payable(msg.sender),id,name,contact);
+        DriverData memory _driver = DriverData(payable(msg.sender),id,name,contact,0);
         drivers[msg.sender] = _driver;
         d1.push(msg.sender);
         return (d1.length - 1);
@@ -113,14 +115,21 @@ contract RideshareTrade is Version, Frozen {
      * The rider/customer buys a trip via the buy routine, and after the transaction is confirmed and paid,
      * then a new trip is added. The offchain process will poll the unassigned trips and assign a matching driver
      */
-    function addTrip(bytes32 no,string memory pickup,string memory dropoff,uint miles,uint book, uint256 begintime, uint256 endtime)
+    function addTrip(bytes32 no,
+                     uint256 tripdate,
+                     string memory pickup,
+                     string memory dropoff,
+                     uint miles,
+                     uint book,
+                     uint256 begintime,
+                     uint256 endtime)
         public
         returns (uint)
     {
         // TODO: better authentication so the msg.sender cannot be spoofed?
         require(offers[no].buyer == msg.sender,"Buyer does not match");
         // initially set driver as zero address for matching to assign the driver?
-        TripData memory _trip = TripData(payable(address(0)),no,pickup,dropoff,miles,book,begintime,endtime);
+        TripData memory _trip = TripData(payable(address(0)),no,tripdate,pickup,dropoff,miles,book,begintime,endtime);
         trips.push(_trip);
         t1[no] = _trip;
         emit TripAdded(no,trips.length - 1);
@@ -136,13 +145,38 @@ contract RideshareTrade is Version, Frozen {
         return (msg.sender,drivers[msg.sender].id,drivers[msg.sender].name,drivers[msg.sender].contact);
     }
 
+    function getDriverStatus()
+        public
+        view
+        returns (uint)
+    {
+        return drivers[msg.sender].status;
+    }
+
+    function getDriverStatusByAdmin(address driver)
+        public
+        view
+        okOwner
+        returns (uint)
+    {
+        return drivers[driver].status;
+    }
+
+    function changeDriverStatus(address driver,uint _status)
+        public
+        okOwner
+    {
+        drivers[driver].status = _status;
+    }
+
     function getTrip(uint i)
         public
         view
-        returns (address,bytes32)
+        returns (address,bytes32,uint256)
     {
         return (trips[i].driver,
-                trips[i].tripno);
+                trips[i].tripno,
+                trips[i].tripdate);
     }
 
     function getTripPickupLocation(uint i)

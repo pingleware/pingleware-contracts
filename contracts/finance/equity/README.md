@@ -34,6 +34,15 @@ Correlating debt and cryptocurrency asset classes to company shares will maintai
 
 Adding cryptocurrency to a company asset class, will legitimize an NFT. FIX.US permits minitng NFT's, see https://help.ftx.us/hc/en-us/sections/1500002395502-NFTs.
 
+Tokenizing Corporate Capital Stock - https://gabrielshapiro.wordpress.com/2018/10/28/2/
+
+## ZAP Protocol
+Also known as ZeroLaw org-Augmentation Protocol,  is a general-purpose tech/law stack for augmenting any business entity or organization through the use of smart contracts and shares deployed to Ethereum or any other EVM-based blockchain. It is non-rent-seeking, fully free and open source and is neither funded by nor requires the use of any protocol token. It is intended to be compatible with a range of legal compliance strategies or applicable legal regimes by providing tunable compliance parameters; it is even compatible with antilaw positions. ZAP’s compliance parameters may be tuned "all the way up", "all the way down" or anywhere in between; thus, ZAP is suitable for any entity or organization, ranging from traditional corporations to anarchic, pseudonymous collectives. ZAP merges the vision of a borderless, decentralized future with the power to comply with existing legal requirements & best practices for doing business. ZAP has been developed by ZeroLaw, an independent law/technology team working to make technology and legal agreements interoperable. Anyone may contribute to the protocol.
+
+ZAP was developed by ZeroLaw (https://zerolaw.tech).
+
+Read more at https://github.com/zerolawtech/ZAP-Tech
+
 ## Dividend Calculation
 Preferred shares dividend,
 
