@@ -36,6 +36,9 @@ The Ethereum Smart Contract Creator will also introduce using a NFT as software 
 ## Where to Download?
 Watch this repository for the release announcement of the Ethereum Smart Contract Creator.
 
+## Will a Manual be included?
+There will be a comprehensive manual included at no charge since the application requires a paid license.
+
 # In the News
 ## Why Blockchain Could Prevent Another Theranos
 From: https://investorplace.com/2022/01/why-blockchain-could-prevent-another-theranos/
