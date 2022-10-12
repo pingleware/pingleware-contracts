@@ -28,6 +28,14 @@ When using remix.ethereum.org, you can import directly from github.com
         }
     }
 
+# Ethereum Smart Contract Creator
+An application is being developed to help developers and business owenrs fast track smart contract implementation using the pingleware-contracts framework for real blockchain scenarios.
+
+The Ethereum Smart Contract Creator will also introduce using a NFT as software license, https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/36333753202514414869774196218446368102124864803313914227828195910238651647648/
+
+## Where to Download?
+Watch this repository for the release announcement of the Ethereum Smart Contract Creator.
+
 # In the News
 ## Why Blockchain Could Prevent Another Theranos
 From: https://investorplace.com/2022/01/why-blockchain-could-prevent-another-theranos/
