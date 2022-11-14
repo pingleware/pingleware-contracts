@@ -5,6 +5,13 @@ SEC Quick Form Index - https://www.intelligize.com/wp-content/uploads/2021/05/SE
 
 SEC Forms List - https://www.sec.gov/forms
 
+## S-1 Filing Tutorials
+Part 1 - Registered Offerings Using Form S-1 https://www.youtube.com/watch?v=amjmpOqza5c
+Part 2 - Filing S-1 https://www.youtube.com/watch?v=WpKbXJ_JGNU
+Part 3 -
+Part 4 - Filing a S-1 https://www.youtube.com/watch?v=W7vwWFZj8lY
+
+
 ## General Solicitation - Rule 506(c)
 From https://www.sec.gov/smallbusiness/exemptofferings/rule506c
 

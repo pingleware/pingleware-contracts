@@ -306,7 +306,7 @@ Second, identify the common entities all offerings include,
     Shareholder    = there are three distinct types: accredited, non-accredited and affiliate
     Shares         = the equity of the offering
     Transaction    = a record of each transaction (while this is kept on the blockchain, having a separate entity assists with recording keeping compliance)
-    Account        = account 
+    UserAccount    = account 
     
 # Advantages and Disadvantages of Dividends
 See https://www.letslearnfinance.com/advantages-and-disadvantages-of-dividends.html

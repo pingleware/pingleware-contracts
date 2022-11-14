@@ -31,9 +31,11 @@ contract DirectEquityOffering is Version, Frozen {
      * USD -> ETH = $5 USD * 0.0003609 ETH/USD = 0.0018045 ETH, using https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=ETH
      */
 
-
-
-    uint256 public tokenPrice; // 1 equity token (min $5 par value) for 0.00180870 ETH, 1808700 Gwei
+    // 1 equity token (min $5 par value) for 0.00180870 ETH, 1808700 Gwei
+    uint256 private tokenPrice;
+    uint256 private upperLimit_7;
+    uint256 private upperLimit_13;
+    uint256 private upperLimit_20;
     uint256 public _initial_supply;
 
 
@@ -43,6 +45,7 @@ contract DirectEquityOffering is Version, Frozen {
     event Bought(address sender, uint256 amount);
     event Sold(address sender, uint256 amount);
     event Swapping(address token,address sender, address receiver, uint256 amount);
+    event Destroyed(address token, string reason);
 
 
     modifier onlyDPO(OfferingContractInterface.OfferingType _type) {
@@ -53,18 +56,47 @@ contract DirectEquityOffering is Version, Frozen {
     TransferAgentInterface TransferAgent;
     OfferingContractInterface Offering;
 
-    constructor(OfferingContractInterface.OfferingType _type, address offering_contract, address transferagent_contract, uint256 initial_supply)
+    constructor(OfferingContractInterface.OfferingType _type,
+                address offering_contract,
+                address transferagent_contract,
+                uint256 initial_supply,
+                uint256 price,
+                uint256 parValue)
         onlyDPO(_type)
     {
+        require(price >= parValue,"Initial price cannot be less than par value?");
         _initial_supply = initial_supply;
         Offering = OfferingContractInterface(offering_contract);
         TransferAgent = TransferAgentInterface(transferagent_contract);
+
+        tokenPrice = price;
+        upperLimit_7 = price * (7 / 100);
+        upperLimit_13 = price * (13 / 100);
+        upperLimit_20 = price * (20 / 100);
+    }
+
+    function destroy(string memory reason, bytes32 encrypted, bytes memory signature)
+        public
+        onlyOwner(encrypted,signature)
+    {
+        require(reason.length > 0,"A reason for destroying this token is required?");
+        selfdestruct(owner);
+        emit Destroyed(address(this), reason);
     }
 
     function updateTokenPrice(uint256 updatePrice)
         public
+        okOwner
     {
         tokenPrice = updatePrice;
+    }
+
+    function getTokenPrice()
+        public
+        view
+        returns (uint256)
+    {
+        return tokenPrice;
     }
 
     function startOffering(bytes32 encrypted, bytes memory signature)
@@ -145,7 +177,7 @@ contract DirectEquityOffering is Version, Frozen {
 
     // Once an investor holds a token, they can freely swap it with another investor on the open market
     // The receiving investor will need to be added to the stockholder list and when the sending investor
-    // no longer holds any tokens, they are removed from the shareholder list
+    // no longer holds any tokens, they are not removed from the shareholder list
     //
     //this function will allow 2 people to trade 2 tokens as the same time (atomic) and swap them between accounts
     //Bob holds token 1 and needs to send to alice
