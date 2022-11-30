@@ -51,3 +51,12 @@ A quaterly report must also be filed,
 A Money Transmitter License is a state regulated license and while two US-based DEX have obtained a MTL, the Pennsylvania Department of Banking made a ruling that a DEX is NOT a Money Transmitter business (https://www.financemagnates.com/cryptocurrency/news/crypto-exchanges-are-not-money-transmitters-clarifies-pennsylvania/)
 
 Under US law, when a state makes a law, other state must abide their ruling. Ask an attorney on lawyers.com or avvo.com to explain this?
+
+# FINRA ATS Reporting
+See https://www.finra.org/rules-guidance/rulebooks/finra-rules/4550
+
+Since the ethereum mainnet is immutable and public while reference by the smart contract address, this report can
+be created automatically. While ethereum mainnet is NOT considered an ATS, the issuer of the token is responsible for ATS reporting.
+
+ATS reporting on https://www.sec.gov/files/formats-r.pdf
+

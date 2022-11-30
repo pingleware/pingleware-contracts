@@ -130,7 +130,7 @@ Skip to step #5, if deploying on a DEX like polymath.network,
             https://www.portal.edgarfiling.sec.gov/Welcome/EDGAROnlineFormsLogin.htm
     8. Register as a Transfer Agent with the SEC using 
             https://www.sec.gov/about/forms/formta-1.pdf
-    9. Apply for a CUSIP at http://cusip.com/apply
+    9. Apply for a CUSIP at https://www.cusip.com/apply/index.html
     10. Prepare most recent balance sheet, profit and loss and retained earnings statements, 
         equivalent financial information for the two prior fiscal years
             Balance sheet - https://www.investopedia.com/terms/b/balancesheet.asp
