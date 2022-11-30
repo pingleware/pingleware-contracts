@@ -164,9 +164,12 @@ One such funding portal, https://cryptolaunch.us/ offering crowd funding on the 
 
     "It depends on your situation.
  
-    If a max total raise of $5 million USD is enough for your company to reach a meaningful milestone, or if you do not have up to $100,000 to spend upfront or if you have to move fast with your fundraising campaign, then Mini-STO is better. Otherwise and STO is better solution for your situation.
+    If a max total raise of $5 million USD is enough for your company to reach a meaningful milestone,
+    or if you do not have up to $100,000 to spend upfront or if you have to move fast with your fundraising campaign,
+    then Mini-STO is better. Otherwise and STO is better solution for your situation.
  
-    Basically, the difference between the Mini-STO and STO boils down to the difference between Reg CF and Reg A+. Simple like that. ", - cryptolaunch.us
+    Basically, the difference between the Mini-STO and STO boils down to the difference between Reg CF and Reg A+. 
+    Simple like that. ", - cryptolaunch.us
 
 CRYPTOLAUNCH.US is the easiest crowwdfunding platform for equity offerings.
 
