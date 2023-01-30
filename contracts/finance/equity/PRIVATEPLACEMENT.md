@@ -1,4 +1,5 @@
 # Private Placement
+
 A private placement registration is accomplished by filing Form D on EDGAR.
 
 ![Securities Act of 1933 Exemptions Regulation A, D and Rule 147. CPA Exam]()(https://www.youtube.com/watch?v=x6ztKIoig8w)
@@ -6,6 +7,7 @@ A private placement registration is accomplished by filing Form D on EDGAR.
 ![Startup Funding with Non-Accredited Investors - 504, 506b, Regulation Crowdfunding & Rule 147/147A](https://img.youtube.com/vi/ya7zQtnNz8Y/sddefault.jpg)(https://www.youtube.com/watch?v=ya7zQtnNz8Y)
 
 # Equity Management Software
+
 Prior to accepting investors for your equity offering, you should have an equity management software installed. The components of any EMS will include,
 
     - Investor Relations Management/CRM
@@ -14,10 +16,16 @@ Prior to accepting investors for your equity offering, you should have an equity
     - Document Management
     - Reports and Analytics
 
+Example of EMS at https://eqvista.com/equity-management-software/
+
+How to build an EMS - https://relevant.software/blog/build-equity-management-software/
+
 ## Section 6. Federal Exemption(s) and Exclusion(s) Claimed (select all that apply)
+
 Multiple options may be chosen.
 
 ### Rule 501 - Definitions and terms used in Regulation D
+
 As used in Regulation D (§ 230.500 et seq. of this chapter), the following terms shall have the meaning indicated:
 
 (a) Accredited investor. Accredited investor shall mean any person who comes within any of the following categories, or who the issuer reasonably believes comes within any of the following categories, at the time of the sale of the securities to that person:
@@ -32,21 +40,21 @@ As used in Regulation D (§ 230.500 et seq. of this chapter), the following term
 
     (5) Any natural person whose individual net worth, or joint net worth with that person's spouse or spousal equivalent, exceeds $1,000,000;
 
-        (i) Except as provided in paragraph (a)(5)(ii) of this section, for purposes of calculating net worth under this paragraph (a)(5):
+    (i) Except as provided in paragraph (a)(5)(ii) of this section, for purposes of calculating net worth under this paragraph (a)(5):
 
-            (A) The person's primary residence shall not be included as an asset;
+    (A) The person's primary residence shall not be included as an asset;
 
-            (B) Indebtedness that is secured by the person's primary residence, up to the estimated fair market value of the primary residence at the time of the sale of securities, shall not be included as a liability (except that if the amount of such indebtedness outstanding at the time of sale of securities exceeds the amount outstanding 60 days before such time, other than as a result of the acquisition of the primary residence, the amount of such excess shall be included as a liability); and
+    (B) Indebtedness that is secured by the person's primary residence, up to the estimated fair market value of the primary residence at the time of the sale of securities, shall not be included as a liability (except that if the amount of such indebtedness outstanding at the time of sale of securities exceeds the amount outstanding 60 days before such time, other than as a result of the acquisition of the primary residence, the amount of such excess shall be included as a liability); and
 
-            (C) Indebtedness that is secured by the person's primary residence in excess of the estimated fair market value of the primary residence at the time of the sale of securities shall be included as a liability;
+    (C) Indebtedness that is secured by the person's primary residence in excess of the estimated fair market value of the primary residence at the time of the sale of securities shall be included as a liability;
 
-        (ii) Paragraph (a)(5)(i) of this section will not apply to any calculation of a person's net worth made in connection with a purchase of securities in accordance with a right to purchase such securities, provided that:
+    (ii) Paragraph (a)(5)(i) of this section will not apply to any calculation of a person's net worth made in connection with a purchase of securities in accordance with a right to purchase such securities, provided that:
 
-            (A) Such right was held by the person on July 20, 2010;
+    (A) Such right was held by the person on July 20, 2010;
 
-            (B) The person qualified as an accredited investor on the basis of net worth at the time the person acquired such right; and
+    (B) The person qualified as an accredited investor on the basis of net worth at the time the person acquired such right; and
 
-            (C) The person held securities of the same issuer, other than such right, on July 20, 2010.
+    (C) The person held securities of the same issuer, other than such right, on July 20, 2010.
 
     (6) Any natural person who had an individual income in excess of $200,000 in each of the two most recent years or joint income with that person's spouse or spousal equivalent in excess of $300,000 in each of those years and has a reasonable expectation of reaching the same income level in the current year;
 
@@ -58,23 +66,23 @@ As used in Regulation D (§ 230.500 et seq. of this chapter), the following term
 
     (10) Any natural person holding in good standing one or more professional certifications or designations or credentials from an accredited educational institution that the Commission has designated as qualifying an individual for accredited investor status. In determining whether to designate a professional certification or designation or credential from an accredited educational institution for purposes of this paragraph (a)(10), the Commission will consider, among others, the following attributes:
 
-        (i) The certification, designation, or credential arises out of an examination or series of examinations administered by a self-regulatory organization or other industry body or is issued by an accredited educational institution;
+    (i) The certification, designation, or credential arises out of an examination or series of examinations administered by a self-regulatory organization or other industry body or is issued by an accredited educational institution;
 
-        (ii) The examination or series of examinations is designed to reliably and validly demonstrate an individual's comprehension and sophistication in the areas of securities and investing;
+    (ii) The examination or series of examinations is designed to reliably and validly demonstrate an individual's comprehension and sophistication in the areas of securities and investing;
 
-        (iii) Persons obtaining such certification, designation, or credential can reasonably be expected to have sufficient knowledge and experience in financial and business matters to evaluate the merits and risks of a prospective investment; and
+    (iii) Persons obtaining such certification, designation, or credential can reasonably be expected to have sufficient knowledge and experience in financial and business matters to evaluate the merits and risks of a prospective investment; and
 
-        (iv) An indication that an individual holds the certification or designation is either made publicly available by the relevant self-regulatory organization or other industry body or is otherwise independently verifiable;
+    (iv) An indication that an individual holds the certification or designation is either made publicly available by the relevant self-regulatory organization or other industry body or is otherwise independently verifiable;
 
     (11) Any natural person who is a “knowledgeable employee,” as defined in rule 3c-5(a)(4) under the Investment Company Act of 1940 (17 CFR 270.3c-5(a)(4)), of the issuer of the securities being offered or sold where the issuer would be an investment company, as defined in section 3 of such act, but for the exclusion provided by either section 3(c)(1) or section 3(c)(7) of such act;
 
     (12) Any “family office,” as defined in rule 202(a)(11)(G)-1 under the Investment Advisers Act of 1940 (17 CFR 275.202(a)(11)(G)-1):
 
-        (i) With assets under management in excess of $5,000,000,
+    (i) With assets under management in excess of $5,000,000,
 
-        (ii) That is not formed for the specific purpose of acquiring the securities offered, and
+    (ii) That is not formed for the specific purpose of acquiring the securities offered, and
 
-        (iii) Whose prospective investment is directed by a person who has such knowledge and experience in financial and business matters that such family office is capable of evaluating the merits and risks of the prospective investment; and
+    (iii) Whose prospective investment is directed by a person who has such knowledge and experience in financial and business matters that such family office is capable of evaluating the merits and risks of the prospective investment; and
 
     (13) Any “family client,” as defined in rule 202(a)(11)(G)-1 under the Investment Advisers Act of 1940 (17 CFR 275.202(a)(11)(G)-1)), of a family office meeting the requirements in paragraph (a)(12) of this section and whose prospective investment in the issuer is directed by such family office pursuant to paragraph (a)(12)(iii).
 
@@ -88,13 +96,13 @@ As used in Regulation D (§ 230.500 et seq. of this chapter), the following term
 
     (1) The following purchasers shall be excluded:
 
-        (i) Any relative, spouse or relative of the spouse of a purchaser who has the same primary residence as the purchaser;
+    (i) Any relative, spouse or relative of the spouse of a purchaser who has the same primary residence as the purchaser;
 
-        (ii) Any trust or estate in which a purchaser and any of the persons related to him as specified in paragraph (e)(1)(i) or (e)(1)(iii) of this section collectively have more than 50 percent of the beneficial interest (excluding contingent interests);
+    (ii) Any trust or estate in which a purchaser and any of the persons related to him as specified in paragraph (e)(1)(i) or (e)(1)(iii) of this section collectively have more than 50 percent of the beneficial interest (excluding contingent interests);
 
-        (iii) Any corporation or other organization of which a purchaser and any of the persons related to him as specified in paragraph (e)(1)(i) or (e)(1)(ii) of this section collectively are beneficial owners of more than 50 percent of the equity securities (excluding directors' qualifying shares) or equity interests; and
+    (iii) Any corporation or other organization of which a purchaser and any of the persons related to him as specified in paragraph (e)(1)(i) or (e)(1)(ii) of this section collectively are beneficial owners of more than 50 percent of the equity securities (excluding directors' qualifying shares) or equity interests; and
 
-        (iv) Any accredited investor.
+    (iv) Any accredited investor.
 
     (2) A corporation, partnership or other entity shall be counted as one purchaser. If, however, that entity is organized for the specific purpose of acquiring the securities offered and is not an accredited investor under paragraph (a)(8) of this section, then each beneficial owner of equity securities or equity interests in the entity shall count as a separate purchaser for all provisions of Regulation D (§§ 230.501-230.508), except to the extent provided in paragraph (e)(1) of this section.
 
@@ -110,11 +118,11 @@ As used in Regulation D (§ 230.500 et seq. of this chapter), the following term
 
     (1) Is not an affiliate, director, officer or other employee of the issuer, or beneficial owner of 10 percent or more of any class of the equity securities or 10 percent or more of the equity interest in the issuer, except where the purchaser is:
 
-        (i) A relative of the purchaser representative by blood, marriage or adoption and not more remote than a first cousin;
+    (i) A relative of the purchaser representative by blood, marriage or adoption and not more remote than a first cousin;
 
-        (ii) A trust or estate in which the purchaser representative and any persons related to him as specified in paragraph (h)(1)(i) or (h)(1)(iii) of this section collectively have more than 50 percent of the beneficial interest (excluding contingent interest) or of which the purchaser representative serves as trustee, executor, or in any similar capacity; or
+    (ii) A trust or estate in which the purchaser representative and any persons related to him as specified in paragraph (h)(1)(i) or (h)(1)(iii) of this section collectively have more than 50 percent of the beneficial interest (excluding contingent interest) or of which the purchaser representative serves as trustee, executor, or in any similar capacity; or
 
-        (iii) A corporation or other organization of which the purchaser representative and any persons related to him as specified in paragraph (h)(1)(i) or (h)(1)(ii) of this section collectively are the beneficial owners of more than 50 percent of the equity securities (excluding directors' qualifying shares) or equity interests;
+    (iii) A corporation or other organization of which the purchaser representative and any persons related to him as specified in paragraph (h)(1)(i) or (h)(1)(ii) of this section collectively are the beneficial owners of more than 50 percent of the equity securities (excluding directors' qualifying shares) or equity interests;
 
     (2) Has such knowledge and experience in financial and business matters that he is capable of evaluating, alone, or together with other purchaser representatives of the purchaser, or together with the purchaser, the merits and risks of the prospective investment;
 
@@ -125,6 +133,7 @@ As used in Regulation D (§ 230.500 et seq. of this chapter), the following term
 (j) Spousal equivalent. The term spousal equivalent shall mean a cohabitant occupying a relationship generally equivalent to that of a spouse.
 
 ### Rule 502 - General conditions to be met
+
 The following conditions shall be applicable to offers and sales made under Regulation D (§ 230.500 et seq. of this chapter):
 
 (a) Integration. To determine whether offers and sales should be integrated, see § 230.152.
@@ -135,39 +144,39 @@ The following conditions shall be applicable to offers and sales made under Regu
 
     (2) Type of information to be furnished.
 
-        (i) If the issuer is not subject to the reporting requirements of section 13 or 15(d) of the Exchange Act, at a reasonable time prior to the sale of securities the issuer shall furnish to the purchaser, to the extent material to an understanding of the issuer, its business and the securities being offered:
+    (i) If the issuer is not subject to the reporting requirements of section 13 or 15(d) of the Exchange Act, at a reasonable time prior to the sale of securities the issuer shall furnish to the purchaser, to the extent material to an understanding of the issuer, its business and the securities being offered:
 
-            (A) Non-financial statement information. If the issuer is eligible to use Regulation A (§ 230.251-263), the same kind of information as would be required in Part II of Form 1-A (§ 239.90 of this chapter). If the issuer is not eligible to use Regulation A, the same kind of information as required in Part I of a registration statement filed under the Securities Act on the form that the issuer would be entitled to use.
+    (A) Non-financial statement information. If the issuer is eligible to use Regulation A (§ 230.251-263), the same kind of information as would be required in Part II of Form 1-A (§ 239.90 of this chapter). If the issuer is not eligible to use Regulation A, the same kind of information as required in Part I of a registration statement filed under the Securities Act on the form that the issuer would be entitled to use.
 
-            (B) Financial statement information -
+    (B) Financial statement information -
 
-                (1) Offerings up to $20,000,000. The financial statement information required by paragraph (b) of Part F/S of Form 1-A. Such financial statement information must be prepared in accordance with generally accepted accounting principles in the United States (US GAAP). If the issuer is a foreign private issuer, such financial statements must be prepared in accordance with either US GAAP or International Financial Reporting Standards (IFRS) as issued by the International Accounting Standards Board (IASB). If the financial statements comply with IFRS, such compliance must be explicitly and unreservedly stated in the notes to the financial statements and if the financial statements are audited, the auditor's report must include an opinion on whether the financial statements comply with IFRS as issued by the IASB.
+    (1) Offerings up to $20,000,000. The financial statement information required by paragraph (b) of Part F/S of Form 1-A. Such financial statement information must be prepared in accordance with generally accepted accounting principles in the United States (US GAAP). If the issuer is a foreign private issuer, such financial statements must be prepared in accordance with either US GAAP or International Financial Reporting Standards (IFRS) as issued by the International Accounting Standards Board (IASB). If the financial statements comply with IFRS, such compliance must be explicitly and unreservedly stated in the notes to the financial statements and if the financial statements are audited, the auditor's report must include an opinion on whether the financial statements comply with IFRS as issued by the IASB.
 
-                (2) Offerings over $20,000,000. The financial statement information required by paragraph (c) of Part F/S of Form 1-A (referenced in § 239.90 of this chapter). If the issuer is a foreign private issuer, such financial statements must be prepared in accordance with either US GAAP or IFRS as issued by the IASB. If the financial statements comply with IFRS, such compliance must be explicitly and unreservedly stated in the notes to the financial statements and the auditor's report must include an opinion on whether the financial statements comply with IFRS as issued by the IASB.
+    (2) Offerings over $20,000,000. The financial statement information required by paragraph (c) of Part F/S of Form 1-A (referenced in § 239.90 of this chapter). If the issuer is a foreign private issuer, such financial statements must be prepared in accordance with either US GAAP or IFRS as issued by the IASB. If the financial statements comply with IFRS, such compliance must be explicitly and unreservedly stated in the notes to the financial statements and the auditor's report must include an opinion on whether the financial statements comply with IFRS as issued by the IASB.
 
-            (C) If the issuer is a foreign private issuer eligible to use Form 20-F (§ 249.220f of this chapter), the issuer shall disclose the same kind of information required to be included in a registration statement filed under the Act on the form that the issuer would be entitled to use. The financial statements need be certified only to the extent required by paragraph (b)(2)(i) (B) (1), (2) or (3) of this section, as appropriate.
+    (C) If the issuer is a foreign private issuer eligible to use Form 20-F (§ 249.220f of this chapter), the issuer shall disclose the same kind of information required to be included in a registration statement filed under the Act on the form that the issuer would be entitled to use. The financial statements need be certified only to the extent required by paragraph (b)(2)(i) (B) (1), (2) or (3) of this section, as appropriate.
 
-        (ii) If the issuer is subject to the reporting requirements of section 13 or 15(d) of the Exchange Act, at a reasonable time prior to the sale of securities the issuer shall furnish to the purchaser the information specified in paragraph (b)(2)(ii)(A) or (B) of this section, and in either event the information specified in paragraph (b)(2)(ii)(C) of this section:
+    (ii) If the issuer is subject to the reporting requirements of section 13 or 15(d) of the Exchange Act, at a reasonable time prior to the sale of securities the issuer shall furnish to the purchaser the information specified in paragraph (b)(2)(ii)(A) or (B) of this section, and in either event the information specified in paragraph (b)(2)(ii)(C) of this section:
 
-            (A) The issuer's annual report to shareholders for the most recent fiscal year, if such annual report meets the requirements of Rules 14a-3 or 14c-3 under the Exchange Act (§ 240.14a-3 or § 240.14c-3 of this chapter), the definitive proxy statement filed in connection with that annual report, and if requested by the purchaser in writing, a copy of the issuer's most recent Form 10-K (§ 249.310 of this chapter) under the Exchange Act.
+    (A) The issuer's annual report to shareholders for the most recent fiscal year, if such annual report meets the requirements of Rules 14a-3 or 14c-3 under the Exchange Act (§ 240.14a-3 or § 240.14c-3 of this chapter), the definitive proxy statement filed in connection with that annual report, and if requested by the purchaser in writing, a copy of the issuer's most recent Form 10-K (§ 249.310 of this chapter) under the Exchange Act.
 
-            (B) The information contained in an annual report on Form 10-K (§ 249.310 of this chapter) under the Exchange Act or in a registration statement on Form S-1 (§ 239.11 of this chapter) or S-11 (§ 239.18 of this chapter) under the Act or on Form 10 (§ 249.210 of this chapter) under the Exchange Act, whichever filing is the most recent required to be filed.
+    (B) The information contained in an annual report on Form 10-K (§ 249.310 of this chapter) under the Exchange Act or in a registration statement on Form S-1 (§ 239.11 of this chapter) or S-11 (§ 239.18 of this chapter) under the Act or on Form 10 (§ 249.210 of this chapter) under the Exchange Act, whichever filing is the most recent required to be filed.
 
-            (C) The information contained in any reports or documents required to be filed by the issuer under sections 13(a), 14(a), 14(c), and 15(d) of the Exchange Act since the distribution or filing of the report or registration statement specified in paragraphs (b)(2)(ii) (A) or (B), and a brief description of the securities being offered, the use of the proceeds from the offering, and any material changes in the issuer's affairs that are not disclosed in the documents furnished.
+    (C) The information contained in any reports or documents required to be filed by the issuer under sections 13(a), 14(a), 14(c), and 15(d) of the Exchange Act since the distribution or filing of the report or registration statement specified in paragraphs (b)(2)(ii) (A) or (B), and a brief description of the securities being offered, the use of the proceeds from the offering, and any material changes in the issuer's affairs that are not disclosed in the documents furnished.
 
-            (D) If the issuer is a foreign private issuer, the issuer may provide in lieu of the information specified in paragraph (b)(2)(ii) (A) or (B) of this section, the information contained in its most recent filing on Form 20-F or Form F-1 (§ 239.31 of the chapter).
+    (D) If the issuer is a foreign private issuer, the issuer may provide in lieu of the information specified in paragraph (b)(2)(ii) (A) or (B) of this section, the information contained in its most recent filing on Form 20-F or Form F-1 (§ 239.31 of the chapter).
 
-        (iii) Exhibits required to be filed with the Commission as part of a registration statement or report, other than an annual report to shareholders or parts of that report incorporated by reference in a Form 10-K report, need not be furnished to each purchaser that is not an accredited investor if the contents of material exhibits are identified and such exhibits are made available to a purchaser, upon his or her written request, a reasonable time before his or her purchase.
+    (iii) Exhibits required to be filed with the Commission as part of a registration statement or report, other than an annual report to shareholders or parts of that report incorporated by reference in a Form 10-K report, need not be furnished to each purchaser that is not an accredited investor if the contents of material exhibits are identified and such exhibits are made available to a purchaser, upon his or her written request, a reasonable time before his or her purchase.
 
-        (iv) At a reasonable time prior to the sale of securities to any purchaser that is not an accredited investor in a transaction under § 230.506(b), the issuer shall furnish to the purchaser a brief description in writing of any material written information concerning the offering that has been provided by the issuer to any accredited investor but not previously delivered to such unaccredited purchaser. The issuer shall furnish any portion or all of this information to the purchaser, upon his written request a reasonable time prior to his purchase.
+    (iv) At a reasonable time prior to the sale of securities to any purchaser that is not an accredited investor in a transaction under § 230.506(b), the issuer shall furnish to the purchaser a brief description in writing of any material written information concerning the offering that has been provided by the issuer to any accredited investor but not previously delivered to such unaccredited purchaser. The issuer shall furnish any portion or all of this information to the purchaser, upon his written request a reasonable time prior to his purchase.
 
-        (v) The issuer shall also make available to each purchaser at a reasonable time prior to his purchase of securities in a transaction under § 230.506(b) the opportunity to ask questions and receive answers concerning the terms and conditions of the offering and to obtain any additional information which the issuer possesses or can acquire without unreasonable effort or expense that is necessary to verify the accuracy of information furnished under paragraph (b)(2) (i) or (ii) of this section.
+    (v) The issuer shall also make available to each purchaser at a reasonable time prior to his purchase of securities in a transaction under § 230.506(b) the opportunity to ask questions and receive answers concerning the terms and conditions of the offering and to obtain any additional information which the issuer possesses or can acquire without unreasonable effort or expense that is necessary to verify the accuracy of information furnished under paragraph (b)(2) (i) or (ii) of this section.
 
-        (vi) For business combinations or exchange offers, in addition to information required by Form S-4 (17 CFR 239.25), the issuer shall provide to each purchaser at the time the plan is submitted to security holders, or, with an exchange, during the course of the transaction and prior to sale, written information about any terms or arrangements of the proposed transactions that are materially different from those for all other security holders. For purposes of this subsection, an issuer which is not subject to the reporting requirements of section 13 or 15(d) of the Exchange Act may satisfy the requirements of Part I.B. or C. of Form S-4 by compliance with paragraph (b)(2)(i) of this § 230.502.
+    (vi) For business combinations or exchange offers, in addition to information required by Form S-4 (17 CFR 239.25), the issuer shall provide to each purchaser at the time the plan is submitted to security holders, or, with an exchange, during the course of the transaction and prior to sale, written information about any terms or arrangements of the proposed transactions that are materially different from those for all other security holders. For purposes of this subsection, an issuer which is not subject to the reporting requirements of section 13 or 15(d) of the Exchange Act may satisfy the requirements of Part I.B. or C. of Form S-4 by compliance with paragraph (b)(2)(i) of this § 230.502.
 
-        (vii) At a reasonable time prior to the sale of securities to any purchaser that is not an accredited investor in a transaction under § 230.506(b), the issuer shall advise the purchaser of the limitations on resale in the manner contained in paragraph (d)(2) of this section. Such disclosure may be contained in other materials required to be provided by this paragraph.
+    (vii) At a reasonable time prior to the sale of securities to any purchaser that is not an accredited investor in a transaction under § 230.506(b), the issuer shall advise the purchaser of the limitations on resale in the manner contained in paragraph (d)(2) of this section. Such disclosure may be contained in other materials required to be provided by this paragraph.
 
-        (viii) At a reasonable time prior to the sale of securities to any purchaser that is not an accredited investor in a transaction under § 230.506(b), the issuer shall provide the purchaser with any written communication or broadcast script used under the authorization of § 230.241 within 30 days prior to such sale.
+    (viii) At a reasonable time prior to the sale of securities to any purchaser that is not an accredited investor in a transaction under § 230.506(b), the issuer shall provide the purchaser with any written communication or broadcast script used under the authorization of § 230.241 within 30 days prior to such sale.
 
 (c) Limitation on manner of offering. Except as provided in § 230.504(b)(1) or § 230.506(c), neither the issuer nor any person acting on its behalf shall offer or sell the securities by any form of general solicitation or general advertising, including, but not limited to, the following:
 
@@ -186,22 +195,27 @@ The following conditions shall be applicable to offers and sales made under Regu
 While taking these actions will establish the requisite reasonable care, it is not the exclusive method to demonstrate such care. Other actions by the issuer may satisfy this provision. In addition, § 230.502(b)(2)(vii) requires the delivery of written disclosure of the limitations on resale to investors in certain instances.
 
 ### Rule 504
+
 See https://www.sec.gov/smallbusiness/exemptofferings/rule504
 
 US Code https://www.law.cornell.edu/cfr/text/17/230.504 - Exemption for limited offerings and sales of securities not exceeding $10,000,000.
 
 ## Rule 504(b)(1) (not (i), (ii) or (iii))
+
 (b) Conditions to be met -
 
 (1) General conditions. To qualify for exemption under this § 230.504, offers and sales must satisfy the terms and conditions of §§ 230.501 and 230.502 (a), (c) and (d), except that the provisions of § 230.502 (c) and (d) will not apply to offers and sales of securities under this § 230.504 that are made:
 
 ## Rule 504 (b)(1)(i)
+
 (i) Exclusively in one or more states that provide for the registration of the securities, and require the public filing and delivery to investors of a substantive disclosure document before sale, and are made in accordance with those state provisions;
 
 ## Rule 504 (b)(1)(ii)
-(ii) In one or more states that have no provision for the registration of the securities or the public filing or delivery of a disclosure document before sale, if the securities have been registered in at least one state that provides for such registration, public filing and delivery before sale, offers and sales are made in that state in accordance with such provisions, and the disclosure document is delivered before sale to all purchasers (including those in the states that have no such procedure); 
+
+(ii) In one or more states that have no provision for the registration of the securities or the public filing or delivery of a disclosure document before sale, if the securities have been registered in at least one state that provides for such registration, public filing and delivery before sale, offers and sales are made in that state in accordance with such provisions, and the disclosure document is delivered before sale to all purchasers (including those in the states that have no such procedure);
 
 ## Rule 504 (b)(1)(iii)
+
 Exclusively according to state law exemptions from registration that permit general solicitation and general advertising so long as sales are made only to “accredited investors” as defined in § 230.501(a).
 
 ### Rule 506
@@ -213,31 +227,33 @@ Exclusively according to state law exemptions from registration that permit gene
 ## Rule 506(b)
 
 ## Rule 506(c)
+
 The only private placement which permits general solicitation for accredited investors.
 
 ### Securities Act Section 4(a)(5)
 
 ### Investment Company Act Section 3(c)
 
-### Section 3(c)(1)	  	
+### Section 3(c)(1)
 
-### Section 3(c)(2)	  	
+### Section 3(c)(2)
 
-### Section 3(c)(3)	  	
+### Section 3(c)(3)
 
-### Section 3(c)(4)	  	
+### Section 3(c)(4)
 
-### Section 3(c)(5)	  	
+### Section 3(c)(5)
 
-### Section 3(c)(6)	  	
+### Section 3(c)(6)
 
 ### Section 3(c)(7)
 
-### Section 3(c)(9)  
+### Section 3(c)(9)
 
 ### Section 3(c)(10)
 
 ### Section 3(c)(11)
+
 For registration under Rule 147
 
 ![Rule 147 and Section 3 - Securities Exemption]()(https://www.youtube.com/watch?v=XEH5-s9fvl4)
@@ -250,14 +266,18 @@ The fee to register a Florida intra-state offering is $1,000 per application.
 
 ### Section 3(c)(14)
 
-
 # State of Florida Title XXXIII: REGULATION OF TRADE, COMMERCE, INVESTMENTS, AND SOLICITATIONS: CHAPTER 517 - SECURITIES TRANSACTIONS
+
 See http://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0517/0517ContentsIndex.html
 
 ## 517.011 Short title.
+
 ## 517.021 Definitions.
+
 ## 517.03 Rulemaking; immunity for acts in conformity with rules.
+
 ## 517.051 Exempt securities.
+
 The exemptions provided herein from the registration requirements of s. 517.07 are self-executing and do not require any filing with the office prior to claiming such exemption. Any person who claims entitlement to any of these exemptions bears the burden of proving such entitlement in any proceeding brought under this chapter. The registration provisions of s. 517.07 do not apply to any of the following securities:
     (1) A security issued or guaranteed by the United States or any territory or insular possession of the United States, by the District of Columbia, or by any state of the United States or by any political subdivision or agency or other instrumentality thereof; provided that no person shall directly or indirectly offer or sell securities, other than general obligation bonds, under this subsection if the issuer or guarantor is in default or has been in default any time after December 31, 1975, as to principal or interest:
         (a) With respect to an obligation issued by the issuer or successor of the issuer; or
@@ -285,7 +305,9 @@ The exemptions provided herein from the registration requirements of s. 517.07 a
     (8) A note, draft, bill of exchange, or banker’s acceptance having a unit amount of $25,000 or more which arises out of a current transaction, or the proceeds of which have been or are to be used for current transactions, and which has a maturity period at the time of issuance not exceeding 9 months exclusive of days of grace, or any renewal thereof which has a maturity period likewise limited. This subsection applies only to prime quality negotiable commercial paper of a type not ordinarily purchased by the general public; that is, paper issued to facilitate well-recognized types of current operational business requirements and of a type eligible for discounting by Federal Reserve banks.
     (9) A security issued by a corporation organized and operated exclusively for religious, educational, benevolent, fraternal, charitable, or reformatory purposes and not for pecuniary profit, no part of the net earnings of which corporation inures to the benefit of any private stockholder or individual, or any security of a fund that is excluded from the definition of an investment company under s. 3(c)(10)(B) of the Investment Company Act of 1940; provided that no person shall directly or indirectly offer or sell securities under this subsection except by an offering circular containing full and fair disclosure, as prescribed by the rules of the commission, of all material information, including, but not limited to, a description of the securities offered and terms of the offering, a description of the nature of the issuer’s business, a statement of the purpose of the offering and the intended application by the issuer of the proceeds thereof, and financial statements of the issuer prepared in conformance with United States generally accepted accounting principles. Section 6(c) of the Philanthropy Protection Act of 1995, Pub. L. No. 104-62, shall not preempt any provision of this chapter.
     (10) Any insurance or endowment policy or annuity contract or optional annuity contract or self-insurance agreement issued by a corporation, insurance company, reciprocal insurer, or risk retention group subject to the supervision of the insurance regulator or bank regulator, or any agency or officer performing like functions, of any state or territory of the United States or the District of Columbia.
+
 ## 517.061 Exempt transactions.
+
 Except as otherwise provided in s. 517.0611 for a transaction listed in subsection (21), the exemption for each transaction listed below is self-executing and does not require any filing with the office before claiming the exemption. Any person who claims entitlement to any of the exemptions bears the burden of proving such entitlement in any proceeding brought under this chapter. The registration provisions of s. 517.07 do not apply to any of the following transactions; however, such transactions are subject to the provisions of ss. 517.301, 517.311, and 517.312:
     (1) At any judicial, executor’s, administrator’s, guardian’s, or conservator’s sale, or at any sale by a receiver or trustee in insolvency or bankruptcy, or any transaction incident to a judicially approved reorganization in which a security is issued in exchange for one or more outstanding securities, claims, or property interests.
     (2) By or for the account of a pledgeholder or mortgagee selling or offering for sale or delivery in the ordinary course of business and not for the purposes of avoiding the provisions of this chapter, to liquidate a bona fide debt, a security pledged in good faith as security for such debt.
@@ -357,11 +379,17 @@ Except as otherwise provided in s. 517.0611 for a transaction listed in subsecti
             3. The issuer of the security has total assets of at least $2 million based on an audited balance sheet as of a date within 18 months before such transaction or, in the case of a reorganization or merger in which parties to the reorganization or merger had such audited balance sheet, a pro forma balance sheet.
     (21) The offer or sale of a security by an issuer conducted in accordance with s. 517.0611.
     (22) The offer or sale of securities, solely in connection with the transfer of ownership of an eligible privately held company, through a merger and acquisition broker in accordance with s. 517.12(22).
+
 ## 517.0611 Intrastate crowdfunding.
+
 ## 517.07 Registration of securities.
+
 ## 517.072 Viatical settlement investments.
+
 ## 517.075 Cuba, prospectus disclosure of doing business with, required.
+
 ## 517.081 Registration procedure.
+
     (1) All securities required by this chapter to be registered before being sold in this state and not entitled to registration by notification shall be registered in the manner provided by this section.
     (2) The office shall receive and act upon applications to have securities registered, and the commission may prescribe forms on which it may require such applications to be submitted. Applications shall be duly signed by the applicant, sworn to by any person having knowledge of the facts, and filed with the office. The commission may establish, by rule, procedures for depositing fees and filing documents by electronic means provided such procedures provide the office with the information and data required by this section. An application may be made either by the issuer of the securities for which registration is applied or by any registered dealer desiring to sell the same within the state.
     (3) The office may require the applicant to submit to the office the following information concerning the issuer and such other relevant information as the office may in its judgment deem necessary to enable it to ascertain whether such securities shall be registered pursuant to the provisions of this section:
@@ -381,9 +409,9 @@ Except as otherwise provided in s. 517.0611 for a transaction listed in subsecti
                 e. Any issuer the office determines is ineligible if the form would not provide full and fair disclosure of material information for the type of offering to be registered by the issuer.
                 f. Any corporation which has failed to provide the office the reports required for a previous offering registered pursuant to this subparagraph.
 
-            As a condition precedent to qualifying for use of the simplified offering circular, a corporation shall agree to provide the office with an annual financial report containing a balance sheet as of the end of the issuer’s fiscal year and a statement of income for such year, prepared in accordance with United States generally accepted accounting principles and accompanied by an independent accountant’s report. If the issuer has more than 100 security holders at the end of a fiscal year, the financial statements must be audited. Annual financial reports must be filed with the office within 90 days after the close of the issuer’s fiscal year for each of the first 5 years following the effective date of the registration.
+    As a condition precedent to qualifying for use of the simplified offering circular, a corporation shall agree to provide the office with an annual financial report containing a balance sheet as of the end of the issuer’s fiscal year and a statement of income for such year, prepared in accordance with United States generally accepted accounting principles and accompanied by an independent accountant’s report. If the issuer has more than 100 security holders at the end of a fiscal year, the financial statements must be audited. Annual financial reports must be filed with the office within 90 days after the close of the issuer’s fiscal year for each of the first 5 years following the effective date of the registration.
 
-        (h) A statement of the amount of the issuer’s income, expenses, and fixed charges during the last fiscal year or, if in actual business less than 1 year, then for such time as the issuer has been in actual business.
+    (h) A statement of the amount of the issuer’s income, expenses, and fixed charges during the last fiscal year or, if in actual business less than 1 year, then for such time as the issuer has been in actual business.
         (i) A statement of the issuer’s cash sources and application during the last fiscal year or, if in actual business less than 1 year, then for such time as the issuer has been in actual business.
         (j) A statement showing the maximum price at which such security is proposed to be sold, together with the maximum amount of commission, including expenses, or other form of remuneration to be paid in cash or otherwise, directly or indirectly, for or in connection with the sale or offering for sale of such securities.
         (k) A copy of the opinion or opinions of counsel concerning the legality of the issue or other matters which the office may determine to be relevant to the issue.
@@ -397,40 +425,75 @@ Except as otherwise provided in s. 517.0611 for a transaction listed in subsecti
     (8) The commission may by rule establish requirements and standards for:
         (a) Disclosures to purchasers of viatical settlement investments.
         (b) Recordkeeping requirements for sellers of viatical settlement investments.
+
 ## 517.082 Notification registration.
+
 ## 517.101 Consent to service.
+
 ## 517.111 Revocation or denial of registration of securities.
+
 ## 517.12 Registration of dealers, associated persons, intermediaries, and investment advisers.
+
 ## 517.1201 Notice filing requirements for federal covered advisers.
+
 ## 517.1202 Notice-filing requirements for branch offices.
+
 ## 517.1205 Registration of associated persons specific as to securities dealer, investment adviser, or federal covered adviser identified at time of registration approval.
+
 ## 517.121 Books and records requirements; examinations.
+
     (1) A dealer, investment adviser, branch office, associated person, or intermediary shall maintain such books and records as the commission may prescribe by rule.
     (2) The office shall, at intermittent periods, examine the affairs and books and records of each registered dealer, investment adviser, associated person, intermediary, or branch office notice-filed with the office, or require such records and reports to be submitted to it as required by rule of the commission, to determine compliance with this act.
     (3) Registration under s. 517.12 or notification under s. 517.1202 may be summarily suspended by the office pursuant to s. 120.60(6) if the registrant or notice-filed branch office fails to promptly provide to the office, after a written request, any of the records required by this section and the rules adopted under this section. The suspension may be rescinded if the registrant or notice-filed branch office submits the requested records to the office. For purposes of s. 120.60(6), failure to provide substantially all of such records constitutes immediate and serious danger to the public health, safety, and welfare.
+
 ## 517.1215 Requirements, rules of conduct, and prohibited business practices for investment advisors and their associated persons.
+
 ## 517.1217 Rules of conduct and prohibited business practices for dealers and their associated persons.
+
 ## 517.122 Arbitration.
+
 ## 517.131 Securities Guaranty Fund.
+
 ## 517.141 Payment from the fund.
+
 ## 517.151 Investments of the fund.
+
 ## 517.161 Revocation, denial, or suspension of registration of dealer, investment adviser, intermediary, or associated person.
+
 ## 517.1611 Guidelines.
+
 ## 517.171 Burden of proof.
+
 ## 517.181 Escrow agreement.
+
 ## 517.191 Injunction to restrain violations; civil penalties; enforcement by Attorney General.
+
 ## 517.201 Investigations; examinations; subpoenas; hearings; witnesses.
+
 ## 517.2015 Confidentiality of information relating to investigations and examinations.
+
 ## 517.2016 Public records exemption; examination techniques or procedures.
+
 ## 517.211 Remedies available in cases of unlawful sale.
+
 ## 517.221 Cease and desist orders.
+
 ## 517.241 Remedies.
+
 ## 517.275 Commodities; prohibited practices.
+
 ## 517.301 Fraudulent transactions; falsification or concealment of facts.
+
 ## 517.302 Criminal penalties; alternative fine; Anti-Fraud Trust Fund; time limitation for criminal prosecution.
+
 ## 517.311 False representations; deceptive words; enforcement.
+
 ## 517.312 Securities, investments, boiler rooms; prohibited practices; remedies.
+
 ## 517.313 Destroying certain records; reproduction.
+
 ## 517.315 Fees.
+
 ## 517.32 Exemption from excise tax, certain obligations to pay.
+
 ## 517.34 Protection of specified adults.
