@@ -180,12 +180,12 @@ contract Credit is Version, Frozen {
         /** Calculate the amount to be returned by the borrower.
           * At this point this is the addition of the requested amount and the interest.
           */
-        returnAmount = requestedAmount.add(interest);
+        returnAmount = SafeMath.safeAdd(requestedAmount,interest);
 
         /** Calculating the repayment installment.
           * We divide the amount to be returned by the requested repayments count to get it.
           */
-        repaymentInstallment = returnAmount.div(requestedRepayments);
+        repaymentInstallment = SafeMath.safeDiv(returnAmount,requestedRepayments);
 
         // Set the credit description.
         description = _description;
@@ -216,10 +216,10 @@ contract Credit is Version, Frozen {
         if (address(this).balance >= requestedAmount) {
 
             // Calculate the extra money that may have been sent.
-            extraMoney = address(this).balance.sub(requestedAmount);
+            extraMoney = SafeMath.safeSub(address(this).balance,requestedAmount);
 
             // Assert the calculations
-            assert(requestedAmount == address(this).balance.sub(extraMoney));
+            assert(requestedAmount == SafeMath.safeSub(address(this).balance,extraMoney));
 
             // Assert for possible underflow / overflow
             assert(extraMoney <= msg.value);
@@ -249,10 +249,10 @@ contract Credit is Version, Frozen {
         lendersCount++;
 
         // Add the amount invested to the amount mapping.
-        lendersInvestedAmount[msg.sender] = lendersInvestedAmount[msg.sender].add(msg.value.sub(extraMoney));
+        lendersInvestedAmount[msg.sender] = SafeMath.safeSub(SafeMath.safeAdd(lendersInvestedAmount[msg.sender],msg.value),extraMoney);
 
         // Log lender invested amount.
-        emit LogLenderInvestment(msg.sender, msg.value.sub(extraMoney), block.timestamp);
+        emit LogLenderInvestment(msg.sender, SafeMath.safeSub(msg.value,extraMoney), block.timestamp);
     }
 
     /** @dev Repayment function.
@@ -286,10 +286,10 @@ contract Credit is Version, Frozen {
         if (msg.value > repaymentInstallment) {
 
             // Calculate the extra money being sent in the transaction.
-            extraMoney = msg.value.sub(repaymentInstallment);
+            extraMoney = SafeMath.safeSub(msg.value,repaymentInstallment);
 
             // Assert the calculations.
-            assert(repaymentInstallment == msg.value.sub(extraMoney));
+            assert(repaymentInstallment == SafeMath.safeSub(msg.value,extraMoney));
 
             // Assert for underflow.
             assert(extraMoney <= msg.value);
@@ -302,10 +302,10 @@ contract Credit is Version, Frozen {
         }
 
         // Log borrower installment received.
-        emit LogBorrowerRepaymentInstallment(msg.sender, msg.value.sub(extraMoney), block.timestamp);
+        emit LogBorrowerRepaymentInstallment(msg.sender, SafeMath.safeSub(msg.value,extraMoney), block.timestamp);
 
         // Add the repayment installment amount to the total repaid amount.
-        repaidAmount = repaidAmount.add(msg.value.sub(extraMoney));
+        repaidAmount = SafeMath.safeSub(SafeMath.safeAdd(repaidAmount,msg.value),extraMoney);
 
         // Check the repaid amount reached the amount to be returned.
         if (repaidAmount == returnAmount) {

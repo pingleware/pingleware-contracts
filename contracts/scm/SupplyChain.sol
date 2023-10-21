@@ -178,22 +178,14 @@ contract SupplyChain is Owned, SupplierRole, ManufacturerRole, DistributorRole, 
     _;
   }
 
-// constructor setup owner sku upc
+  // constructor setup owner sku upc
   constructor() payable {
     sku = 1;
     upc = 1;
   }
 
-    // Define a function 'kill'
-  function kill() public {
-    if (msg.sender == getOwner()) {
-      address payable ownerAddressPayable = _make_payable(getOwner());
-      selfdestruct(ownerAddressPayable);
-    }
-  }
 
-
-    // allows you to convert an address into a payable address
+  // allows you to convert an address into a payable address
   function _make_payable(address x) internal pure returns (address payable) {
     return payable(x);
   }

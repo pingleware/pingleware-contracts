@@ -22,9 +22,10 @@ contract Donation is Version, Owned {
         addGiver(msg.sender);
     }
 
-    function moveFund(bytes32 encrypted,bytes memory signature)
+    function moveFund()
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
       payable(getOwner()).transfer(address(this).balance);
     }

@@ -71,8 +71,8 @@ contract ERC1155 is IERC1155, IERC165, CommonConstants
 
         // SafeMath will throw with insuficient funds _from
         // or if _id is not valid (balance will be 0)
-        balances[_id][_from] = balances[_id][_from].sub(_value);
-        balances[_id][_to]   = _value.add(balances[_id][_to]);
+        balances[_id][_from] = SafeMath.safeSub(balances[_id][_from],_value);
+        balances[_id][_to]   = SafeMath.safeAdd(_value,balances[_id][_to]);
 
         // MUST emit event
         emit TransferSingle(msg.sender, _from, _to, _id, _value);
@@ -113,8 +113,8 @@ contract ERC1155 is IERC1155, IERC165, CommonConstants
 
             // SafeMath will throw with insuficient funds _from
             // or if _id is not valid (balance will be 0)
-            balances[id][_from] = balances[id][_from].sub(value);
-            balances[id][_to]   = value.add(balances[id][_to]);
+            balances[id][_from] = SafeMath.safeSub(balances[id][_from],value);
+            balances[id][_to]   = SafeMath.safeAdd(value,balances[id][_to]);
         }
 
         // Note: instead of the below batch versions of event and acceptance check you MAY have emitted a TransferSingle

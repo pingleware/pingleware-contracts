@@ -1,128 +1,142 @@
-// SPDX-License-Identifier: CC-BY-4.0
+// SPDX-License-Identifier: BSL-1.1
 pragma solidity >=0.4.22 <0.9.0;
-
 
 library SafeMath {
 
-    /**
-    * @dev Multiplies two numbers, throws on overflow.
-    */
-    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-        if (a == 0) {
-        return 0;
+    // SafeMath for int256
+    function safeAdd(int256 a, int256 b) internal pure returns (int256) {
+        int256 c;
+        assembly {
+            c := add(a, b)
+            if iszero(eq(c, add(a, b))) {
+                revert(0, 0)
+            }
         }
-        uint256 c = a * b;
-        assert(c / a == b);
+        require(c >= a, "SafeMath: addition overflow");
         return c;
     }
-
-    /**
-    * @dev Integer division of two numbers, truncating the quotient.
-    */
-    function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        // assert(b > 0); // Solidity automatically throws when dividing by 0
-        uint256 c = a / b;
-        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    
+    function safeSub(int256 a, int256 b) internal pure returns (int256) {
+        require(b <= a, "SafeMath: subtraction overflow");
+        int256 c;
+        assembly {
+            c := sub(a, b)
+            if iszero(eq(c, add(a, not(b)))) {
+                revert(0, 0)
+            }
+        }        
         return c;
     }
-
-    /**
-    * @dev Subtracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
-    */
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        assert(b <= a);
-        return a - b;
-    }
-
-    /**
-    * @dev Adds two numbers, throws on overflow.
-    */
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        assert(c >= a);
-        return c;
-    }
-
-    // 32
-    function mul32(uint32 a, uint32 b) internal pure returns (uint32) {
+    
+    function safeMul(int256 a, int256 b) internal pure returns (int256) {
         if (a == 0) {
-        return 0;
+            return 0;
         }
-        uint32 c = a * b;
-        assert(c / a == b);
-        return c;
-    }
-
-    function div32(uint32 a, uint32 b) internal pure returns (uint32) {
-        // assert(b > 0); // Solidity automatically throws when dividing by 0
-        uint32 c = a / b;
-        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-        return c;
-    }
-
-    function sub32(uint32 a, uint32 b) internal pure returns (uint32) {
-        assert(b <= a);
-        return a - b;
-    }
-
-    function add32(uint32 a, uint32 b) internal pure returns (uint32) {
-        uint32 c = a + b;
-        assert(c >= a);
-        return c;
-    }
-
-    // 16
-    function mul16(uint16 a, uint16 b) internal pure returns (uint16) {
-        if (a == 0) {
-        return 0;
+        int256 c;
+        assembly {
+            c := mul(a, b)
+            if or(iszero(b), iszero(eq(div(c, b), a))) {
+                revert(0, 0)
+            }
         }
-        uint16 c = a * b;
-        assert(c / a == b);
+        require(c / a == b, "SafeMath: multiplication overflow");
+        return c;
+    }
+    
+    function safeDiv(int256 a, int256 b) internal pure returns (int256) {
+        require(b > 0, "SafeMath: division by zero");
+        int256 c;
+        assembly {
+            if iszero(b) {
+                revert(0, 0)
+            }
+            c := div(a, b)
+        }
         return c;
     }
 
-    function div16(uint16 a, uint16 b) internal pure returns (uint16) {
-        // assert(b > 0); // Solidity automatically throws when dividing by 0
-        uint16 c = a / b;
-        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-        return c;
+    function safePow(int256 base, int256 exponent) external pure returns (int256) {
+        if (base == 0) {
+            return 0;
+        }
+        if (exponent == 0) {
+            return 1;
+        }
+
+        int256 result = 1;
+        for (int256 i = 0; i < exponent; i++) {
+            assembly {
+                result := mul(result,base)
+            }
+        }
+
+        return result;
     }
 
-    function sub16(uint16 a, uint16 b) internal pure returns (uint16) {
-        assert(b <= a);
-        return a - b;
-    }
-
-    function add16(uint16 a, uint16 b) internal pure returns (uint16) {
-        uint16 c = a + b;
-        assert(c >= a);
-        return c;
-    }
-
+    // SafeMath for uint256 (unsigned integers)
     function safeAdd(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
+        uint256 c;
+        assembly {
+            c := add(a, b)
+            if iszero(eq(c, add(a, b))) {
+                revert(0, 0)
+            }
+        }
         require(c >= a, "SafeMath: addition overflow");
         return c;
     }
     
     function safeSub(uint256 a, uint256 b) internal pure returns (uint256) {
         require(b <= a, "SafeMath: subtraction overflow");
-        uint256 c = a - b;
+        uint256 c;
+        assembly {
+            c := sub(a, b)
+            if iszero(eq(c, add(a, not(b)))) {
+                revert(0, 0)
+            }
+        }
         return c;
     }
     
     function safeMul(uint256 a, uint256 b) internal pure returns (uint256) {
-        if (a == 0) {
-            return 0;
+        uint256 c;
+        assembly {
+            c := mul(a, b)
+            if or(iszero(b), iszero(eq(div(c, b), a))) {
+                revert(0, 0)
+            }
         }
-        uint256 c = a * b;
         require(c / a == b, "SafeMath: multiplication overflow");
         return c;
     }
     
     function safeDiv(uint256 a, uint256 b) internal pure returns (uint256) {
         require(b > 0, "SafeMath: division by zero");
-        uint256 c = a / b;
+        uint256 c;
+        assembly {
+            if iszero(b) {
+                revert(0, 0)
+            }
+            c := div(a, b)
+        }
         return c;
+    }  
+
+    function safePow(uint256 base, uint256 exponent) external pure returns (uint256) {
+        if (base == 0) {
+            return 0;
+        }
+        if (exponent == 0) {
+            return 1;
+        }
+
+        uint256 result = 1;
+        for (uint256 i = 0; i < exponent; i++) {
+            assembly {
+                result := mul(result,base)
+            }
+        }
+
+        return result;
     }
 }

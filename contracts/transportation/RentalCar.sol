@@ -36,7 +36,7 @@ contract RentalCar {
     event RentalExtended(address consumer, Vehicle vehicle, uint256 extendedDate, uint256 timestamp);
     event RentalReturned(address consumer, Vehicle vehicle, uint256 timestamp);
 
-    constructor() public {
+    constructor() {
         owner = msg.sender;
     }
 

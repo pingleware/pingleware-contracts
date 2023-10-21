@@ -111,10 +111,10 @@ contract Store is Version, Owned {
           @param default_amount Default amount of items in a single product
           @return success
     */
-    function registerProduct(uint256 id, bytes32 name, bytes32 description, uint256 price, uint256 default_amount,
-                             bytes32 encrypted, bytes memory signature)
+    function registerProduct(uint256 id, bytes32 name, bytes32 description, uint256 price, uint256 default_amount)
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
         returns (bool success)
     {
         Product memory product = Product(id, name, description, price, default_amount);
@@ -132,9 +132,10 @@ contract Store is Version, Owned {
           @param id Product ID
           @return success
     */
-    function deregisterProduct(uint256 id, bytes32 encrypted, bytes memory signature)
+    function deregisterProduct(uint256 id)
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
         returns (bool success)
     {
         Product memory product = products[id];
@@ -154,9 +155,10 @@ contract Store is Version, Owned {
           @param _balance Customer's balance
           @return success
     */
-    function registerCustomer(address _address, bytes32 _name, uint256 _balance, bytes32 encrypted, bytes memory signature)
+    function registerCustomer(address _address, bytes32 _name, uint256 _balance)
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
         returns (bool success)
     {
         if (_address != address(0)) {
@@ -179,9 +181,10 @@ contract Store is Version, Owned {
         @param _address Customer's address
         @return success
     */
-    function deregisterCustomer(address _address, bytes32 encrypted, bytes memory signature)
+    function deregisterCustomer(address _address)
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
         returns (bool success)
     {
         Customer memory customer = customers[_address];
@@ -267,9 +270,10 @@ contract Store is Version, Owned {
       /*return false;*/
     }
 
-    function renameStoreTo(bytes32 new_store_name, bytes32 encrypted, bytes memory signature)
+    function renameStoreTo(bytes32 new_store_name)
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
         returns (bool success)
     {
         if (new_store_name.length != 0 &&
@@ -313,10 +317,10 @@ contract Store is Version, Owned {
       return customers[msg.sender].balance;
     }
 
-    function getStoreBalance(bytes32 encrypted, bytes memory signature)
+    function getStoreBalance()
         public
         payable
-        onlyOwner(encrypted,signature)
+        onlyOwner
         returns (uint256)
     {
       return store_balance;

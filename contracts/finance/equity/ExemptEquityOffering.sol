@@ -7,14 +7,13 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../../common/Version.sol";
 import "../../common/Frozen.sol";
 import "../../common/Token.sol";
-import "../../interfaces/AccountInterface.sol";
+import "../../interfaces/IAccount.sol";
 import "../../interfaces/IERC20.sol";
-import "../../interfaces/OfferingContractInterface.sol";
-import "../../interfaces/SharesInterface.sol";
-import "../../interfaces/ShareholderInterface.sol";
-import "../../interfaces/TransactionInterface.sol";
-import "../../interfaces/TransferAgentInterface.sol";
-
+import "../../interfaces/IOfferingContract.sol";
+import "../../interfaces/IShares.sol";
+import "../../interfaces/IShareholder.sol";
+import "../../interfaces/ITransaction.sol";
+import "../../interfaces/ITransferAgent.sol";
 
 contract ExemptEquityOffering is Version, Frozen {
 
@@ -31,30 +30,30 @@ contract ExemptEquityOffering is Version, Frozen {
 
 
 
-    modifier notDPO(OfferingContractInterface.OfferingType _type) {
-        require(_type != OfferingContractInterface.OfferingType.S1, "A public offering is NOT permitted for exempt offering!");
+    modifier notDPO(IOfferingContract.OfferingType _type) {
+        require(_type != IOfferingContract.OfferingType.S1, "A public offering is NOT permitted for exempt offering!");
         _;
     }
 
-    AccountInterface Account;
-    TransferAgentInterface TransferAgent;
-    SharesInterface Shares;
+    IAccount Account;
+    ITransferAgent TransferAgent;
+    IShares Shares;
     // using a shared library containing the shareholders, will permit current shareholders to participate in future offerings
     // that is, accredited investors can participate in future exempt offerings, as well as non-accredited investors can participate
     // in future public offerings and certain exempt offerings?
-    ShareholderInterface Shareholder;
-    TransactionInterface Transaction;
-    OfferingContractInterface Offering;
+    IShareholder Shareholder;
+    ITransaction Transaction;
+    IOfferingContract Offering;
 
-    constructor(OfferingContractInterface.OfferingType offeringType,
+    constructor(IOfferingContract.OfferingType offeringType,
                 address account_contract, address transferagent_contract, address shares_contract,
                 uint256 initial_supply)
         notDPO(offeringType)
     {
         _initial_supply = initial_supply;
-        Account = AccountInterface(account_contract);
-        TransferAgent = TransferAgentInterface(transferagent_contract);
-        Shares = SharesInterface(shares_contract);
+        Account = IAccount(account_contract);
+        TransferAgent = ITransferAgent(transferagent_contract);
+        Shares = IShares(shares_contract);
     }
 
     function updateTokenPrice(uint256 updatePrice)
@@ -63,41 +62,44 @@ contract ExemptEquityOffering is Version, Frozen {
         tokenPrice = updatePrice;
     }
 
-    function startOffering(bytes32 encrypted, bytes memory signature)
+    function startOffering()
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
         start();
     }
 
-    function stopOffering(bytes32 encrypted, bytes memory signature)
+    function stopOffering()
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
         stop();
     }
 
-    function assignTransferAgent(address transferagent, bytes32 encrypted, bytes memory signature)
+    function assignTransferAgent(address transferagent)
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
         TransferAgent.addTransferAgent(address(this), transferagent);
     }
 
-    function initialize(string memory name, string memory symbol, uint256 maxShares, OfferingContractInterface.OfferingType offeringType)
+    function initialize(string memory name, string memory symbol, uint256 maxShares, IOfferingContract.OfferingType offeringType)
         public
         notDPO(offeringType)
     {
         Offering.setOffering(address(this),name,symbol,maxShares,offeringType);
     }
 
-    function mint(address account, uint256 amount, uint256 epoch, bytes32 encrypted, bytes memory signature)
+    function mint(address account, uint256 amount, uint256 epoch)
         public
         payable
     {
         require(account != address(0), "cannot mint to the zero address");
         require(msg.sender.balance > amount, "insufficient balance");
-        require(TransferAgent.checkTransferAgent(address(this),encrypted,signature),"unauthorized, not a valid transfer agent");
+        //require(TransferAgent.checkTransferAgent(address(this),nonce,signature),"unauthorized, not a valid transfer agent");
 
         uint256 shares = amount / Shares.getMaxPPU(address(this));
         require((shares + Shares.getTotalSupply(address(this))) <= Shares.getShares(address(this)),

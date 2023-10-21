@@ -3,11 +3,11 @@ pragma solidity >=0.4.22 <0.9.0;
 
 // See https://www.youtube.com/watch?v=JSZbvmyi_LE
 
-import "./PRESSPAGE506C.sol";
+import "../elmx/RegD506CEquity.sol";
 
 contract CPAMM {
-    PRESSPAGE506C public immutable restrictedToken;
-    PRESSPAGE506C public immutable unrestrictedToken;
+    RegD506CEquity public immutable restrictedToken;
+    RegD506CEquity public immutable unrestrictedToken;
 
     uint public reserve0;
     uint public reserve1;
@@ -20,8 +20,8 @@ contract CPAMM {
     address public owner;
 
     constructor(address _restrictedToken, address _unrestrictedToken) {
-        restrictedToken = PRESSPAGE506C(_restrictedToken);
-        unrestrictedToken = PRESSPAGE506C(_unrestrictedToken);
+        restrictedToken = RegD506CEquity(_restrictedToken);
+        unrestrictedToken = RegD506CEquity(_unrestrictedToken);
         owner = msg.sender;
     }
 
@@ -31,7 +31,7 @@ contract CPAMM {
     }
 
     modifier isBalanceSufficient(address token, uint amount) {
-        require(token[msg.sender].balanceOf() > amount, "insufficient token balance of liquidity provider");
+        //require(token[msg.sender].balanceOf() > amount, "insufficient token balance of liquidity provider");
         _;
     }
 
@@ -41,14 +41,14 @@ contract CPAMM {
     }
 
     function _mint(address _to, uint _amount) private {
-        balanceOf[_to] += amount;
-        totalSupply += amount;
+        balanceOf[_to] += _amount;
+        totalSupply += _amount;
     }
 
     function _burn(address _from, uint _amount) private {
         require(totalSupply >= _amount,"attempt to burn more than minnted");
-        balanceOf[_from] -= amount;
-        totalSupply -= amount;
+        balanceOf[_from] -= _amount;
+        totalSupply -= _amount;
     }
 
     function addLiquidityProvider(address _liquidityProvider) public isOwner {
@@ -69,26 +69,29 @@ contract CPAMM {
 
     // use to exchange a restricted token for an unrestricted, under Rule 144
     //
-    function swap(address _tokenIn, uint _amountIn) external returns (uint amountOut) {
-        require(_tokenIn == address(restrictedToken) || _tokenIn == address(token2),"invalid token");
+    function swap(address _tokenIn, uint _amountIn) external pure returns (uint amountOut) {
+        //require(_tokenIn == address(restrictedToken) || _tokenIn == address(token2),"invalid token");
+        _tokenIn;
+        _amountIn;
 
         // Pull in token in
-        bool isRestrictedToken = tokenIn == address(restrictedToken);
-        (PRESSPAGE506C tokenId, PRESSPAGE506C tokenOut, uint reserveIn, unit reserveOut) = 
-        isRestrictedToken ? 
-        (restrictedToken,unrestrictedToken,reserve0,reserve1):
-        (unrestrictedToken,restrictedToken,reserve1,reserve0);
+        // TODO: bool isRestrictedToken = _tokenIn == address(restrictedToken);
+        // TODO: (RegD506CEquity tokenId, RegD506CEquity tokenOut, uint reserveIn, uint reserveOut) = 
+        // TODO: isRestrictedToken ? 
+        // TODO: (restrictedToken,unrestrictedToken,reserve0,reserve1):
+        // TODO: (unrestrictedToken,restrictedToken,reserve1,reserve0);
 
-        tokenIn.transferFrom(msg.sender, address(this), amountIn);
+        // TODO: tokenId.transferFrom(msg.sender, address(this), _amountIn);
 
         // Calculate token out (include fees), fee 0.3%
-        uint amountInWithFee = (_amountIn * 997) / 1000;
-        amountOut = ();
+        // TODO: uint amountInWithFee = (_amountIn * 997) / 1000;
+        // TODO: amountOut = ();
         // Transfer token out to msg.sender
-        tokenOut.transfer(msg.sender, amountOut);
+        // TODO: tokenOut.transfer(msg.sender, amountOut);
         // Update reserves
+        return 0;
     }
-
+ 
     function addLiquidity() isLiquidityProvider external {
         // verify sender is a whitelisted liquidity provider
         // pull in restrictedToken and token 1
@@ -96,5 +99,7 @@ contract CPAMM {
         // uodate reserves
     }
 
-    function removeLiquidity() isLiquidityProvider external {}
+    function removeLiquidity() isLiquidityProvider external {
+
+    }
 }

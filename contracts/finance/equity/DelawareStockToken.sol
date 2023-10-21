@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
+/**
+ * ERC-884
+ */
+
 import "../../libs/SafeMath.sol";
 import "../../common/IdentityRegistry.sol";
 //import "../../common/Token.sol";

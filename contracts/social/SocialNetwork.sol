@@ -112,20 +112,20 @@ contract SocialNetwork is Version, Frozen {
     }
 
 
-    function freeze(bytes32 encrypted, bytes memory signature)
+    function freeze()
         payable
         public
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         stop();
         active = false;
         emit ContractFrozen(msg.sender);
     }
 
-    function unfreeze(bytes32 encrypted, bytes memory signature)
+    function unfreeze()
         payable
         public
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         start();
         active = true;
@@ -161,10 +161,10 @@ contract SocialNetwork is Version, Frozen {
      * The comment, friend, followers, likes and dislike fees are paid to the originating user at the time
      * of the event. The user is responsible for reporting earnings.
      */
-    function cashoutToOwner(bytes32 encrypted, bytes memory signature)
+    function cashoutToOwner()
         public
         payable
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         require(address(this).balance > 0,"no balance to transfer to owner");
         uint256 balance = address(this).balance;
@@ -174,11 +174,11 @@ contract SocialNetwork is Version, Frozen {
 
     function addUser(address _useraddress,string memory fullname, string memory profession, string memory location,
                      string memory dob, string memory interests,
-                     string memory role,bytes32 encrypted, bytes memory signature)
+                     string memory role)
         public
         payable
         isRunning
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         require(_useraddress != ZERO_ADDRESS, "missing user address");
         require(User.isUser(_useraddress) == false,"user already exists");
@@ -198,33 +198,33 @@ contract SocialNetwork is Version, Frozen {
         }
     }
 
-    function deleteUser(address _useraddress, string memory role, bytes32 encrypted, bytes memory signature)
+    function deleteUser(address _useraddress, string memory role)
         public
         payable
         isRunning
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         require(_useraddress != ZERO_ADDRESS, "missing user address");
         require(User.isUser(_useraddress) == false,"user already exists");
         User.revokeRole(role,_useraddress);
     }
 
-    function blockUser(address _useraddress,string memory role,bytes32 encrypted, bytes memory signature)
+    function blockUser(address _useraddress,string memory role)
         public
         payable
         isRunning
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         require(_useraddress != ZERO_ADDRESS, "missing user address");
         require(User.isUser(_useraddress) == false,"user already exists");
         User.renounceRole(role,_useraddress);
     }
 
-    function unblockUser(address _useraddress,string memory role,bytes32 encrypted, bytes memory signature)
+    function unblockUser(address _useraddress,string memory role)
         public
         payable
         isRunning
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         require(_useraddress != ZERO_ADDRESS, "missing user address");
         require(User.isUser(_useraddress) == false,"user already exists");
@@ -275,11 +275,11 @@ contract SocialNetwork is Version, Frozen {
         emit SocialFeeds.PostAdded(msg.sender,message,index);
     }
 
-    function adminDeletePost(address poster, uint index,bytes32 encrypted, bytes memory signature)
+    function adminDeletePost(address poster, uint index)
         public
         payable
         isRunning
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         SocialFeeds.removePost(poster, index);
     }
@@ -315,11 +315,11 @@ contract SocialNetwork is Version, Frozen {
         Comment.addComment(poster,index,message);
     }
 
-    function adminDeleteComment(address _useraddress,uint index, bytes32 encrypted, bytes memory signature)
+    function adminDeleteComment(address _useraddress,uint index)
         public
         payable
         isRunning
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         Comment.deleteComment(_useraddress,index);
     }
@@ -361,10 +361,11 @@ contract SocialNetwork is Version, Frozen {
         Advertiser.newAdvertisement(message);
     }
 
-    function adminDeleteAdvertisement(address _advertiseraddress, uint index, bytes32 encrypted, bytes memory signature)
+    function adminDeleteAdvertisement(address _advertiseraddress, uint index)
         public
+        payable
         isRunning
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         Advertiser.deleteAdvertisement(_advertiseraddress,index);
     }
@@ -387,9 +388,10 @@ contract SocialNetwork is Version, Frozen {
         return Advertiser.getAdvertisements();
     }
 
-    function getContractBalance(bytes32 encrypted, bytes memory signature)
+    function getContractBalance()
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
         returns (uint256)
     {
         return address(this).balance;
@@ -471,10 +473,11 @@ contract SocialNetwork is Version, Frozen {
         FriendsFollowers.addFriendRequest(user);
     }
 
-    function adminDeleteFollower(address _useraddress,address _followeraddress, bytes32 encrypted, bytes memory signature)
+    function adminDeleteFollower(address _useraddress,address _followeraddress)
         public
+        payable
         isRunning
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         FriendsFollowers.removeFollower(_useraddress,_followeraddress);
     }

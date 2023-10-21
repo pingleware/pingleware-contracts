@@ -1,6 +1,6 @@
 {
   "name": "@pingleware/contracts",
-  "version": "1.6.3-beta",
+  "version": "1.6.4-beta",
   "description": "Smart Contract library for Solidity",
   "files": [
     "contracts/**/*.sol",
@@ -9,7 +9,42 @@
   ],
   "scripts": {
     "test": "jest --watchAll",
-    "compile": "truffle compile"
+    "compile:clean": "rm -frd assets/abi",
+    "compile:libs": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/libs/*.sol",
+    "compile:interfaces": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/interfaces/*.sol",
+    "compile:common": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/common/*.sol",
+    "compile:abstract": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/abstract/*.sol",
+    "compile:agriculture": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/agriculture/*.sol",
+    "compile:aviation": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/aviation/*.sol",
+    "compile:education": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/education/*.sol",
+    "compile:energy": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/energy/*.sol",
+    "compile:finance": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/finance/*.sol",
+    "compile:finance:banking": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/finance/banking/*.sol",
+    "compile:finance:credit": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/finance/credit/*.sol",
+    "compile:finance:currency": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/finance/currency/*.sol",
+    "compile:finance:dao": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/finance/dao/*.sol",
+    "compile:finance:debt": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/finance/debt/*.sol",
+    "compile:finance:elmx": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/finance/elmx/*.sol",
+    "compile:finance:equity": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/finance/equity/*.sol",
+    "compile:finance:utility": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/finance/utility/*.sol",
+    "compile:government": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/government/*.sol",
+    "compile:government:county": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/government/county/*.sol",
+    "compile:government:federal": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/government/federal/*.sol",
+    "compile:government:municipal": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/government/municipal/*.sol",
+    "compile:government:state": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/government/state/*.sol",
+    "compile:healthcare": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/healthcare/*.sol",
+    "compile:hospitality": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/hospitality/*.sol",
+    "compile:insurance": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/insurance/*.sol",
+    "compile:membership": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/membership/*.sol",
+    "compile:news": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/news/*.sol",
+    "compile:nft": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/nft/*.sol",
+    "compile:non-profit": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/non-profit/*.sol",
+    "compile:realestate": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/realestate/*.sol",
+    "compile:retail": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/retail/*.sol",
+    "compile:scm": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/scm/*.sol",
+    "compile:social": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/social/*.sol",
+    "compile:technology": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/technology/*.sol",
+    "compile:transportation": "solc --bin --abi --overwrite -o assets/abi/build --optimize --optimize-runs 1 contracts/transportation/*.sol"
   },
   "repository": {
     "type": "git",
@@ -56,7 +91,7 @@
   },
   "homepage": "https://pingleware.github.io/pingleware-contracts",
   "private": false,
-  "dependencies": {
-    "@nibbstack/erc721": "^2.6.1"
+  "devDependencies": {
+    "solc": "^0.8.21"
   }
 }

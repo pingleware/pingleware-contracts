@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../interfaces/OfferingContractInterface.sol";
+import "../interfaces/IOfferingContract.sol";
 
 contract ActiveOffering {
     struct ActiveOfferingStorage {
         mapping(address => bool) active;
     }
 
-    OfferingContractInterface private Offering;
+    IOfferingContract private Offering;
 
 
     function activeOfferingStorage() internal pure returns (ActiveOfferingStorage storage ds)
@@ -30,7 +30,7 @@ contract ActiveOffering {
         external
     {
         require(offering != address(0x0),"invalid offering contract");
-        Offering = OfferingContractInterface(offering);
+        Offering = IOfferingContract(offering);
         require(msg.sender != Offering.getOwner(),"unauthorized access");
         activeOfferingStorage().active[offering] = _active;
     }

@@ -54,7 +54,7 @@ contract SimpleBond is ISimpleBond, Version, Frozen {
         timesToRedeem = _timesToRedeem;
         couponRate = _coupon;
         term = _term;
-        couponThreshold = term.div(timesToRedeem);
+        couponThreshold = SafeMath.safeDiv(term,timesToRedeem);
 
         if (_tokenToRedeem == address(0)) {
             tokenToRedeem = _tokenToRedeem;
@@ -85,23 +85,21 @@ contract SimpleBond is ISimpleBond, Version, Frozen {
         require(_bondsAmount <= loopLimit,"bond amount cannot exceed loop limit");
 
         if (cap > 0) {
-            require(bondsNumber.add(_bondsAmount) <= cap,"minting will exceed capacity");
+            require(SafeMath.safeAdd(bondsNumber,_bondsAmount) <= cap,"minting will exceed capacity");
         }
 
-        bondsNumber = bondsNumber.add(_bondsAmount);
+        bondsNumber = SafeMath.safeAdd(bondsNumber,_bondsAmount);
 
-        nonce = nonce.add(_bondsAmount);
+        nonce = SafeMath.safeAdd(nonce,_bondsAmount);
 
         for (uint256 i = 0; i < _bondsAmount; i++) {
-            maturities[nonce.sub(i)] = block.timestamp.add(term);
-            bonds[nonce.sub(i)] = buyer;
-            couponsRedeemed[nonce.sub(i)] = 0;
-            bondsAmount[buyer] = bondsAmount[buyer].add(_bondsAmount);
+            maturities[SafeMath.safeSub(nonce,i)] = SafeMath.safeAdd(block.timestamp,term);
+            bonds[SafeMath.safeSub(nonce,i)] = buyer;
+            couponsRedeemed[SafeMath.safeSub(nonce,i)] = 0;
+            bondsAmount[buyer] = SafeMath.safeAdd(bondsAmount[buyer],_bondsAmount);
         }
 
-        totalDebt = totalDebt.add(parValue.mul(_bondsAmount))
-                 .add((parValue.mul(couponRate)
-                 .div(100)).mul(timesToRedeem.mul(_bondsAmount)));
+        totalDebt = SafeMath.safeAdd(SafeMath.safeMul(SafeMath.safeAdd(totalDebt,parValue),_bondsAmount),(SafeMath.safeMul(SafeMath.safeMul(SafeMath.safeMul(parValue,(SafeMath.safeDiv(couponRate,100))),timesToRedeem),_bondsAmount)));
 
         emit MintedBond(buyer, _bondsAmount);
     }
@@ -123,26 +121,26 @@ contract SimpleBond is ISimpleBond, Version, Frozen {
             if (bonds[_bonds[i]] != msg.sender
                 || couponsRedeemed[_bonds[i]] == timesToRedeem) continue;
 
-            issueDate = maturities[_bonds[i]].sub(term);
-            lastThresholdRedeemed = issueDate.add(couponsRedeemed[_bonds[i]].mul(couponThreshold));
+            issueDate = SafeMath.safeSub(maturities[_bonds[i]],term);
+            lastThresholdRedeemed = SafeMath.safeMul(SafeMath.safeAdd(issueDate,couponsRedeemed[_bonds[i]]),couponThreshold);
 
-            if (lastThresholdRedeemed.add(couponThreshold) >= maturities[_bonds[i]] ||
-                block.timestamp < lastThresholdRedeemed.add(couponThreshold)) continue;
+            if (SafeMath.safeAdd(lastThresholdRedeemed,couponThreshold) >= maturities[_bonds[i]] ||
+                block.timestamp < SafeMath.safeAdd(lastThresholdRedeemed,couponThreshold)) continue;
 
-            toRedeem = (block.timestamp.sub(lastThresholdRedeemed)).div(couponThreshold);
+            toRedeem = SafeMath.safeDiv(SafeMath.safeSub(block.timestamp,lastThresholdRedeemed),couponThreshold);
 
             if (toRedeem == 0) continue;
 
-            couponsRedeemed[_bonds[i]] = couponsRedeemed[_bonds[i]].add(toRedeem);
+            couponsRedeemed[_bonds[i]] = SafeMath.safeAdd(couponsRedeemed[_bonds[i]],toRedeem);
 
-            getMoney(toRedeem.mul(parValue.mul(couponRate).div(10 ** (parDecimals.add(2)))), msg.sender);
+            getMoney(SafeMath.safeMul(toRedeem,(SafeMath.safeDiv(SafeMath.safeMul(parValue,couponRate),(10 ** (SafeMath.safeAdd(parDecimals,2)))))), msg.sender);
 
             if (couponsRedeemed[_bonds[i]] == timesToRedeem) {
                 bonds[_bonds[i]] = address(0);
                 maturities[_bonds[i]] = 0;
                 bondsAmount[msg.sender]--;
 
-                getMoney(parValue.div((10 ** parDecimals)), msg.sender);
+                getMoney(SafeMath.safeDiv(parValue,(10 ** parDecimals)), msg.sender);
             }
         }
 
@@ -166,8 +164,8 @@ contract SimpleBond is ISimpleBond, Version, Frozen {
                 || couponsRedeemed[_bonds[i]] == timesToRedeem) continue;
 
             bonds[_bonds[i]] = receiver;
-            bondsAmount[msg.sender] = bondsAmount[msg.sender].sub(1);
-            bondsAmount[receiver] = bondsAmount[receiver].add(1);
+            bondsAmount[msg.sender] = SafeMath.safeSub(bondsAmount[msg.sender],1);
+            bondsAmount[receiver] = SafeMath.safeAdd(bondsAmount[receiver],1);
 
         }
 
@@ -197,7 +195,7 @@ contract SimpleBond is ISimpleBond, Version, Frozen {
             token.transfer(msg.sender, amount);
         }
 
-        totalDebt = totalDebt.sub(amount);
+        totalDebt = SafeMath.safeSub(totalDebt,amount);
    }
 
     //GETTERS
@@ -208,8 +206,8 @@ contract SimpleBond is ISimpleBond, Version, Frozen {
     */
 
     function getLastTimeRedeemed(uint256 bond) public override view returns (uint256) {
-        uint256 issueDate = maturities[bond].sub(term);
-        uint256 lastThresholdRedeemed = issueDate.add(couponsRedeemed[bond].mul(couponThreshold));
+        uint256 issueDate = SafeMath.safeSub(maturities[bond],term);
+        uint256 lastThresholdRedeemed = SafeMath.safeAdd(issueDate,SafeMath.safeMul(couponsRedeemed[bond],couponThreshold));
         return lastThresholdRedeemed;
     }
 
@@ -283,7 +281,7 @@ contract SimpleBond is ISimpleBond, Version, Frozen {
     function getSimpleInterest() public override view returns (uint256) {
         uint256 rate = getCouponRate();
         uint256 par = getParValue();
-        return par.mul(rate).div(100);
+        return SafeMath.safeDiv(SafeMath.safeMul(par,rate),100);
     }
 
     /**

@@ -4,10 +4,10 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../libs/ecverify.sol";
 import "./Shareholder.sol";
 
-import "../interfaces/TransactionInterface.sol";
-import "../interfaces/AccountInterface.sol";
-import "../interfaces/ActiveOfferingInterface.sol";
-import "../interfaces/OfferingContractInterface.sol";
+import "../interfaces/ITransaction.sol";
+import "../interfaces/IAccount.sol";
+import "../interfaces/IActiveOffering.sol";
+import "../interfaces/IOfferingContract.sol";
 
 
 contract TransferAgent {
@@ -26,10 +26,10 @@ contract TransferAgent {
     event TransferFrom(address from,address to,uint256 value);
     event MinterAdded(address addr);
 
-    AccountInterface Account;
-    TransactionInterface Transaction;
-    ActiveOfferingInterface ActiveOffering;
-    OfferingContractInterface private Offering;
+    IAccount Account;
+    ITransaction Transaction;
+    IActiveOffering ActiveOffering;
+    IOfferingContract private Offering;
 
     struct TransferAgentStorage {
         mapping(address => address[]) transferagents;
@@ -47,9 +47,9 @@ contract TransferAgent {
     constructor(address account_contract,
                 address transaction_contract,
                 address activeoffering_contract) {
-        Account = AccountInterface(account_contract);
-        Transaction = TransactionInterface(transaction_contract);
-        ActiveOffering = ActiveOfferingInterface(activeoffering_contract);
+        Account = IAccount(account_contract);
+        Transaction = ITransaction(transaction_contract);
+        ActiveOffering = IActiveOffering(activeoffering_contract);
     }
 
     function transferAgentStorage()
@@ -70,7 +70,7 @@ contract TransferAgent {
 
      // Solving the onlyOwner sppofing: 
      // using web3.eth.sign() to generate a signed hash of the owner address and passing the hash and signature to this method
-    modifier onlyTransferAgent(address offering, bytes32 encrypted, bytes memory signature) {
+    modifier onlyTransferAgent(address offering) {
         bool found = false;
         for (uint i = 0; i < transferAgentStorage().transferagents[offering].length; i++) {
             if (transferAgentStorage().transferagents[offering][i] == msg.sender) {
@@ -78,13 +78,10 @@ contract TransferAgent {
             }
         }
         require(found, "access denied, not valid transfer agent");
-        // FIX: Issue #1
-        // only the owner who created the contract will be able to provide a valid hash-signature
-        require (ECVerify.ecverify(encrypted, signature, msg.sender), "access denied, transfer agent not authorized");
         _;
     }
 
-    modifier isTransferAgent(address offering, address addr, bytes32 encrypted, bytes memory signature) {
+    modifier isTransferAgent(address offering, address addr) {
         bool found = false;
         for (uint i = 0; i < transferAgentStorage().transferagents[offering].length; i++) {
             if (transferAgentStorage().transferagents[offering][i] == msg.sender) {
@@ -92,13 +89,10 @@ contract TransferAgent {
             }
         }
         require(found, "access denied, not valid transfer agent");
-        // FIX: Issue #1
-        // only the owner who created the contract will be able to provide a valid hash-signature
-        require (ECVerify.ecverify(encrypted, signature, addr), "access denied, transfer agent not authorized");
         _;
     }
 
-    function checkTransferAgent(address offering, bytes32 encrypted, bytes memory signature)
+    function checkTransferAgent(address offering)
         external
         payable
         returns (bool)
@@ -109,10 +103,7 @@ contract TransferAgent {
                 found = true;
             }
         }
-
-
-        bool verified = ECVerify.ecverify(encrypted, signature, payable(msg.sender));
-        return found && verified;
+        return found;
     }
 
     function getTransferAgent(address offering)
@@ -128,9 +119,9 @@ contract TransferAgent {
         return ZERO_ADDRESS;
     }
 
-    //function setMaxUnaccreditInvestors(address offering, uint256 value, bytes32 encrypted, byte signature)
+    //function setMaxUnaccreditInvestors(address offering, uint256 value, uint256 nonce, byte signature)
     //    external
-    //    onlyTransferAgent(offering,encrypted,signature)
+    //    onlyTransferAgent(offering)
    // {
     //    Shareholder.setMaxUnaccreditInvestors(value);
     //}
@@ -141,9 +132,9 @@ contract TransferAgent {
     // *  It MUST throw if the supplied address or hash are zero, or if the address has already been supplied.
     // *  @param addr The address of the person represented by the supplied hash.
     // *  @param hash A cryptographic hash of the address holder's verified information.
-    function addVerified(address offering, address addr, string memory hash,bytes32 encrypted, bytes memory signature)
+    function addVerified(address offering, address addr, string memory hash)
         public
-        onlyTransferAgent(offering,encrypted,signature)
+        onlyTransferAgent(offering)
     {
         require(addr != ZERO_ADDRESS, "(addVerified) - address is missing");
         require(bytes(hash).length != 0, "(addVerified) - hash is missing");
@@ -156,9 +147,9 @@ contract TransferAgent {
     // *  function must emit `VerifiedAddressRemoved(addr, msg.sender)`.
     // *  It MUST throw if an attempt is made to remove a verifiedAddress that owns Tokens.
     // *  @param addr The verified address to be removed.
-    function removeVerified(address offering, address addr,bytes32 encrypted, bytes memory signature)
+    function removeVerified(address offering, address addr)
         external
-        onlyTransferAgent(offering,encrypted,signature)
+        onlyTransferAgent(offering)
     {
         require(addr.balance == 0, "account balance is not zero");
         Shareholder.removeVerified(addr);
@@ -172,9 +163,9 @@ contract TransferAgent {
     // *  It MUST throw if the hash is zero, or if the address is unverified.
     // *  @param addr The verified address of the person represented by the supplied hash.
     // *  @param hash A new cryptographic hash of the address holder's updated verified information.
-    function updateVerified(address offering, address addr, string memory hash,bytes32 encrypted, bytes memory signature)
+    function updateVerified(address offering, address addr, string memory hash)
         external
-        onlyTransferAgent(offering,encrypted,signature)
+        onlyTransferAgent(offering)
     {
         require(bytes(hash).length != 0, "(updateVerified) - hash is zero");
         Shareholder.updateVerified(addr, hash);
@@ -183,9 +174,9 @@ contract TransferAgent {
     // *  Checks to see if the supplied address was superseded.
     // *  @param addr The address to check.
     // *  @return true if the supplied address was superseded by another address.
-    function isSuperseded(address offering, address addr,bytes32 encrypted, bytes memory signature)
-        external
-        onlyTransferAgent(offering,encrypted,signature)
+    function isSuperseded(address offering, address addr)
+        external view
+        onlyTransferAgent(offering)
         returns (bool)
     {
         return Shareholder.isSuperseded(addr);
@@ -193,9 +184,9 @@ contract TransferAgent {
 
     // *  The number of addresses that own tokens.
     // *  @return the number of unique addresses that own tokens.
-    function holderCount(address offering, bytes32 encrypted, bytes memory signature)
-        external
-        onlyTransferAgent(offering,encrypted,signature)
+    function holderCount(address offering)
+        external view
+        onlyTransferAgent(offering)
         returns (uint)
     {
         return Shareholder.holderCount();
@@ -206,9 +197,9 @@ contract TransferAgent {
     // *  It MUST throw if `index >= holderCount()`.
     // *  @param index The zero-based index of the holder.
     // *  @return the address of the token holder with the given index.
-    function holderAt(address offering, uint256 index,bytes32 encrypted, bytes memory signature)
-        external
-        onlyTransferAgent(offering,encrypted,signature)
+    function holderAt(address offering, uint256 index)
+        external view
+        onlyTransferAgent(offering)
         returns (address)
     {
         require(index < Shareholder.holderCount(), "holderAt out of bounds");
@@ -218,9 +209,9 @@ contract TransferAgent {
     // *    1 = non-accredited shareholder
     // *    2 = accredited shareholder
     // *    3 = affiliate shareholder
-    function addShareholder(address offering, address addr, Shareholder.InvestorType level,bytes32 encrypted, bytes memory signature)
+    function addShareholder(address offering, address addr, Shareholder.InvestorType level)
         external
-        onlyTransferAgent(offering,encrypted,signature)
+        onlyTransferAgent(offering)
     {
         Shareholder.addShareholder(offering, addr, level);
     }
@@ -233,9 +224,9 @@ contract TransferAgent {
     // *  This function MUST emit the `VerifiedAddressSuperseded` event.
     // *  @param original The address to be superseded. This address MUST NOT be reused.
     // *  @param replacement The address  that supersedes the original. This address MUST be verified.
-    function cancelAndReissue(address offering, address original, address replacement,bytes32 encrypted, bytes memory signature)
+    function cancelAndReissue(address offering, address original, address replacement)
         external
-        onlyTransferAgent(offering,encrypted,signature)
+        onlyTransferAgent(offering)
     {
         require(offering != ZERO_ADDRESS,"invalid offering contract address");
         require(original != ZERO_ADDRESS,"invalid original wallet");
@@ -244,9 +235,9 @@ contract TransferAgent {
         Shareholder.cancelAndReissue(original, replacement);
     }
 
-    function toggleExemptOffering(address offering, uint256 timestamp, bool _active, bytes32 encrypted, bytes memory signature)
+    function toggleExemptOffering(address offering, uint256 timestamp, bool _active)
         external
-        onlyTransferAgent(offering,encrypted,signature)
+        onlyTransferAgent(offering)
     {
         ActiveOffering.set(offering,_active);
 
@@ -276,9 +267,9 @@ contract TransferAgent {
         return transferAgentStorage()._allowances[_owner][spender];
     }
 
-    function addMinter(address offering, address addr,bytes32 encrypted, bytes memory signature)
+    function addMinter(address offering, address addr)
       external
-      onlyTransferAgent(offering,encrypted,signature)
+      onlyTransferAgent(offering)
     {
       require(addr != ZERO_ADDRESS, "missing minter address");
       transferAgentStorage().minters[addr] = 1;
@@ -290,7 +281,7 @@ contract TransferAgent {
     {
         require(msg.sender != ZERO_ADDRESS, "missing owner address");
         require(addr != ZERO_ADDRESS, "missing transfer agent address");
-        Offering = OfferingContractInterface(offering);
+        Offering = IOfferingContract(offering);
         require(msg.sender != Offering.getOwner(),"unauthorized access");
         transferAgentStorage().transferagents[offering].push(addr);
         transferAgentStorage().owners[offering] = msg.sender;
@@ -302,7 +293,7 @@ contract TransferAgent {
     {
         require(msg.sender != ZERO_ADDRESS, "missing owner address");
         require(addr == ZERO_ADDRESS,"missing transfer agent address");
-        Offering = OfferingContractInterface(offering);
+        Offering = IOfferingContract(offering);
         require(msg.sender != Offering.getOwner(),"unauthorized access");
         for (uint i = 0; i < transferAgentStorage().transferagents[offering].length; i++) {
             if (transferAgentStorage().transferagents[offering][i] == addr) {
@@ -329,9 +320,9 @@ contract TransferAgent {
     // *  follow the chain of addresses until it reaches the final, verified address.
     // *  @param addr The superseded address.
     // *  @return the verified address that ultimately holds the share.
-    function getCurrentFor(address offering, address addr,bytes32 encrypted, bytes memory signature)
+    function getCurrentFor(address offering, address addr)
         external
-        onlyTransferAgent(offering,encrypted,signature)
+        onlyTransferAgent(offering)
         returns (address)
     {
         return findCurrentFor(addr);
@@ -350,9 +341,9 @@ contract TransferAgent {
         return findCurrentFor(addr);
     }
 
-    function setParValue(address _contract, uint256 value, bytes32 encrypted, bytes memory signature)
+    function setParValue(address _contract, uint256 value)
         external
-        onlyTransferAgent(_contract,encrypted,signature)
+        onlyTransferAgent(_contract)
     {
         transferAgentStorage().contract_address.push(_contract);
         transferAgentStorage().parValue[_contract] = value;
@@ -362,9 +353,9 @@ contract TransferAgent {
     // * @param _to The address that will receive the minted tokens.
     // * @param _amount The amount of tokens to mint.
     // * @return A boolean that indicates if the operation was successful.
-    function mint(address offering, address _to, uint256 _amount, uint256 _epoch, uint256 _initial_supply, bytes32 encrypted, bytes memory signature)
+    function mint(address offering, address _to, uint256 _amount, uint256 _epoch, uint256 _initial_supply)
         external
-        onlyTransferAgent(offering,encrypted,signature)
+        onlyTransferAgent(offering)
         isMinter
         returns (bool)
     {

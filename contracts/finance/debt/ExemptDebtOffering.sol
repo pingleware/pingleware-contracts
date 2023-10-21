@@ -48,10 +48,10 @@ contract ExemptDebtOffering is Version, Owned {
   }
 
 
-  function setBond(uint256 class, address bank_contract, bytes32 encrypted, bytes memory signature)
+  function setBond(uint256 class, address bank_contract)
     public
     payable
-    onlyOwner(encrypted,signature)
+    onlyOwner
     returns (bool)
   {
     _bankAddress[class] = bank_contract;
@@ -71,11 +71,10 @@ contract ExemptDebtOffering is Version, Owned {
     address bank_contract,
     string memory bond_symbol,
     uint256 Fibonacci_number,
-    uint256 Fibonacci_epoch,
-    bytes32 encrypted,
-    bytes memory signature)
+    uint256 Fibonacci_epoch)
       public
-      onlyOwner(encrypted,signature)
+      payable
+      onlyOwner
       returns (bool)
   {
     _Symbol[class] = bond_symbol;

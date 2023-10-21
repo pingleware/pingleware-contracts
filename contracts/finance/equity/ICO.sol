@@ -65,7 +65,7 @@ contract ICO {
         campaignUrl = _campaignUrl;
         tokenReward = IERC20(_addressOfTokenUsedAsReward);
         rate = 3214;
-        ICOdeadline = startTime.add(63 days); //9 weeks
+        ICOdeadline = SafeMath.safeAdd(startTime,63 days); //9 weeks
 
         emit LogFunderInitialized(
             creator,
@@ -80,50 +80,50 @@ contract ICO {
 
         uint256 tokenBought = 0;
 
-        totalRaised = totalRaised.add(msg.value);
-        totalContributors = totalContributors.add(1);
+        totalRaised = SafeMath.safeAdd(totalRaised,msg.value);
+        totalContributors = SafeMath.safeAdd(totalContributors,1);
 
-        tokenBought = msg.value.mul(rate);
+        tokenBought = SafeMath.safeMul(msg.value,rate);
 
         //Rate of exchange depends on stage
         if (state == State.preico){
 
-            tokenBought = tokenBought.mul(14);
-            tokenBought = tokenBought.mul(10); //14/10 = 1.4 = 140%
+            tokenBought = SafeMath.safeMul(tokenBought,14);
+            tokenBought = SafeMath.safeMul(tokenBought,10); //14/10 = 1.4 = 140%
         
         } else if (state == State.week1){
 
-            tokenBought = tokenBought.mul(13);
-            tokenBought = tokenBought.mul(10); //13/10 = 1.3 = 130%
+            tokenBought = SafeMath.safeMul(tokenBought,13);
+            tokenBought = SafeMath.safeMul(tokenBought,10); //13/10 = 1.3 = 130%
 
         } else if (state == State.week2){
 
-            tokenBought = tokenBought.mul(125);
-            tokenBought = tokenBought.mul(100); //125/100 = 1.25 = 125%
+            tokenBought = SafeMath.safeMul(tokenBought,125);
+            tokenBought = SafeMath.safeMul(tokenBought,100); //125/100 = 1.25 = 125%
 
         } else if (state == State.week3){
 
-            tokenBought = tokenBought.mul(12);
-            tokenBought = tokenBought.mul(10); //12/10 = 1.2 = 120%
+            tokenBought = SafeMath.safeMul(tokenBought,12);
+            tokenBought = SafeMath.safeMul(tokenBought,10); //12/10 = 1.2 = 120%
 
         } else if (state == State.week4){
 
-            tokenBought = tokenBought.mul(115);
-            tokenBought = tokenBought.mul(100); //115/100 = 1.15 = 115%
+            tokenBought = SafeMath.safeMul(tokenBought,115);
+            tokenBought = SafeMath.safeMul(tokenBought,100); //115/100 = 1.15 = 115%
 
         } else if (state == State.week5){
 
-            tokenBought = tokenBought.mul(11);
-            tokenBought = tokenBought.mul(10); //11/10 = 1.10 = 110%
+            tokenBought = SafeMath.safeMul(tokenBought,11);
+            tokenBought = SafeMath.safeMul(tokenBought,10); //11/10 = 1.10 = 110%
 
         } else if (state == State.week6){
 
-            tokenBought = tokenBought.mul(105);
-            tokenBought = tokenBought.mul(100); //105/100 = 1.05 = 105%
+            tokenBought = SafeMath.safeMul(tokenBought,105);
+            tokenBought = SafeMath.safeMul(tokenBought,100); //105/100 = 1.05 = 105%
 
         }
 
-        totalDistributed = totalDistributed.add(tokenBought);
+        totalDistributed = SafeMath.safeAdd(totalDistributed,tokenBought);
         
         tokenReward.transfer(msg.sender, tokenBought);
 
@@ -138,31 +138,31 @@ contract ICO {
     */
     function checkIfFundingCompleteOrExpired() public {
 
-        if(state == State.preico && block.timestamp > startTime.add(14 days)){
+        if(state == State.preico && block.timestamp > SafeMath.safeAdd(startTime,14 days)){
 
             state = State.week1;
 
-        } else if(state == State.week1 && block.timestamp > startTime.add(21 days)){
+        } else if(state == State.week1 && block.timestamp > SafeMath.safeAdd(startTime,21 days)){
 
             state = State.week2;
             
-        } else if(state == State.week2 && block.timestamp > startTime.add(28 days)){
+        } else if(state == State.week2 && block.timestamp > SafeMath.safeAdd(startTime,28 days)){
 
             state = State.week3;
             
-        } else if(state == State.week3 && block.timestamp > startTime.add(35 days)){
+        } else if(state == State.week3 && block.timestamp > SafeMath.safeAdd(startTime,35 days)){
 
             state = State.week4;
             
-        } else if(state == State.week4 && block.timestamp > startTime.add(42 days)){
+        } else if(state == State.week4 && block.timestamp > SafeMath.safeAdd(startTime,42 days)){
 
             state = State.week5;
             
-        } else if(state == State.week5 && block.timestamp > startTime.add(49 days)){
+        } else if(state == State.week5 && block.timestamp > SafeMath.safeAdd(startTime,49 days)){
 
             state = State.week6;
             
-        } else if(state == State.week6 && block.timestamp > startTime.add(56 days)){
+        } else if(state == State.week6 && block.timestamp > SafeMath.safeAdd(startTime,56 days)){
 
             state = State.week7;
             

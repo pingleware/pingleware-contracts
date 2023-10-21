@@ -123,10 +123,10 @@ contract CreditReportAgency is Version, Frozen {
       }
     }
 
-    function getFreeCreditReport(address _consumer, address subscriber, uint256 reqtime,bytes32 encrypted, bytes memory signature)
+    function getFreeCreditReport(address _consumer, address subscriber, uint256 reqtime)
       public
       payable
-      onlyOwner(encrypted,signature)
+      onlyOwner
       returns (bytes32)
     {
       require(freeReportCheck(_consumer, subscriber, reqtime), "not eligible for a free consumer report");
@@ -135,10 +135,10 @@ contract CreditReportAgency is Version, Frozen {
       return CreditReport.getConsumerReport(_consumer);
     }
 
-    function getReportsByConsumer(address consumer,bytes32 encrypted, bytes memory signature)
+    function getReportsByConsumer(address consumer)
       public
       payable
-      onlyOwner(encrypted,signature)
+      onlyOwner
       returns (bytes32)
     {
       return CreditReport.getConsumerReport(consumer);
@@ -150,10 +150,10 @@ contract CreditReportAgency is Version, Frozen {
     // hence the consumer must start a dispute offline, and send to the owner to create a dispute and the owner pays the gas fee
     //
     function openDispute(address consumer, address subscriber, uint index,
-                        string memory disputeDate,string memory reason,
-                        bytes32 encrypted, bytes memory signature)
+                        string memory disputeDate,string memory reason)
       public
-      onlyOwner(encrypted,signature)
+      payable
+      onlyOwner
     {
       CreditDispute.openDispute(consumer, subscriber,CreditReport.getConsumerReportItem(consumer,index),disputeDate,reason);
       bytes32 dispute = keccak256(
@@ -208,9 +208,10 @@ contract CreditReportAgency is Version, Frozen {
     }
 
 
-    function purgeDispute(address consumer, uint index,bytes32 encrypted, bytes memory signature)
+    function purgeDispute(address consumer, uint index)
       public
-      onlyOwner(encrypted,signature)
+      payable
+      onlyOwner
     {
       bytes memory item = CreditDispute.getDisputeItem(consumer,index);
       CreditDispute.purgeDispute(consumer,index);
@@ -299,9 +300,10 @@ contract CreditReportAgency is Version, Frozen {
       return CreditDispute.getDisputes(msg.sender);
     }
 
-    function consumerOptsOut(address consumer, bool status, bytes32 encrypted, bytes memory signature)
+    function consumerOptsOut(address consumer, bool status)
       public
-      onlyOwner(encrypted,signature)
+      payable
+      onlyOwner
     {
       optout[consumer] = status;
     }

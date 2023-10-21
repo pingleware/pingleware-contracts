@@ -22,9 +22,10 @@ contract consumerRegistry is Version, Frozen {
     /// @dev Register address aconsumer to belong to userID
     ///      auserID. Addresses can be delisted ("unregistered") by
     ///      setting the userID auserID to zero.
-    function registerConsumer(address aconsumer, uint32 auserID,bytes32 encrypted,bytes memory signature)
+    function registerConsumer(address aconsumer, uint32 auserID)
         external
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
         if (auserID != 0) {
             emit consumerRegistered(aconsumer);
@@ -57,9 +58,10 @@ contract producerRegistry is Owned {
 
     /// @notice Allow the owner of address `aproducer.address()` to
     ///         act as a producer (by offering energy).
-    function registerProducer(address aproducer,bytes32 encrypted,bytes memory signature)
+    function registerProducer(address aproducer)
         external
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
         emit producerRegistered(aproducer);
         producers[aproducer] = true;
@@ -68,9 +70,10 @@ contract producerRegistry is Owned {
     /// @notice Cease allowing the owner of address
     ///         `aproducer.address()` to act as a producer (by
     ///         offering energy).
-    function deregisterProducer(address aproducer,bytes32 encrypted,bytes memory signature)
+    function deregisterProducer(address aproducer)
         external
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
         emit producerDeregistered(aproducer);
         producers[aproducer] = false;
@@ -215,11 +218,10 @@ contract EnergyStore is Version, Owned, consumerRegistry, producerRegistry {
     ///
     /// @dev This function is meant to be called by Lition on behalf
     ///      of customers.
-    function buy_energy(address aproducer, uint32 aday, uint32 aprice, uint64 aenergy, uint32 auserID, uint64 atimestamp,
-                        bytes32 encrypted,bytes memory signature)
+    function buy_energy(address aproducer, uint32 aday, uint32 aprice, uint64 aenergy, uint32 auserID, uint64 atimestamp)
         external
         payable
-        onlyOwner(encrypted,signature)
+        onlyOwner
     {
         buy_energy_core(aproducer, aday, aprice, aenergy, auserID, atimestamp);
     }

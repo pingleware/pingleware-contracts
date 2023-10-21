@@ -89,9 +89,9 @@ contract Membership is Version, Owned {
         emit Revoked(msg.sender);
     }
 
-    function approveRequest(address _user, bytes32 encrypted, bytes memory signature)
+    function approveRequest(address _user)
         public
-        isOwner(_user,encrypted,signature)
+        isOwner(_user)
         isPendingRequest(_user)
     {
         delete membership_requests[_user];

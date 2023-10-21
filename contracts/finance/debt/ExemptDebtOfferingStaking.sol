@@ -3,7 +3,7 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "../../common/Version.sol";
 import "../../common/Owned.sol";
-import "../../interfaces/TransactionInterface.sol";
+import "../../interfaces/ITransaction.sol";
 
 /**
  * Mechanics of a Private Placement Debt Offering
@@ -48,7 +48,7 @@ contract ExemptDebtOfferingStaking is Version, Owned {
     event Transfer(address receiver,address account,uint256 amount);
     event Minted(address account,uint256 amount);
 
-    TransactionInterface Transaction;
+    ITransaction Transaction;
 
     constructor(address transaction_contract, uint _interest, uint256 _initial_supply)
     {
@@ -58,7 +58,7 @@ contract ExemptDebtOfferingStaking is Version, Owned {
         _totalSupply = _initial_supply;
         _totalInvested = 0;
 
-        Transaction = TransactionInterface(transaction_contract);
+        Transaction = ITransaction(transaction_contract);
     }
 
     modifier isMinimumInvestment() {
@@ -187,9 +187,10 @@ contract ExemptDebtOfferingStaking is Version, Owned {
     * @notice A method to add a stakeholder.
     * @param _stakeholder The stakeholder to add.
     */
-   function addStakeholder(address _stakeholder, bytes32 encrypted, bytes memory signature)
+   function addStakeholder(address _stakeholder)
        public
-       onlyOwner(encrypted,signature)
+       payable
+       onlyOwner
        noStakes
    {
        (bool _isStakeholder, ) = isStakeholder(_stakeholder);
@@ -199,9 +200,10 @@ contract ExemptDebtOfferingStaking is Version, Owned {
     * @notice A method to remove a stakeholder.
     * @param _stakeholder The stakeholder to remove.
     */
-   function removeStakeholder(address _stakeholder, bytes32 encrypted, bytes memory signature)
+   function removeStakeholder(address _stakeholder)
        public
-       onlyOwner(encrypted,signature)
+       payable
+       onlyOwner
    {
        (bool _isStakeholder, uint256 s) = isStakeholder(_stakeholder);
        if(_isStakeholder){
@@ -310,7 +312,7 @@ contract ExemptDebtOfferingStaking is Version, Owned {
        return _totalRewards;
    }
 
-   /**
+   /*
     * Calculates the interest earned on a debt offering and kept in rewards variable
     * @notice A simple method that calculates the rewards for each stakeholder.
     * @param _stakeholder The stakeholder to calculate rewards for.
@@ -318,28 +320,30 @@ contract ExemptDebtOfferingStaking is Version, Owned {
     * @param encrypted Owner signed package for proper authenrication
     * @param signature Owner signature
     */
-   function calculateReward(address _stakeholder, uint256 epoch, bytes32 encrypted, bytes memory signature)
+   function calculateReward(address _stakeholder, uint256 epoch)
        public
-       onlyOwner(encrypted, signature)
+       payable
+       onlyOwner
        isInterestPaymentInterval(epoch)
        returns(uint256)
    {
        return stakes[_stakeholder] / interest;
    }
-   /**
+   /*
     * Distributes interest in tokens to the stakeholder
     * @notice A method to distribute rewards to all stakeholders.
     * @param epoch The timestamp of the trasnaction
     * @param encrypted Owner signed package for proper authenrication
     * @param signature Owner signature
     */
-   function distributeRewards(uint256 epoch, bytes32 encrypted, bytes memory signature)
+   function distributeRewards(uint256 epoch)
        public
-       onlyOwner(encrypted, signature)
+       payable
+       onlyOwner
    {
        for (uint256 s = 0; s < stakeholders.length; s += 1){
            address stakeholder = stakeholders[s];
-           uint256 reward = calculateReward(stakeholder,epoch,encrypted,signature);
+           uint256 reward = calculateReward(stakeholder,epoch);
            uint256 earned = rewards[stakeholder] + reward;
            rewards[stakeholder] = earned;
            Transaction.addTransaction(stakeholder,earned,earned,epoch);

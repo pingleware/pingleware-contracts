@@ -4,11 +4,11 @@ pragma solidity >=0.4.22 <0.9.0;
 /**
  * This library is using Diamond Storage to hold state variables. Additionally, library functions cannot have payable methods, in essence we have gas-free state variables?
  */
-import "../interfaces/TransactionInterface.sol";
+import "../interfaces/ITransaction.sol";
 
 
 contract Account {
-    TransactionInterface private transaction;
+    ITransaction private transaction;
 
     event AccountBalanceTransfer(address sender,address receiver,uint256 amount);
     event AccountTransfer(address sender,address receiver,uint256 amount);
@@ -27,7 +27,7 @@ contract Account {
     }
 
     constructor(address transaction_contract) {
-        transaction = TransactionInterface(transaction_contract);
+        transaction = ITransaction(transaction_contract);
     }
 
     function accountStorage() internal pure returns (AccountStorage storage ds)

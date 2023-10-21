@@ -16,7 +16,6 @@ contract Owned {
     event FallbackEvent(address sender, uint256 amount);
     event ReceiveEvent(address sender, uint256 amount);
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-    event SelfDestructing(address owner,address payable_address,string indexed reason);
 
     constructor() {
         owner = msg.sender;
@@ -34,35 +33,13 @@ contract Owned {
      * using web3.eth.sign() to generate a signed hash of the owner address and passing the hash and signature to this method
      *
      */
-    modifier onlyOwner(uint256 nonce, bytes memory signature) {
-        // prevents replay attacks
-        require(!usedNonces[nonce]);
-        usedNonces[nonce] = true;
+    modifier onlyOwner() {
         require (msg.sender == owner, "access denied for owner"); // WARNING: this can be spoofed!
-        /**
-         * FIX: Issue #1
-         *
-         * only the owner who created the contract will be able to provide a valid hash-signature
-         */
-        // This recreates the message that was signed on the client.
-        bytes32 message = prefixed(keccak256(msg.sender, msg.value, nonce, this));         
-        require (ECVerify.ecverify(message, signature, owner), "access denied, owner not valid");
         _;
     }
 
-    modifier isOwner(address addr, uint256 nonce, bytes memory signature) {
-        // prevents replay attacks
-        require(!usedNonces[nonce]);
-        usedNonces[nonce] = true;
+    modifier isOwner(address addr) {
         require (addr == owner, "owner access denied for user"); // WARNING: this can be spoofed!
-        /**
-         * FIX: Issue #1
-         *
-         * only the owner who created the contract will be able to provide a valid hash-signature
-         */
-        // This recreates the message that was signed on the client.
-        bytes32 message = prefixed(keccak256(msg.sender, msg.value, nonce, this));         
-        require (ECVerify.ecverify(message, signature, owner), "access denied, owner not valid");
         _;
     }
 
@@ -80,15 +57,6 @@ contract Owned {
         require (block.timestamp > previous_block_timestamp + WAIT, "rate limit error");
         previous_block_timestamp = block.timestamp;
         return owner;
-    }
-
-    selfdestruct(address payable_address,
-                 string memory reason,
-                 uint256 nonce,
-                 bytes memory signature) 
-    public onlyOwner(nonce,signature) {
-        emit SelfDestructing(msg.sender,payable_address,reason);
-        selfdestruct(payable(payable_address));
     }
 
     // @notice Will receive any eth sent to the contract
@@ -116,7 +84,7 @@ contract Owned {
      * NOTE: Renouncing ownership will leave the contract without an owner,
      * thereby removing any functionality that is only available to the owner.
      */
-    function renounceOwnership(uint256 nonce,bytes memory signature) public virtual onlyOwner(nonce,signature) {
+    function renounceOwnership() public payable virtual onlyOwner {
         emit OwnershipTransferred(owner, address(0));
         owner = address(0);
     }
@@ -125,7 +93,7 @@ contract Owned {
      * @dev Transfers ownership of the contract to a new account (`newOwner`).
      * Can only be called by the current owner.
      */
-    function transferOwnership(address newOwner, uint256 nonce, bytes memory signature) public virtual onlyOwner(nonce,signature) {
+    function transferOwnership(address newOwner) public payable virtual onlyOwner {
         require(newOwner != address(0), "Ownable: new owner is the zero address");
         emit OwnershipTransferred(owner, newOwner);
         owner = newOwner;

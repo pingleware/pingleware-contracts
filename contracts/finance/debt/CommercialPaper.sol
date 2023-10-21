@@ -161,13 +161,6 @@ contract CommercialPaperToken is Version, Frozen, IERC20TOKEN {
         emit StatusUpdated(address(this),pStatus);
     }
 
-    function kill()
-        public
-        okOwner
-    {
-        selfdestruct(payable(owner));
-    }
-
     function getContract()
         public
         view

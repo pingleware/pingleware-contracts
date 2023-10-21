@@ -11,20 +11,9 @@ contract Destructible is Owned {
 
     function destroy() public okOwner {
         emit Destroyed(msg.sender,getOwner());
-        selfdestruct(payable(getOwner()));
     }
 
     function destroyAndSend(address _recipient) public okOwner {
         emit Destroyed(msg.sender,_recipient);
-        selfdestruct(payable(_recipient));
-    }
-
-    function terminate(bytes32 encrypted, bytes memory signature, string memory reason)
-        public
-        payable
-        onlyOwner(encrypted,signature)
-    {
-        emit Termination(msg.sender, reason);
-        selfdestruct(payable(getOwner()));
     }
 }

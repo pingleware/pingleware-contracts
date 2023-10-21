@@ -89,10 +89,10 @@ contract RealEstate is Version, Owned {
     mapping(uint => Lien) public liens;
 
     //Add new property..
-    function addNewProperty(uint _cost, string memory _location, STATUS _status, PROPERTY_TYPE _type, address _ownerAddr,
-                            bytes32 encrypted, bytes memory signature)
+    function addNewProperty(uint _cost, string memory _location, STATUS _status, PROPERTY_TYPE _type, address _ownerAddr)
         public
-        isOwner(_ownerAddr,encrypted,signature)
+        payable
+        onlyOwner
     {
         propertyCount += 1;
         property[propertyCount] = NewProperty(propertyCount, _cost, _location, _status, _type, _ownerAddr);
@@ -110,9 +110,10 @@ contract RealEstate is Version, Owned {
     }
 
     //Request Change of Ownership..
-	function changeOwnership(uint id, address _buyer, bytes32 encrypted, bytes memory signature)
+	function changeOwnership(uint id, address _buyer)
         public
-        isOwner(msg.sender,encrypted,signature)
+        payable
+        onlyOwner
         returns (address, STATUS status, bool _statusChange)
     {
 	    // _buyer = 0x814D874D527eE258c315fE86B084Df58887cE5dF; //have to change the address to simulate the ether address on that day;
@@ -173,9 +174,10 @@ contract RealEstate is Version, Owned {
 	}
 
     //Changing the Value of the property..
-    function changeValue(uint id, uint _newValue, bytes32 encrypted, bytes memory signature)
+    function changeValue(uint id, uint _newValue)
         public
-        isOwner(msg.sender,encrypted,signature)
+        payable
+        onlyOwner
         returns (bool)
     {
         property[id].cost = _newValue;

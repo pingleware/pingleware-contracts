@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../interfaces/SecuritiesInterface.sol";
-import "../interfaces/TransferAgentInterface.sol";
+import "../interfaces/ISecurities.sol";
+import "../interfaces/ITransferAgent.sol";
 
 contract Shares {
     enum AssetClass {
@@ -49,10 +49,10 @@ contract Shares {
         mapping (address => mapping(address => bytes32)) certificate;
     }
 
-    TransferAgentInterface TransferAgent;
+    ITransferAgent TransferAgent;
 
     constructor(address transferagent_contract) {
-        TransferAgent = TransferAgentInterface(transferagent_contract);
+        TransferAgent = ITransferAgent(transferagent_contract);
     }
 
     function shareStorage()

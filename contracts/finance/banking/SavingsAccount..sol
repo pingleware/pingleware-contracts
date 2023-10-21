@@ -74,15 +74,15 @@ contract SavingsAccount is Owned {
         require(depositor != address(0), "Depositor cannot be null address");
         require(depositors[depositor] == 0, "Depositor already exists!");
         depositors[depositor] = 1;
-        SafeMath.add(balances[depositor].balance, msg.value);
+        SafeMath.safeAdd(balances[depositor].balance, msg.value);
         transactions[depositor].push(Transaction(block.timestamp, "OPENING DEPOSIT", 0, msg.value));
     }
 
     function processBankFee(address depositor, string calldata description) public payable okOwner {
         require(msg.value > 0, "Amount cannot be negative or zero");
-        SafeMath.sub(balances[depositor].balance, msg.value);
+        SafeMath.safeSub(balances[depositor].balance, msg.value);
         transactions[depositor].push(Transaction(block.timestamp, description, msg.value, 0));
-        SafeMath.add(contract_balance, msg.value);
+        SafeMath.safeAdd(contract_balance, msg.value);
     }
 
     function payInterest(address depositor) public payable okOwner {
@@ -115,40 +115,40 @@ contract SavingsAccount is Owned {
             lastPayment = transactions[depositor][0].timestamp;
         }
 
-        uint256 interest = SafeMath.mul(balances[depositor].balance,SafeMath.div(SafeMath.div(INTEREST_RATE,INTEREST_PAYMENT_PERIODS),100));
+        uint256 interest = SafeMath.safeMul(balances[depositor].balance,SafeMath.safeDiv(SafeMath.safeDiv(INTEREST_RATE,INTEREST_PAYMENT_PERIODS),100));
         if (INTEREST_PAYMENT_PERIODS == 1) {
             if (today > lastPayment && today > PREVIOUS_YEAR) {
-                SafeMath.add(balances[depositor].balance, interest);
+                SafeMath.safeAdd(balances[depositor].balance, interest);
                 transactions[depositor].push(Transaction(block.timestamp, "INTEREST PAYMENT", 0, interest));
-                SafeMath.add(total_interest_paid_pending, interest);
+                SafeMath.safeAdd(total_interest_paid_pending, interest);
             }
         } else if (INTEREST_PAYMENT_PERIODS == 2) {
             if (today > lastPayment && today > PREVIOUS_YEAR) {
-                SafeMath.add(balances[depositor].balance, interest);
+                SafeMath.safeAdd(balances[depositor].balance, interest);
                 transactions[depositor].push(Transaction(block.timestamp, "INTEREST PAYMENT", 0, interest));
-                SafeMath.add(total_interest_paid_pending, interest);
+                SafeMath.safeAdd(total_interest_paid_pending, interest);
             } else if (today > lastPayment && today > FIRST_HALF) {
-                SafeMath.add(balances[depositor].balance, interest);
+                SafeMath.safeAdd(balances[depositor].balance, interest);
                 transactions[depositor].push(Transaction(block.timestamp, "INTEREST PAYMENT", 0, interest));
-                SafeMath.add(total_interest_paid_pending, interest);
+                SafeMath.safeAdd(total_interest_paid_pending, interest);
             }
         } else if (INTEREST_PAYMENT_PERIODS == 4) {
             if (today > lastPayment && today > PREVIOUS_YEAR) {
-                SafeMath.add(balances[depositor].balance, interest);
+                SafeMath.safeAdd(balances[depositor].balance, interest);
                 transactions[depositor].push(Transaction(block.timestamp, "INTEREST PAYMENT", 0, interest));
-                SafeMath.add(total_interest_paid_pending, interest);
+                SafeMath.safeAdd(total_interest_paid_pending, interest);
             } else if (today > lastPayment && today > THIRD_QUARTER) {
-                SafeMath.add(balances[depositor].balance, interest);
+                SafeMath.safeAdd(balances[depositor].balance, interest);
                 transactions[depositor].push(Transaction(block.timestamp, "INTEREST PAYMENT", 0, interest));
-                SafeMath.add(total_interest_paid_pending, interest);
+                SafeMath.safeAdd(total_interest_paid_pending, interest);
             } else if (today > lastPayment && today > SECOND_QUARTER) {
-                SafeMath.add(balances[depositor].balance, interest);
+                SafeMath.safeAdd(balances[depositor].balance, interest);
                 transactions[depositor].push(Transaction(block.timestamp, "INTEREST PAYMENT", 0, interest));
-                SafeMath.add(total_interest_paid_pending, interest);
+                SafeMath.safeAdd(total_interest_paid_pending, interest);
             } else if (today > lastPayment && today > FIRST_QUARTER) {
-                SafeMath.add(balances[depositor].balance, interest);
+                SafeMath.safeAdd(balances[depositor].balance, interest);
                 transactions[depositor].push(Transaction(block.timestamp, "INTEREST PAYMENT", 0, interest));
-                SafeMath.add(total_interest_paid_pending, interest);
+                SafeMath.safeAdd(total_interest_paid_pending, interest);
             }
         }
     }
@@ -159,10 +159,10 @@ contract SavingsAccount is Owned {
     function makeDeposit() public payable {
         require(msg.value > 0, "Amount cannot be negative or zero");
         require(depositors[msg.sender] != 0, "Depositor does not exists!");
-        SafeMath.add(balances[msg.sender].balance, msg.value);
+        SafeMath.safeAdd(balances[msg.sender].balance, msg.value);
         transactions[msg.sender].push(Transaction(block.timestamp, "CUSTOMER DEPOSIT", 0, msg.value));
         payable(address(this)).transfer(msg.value);
-        SafeMath.add(contract_balance, msg.value);
+        SafeMath.safeAdd(contract_balance, msg.value);
     }
 
     function makeWithdrawal() public payable {
@@ -170,10 +170,10 @@ contract SavingsAccount is Owned {
         require(depositors[msg.sender] != 0, "Depositor does not exists!");
         require(balances[msg.sender].balance >= msg.value, "Not enough money");
         require(contract_balance > msg.value, "Not enough contract balance for withdrawal");
-        SafeMath.sub(balances[msg.sender].balance, msg.value);
+        SafeMath.safeSub(balances[msg.sender].balance, msg.value);
         transactions[msg.sender].push(Transaction(block.timestamp, "CUSTOMER WITHDRAWAL", msg.value, 0));
         payable(msg.sender).transfer(msg.value);
-        SafeMath.sub(contract_balance, msg.value);
+        SafeMath.safeSub(contract_balance, msg.value);
     }
 
     function getTransactions() public view returns(Transaction[] memory) {

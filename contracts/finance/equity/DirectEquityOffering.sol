@@ -12,13 +12,13 @@ pragma solidity >=0.4.22 <0.9.0;
  * Liquidity is most important in a public offering!
  */
 
-
+import "../../libs/SafeMath.sol";
 import "../../common/Version.sol";
 import "../../common/Frozen.sol";
 import "../../common/Token.sol";
 import "../../interfaces/IERC20.sol";
-import "../../interfaces/OfferingContractInterface.sol";
-import "../../interfaces/TransferAgentInterface.sol";
+import "../../interfaces/IOfferingContract.sol";
+import "../../interfaces/ITransferAgent.sol";
 
 
 contract DirectEquityOffering is Version, Frozen {
@@ -48,15 +48,15 @@ contract DirectEquityOffering is Version, Frozen {
     event Destroyed(address token, string reason);
 
 
-    modifier onlyDPO(OfferingContractInterface.OfferingType _type) {
-        require(_type == OfferingContractInterface.OfferingType.S1, "Exempt offerings are not permitted!");
+    modifier onlyDPO(IOfferingContract.OfferingType _type) {
+        require(_type == IOfferingContract.OfferingType.S1, "Exempt offerings are not permitted!");
         _;
     }
 
-    TransferAgentInterface TransferAgent;
-    OfferingContractInterface Offering;
+    ITransferAgent TransferAgent;
+    IOfferingContract Offering;
 
-    constructor(OfferingContractInterface.OfferingType _type,
+    constructor(IOfferingContract.OfferingType _type,
                 address offering_contract,
                 address transferagent_contract,
                 uint256 initial_supply,
@@ -66,22 +66,13 @@ contract DirectEquityOffering is Version, Frozen {
     {
         require(price >= parValue,"Initial price cannot be less than par value?");
         _initial_supply = initial_supply;
-        Offering = OfferingContractInterface(offering_contract);
-        TransferAgent = TransferAgentInterface(transferagent_contract);
+        Offering = IOfferingContract(offering_contract);
+        TransferAgent = ITransferAgent(transferagent_contract);
 
         tokenPrice = price;
-        upperLimit_7 = price * (7 / 100);
-        upperLimit_13 = price * (13 / 100);
-        upperLimit_20 = price * (20 / 100);
-    }
-
-    function destroy(string memory reason, bytes32 encrypted, bytes memory signature)
-        public
-        onlyOwner(encrypted,signature)
-    {
-        require(reason.length > 0,"A reason for destroying this token is required?");
-        selfdestruct(owner);
-        emit Destroyed(address(this), reason);
+        //upperLimit_7 =  price * (7 / 100);
+        //upperLimit_13 = price * (13 / 100);
+        //upperLimit_20 = price * (20 / 100);
     }
 
     function updateTokenPrice(uint256 updatePrice)
@@ -99,28 +90,31 @@ contract DirectEquityOffering is Version, Frozen {
         return tokenPrice;
     }
 
-    function startOffering(bytes32 encrypted, bytes memory signature)
+    function startOffering()
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
         start();
     }
 
-    function stopOffering(bytes32 encrypted, bytes memory signature)
+    function stopOffering()
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
         stop();
     }
 
-    function assignTransferAgent(address transferagent, bytes32 encrypted, bytes memory signature)
+    function assignTransferAgent(address transferagent)
         public
-        onlyOwner(encrypted,signature)
+        payable
+        onlyOwner
     {
         TransferAgent.addTransferAgent(address(this), transferagent);
     }
 
-    function initialize(string memory name, string memory symbol, uint256 maxShares, OfferingContractInterface.OfferingType offeringType)
+    function initialize(string memory name, string memory symbol, uint256 maxShares, IOfferingContract.OfferingType offeringType)
         public
         onlyDPO(offeringType)
     {
@@ -132,14 +126,14 @@ contract DirectEquityOffering is Version, Frozen {
     }
 
     // The transfer agent is responsible for minting the token for the investor
-    function mint(address account, uint256 amount, uint256 epoch, bytes32 encrypted, bytes memory signature)
+    function mint(address account, uint256 amount, uint256 epoch)
         public
         payable
         isRunning
     {
         require(account != address(0), "mint to the zero address");
-        require(TransferAgent.checkTransferAgent(address(this),encrypted,signature),"unauthroized, transfer agent is not valid");
-        TransferAgent.mint(address(this), account, amount, epoch, _initial_supply, encrypted, signature);
+        require(TransferAgent.checkTransferAgent(address(this)),"unauthroized, transfer agent is not valid");
+        TransferAgent.mint(address(this), account, amount, epoch, _initial_supply);
     }
 
     function buy()

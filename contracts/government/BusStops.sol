@@ -9,8 +9,7 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../common/Version.sol";
 import "../common/Frozen.sol";
 
-contract BusStops is Version, Frozen {
-    string public NAME;
+abstract contract BusStops is Version, Frozen {
 
     struct BusStop {
         uint id;
@@ -33,9 +32,6 @@ contract BusStops is Version, Frozen {
     event BusStopAdded(address,uint,uint256,string,string,string,string,string,string,string,bool,string);
     event BusStopUpdated(address,uint,uint256,string,string,string,string,string,string,string,bool,string);
 
-    constructor(string memory _name) {
-        NAME = _name;
-    }
 
     function getBusStop(uint index) public view returns(BusStop memory) {
         return busStops[index];
