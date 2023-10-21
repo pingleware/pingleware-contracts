@@ -38,7 +38,7 @@ The Ethereum Smart Contract Creator will also introduce using a NFT as software 
 
 ## Where to Download?
 
-Watch this repository for the release announcement of the Ethereum Smart Contract Creator. A beta version is located at [https://snapcraft.io/ethereum-contract-creator](https://snapcraft.io/ethereum-contract-creator). The application is in beta ONLY because this framework is currently in beta. When this framework is moved to stable, then the Ethereum Smart Contract Creator will be moved to stable.
+Watch this repository for the release announcement of the Ethereum Smart Contract Creator. A beta version is located at [https://snapcraft.io/ethereum-contract-creator](https://snapcraft.io/ethereum-contract-creator). The application is in beta ONLY because this framework is currently in beta. When this framework is moved to stable, then the Ethereum Smart Contract Creator will be moved to stable. Only Linux version is provided during beta. A Mac, Windows, Android and iOS version will be released after the application has been marked stable.
 
 ## Will a Manual be included?
 
