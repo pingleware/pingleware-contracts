@@ -14,12 +14,12 @@ contract AgriTrade is Version, Owned {
     uint256 public t=1;
     mapping (address => uint) balances;
 
-    function fundaddr(address addr) public{
+    function fundaddr(address addr) external {
         balances[addr] = 2000;
     }
 
     function sendCoin(address receiver, uint amount, address sender)
-        public
+        external
         returns(bool sufficient)
     {
         if (balances[sender] < amount) {
@@ -33,7 +33,7 @@ contract AgriTrade is Version, Owned {
     }
 
     function getBalance(address addr)
-        public
+        external
         view
         returns(uint)
     {
@@ -67,7 +67,7 @@ contract AgriTrade is Version, Owned {
 
 
     function produce(bytes memory id, bytes32 name, bytes32 loc, bytes32 cr, uint256 con, uint q, uint pr)
-        public
+        external
     {
         AgriTrade.farmer memory fnew = farmer(id,name,loc,cr,con,q,pr);
         f1[id] = fnew;
@@ -76,7 +76,7 @@ contract AgriTrade is Version, Owned {
     }
 
     function getproduce(bytes memory j)
-        public
+        external
         view
         returns(bytes memory,bytes32,bytes32,bytes32,uint256,uint,uint)
     {
@@ -84,7 +84,7 @@ contract AgriTrade is Version, Owned {
     }
 
     function quality(bytes memory ll, bytes memory g, uint256 p, bytes32 tt, bytes32 e)
-        public
+        external
     {
         AgriTrade.lot memory lnew = lot(ll,g,p,tt,e);
         l1[ll] = lnew;
@@ -93,7 +93,7 @@ contract AgriTrade is Version, Owned {
     }
 
     function getquality(bytes memory k)
-        public
+        external
         view
         returns(bytes memory,bytes memory,uint,bytes32,bytes32)
     {

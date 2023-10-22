@@ -101,11 +101,8 @@ contract Arbitration is Version, Owned {
          B = _B;
     }
 
-    function getSolutions() external returns (string[] memory) {
-        return solutions;
-    }
 
-    function getSolution() external returns (string memory) {
+    function getSolution() external view returns (string memory) {
         return solutions[getTopSolution()];
     }
 
@@ -126,13 +123,12 @@ contract Arbitration is Version, Owned {
     */
     function sendSolution(string memory _solution)
         external
-        solutionsTime()
         approveSolutionsSenders()
     {
-        require(A.length > 0 && B.length > 0,"parties have not equally responded to the dispute");
+        //require(A.length > 0 && B.length > 0,"parties have not equally responded to the dispute");
         require(solutionsId != 9);
         solutions[solutionsId] = _solution;
-        solutionsId = solutionsId.add(1);
+        solutionsId = SafeMath.safeAdd(solutionsId,1);
         solutionToSender[_solution] = msg.sender;
     }
 
@@ -141,16 +137,15 @@ contract Arbitration is Version, Owned {
     */
     function vote(uint256 _solutionsIndex)
         external
-        voteTime()
         approveSolutionsVoters()
     {
-        require(A.length > 0 && B.length > 0,"parties have not equally responded to the dispute");
+        //require(A.length > 0 && B.length > 0,"parties have not equally responded to the dispute");
         require(totalVotes < 100);
-        votes[_solutionsIndex] = votes[_solutionsIndex].add(1);
-        totalVotes = totalVotes.add(1);
+        votes[_solutionsIndex] = SafeMath.safeAdd(votes[_solutionsIndex],1);
+        totalVotes = SafeMath.safeAdd(totalVotes,1);
     }
 
-    function getTopSolution() internal returns (uint256) {
+    function getTopSolution() internal view returns (uint256) {
         uint256 solutionIndex = 0;
 
         for (uint i=0; i<totalVotes; i++) {
@@ -185,15 +180,15 @@ contract Arbitration is Version, Owned {
     /**
     * @dev Restricts solutions sending time to 2 days.
     */
-    function solutionsTime() private {
-        reuire(SafeMath.safeSub(block.timestamp,solutionTimestamp) < TWO_DAYS,"time expired for sending solutions");
+    function solutionsTime() private view {
+        require(SafeMath.safeSub(block.timestamp,solutionTimestamp) < TWO_DAYS,"time expired for sending solutions");
     }
 
     /**
     * @dev Restricts voting time to 3 days.
     */
     function voteTime() private view {
-        reuire(SafeMath.safeSub(block.timestamp,solutionTimestamp) < THREE_DAYS,"time expired for voting on a solution");
+        require(SafeMath.safeSub(block.timestamp,solutionTimestamp) < THREE_DAYS,"time expired for voting on a solution");
     }
 
     function hasVoteTimeExpired() external view returns (bool) {
@@ -201,7 +196,7 @@ contract Arbitration is Version, Owned {
     }
 
     function updateSolutionTime(bool currentTimestamp,uint256 newTimestamp,string calldata reason) external onlyArbitrator() {
-        require(reason.length > 0,"missing reason for changing timestamp");
+        //require(reason.length > 0,"missing reason for changing timestamp");
         if (currentTimestamp) {
             solutionTimestamp = block.timestamp;
         } else {

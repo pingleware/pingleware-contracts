@@ -30,6 +30,10 @@ When using remix.ethereum.org, you can import directly from github.com
         }
     }
 
+## Testing
+
+See the README.md under the test directory on GITHUB.COM
+
 # Ethereum Smart Contract Creator
 
 An application is being developed to help developers and business owenrs fast track smart contract implementation using the pingleware-contracts framework for real blockchain scenarios.

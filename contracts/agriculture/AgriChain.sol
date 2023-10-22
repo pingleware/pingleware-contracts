@@ -20,7 +20,7 @@ contract AgriChain is Version, Frozen {
 
     // Adding a product
     function addProduct(uint prodId,string memory pname,string memory pstatus,string memory pcurLoc)
-        public
+        external
         returns (uint)
     {
         require(prodId >= 0 && prodId <= 15,"go home simon");
@@ -34,7 +34,7 @@ contract AgriChain is Version, Frozen {
 
     // Retrieving the adopters
     function getProductIds()
-        public
+        external
         view
         returns (uint[16] memory)
     {
@@ -42,7 +42,7 @@ contract AgriChain is Version, Frozen {
     }
 
     function getProductDetail(uint prodId)
-        public
+        external
         view
         returns (string memory,string memory,string memory,bytes32 )
     {
