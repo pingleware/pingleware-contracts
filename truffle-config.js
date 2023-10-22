@@ -99,7 +99,7 @@ module.exports = {
   },
 
   // IMPORTANT: change the following path to the contracts you want to test
-  contracts_directory: './contracts/government/county/',
+  contracts_directory: './contracts/',
 
   // Set default mocha options here, use special reporters, etc.
   mocha: {
