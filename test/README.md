@@ -1,5 +1,30 @@
 # Testing
 
+Each test case is created from the caommand,
+
+```
+truffle create test <CONTRACT NAME>
+```
+
+the test file contains the basic deploy test, and additional tests are related to the contract under test,
+
+```
+const Contract = artifacts.require("CONTRACT NAME");
+
+/*
+ * uncomment accounts to access the test accounts made available by the
+ * Ethereum client
+ * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
+ */
+contract("CONTRACT NAME", function (/* accounts */) {
+  it("should assert true", async function () {
+    await Contract.deployed();
+    return assert.isTrue(true);
+  });
+});
+
+```
+
 You can use the Ethereum Contract Creator, and from the settings dialog obtain the RPC host and port
 
 ![1697948745720](image/README/1697948745720.png)
