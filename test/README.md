@@ -1,6 +1,6 @@
 # Testing
 
-Each test case is created from the caommand,
+Each test case is created for each Contract and not for abstract contracts, interfaces nor libraries as these cannot be instantiated, by using the command,
 
 ```
 truffle create test <CONTRACT NAME>

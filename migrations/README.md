@@ -1,6 +1,6 @@
 # Migrations
 
-The migration files are required by truffle to deploy the compiled contract to the blockchain EVM. A migration file is created for each Contract and not for abstract contracts nor interfaces as these cannot be instantiated, by using the command,
+The migration files are required by truffle to deploy the compiled contract to the blockchain EVM. A migration file is created for each Contract and not for abstract contracts, interfaces nor libraries as these cannot be instantiated, by using the command,
 
 ```
 truffle create migration <CONTRACT NAME>
