@@ -32,6 +32,10 @@ contract CityCouncil {
         require(isCouncilMember(msg.sender), "Only council members can perform this action.");
         _;
     }
+
+    function getCityCouncilAddress() external view returns (address) {
+        return address(this);
+    }
     
     function isCouncilMember(address account) public view returns (bool) {
         for (uint256 i = 0; i < councilMembers.length; i++) {
