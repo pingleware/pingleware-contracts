@@ -32,7 +32,7 @@ When using remix.ethereum.org, you can import directly from github.com
 
 ## Testing
 
-See the README.md under the test directory on GITHUB.COM
+See the [README.md](https://github.com/pingleware/pingleware-contracts/tree/main/test) under the test directory on GITHUB.COM
 
 # Ethereum Smart Contract Creator
 
@@ -109,7 +109,7 @@ Before launching an exempt equity or debt offering you are required to submit th
 
     Date          Version
 
-    10/21/2023.      1.6.4          Added government, nft,non-profit, retail; refactor interface names
+    10/21/2023       1.6.4          Added government, nft,non-profit, retail; refactor interface names
     07/17/2022       1.6.3          Added finance/banking/SavingsAccount.sol, libs/DateTime.sol. and useful documents
     04/30/2022       1.6.2          Added RideshareTrade contract under Transportation category
     04/29/2022       1.6.1          Remove package.json dependencies not needed; added package keywords
@@ -180,6 +180,10 @@ Skip to step #5, if deploying on a DEX like polymath.network,
 # Liquidity and the Blockchain
 
 While a private placement has restricted liquidity, a public offering token using a S-1 filing does not have restricted liquidity, hence a CUSIP and ISIN numbers are both needed. The ideal method for unrestricted liquidity is to issue your public offering (S-1) on an established DEX, but I am discovering this to be more tedious and sometimes more costly than listing on NYSE, NASDAQ, AMEX, Pinksheets or any other brick and mortar exchange? The other option is create an alternative trading system (ATS) with an orderbook and order matching and register your ATS with the SEC. If your ATS is solely for your own company's securities, than FINRA, CFTC and NFA registration may not be needed? (check with your attorney)
+
+A thrid option (when approved) is to list your exempt offering on the [Exempt Liquiidity Market Exchange](https://exemptliquiditymarket.exchange). A SEC registered (pending) National Market System (NMS) by the creator of this framework and the founder of PRESSPAGE ENTERTAINMENT INC. 
+
+The [Exempt Liquiidity Market Exchange](https://exemptliquiditymarket.exchange) used a private permissioned blockchain to remain in compliance with the Right to Financial Privacy Act of 1978, which off-chain funds transfer in fiat currency (no cryptocurrency is required or needed) by a licensed money transmitter (the same as your ecommerce website). The [Exempt Liquiidity Market Exchange](https://exemptliquiditymarket.exchange) is responsible for onboarding all participants requiring KYC affidavits including an resident physical address verification affidavit, since the exempt offerings are restricted by jurisdiction as well as investor class. Committing perjury on the affidavits will result in the temporary or permanent lost of holdings and a referral to the Security and Exchange Commission (SEC) enforcement division.
 
 # Crowdfunding
 
