@@ -1,6 +1,6 @@
-const ExemptLiquidityMarketExchange = artifacts.require("ExemptLiquidityMarketExchange");
+const Contract = artifacts.require("ExemptLiquidityMarketExchange");
 
 module.exports = function(_deployer) {
   // Use deployer to state migration tasks.
-  _deployer.deploy(ExemptLiquidityMarketExchange);
+  _deployer.deploy(Contract);
 };

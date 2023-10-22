@@ -1,0 +1,2523 @@
+{
+  "contractName": "Procurement",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "contractId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "contractor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "contractValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "ContractAwarded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "contractId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ContractCompleted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "contractId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "bidDeadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "ContractCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_sender",
+          "type": "address"
+        }
+      ],
+      "name": "Sender",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "contractCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "contracts",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "contractId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "bidDeadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "contractor",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "contractValue",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum Procurement.ContractStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "bidDeadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "createContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "contractId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "contractor",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "contractValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "awardContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "contractId",
+          "type": "uint256"
+        }
+      ],
+      "name": "completeContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"contractId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"contractor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"contractValue\",\"type\":\"uint256\"}],\"name\":\"ContractAwarded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"contractId\",\"type\":\"uint256\"}],\"name\":\"ContractCompleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"contractId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"bidDeadline\",\"type\":\"uint256\"}],\"name\":\"ContractCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_sender\",\"type\":\"address\"}],\"name\":\"Sender\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"contractId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"contractor\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"contractValue\",\"type\":\"uint256\"}],\"name\":\"awardContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"contractId\",\"type\":\"uint256\"}],\"name\":\"completeContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"contracts\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"contractId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"bidDeadline\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"contractor\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"contractValue\",\"type\":\"uint256\"},{\"internalType\":\"enum Procurement.ContractStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"bidDeadline\",\"type\":\"uint256\"}],\"name\":\"createContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/government/Procurement.sol\":\"Procurement\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"project:/contracts/abstract/AAccessControl.sol\":{\"keccak256\":\"0xfd057ef18aaac85a5fc45e1653ef188f8d02b6ae24ee48a711a4830f9d168924\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://6d59920f789cc68612e3c9f8f9c230ae667bc78460135d1c2dd752149535c116\",\"dweb:/ipfs/QmZY8wKcqPVa6r4GgUP7vUXehS3cdJ5DjZJPukiWTsYJo9\"]},\"project:/contracts/government/Procurement.sol\":{\"keccak256\":\"0x43f6b7f9980e535e52d17d64fe28536126d5a9fdace3b24fbde71ac24b14fea4\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://11f6963282c013add76527a6b88453ba47a96f0b9905342baa27fcbaf2813488\",\"dweb:/ipfs/QmPQ47nADfAAy5oaWNw3qTH3Qrdf7JSAC5NVxYkw3DRw4F\"]},\"project:/contracts/interfaces/IAccessControl.sol\":{\"keccak256\":\"0x39fd48aa9ca60641e5eb9b84fee39e41942e345ff2318bed6d7619bca75376ce\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://091e8f7fb17271b6d71fe9a7789d785c8d0bb1832a4eb03013b9091e1815b222\",\"dweb:/ipfs/QmTAEcD3ai3z2ryda8avMr1czYxuRYb1XYHeU55cT25d5C\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: BSL-1.1\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"../abstract/AAccessControl.sol\";\n\nabstract contract Procurement is AAccessControl {\n\n    enum ContractStatus { Open, Awarded, Completed }\n    \n    struct Contract {\n        uint256 contractId;\n        string title;\n        string description;\n        uint256 bidDeadline;\n        address contractor;\n        uint256 contractValue;\n        ContractStatus status;\n    }\n    \n    mapping(uint256 => Contract) public contracts;\n    uint256 public contractCounter;\n\n    event ContractCreated(uint256 contractId, string title, string description, uint256 bidDeadline);\n    event ContractAwarded(uint256 contractId, address contractor, uint256 contractValue);\n    event ContractCompleted(uint256 contractId);\n    \n    function createContract(string memory title, string memory description, uint256 bidDeadline) public isOwner {\n        contractCounter++;\n        contracts[contractCounter] = Contract(contractCounter, title, description, bidDeadline, address(0), 0, ContractStatus.Open);\n        emit ContractCreated(contractCounter, title, description, bidDeadline);\n    }\n    \n    function awardContract(uint256 contractId, address contractor, uint256 contractValue) public isOwner {\n        require(contracts[contractId].status == ContractStatus.Open, \"Contract is not open for bids.\");\n        contracts[contractId].contractor = contractor;\n        contracts[contractId].contractValue = contractValue;\n        contracts[contractId].status = ContractStatus.Awarded;\n        emit ContractAwarded(contractId, contractor, contractValue);\n    }\n    \n    function completeContract(uint256 contractId) public isOwner {\n        require(contracts[contractId].status == ContractStatus.Awarded, \"Contract is not awarded.\");\n        contracts[contractId].status = ContractStatus.Completed;\n        emit ContractCompleted(contractId);\n    }\n}",
+  "sourcePath": "/Volumes/My Book/projects/pingleware-contracts/contracts/government/Procurement.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/government/Procurement.sol",
+    "exportedSymbols": {
+      "AAccessControl": [
+        76
+      ],
+      "IAccessControl": [
+        5380
+      ],
+      "Procurement": [
+        2234
+      ]
+    },
+    "id": 2235,
+    "license": "BSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2059,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:32:13"
+      },
+      {
+        "absolutePath": "project:/contracts/abstract/AAccessControl.sol",
+        "file": "../abstract/AAccessControl.sol",
+        "id": 2060,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 2235,
+        "sourceUnit": 77,
+        "src": "70:40:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 2061,
+              "name": "AAccessControl",
+              "nameLocations": [
+                "145:14:13"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 76,
+              "src": "145:14:13"
+            },
+            "id": 2062,
+            "nodeType": "InheritanceSpecifier",
+            "src": "145:14:13"
+          }
+        ],
+        "canonicalName": "Procurement",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 2234,
+        "linearizedBaseContracts": [
+          2234,
+          76,
+          5380
+        ],
+        "name": "Procurement",
+        "nameLocation": "130:11:13",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Procurement.ContractStatus",
+            "id": 2066,
+            "members": [
+              {
+                "id": 2063,
+                "name": "Open",
+                "nameLocation": "189:4:13",
+                "nodeType": "EnumValue",
+                "src": "189:4:13"
+              },
+              {
+                "id": 2064,
+                "name": "Awarded",
+                "nameLocation": "195:7:13",
+                "nodeType": "EnumValue",
+                "src": "195:7:13"
+              },
+              {
+                "id": 2065,
+                "name": "Completed",
+                "nameLocation": "204:9:13",
+                "nodeType": "EnumValue",
+                "src": "204:9:13"
+              }
+            ],
+            "name": "ContractStatus",
+            "nameLocation": "172:14:13",
+            "nodeType": "EnumDefinition",
+            "src": "167:48:13"
+          },
+          {
+            "canonicalName": "Procurement.Contract",
+            "id": 2082,
+            "members": [
+              {
+                "constant": false,
+                "id": 2068,
+                "mutability": "mutable",
+                "name": "contractId",
+                "nameLocation": "259:10:13",
+                "nodeType": "VariableDeclaration",
+                "scope": 2082,
+                "src": "251:18:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2067,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "251:7:13",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2070,
+                "mutability": "mutable",
+                "name": "title",
+                "nameLocation": "286:5:13",
+                "nodeType": "VariableDeclaration",
+                "scope": 2082,
+                "src": "279:12:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 2069,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "279:6:13",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2072,
+                "mutability": "mutable",
+                "name": "description",
+                "nameLocation": "308:11:13",
+                "nodeType": "VariableDeclaration",
+                "scope": 2082,
+                "src": "301:18:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 2071,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "301:6:13",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2074,
+                "mutability": "mutable",
+                "name": "bidDeadline",
+                "nameLocation": "337:11:13",
+                "nodeType": "VariableDeclaration",
+                "scope": 2082,
+                "src": "329:19:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2073,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "329:7:13",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2076,
+                "mutability": "mutable",
+                "name": "contractor",
+                "nameLocation": "366:10:13",
+                "nodeType": "VariableDeclaration",
+                "scope": 2082,
+                "src": "358:18:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 2075,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "358:7:13",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2078,
+                "mutability": "mutable",
+                "name": "contractValue",
+                "nameLocation": "394:13:13",
+                "nodeType": "VariableDeclaration",
+                "scope": 2082,
+                "src": "386:21:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2077,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "386:7:13",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2081,
+                "mutability": "mutable",
+                "name": "status",
+                "nameLocation": "432:6:13",
+                "nodeType": "VariableDeclaration",
+                "scope": 2082,
+                "src": "417:21:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                  "typeString": "enum Procurement.ContractStatus"
+                },
+                "typeName": {
+                  "id": 2080,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 2079,
+                    "name": "ContractStatus",
+                    "nameLocations": [
+                      "417:14:13"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 2066,
+                    "src": "417:14:13"
+                  },
+                  "referencedDeclaration": 2066,
+                  "src": "417:14:13",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                    "typeString": "enum Procurement.ContractStatus"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Contract",
+            "nameLocation": "232:8:13",
+            "nodeType": "StructDefinition",
+            "scope": 2234,
+            "src": "225:220:13",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "474da79a",
+            "id": 2087,
+            "mutability": "mutable",
+            "name": "contracts",
+            "nameLocation": "491:9:13",
+            "nodeType": "VariableDeclaration",
+            "scope": 2234,
+            "src": "455:45:13",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Contract_$2082_storage_$",
+              "typeString": "mapping(uint256 => struct Procurement.Contract)"
+            },
+            "typeName": {
+              "id": 2086,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 2083,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "463:7:13",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "455:28:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Contract_$2082_storage_$",
+                "typeString": "mapping(uint256 => struct Procurement.Contract)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 2085,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 2084,
+                  "name": "Contract",
+                  "nameLocations": [
+                    "474:8:13"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 2082,
+                  "src": "474:8:13"
+                },
+                "referencedDeclaration": 2082,
+                "src": "474:8:13",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Contract_$2082_storage_ptr",
+                  "typeString": "struct Procurement.Contract"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "067bd3b4",
+            "id": 2089,
+            "mutability": "mutable",
+            "name": "contractCounter",
+            "nameLocation": "521:15:13",
+            "nodeType": "VariableDeclaration",
+            "scope": 2234,
+            "src": "506:30:13",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 2088,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "506:7:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "e3b63e3a640d7c9227e9b07b622143b12752fb206357514d06ea646f9ee1bcb9",
+            "id": 2099,
+            "name": "ContractCreated",
+            "nameLocation": "549:15:13",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2098,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2091,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "contractId",
+                  "nameLocation": "573:10:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2099,
+                  "src": "565:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2090,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "565:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2093,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "title",
+                  "nameLocation": "592:5:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2099,
+                  "src": "585:12:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2092,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "585:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2095,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "description",
+                  "nameLocation": "606:11:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2099,
+                  "src": "599:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2094,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "599:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2097,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "bidDeadline",
+                  "nameLocation": "627:11:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2099,
+                  "src": "619:19:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2096,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "619:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "564:75:13"
+            },
+            "src": "543:97:13"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "95cfe5dda435c017fba94f4be156f154f205ebac397f2374272a04d2ef1b89d6",
+            "id": 2107,
+            "name": "ContractAwarded",
+            "nameLocation": "651:15:13",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2106,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2101,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "contractId",
+                  "nameLocation": "675:10:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2107,
+                  "src": "667:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2100,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "667:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2103,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "contractor",
+                  "nameLocation": "695:10:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2107,
+                  "src": "687:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2102,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "687:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2105,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "contractValue",
+                  "nameLocation": "715:13:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2107,
+                  "src": "707:21:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2104,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "707:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "666:63:13"
+            },
+            "src": "645:85:13"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "6aafa2babf7b7b7142ff5c7ff71f2b5f78e2243167a26d6b8a7f70936e76923e",
+            "id": 2111,
+            "name": "ContractCompleted",
+            "nameLocation": "741:17:13",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2110,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2109,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "contractId",
+                  "nameLocation": "767:10:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2111,
+                  "src": "759:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2108,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "759:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "758:20:13"
+            },
+            "src": "735:44:13"
+          },
+          {
+            "body": {
+              "id": 2150,
+              "nodeType": "Block",
+              "src": "897:247:13",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 2123,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "907:17:13",
+                    "subExpression": {
+                      "id": 2122,
+                      "name": "contractCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2089,
+                      "src": "907:15:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2124,
+                  "nodeType": "ExpressionStatement",
+                  "src": "907:17:13"
+                },
+                {
+                  "expression": {
+                    "id": 2141,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 2125,
+                        "name": "contracts",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2087,
+                        "src": "934:9:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Contract_$2082_storage_$",
+                          "typeString": "mapping(uint256 => struct Procurement.Contract storage ref)"
+                        }
+                      },
+                      "id": 2127,
+                      "indexExpression": {
+                        "id": 2126,
+                        "name": "contractCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2089,
+                        "src": "944:15:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "934:26:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Contract_$2082_storage",
+                        "typeString": "struct Procurement.Contract storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 2129,
+                          "name": "contractCounter",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2089,
+                          "src": "972:15:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 2130,
+                          "name": "title",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2113,
+                          "src": "989:5:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "id": 2131,
+                          "name": "description",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2115,
+                          "src": "996:11:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "id": 2132,
+                          "name": "bidDeadline",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2117,
+                          "src": "1009:11:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 2135,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1030:1:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 2134,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "1022:7:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 2133,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "1022:7:13",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 2136,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1022:10:13",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "hexValue": "30",
+                          "id": 2137,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1034:1:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        {
+                          "expression": {
+                            "id": 2138,
+                            "name": "ContractStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2066,
+                            "src": "1037:14:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_ContractStatus_$2066_$",
+                              "typeString": "type(enum Procurement.ContractStatus)"
+                            }
+                          },
+                          "id": 2139,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1052:4:13",
+                          "memberName": "Open",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 2063,
+                          "src": "1037:19:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                            "typeString": "enum Procurement.ContractStatus"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          {
+                            "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                            "typeString": "enum Procurement.ContractStatus"
+                          }
+                        ],
+                        "id": 2128,
+                        "name": "Contract",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2082,
+                        "src": "963:8:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Contract_$2082_storage_ptr_$",
+                          "typeString": "type(struct Procurement.Contract storage pointer)"
+                        }
+                      },
+                      "id": 2140,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "963:94:13",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Contract_$2082_memory_ptr",
+                        "typeString": "struct Procurement.Contract memory"
+                      }
+                    },
+                    "src": "934:123:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Contract_$2082_storage",
+                      "typeString": "struct Procurement.Contract storage ref"
+                    }
+                  },
+                  "id": 2142,
+                  "nodeType": "ExpressionStatement",
+                  "src": "934:123:13"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 2144,
+                        "name": "contractCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2089,
+                        "src": "1088:15:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 2145,
+                        "name": "title",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2113,
+                        "src": "1105:5:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 2146,
+                        "name": "description",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2115,
+                        "src": "1112:11:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 2147,
+                        "name": "bidDeadline",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2117,
+                        "src": "1125:11:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 2143,
+                      "name": "ContractCreated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2099,
+                      "src": "1072:15:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,string memory,string memory,uint256)"
+                      }
+                    },
+                    "id": 2148,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1072:65:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2149,
+                  "nodeType": "EmitStatement",
+                  "src": "1067:70:13"
+                }
+              ]
+            },
+            "functionSelector": "000fd170",
+            "id": 2151,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 2120,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 2119,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "889:7:13"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "889:7:13"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "889:7:13"
+              }
+            ],
+            "name": "createContract",
+            "nameLocation": "798:14:13",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2118,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2113,
+                  "mutability": "mutable",
+                  "name": "title",
+                  "nameLocation": "827:5:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2151,
+                  "src": "813:19:13",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2112,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "813:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2115,
+                  "mutability": "mutable",
+                  "name": "description",
+                  "nameLocation": "848:11:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2151,
+                  "src": "834:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2114,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "834:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2117,
+                  "mutability": "mutable",
+                  "name": "bidDeadline",
+                  "nameLocation": "869:11:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2151,
+                  "src": "861:19:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2116,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "861:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "812:69:13"
+            },
+            "returnParameters": {
+              "id": 2121,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "897:0:13"
+            },
+            "scope": 2234,
+            "src": "789:355:13",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2201,
+              "nodeType": "Block",
+              "src": "1255:359:13",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                          "typeString": "enum Procurement.ContractStatus"
+                        },
+                        "id": 2169,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 2163,
+                              "name": "contracts",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2087,
+                              "src": "1273:9:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Contract_$2082_storage_$",
+                                "typeString": "mapping(uint256 => struct Procurement.Contract storage ref)"
+                              }
+                            },
+                            "id": 2165,
+                            "indexExpression": {
+                              "id": 2164,
+                              "name": "contractId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2153,
+                              "src": "1283:10:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1273:21:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Contract_$2082_storage",
+                              "typeString": "struct Procurement.Contract storage ref"
+                            }
+                          },
+                          "id": 2166,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1295:6:13",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 2081,
+                          "src": "1273:28:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                            "typeString": "enum Procurement.ContractStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 2167,
+                            "name": "ContractStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2066,
+                            "src": "1305:14:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_ContractStatus_$2066_$",
+                              "typeString": "type(enum Procurement.ContractStatus)"
+                            }
+                          },
+                          "id": 2168,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1320:4:13",
+                          "memberName": "Open",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 2063,
+                          "src": "1305:19:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                            "typeString": "enum Procurement.ContractStatus"
+                          }
+                        },
+                        "src": "1273:51:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "436f6e7472616374206973206e6f74206f70656e20666f7220626964732e",
+                        "id": 2170,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1326:32:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_ef48d10e9109a8eb49881f4989751c9f02da9ba29af224bfcd06e83cb2163d04",
+                          "typeString": "literal_string \"Contract is not open for bids.\""
+                        },
+                        "value": "Contract is not open for bids."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_ef48d10e9109a8eb49881f4989751c9f02da9ba29af224bfcd06e83cb2163d04",
+                          "typeString": "literal_string \"Contract is not open for bids.\""
+                        }
+                      ],
+                      "id": 2162,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1265:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 2171,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1265:94:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2172,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1265:94:13"
+                },
+                {
+                  "expression": {
+                    "id": 2178,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 2173,
+                          "name": "contracts",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2087,
+                          "src": "1369:9:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Contract_$2082_storage_$",
+                            "typeString": "mapping(uint256 => struct Procurement.Contract storage ref)"
+                          }
+                        },
+                        "id": 2175,
+                        "indexExpression": {
+                          "id": 2174,
+                          "name": "contractId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2153,
+                          "src": "1379:10:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1369:21:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Contract_$2082_storage",
+                          "typeString": "struct Procurement.Contract storage ref"
+                        }
+                      },
+                      "id": 2176,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1391:10:13",
+                      "memberName": "contractor",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2076,
+                      "src": "1369:32:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 2177,
+                      "name": "contractor",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2155,
+                      "src": "1404:10:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1369:45:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 2179,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1369:45:13"
+                },
+                {
+                  "expression": {
+                    "id": 2185,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 2180,
+                          "name": "contracts",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2087,
+                          "src": "1424:9:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Contract_$2082_storage_$",
+                            "typeString": "mapping(uint256 => struct Procurement.Contract storage ref)"
+                          }
+                        },
+                        "id": 2182,
+                        "indexExpression": {
+                          "id": 2181,
+                          "name": "contractId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2153,
+                          "src": "1434:10:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1424:21:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Contract_$2082_storage",
+                          "typeString": "struct Procurement.Contract storage ref"
+                        }
+                      },
+                      "id": 2183,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1446:13:13",
+                      "memberName": "contractValue",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2078,
+                      "src": "1424:35:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 2184,
+                      "name": "contractValue",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2157,
+                      "src": "1462:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1424:51:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2186,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1424:51:13"
+                },
+                {
+                  "expression": {
+                    "id": 2193,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 2187,
+                          "name": "contracts",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2087,
+                          "src": "1485:9:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Contract_$2082_storage_$",
+                            "typeString": "mapping(uint256 => struct Procurement.Contract storage ref)"
+                          }
+                        },
+                        "id": 2189,
+                        "indexExpression": {
+                          "id": 2188,
+                          "name": "contractId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2153,
+                          "src": "1495:10:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1485:21:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Contract_$2082_storage",
+                          "typeString": "struct Procurement.Contract storage ref"
+                        }
+                      },
+                      "id": 2190,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1507:6:13",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2081,
+                      "src": "1485:28:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                        "typeString": "enum Procurement.ContractStatus"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 2191,
+                        "name": "ContractStatus",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2066,
+                        "src": "1516:14:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_ContractStatus_$2066_$",
+                          "typeString": "type(enum Procurement.ContractStatus)"
+                        }
+                      },
+                      "id": 2192,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberLocation": "1531:7:13",
+                      "memberName": "Awarded",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2064,
+                      "src": "1516:22:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                        "typeString": "enum Procurement.ContractStatus"
+                      }
+                    },
+                    "src": "1485:53:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                      "typeString": "enum Procurement.ContractStatus"
+                    }
+                  },
+                  "id": 2194,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1485:53:13"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 2196,
+                        "name": "contractId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2153,
+                        "src": "1569:10:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 2197,
+                        "name": "contractor",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2155,
+                        "src": "1581:10:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 2198,
+                        "name": "contractValue",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2157,
+                        "src": "1593:13:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 2195,
+                      "name": "ContractAwarded",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2107,
+                      "src": "1553:15:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,address,uint256)"
+                      }
+                    },
+                    "id": 2199,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1553:54:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2200,
+                  "nodeType": "EmitStatement",
+                  "src": "1548:59:13"
+                }
+              ]
+            },
+            "functionSelector": "26d05c58",
+            "id": 2202,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 2160,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 2159,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "1247:7:13"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "1247:7:13"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1247:7:13"
+              }
+            ],
+            "name": "awardContract",
+            "nameLocation": "1163:13:13",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2158,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2153,
+                  "mutability": "mutable",
+                  "name": "contractId",
+                  "nameLocation": "1185:10:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2202,
+                  "src": "1177:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2152,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1177:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2155,
+                  "mutability": "mutable",
+                  "name": "contractor",
+                  "nameLocation": "1205:10:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2202,
+                  "src": "1197:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2154,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1197:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2157,
+                  "mutability": "mutable",
+                  "name": "contractValue",
+                  "nameLocation": "1225:13:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2202,
+                  "src": "1217:21:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2156,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1217:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1176:63:13"
+            },
+            "returnParameters": {
+              "id": 2161,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1255:0:13"
+            },
+            "scope": 2234,
+            "src": "1154:460:13",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2232,
+              "nodeType": "Block",
+              "src": "1685:217:13",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                          "typeString": "enum Procurement.ContractStatus"
+                        },
+                        "id": 2216,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 2210,
+                              "name": "contracts",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2087,
+                              "src": "1703:9:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Contract_$2082_storage_$",
+                                "typeString": "mapping(uint256 => struct Procurement.Contract storage ref)"
+                              }
+                            },
+                            "id": 2212,
+                            "indexExpression": {
+                              "id": 2211,
+                              "name": "contractId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2204,
+                              "src": "1713:10:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1703:21:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Contract_$2082_storage",
+                              "typeString": "struct Procurement.Contract storage ref"
+                            }
+                          },
+                          "id": 2213,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1725:6:13",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 2081,
+                          "src": "1703:28:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                            "typeString": "enum Procurement.ContractStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 2214,
+                            "name": "ContractStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2066,
+                            "src": "1735:14:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_ContractStatus_$2066_$",
+                              "typeString": "type(enum Procurement.ContractStatus)"
+                            }
+                          },
+                          "id": 2215,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1750:7:13",
+                          "memberName": "Awarded",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 2064,
+                          "src": "1735:22:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                            "typeString": "enum Procurement.ContractStatus"
+                          }
+                        },
+                        "src": "1703:54:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "436f6e7472616374206973206e6f7420617761726465642e",
+                        "id": 2217,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1759:26:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_7290bf439cb8c928ecac0dcdcac58706fbc669ccaa3454818153410935b6369f",
+                          "typeString": "literal_string \"Contract is not awarded.\""
+                        },
+                        "value": "Contract is not awarded."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_7290bf439cb8c928ecac0dcdcac58706fbc669ccaa3454818153410935b6369f",
+                          "typeString": "literal_string \"Contract is not awarded.\""
+                        }
+                      ],
+                      "id": 2209,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1695:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 2218,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1695:91:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2219,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1695:91:13"
+                },
+                {
+                  "expression": {
+                    "id": 2226,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 2220,
+                          "name": "contracts",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2087,
+                          "src": "1796:9:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Contract_$2082_storage_$",
+                            "typeString": "mapping(uint256 => struct Procurement.Contract storage ref)"
+                          }
+                        },
+                        "id": 2222,
+                        "indexExpression": {
+                          "id": 2221,
+                          "name": "contractId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2204,
+                          "src": "1806:10:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1796:21:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Contract_$2082_storage",
+                          "typeString": "struct Procurement.Contract storage ref"
+                        }
+                      },
+                      "id": 2223,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1818:6:13",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2081,
+                      "src": "1796:28:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                        "typeString": "enum Procurement.ContractStatus"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 2224,
+                        "name": "ContractStatus",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2066,
+                        "src": "1827:14:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_ContractStatus_$2066_$",
+                          "typeString": "type(enum Procurement.ContractStatus)"
+                        }
+                      },
+                      "id": 2225,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberLocation": "1842:9:13",
+                      "memberName": "Completed",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2065,
+                      "src": "1827:24:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                        "typeString": "enum Procurement.ContractStatus"
+                      }
+                    },
+                    "src": "1796:55:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_ContractStatus_$2066",
+                      "typeString": "enum Procurement.ContractStatus"
+                    }
+                  },
+                  "id": 2227,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1796:55:13"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 2229,
+                        "name": "contractId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2204,
+                        "src": "1884:10:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 2228,
+                      "name": "ContractCompleted",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2111,
+                      "src": "1866:17:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 2230,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1866:29:13",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2231,
+                  "nodeType": "EmitStatement",
+                  "src": "1861:34:13"
+                }
+              ]
+            },
+            "functionSelector": "58ee94cd",
+            "id": 2233,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 2207,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 2206,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "1677:7:13"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "1677:7:13"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1677:7:13"
+              }
+            ],
+            "name": "completeContract",
+            "nameLocation": "1633:16:13",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2205,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2204,
+                  "mutability": "mutable",
+                  "name": "contractId",
+                  "nameLocation": "1658:10:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2233,
+                  "src": "1650:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2203,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1650:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1649:20:13"
+            },
+            "returnParameters": {
+              "id": 2208,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1685:0:13"
+            },
+            "scope": 2234,
+            "src": "1624:278:13",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2235,
+        "src": "112:1792:13",
+        "usedErrors": []
+      }
+    ],
+    "src": "36:1868:13"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2023-10-22T00:31:38.712Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
