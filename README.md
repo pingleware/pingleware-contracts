@@ -46,7 +46,7 @@ Watch this repository for the release announcement of the Ethereum Smart Contrac
 
 ## Will a Manual be included?
 
-There will be a comprehensive manual included at no charge since the application requires a paid license.
+There will be a comprehensive soft copy (PDF) manual included at no charge since the application requires a paid license. A hard copy will be available for sale on AMAZON.COM
 
 # In the News
 
