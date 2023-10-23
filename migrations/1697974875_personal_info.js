@@ -1,7 +1,14 @@
 const Contract = artifacts.require("PersonalInfo")
+const User = artifacts.require("User")
+const StringUtils = artifacts.require("StringUtils")
 
 module.exports = function(_deployer) {
   // Use deployer to state migration tasks.
-  // TODO: fix "PersonalInfo" -- PersonalInfo contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of PersonalInfo: User.
+  _deployer.deploy(StringUtils)
+  _deployer.link(StringUtils,User)
+  _deployer.deploy(User)
+  _deployer.link(User,Contract)
+  // TODO: fix PersonalInfo" hit a require or revert statement with the following reason given:
+  //             * unauthorized access, sender not an owner
   //_deployer.deploy(Contract)
 };
