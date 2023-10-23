@@ -2,6 +2,7 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract StateGovernment {
+    string public stateName;
     address public governor;
     address[] public senateMembers;
     address[] public houseMembers;
@@ -36,7 +37,8 @@ contract StateGovernment {
         _;
     }
 
-    constructor() {
+    constructor(string memory name) {
+        stateName = name;
         governor = msg.sender;
         senateMembers.push(msg.sender);
         houseMembers.push(msg.sender);

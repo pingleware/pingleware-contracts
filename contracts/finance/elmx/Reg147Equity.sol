@@ -34,7 +34,7 @@ contract Reg147Equity is AEquityToken {
     uint256 public bid;
     uint256 public ask;
 
-    constructor(address tokenIssuer,string memory debtOrEquity,string memory jurisdiction,string memory tokenName,string memory tokenSymbol,uint256 tokenSupply,uint256 tokenPrice,address redeecashExchangeAddress) {
+    constructor(address tokenIssuer,string memory jurisdiction,string memory tokenName,string memory tokenSymbol,uint256 tokenSupply,uint256 tokenPrice,address exchangeAddress) {
         owner = msg.sender;
         issuer = tokenIssuer;
 
@@ -43,10 +43,10 @@ contract Reg147Equity is AEquityToken {
         symbol = tokenSymbol;
         totalSupply = tokenSupply;
         price = tokenPrice;
-        offeringType = debtOrEquity;
+        offeringType = "Equity";
 
 
-        exchangeContract = IExemptLiquidityMarketExchange(redeecashExchangeAddress);
+        exchangeContract = IExemptLiquidityMarketExchange(exchangeAddress);
 
         MAX_OFFERING_SHARES = tokenSupply;
 

@@ -3,7 +3,7 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "../../interfaces/IExemptLiquidityMarketExchange.sol";
 
-contract MunicipalBond {
+contract ELMXMunicipalBond {
     struct Investor {
         uint256 principal;
         uint256 interestEarned;
@@ -13,7 +13,7 @@ contract MunicipalBond {
     struct BondTrade {
         address seller;
         uint256 bondUnits;
-        uint256 price;
+        uint256 price; 
     }
 
     struct BondQuote {

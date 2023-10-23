@@ -4,7 +4,7 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../../interfaces/IPaymentWallet.sol";
 import "../../abstract/ADebtToken.sol";
 
-abstract contract Reg3A11Debt is ADebtToken {
+contract Reg3A11Debt is ADebtToken {
  
     constructor() {
 

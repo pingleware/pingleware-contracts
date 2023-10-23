@@ -1,4 +1,4 @@
-const Contract = artifacts.require("Distrubutor")
+const Contract = artifacts.require("DistributorRole")
 
 module.exports = function(_deployer) {
   // Use deployer to state migration tasks.

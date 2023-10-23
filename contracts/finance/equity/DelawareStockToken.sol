@@ -8,10 +8,10 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../../libs/SafeMath.sol";
 import "../../common/IdentityRegistry.sol";
 //import "../../common/Token.sol";
-import "../../common/IERC20TOKEN.sol";
+import "../../interfaces/IERC20TOKEN.sol";
 import "../../common/Whitelistable.sol";
 
-abstract contract DelawareStockToken is IERC20TOKEN, Whitelistable {
+contract DelawareStockToken is IERC20TOKEN, Whitelistable {
     string public symbol;
     string public name;
     string public byLawsHash;
@@ -51,6 +51,10 @@ abstract contract DelawareStockToken is IERC20TOKEN, Whitelistable {
             require(isWhitelisted(_address), "Address not in private shareholders whitelist");
         }
         _;
+    }
+
+    function balanceOf(address tokenOwner) override public view returns (uint) {
+        return balances[tokenOwner];
     }
 
     function transfer(address _to, uint256 _value) onlyIfWhitelisted(_to) public virtual override returns (bool){

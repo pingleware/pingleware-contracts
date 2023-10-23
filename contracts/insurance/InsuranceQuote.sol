@@ -6,7 +6,7 @@ import "../common/Owned.sol";
 
 // Migrate to solidity https://github.com/geetotes/acme-insurance-quotes
 
-contract Quote is Version, Owned {
+contract InsuranceQuote is Version, Owned {
 
     enum States {
         WELCOME,

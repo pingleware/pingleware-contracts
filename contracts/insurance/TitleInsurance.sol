@@ -9,7 +9,7 @@ import "../common/Owned.sol";
  * See http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/0627PartXIIIContentsIndex.html&StatuteYear=2016&Title=-%3E2016-%3EChapter%20627-%3EPart%
  */
 
-contract Title is Version, Owned {
+contract TitleInsurance is Version, Owned {
 
     struct Owner {
         address property_owner;

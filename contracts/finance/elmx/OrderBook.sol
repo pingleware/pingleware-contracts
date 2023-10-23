@@ -2,7 +2,7 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
- * PERFORM ORDER MATCHING OFF CHAIN and upon completion of the order, update the poolContract with a digital record of shares
+ * PERFORM ORDER MATCHING OFF CHAIN and upon completion of the order, update the exchangeContract with a digital record of shares
  * transferred between buyer and seller.
  *
  * When an investor wishes to BUY a security, they first select the security and quantity which calculates the price + fee,
@@ -13,13 +13,13 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../../libs/SafeMath.sol";
 import "../../interfaces/IOffering.sol";
 import "../../interfaces/IConsolidatedAuditTrail.sol";
-import "../../interfaces/IMemberPool.sol";
+import "../../interfaces/IExemptLiquidityMarketExchange.sol";
 import "../../interfaces/IExchangeFee.sol";
 import "../../interfaces/IOrderBook.sol";
 
 contract OrderBook is IOrderBook {
     IConsolidatedAuditTrail public catContract;
-    IMemberPool public poolContract;
+    IExemptLiquidityMarketExchange public exchangeContract;
     IExchangeFee public exchangeFeeContract;
 
     mapping(string => IOffering) offering;
@@ -57,8 +57,8 @@ contract OrderBook is IOrderBook {
     event ManipulativeBehaviorDetected(address sender,string symbol,uint256 orderId);
     event MarketAbuseDetetcted(address sender,string symbol,uint256 orderId);
 
-    constructor(address memberPoolAddress,address catContractAddress,address exchangeFeeAddress) {
-        poolContract = IMemberPool(memberPoolAddress);
+    constructor(address exchangeAddress,address catContractAddress,address exchangeFeeAddress) {
+        exchangeContract = IExemptLiquidityMarketExchange(exchangeAddress);
         catContract = IConsolidatedAuditTrail(catContractAddress);
         exchangeFeeContract = IExchangeFee(exchangeFeeAddress);
     }
@@ -180,7 +180,7 @@ contract OrderBook is IOrderBook {
         uint256 amount
     ) external  {
         require(address(offering[symbol]) != address(0x0),"offering is not set");
-        require(poolContract.isWhitelisted(wallet),"not authorized as a whitelisted user");
+        require(exchangeContract.isWhitelisted(wallet),"not authorized as a whitelisted user");
         require(offering[symbol].getTradingStatus(),"trading has been suspended");
         require(quantity > 0 && price > 0, "Invalid amount and/or price");
         require(amount > SafeMath.safeMul(quantity, price),"insufficient funds to place buy order");
@@ -213,7 +213,7 @@ contract OrderBook is IOrderBook {
     // Function to cancel and transfer contract balance to the caller, and remove the buy order
     function cancelBuy(address wallet, string calldata symbol,uint256 orderId) external  {
         require(address(offering[symbol]) != address(0x0),"offering is not set");
-        require(poolContract.isWhitelisted(wallet),"not authorized as a whitelisted user");
+        require(exchangeContract.isWhitelisted(wallet),"not authorized as a whitelisted user");
         uint256 contractBalance = address(this).balance;
         require(contractBalance > 0, "Contract has no balance.");
 
@@ -238,7 +238,7 @@ contract OrderBook is IOrderBook {
         uint256 price
     ) external  {
         require(address(offering[symbol]) != address(0x0),"offering is not set");
-        require(poolContract.isWhitelisted(wallet),"not authorized as a whitelisted user");
+        require(exchangeContract.isWhitelisted(wallet),"not authorized as a whitelisted user");
         require(offering[symbol].getTradingStatus(),"trading has been suspended");
         require(quantity > 0, "Invalid amount");
         require(price > 0, "Invalid price");
@@ -266,7 +266,7 @@ contract OrderBook is IOrderBook {
     // Cancel pending sell order
     function cancelSell(address wallet,string calldata symbol,uint256 orderId) external  {
         require(address(offering[symbol]) != address(0x0),"offering is not set");
-        require(poolContract.isWhitelisted(wallet),"not authorized as a whitelisted user");
+        require(exchangeContract.isWhitelisted(wallet),"not authorized as a whitelisted user");
         Order storage order = sellOrders[symbol][orderId];
         require(order.wallet == wallet, "not the owner of this order.");
         delete sellOrders[symbol][orderId];

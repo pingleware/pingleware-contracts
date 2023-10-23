@@ -1,4 +1,4 @@
-const InsuranceTitle = artifacts.require("InsuranceTitle");
+const TitleInsurance = artifacts.require("TitleInsurance");
 
 /*
  * uncomment accounts to access the test accounts made available by the
@@ -7,7 +7,7 @@ const InsuranceTitle = artifacts.require("InsuranceTitle");
  */
 contract("InsuranceTitle", function (/* accounts */) {
   it("should assert true", async function () {
-    await InsuranceTitle.deployed();
+    await TitleInsurance.deployed();
     return assert.isTrue(true);
   });
 });

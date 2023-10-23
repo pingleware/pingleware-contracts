@@ -25,9 +25,10 @@ contract MunicipalBond is Version, Frozen {
         bool active;
     }
 
+    address public owner;
+
     string public bondName;
     address public issuer;
-    address public issuerWallet;
     uint256 public totalPrincipal;
     uint256 public interestRate;
     uint256 public maturityDate;
@@ -40,9 +41,14 @@ contract MunicipalBond is Version, Frozen {
     mapping(address => Investor) public investors;
     mapping(address => uint256) public investorQuotes;
 
-    IExemptLiquidityMarketExchange public poolAddress;
-    IConsolidatedAuditTrail public catAddress;
+    IExemptLiquidityMarketExchange public exchangeContract;
+    IConsolidatedAuditTrail public catContract;
 
+    address public feeRecipient;
+    uint256 public FeePercentage = 1; // Fee percentage
+
+    event FeeRecipientUpdated(address indexed newRecipient);
+    event FeePercentageUpdated(uint256 newPercentage);
     event Transfer(address indexed from, address indexed to, uint256 value);
     event BondMatured();
     event BondTradeAdded(address indexed seller, uint256 bondUnits, uint256 price);
@@ -56,6 +62,8 @@ contract MunicipalBond is Version, Frozen {
     }
 
     modifier notMatured() {
+        isMatured = block.timestamp > maturityDate;
+        emit BondMatured();
         require(!isMatured, "The bond has already matured");
         _;
     }
@@ -88,16 +96,16 @@ contract MunicipalBond is Version, Frozen {
     constructor(
         string memory _bondName,
         address _issuer,
-        address _issuerWallet,
         uint256 _totalPrincipal,
         uint256 _interestRate,
         uint256 _maturityDate,
         bool _restricted,
-        uint256 _maxBondUnits
+        uint256 _maxBondUnits,
+        address exchangeAddress,
+        address catAddress
     ) {
         bondName = _bondName;
         issuer = _issuer;
-        issuerWallet = _issuerWallet;
         totalPrincipal = _totalPrincipal;
         interestRate = _interestRate;
         maturityDate = _maturityDate;
@@ -105,34 +113,48 @@ contract MunicipalBond is Version, Frozen {
         depositBalance = 0;
         restricted = _restricted;
         maxBondUnits = _maxBondUnits;
+
+        exchangeContract = IExemptLiquidityMarketExchange(exchangeAddress);
+        catContract = IConsolidatedAuditTrail(catAddress);
     }
 
-    function setOfferingPoolContract(address _poolContract) external {
-        poolAddress = IExemptLiquidityMarketExchange(_poolContract);
+    function setFeeRecipient(address wallet) external isOwner(msg.sender) {
+        feeRecipient = address(wallet);
+        emit FeeRecipientUpdated(wallet);       
     }
 
-    function setConsolidateAuditTrailContract(address _catContract) external {
-        catAddress = IConsolidatedAuditTrail(_catContract);
+    function setFee(uint256 fee) external isOwner(msg.sender) {
+        require(fee <= 100, "Fee percentage must be 100 or less");
+        FeePercentage = fee; // 1=1% deposit fee
+        emit FeePercentageUpdated(fee);
+    }
+
+    function setOfferingPoolContract(address exchangeAddress) external {
+        exchangeContract = IExemptLiquidityMarketExchange(exchangeAddress);
+    }
+
+    function setConsolidateAuditTrailContract(address catAddress) external {
+        catContract = IConsolidatedAuditTrail(catAddress);
     }
 
     function isAccreditedInvestor(address investor) internal view returns (bool) {
         // Implement your own logic to determine if the investor is accredited
         // This could involve checking their income, net worth, or other requirements
         // Return true if the investor is accredited, otherwise return false
-        return poolAddress.isAccredited(investor);
+        return exchangeContract.isAccredited(investor);
     }
 
     function isBrokerDealer(address investor) internal view returns (bool) {
         // Implement your own logic to determine if the investor is a broker dealer
         // Return true if the investor is a broker dealer, otherwise return false
-        return poolAddress.isBrokerDealer(investor);
+        return exchangeContract.isBrokerDealer(investor);
     }
 
     function isRegisteredInvestor(address investor) internal view returns (bool) {
         // Implement your own logic to determine if the investor is a registered investor
         // This could involve checking a registration status or qualification requirements
         // Return true if the investor is a registered investor, otherwise return false
-        return poolAddress.isWhitelisted(investor);
+        return exchangeContract.isWhitelisted(investor);
     }
 
     function buy() external payable onlyRegisteredInvestors notMatured {
