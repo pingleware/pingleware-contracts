@@ -1,7 +1,25 @@
 const Contract = artifacts.require("SocialNetwork")
+const Advertiser = artifacts.require("Advertiser")
+const Comment = artifacts.require("Comment")
+const FriendsFollowers = artifacts.require("FriendsFollowers")
+const SocialFeeds = artifacts.require("SocialFeeds")
+const StringUtils = artifacts.require("StringUtils")
+const User = artifacts.require("User")
 
 module.exports = function(_deployer) {
   // Use deployer to state migration tasks.
-  // TODO: fix "SocialNetwork" -- SocialNetwork contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of SocialNetwork: Advertiser, Comment, FriendsFollowers, SocialFeeds, StringUtils, User.
-  //_deployer.deploy(Contract)
+  _deployer.deploy(StringUtils)
+  _deployer.link(StringUtils,User)
+  _deployer.deploy(User)
+  _deployer.deploy(Advertiser)
+  _deployer.deploy(Comment)
+  _deployer.deploy(FriendsFollowers)
+  _deployer.deploy(SocialFeeds)
+  _deployer.link(StringUtils,Contract)
+  _deployer.link(User,Contract)
+  _deployer.link(Advertiser,Contract)
+  _deployer.link(Comment,Contract)
+  _deployer.link(FriendsFollowers,Contract)
+  _deployer.link(SocialFeeds,Contract)
+  _deployer.deploy(Contract)
 };
