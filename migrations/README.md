@@ -57,7 +57,7 @@ Usage:        truffle migrate [--reset] [--f <number>] [--to <number>]
 ```
 
 ```
-truffle migrate --compile-none --f 1697948405
+truffle migrate --compile-none --f 1697948405 --to 1697948405
 ```
 
 where the number is the migration file prefix. Using compile-none, if your contract has alread been compiled using
@@ -65,3 +65,5 @@ where the number is the migration file prefix. Using compile-none, if your contr
 ```
 truffle compile
 ```
+
+a shell script is provided called single_migration.sh

@@ -5,7 +5,7 @@ const ATS = artifacts.require("ATS");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("ATS", function (/* accounts */) {
+contract("finance/equity/ATS", function (/* accounts */) {
   it("should assert true", async function () {
     await ATS.deployed();
     return assert.isTrue(true);

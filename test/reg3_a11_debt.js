@@ -5,7 +5,7 @@ const Reg3A11Debt = artifacts.require("Reg3A11Debt");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("Reg3A11Debt", function (/* accounts */) {
+contract("finance/elmx/Reg3A11Debt", function (/* accounts */) {
   it("should assert true", async function () {
     await Reg3A11Debt.deployed();
     return assert.isTrue(true);

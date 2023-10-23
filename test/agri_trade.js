@@ -5,7 +5,7 @@ const AgriTrade = artifacts.require("AgriTrade");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("AgriTrade", function (accounts) {
+contract("agriculture/AgriTrade", function (accounts) {
   it("should assert true", async function () {
     const contractInstance = await AgriTrade.deployed();
     return assert.isTrue(true);

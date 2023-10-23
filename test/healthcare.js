@@ -5,7 +5,7 @@ const Healthcare = artifacts.require("Healthcare");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("Healthcare", function (/* accounts */) {
+contract("healthcare/Healthcare", function (/* accounts */) {
   it("should assert true", async function () {
     await Healthcare.deployed();
     return assert.isTrue(true);

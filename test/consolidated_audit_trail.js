@@ -5,7 +5,7 @@ const ConsolidatedAuditTrail = artifacts.require("ConsolidatedAuditTrail");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("ConsolidatedAuditTrail", function (/* accounts */) {
+contract("finance/elmx/ConsolidatedAuditTrail", function (/* accounts */) {
   it("should assert true", async function () {
     await ConsolidatedAuditTrail.deployed();
     return assert.isTrue(true);

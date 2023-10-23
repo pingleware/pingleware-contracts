@@ -30,7 +30,27 @@ When using remix.ethereum.org, you can import directly from github.com
         }
     }
 
-## Testing
+## Compiling and Testing
+
+Truffle compiler options,
+
+```
+Usage:        truffle compile [<source1> <source2>...] [--list <filter>] [--all] [--quiet] [--config <file>] [--quiet]
+  Description:  Compile contract source files
+  Options: 
+                --all
+                    Compile all contracts instead of only the contracts changed since last compile.
+                --list <filter>
+                    List all recent stable releases from solc-bin.  If filter is specified then it will display only that
+                    type of release or docker tags. The filter parameter must be one of the following: prereleases,
+                    releases, latestRelease or docker.
+                --compiler <compiler-name>
+                    Specify a single compiler to use (e.g. `--compiler=solc`). Specify `none` to skip compilation.
+                --config <file>
+                    Specify configuration file to be used. The default is truffle-config.js
+                --quiet
+                    Suppress excess logging output.
+```
 
 See the [README.md](https://github.com/pingleware/pingleware-contracts/tree/main/test) under the test directory on GITHUB.COM
 

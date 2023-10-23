@@ -5,7 +5,7 @@ const BondCertificate = artifacts.require("BondCertificate");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("BondCertificate", function (/* accounts */) {
+contract("finance/elmx/BondCertificate", function (/* accounts */) {
   it("should assert true", async function () {
     await BondCertificate.deployed();
     return assert.isTrue(true);

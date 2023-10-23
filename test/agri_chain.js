@@ -5,7 +5,7 @@ const AgriChain = artifacts.require("AgriChain");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("AgriChain", (accounts) => {
+contract("agriculture/AgriChain", (accounts) => {
   it("add rhubbard with product id of 0, a product status of active and product location of FL",async () => {
       const agrichainInstance = await AgriChain.deployed();
       const prodid = await agrichainInstance.addProduct(0,"Rhubbard","active","FL")

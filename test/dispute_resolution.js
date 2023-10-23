@@ -5,7 +5,7 @@ const DisputeResolution = artifacts.require("DisputeResolution");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("DisputeResolution", function (/* accounts */) {
+contract("legal/DisputeResolution", function (/* accounts */) {
   it("should assert true", async function () {
     await DisputeResolution.deployed();
     return assert.isTrue(true);

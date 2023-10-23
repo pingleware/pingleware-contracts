@@ -5,7 +5,7 @@ const AircraftOwnership = artifacts.require("AircraftOwnership");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("AircraftOwnership", function (/* accounts */) {
+contract("aviation/AircraftOwnership", function (/* accounts */) {
   it("should assert true", async function () {
     await AircraftOwnership.deployed();
     return assert.isTrue(true);

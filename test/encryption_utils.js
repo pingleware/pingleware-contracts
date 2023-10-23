@@ -5,7 +5,7 @@ const EncryptionUtils = artifacts.require("EncryptionUtils");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("EncryptionUtils", function (/* accounts */) {
+contract("finance/elmx/EncryptionUtils", function (/* accounts */) {
   it("should assert true", async function () {
     await EncryptionUtils.deployed();
     return assert.isTrue(true);
