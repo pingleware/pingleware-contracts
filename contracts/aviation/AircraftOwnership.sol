@@ -11,26 +11,41 @@ contract AircraftOwnership is Version, Frozen {
     uint256 public constant totalSupply = 1;
     uint256 public constant decimals = 0;
 
-    mapping (address => uint256) public owners;
+    mapping (address => uint256) public ownership;
+    mapping (address => bool) public owners;
+    address[] public _owners;
 
     event Transfer(address sender,address receiver,uint amount);
 
-    constructor() {
-        owners[msg.sender] = 100; // represents 100%
+    constructor(string memory aircraftBrand,string memory aircraftSerial) {
+        symbol = aircraftSerial;
+        name = aircraftBrand;
+        ownership[msg.sender] = 100; // represents 100%
+        _owners.push(msg.sender);
+        owners[msg.sender] = true;
     }
 
     modifier isAuthorized(address wallet) {
-        require(owners[wallet] > 0,"not an owner");
+        require(owners[wallet],"not an owner");
         _;
+    }
+
+    function getAircraftBrand() external view returns (string memory) {
+        return name;
+    }
+
+    function getAircraftSerialNo() external view returns (string memory) {
+        return symbol;
     }
 
     function transfer(address to, uint tokens) public isAuthorized(msg.sender) returns (bool success) {
         require(to != address(0), "Null address");
         require(tokens > 0, "Invalid Value"); // percentage of ownership being transferred
-        require(owners[msg.sender] >= tokens,"insufficient ownership percentage for transfer");
+        require(ownership[msg.sender] >= tokens,"insufficient ownership percentage for transfer");
 
-        owners[msg.sender] = SafeMath.safeSub(owners[msg.sender], tokens);
-        owners[to] = SafeMath.safeAdd(owners[to], tokens);
+        ownership[msg.sender] = SafeMath.safeSub(ownership[msg.sender], tokens);
+        ownership[to] = SafeMath.safeAdd(ownership[to], tokens);
+        _owners.push(to);
         emit Transfer(msg.sender, to, tokens);
         return true;
     }
@@ -39,16 +54,20 @@ contract AircraftOwnership is Version, Frozen {
         require(to != address(0), "Null address");
         require(from != address(0), "Null address");
         require(tokens > 0, "Invalid value");
-        require(owners[from] >= tokens,"insufficient ownership percentage for transfer");
+        require(ownership[from] >= tokens,"insufficient ownership percentage for transfer");
 
-        owners[from] = SafeMath.safeSub(owners[from], tokens);
-        owners[to] = SafeMath.safeAdd(owners[to], tokens);
+        ownership[from] = SafeMath.safeSub(ownership[from], tokens);
+        ownership[to] = SafeMath.safeAdd(ownership[to], tokens);
+        _owners.push(to);
         emit Transfer(from, to, tokens);
         return true;
     }
 
-    function getOwnership() public view isAuthorized(msg.sender) returns(uint256) {
-        return owners[msg.sender];
+    function getOwnership(address wallet) external view returns(uint256) {
+        return ownership[wallet];
     }
 
+    function getOwners() external view returns (address[] memory) {
+        return _owners;
+    }
 }
