@@ -17,9 +17,12 @@ contract HouseOfRepresentatives {
 
     mapping(uint256 => Bill) private bills;
     uint256 private billCounter;
+    mapping(string => string) public houseCertificate;
+    mapping(string => string) public presidentElect;
 
     event BillIntroduced(uint256 billId, address sponsor, string title);
     event BillStatusChange(uint256 billId, BillStatus status);
+    event HouseCertificateSet(string certificate);
 
     modifier onlySpeaker() {
         require(msg.sender == speaker, "Only the Speaker of the House can perform this action.");
@@ -69,5 +72,24 @@ contract HouseOfRepresentatives {
         require(bills[billId].status == BillStatus.Introduced, "This bill cannot be changed.");
         bills[billId].status = status;
         emit BillStatusChange(billId, status);
+    }
+
+    function setPresidentElect(string memory electionYear,string memory name) public onlySpeaker {
+        presidentElect[electionYear] = name;
+    }
+
+    function getPresidentElect(string memory electionYear) public view returns (string memory) {
+        return presidentElect[electionYear];
+    }
+
+
+    // Only the owner (presumably a trusted authority) can set the House certificate
+    function setHouseCertificate(string memory electionYear,string memory certificate) public onlySpeaker {
+        houseCertificate[electionYear] = certificate;
+        emit HouseCertificateSet(certificate);
+    }
+
+    function getHouseCertificate(string memory electionYear) public view returns (string memory) {
+        return houseCertificate[electionYear];
     }
 }

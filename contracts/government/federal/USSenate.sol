@@ -27,10 +27,14 @@ contract USSenate {
     uint256 private billCounter;
     uint256 private nominationCounter;
 
+    mapping(string => string) public senateCertificate;
+    mapping(string => string) public presidentElect;
+
     event BillIntroduced(uint256 billId, address sponsor, string title);
     event BillStatusChange(uint256 billId, BillStatus status);
     event NominationSubmitted(uint256 nominationId, address nominee, string position);
     event NominationStatusChange(uint256 nominationId, ConfirmationStatus status);
+    event SenateCertificateSet(string certificate);
 
     modifier onlyMajorityLeader() {
         require(msg.sender == majorityLeader, "Only the Majority Leader can perform this action.");
@@ -84,5 +88,19 @@ contract USSenate {
         require(nominations[nominationId].status == ConfirmationStatus.Pending, "This nomination cannot be changed.");
         nominations[nominationId].status = status;
         emit NominationStatusChange(nominationId, status);
+    }
+
+    function setPresidentElect(string memory electionYear,string memory name) public onlyMajorityLeader {
+        presidentElect[electionYear] = name;
+    }
+
+    // Only the owner (presumably a trusted authority) can set the Senate certificate
+    function setSenateCertificate(string memory electionYear, string memory certificate) public onlyMajorityLeader {
+        senateCertificate[electionYear] = certificate;
+        emit SenateCertificateSet(certificate);
+    }
+
+    function getSenateCertificate(string memory electionYear) public view returns (string memory) {
+        return senateCertificate[electionYear];
     }
 }
