@@ -31,11 +31,11 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "../../common/Version.sol";
 import "../../common/Frozen.sol";
-import "../../common/IERC20TOKEN.sol";
+import "../../interfaces/IERC20TOKEN.sol";
 import "../../libs/SafeMath.sol";
 
 
-contract CommercialPaperToken is Version, Frozen, IERC20TOKEN {
+contract CommercialPaper is Version, Frozen, IERC20TOKEN {
     string public constant DESCRIPTION =
         string("Private Debt Token (Commercial Paper) for PressPage Entertainment Inc (SEC File #021-332144) under Rule 506b at https://www.sec.gov/Archives/edgar/data/0001766947/000176694719000001/xslFormDX01/primary_doc.xml. FOR ACCREDITED INVESTORS ONLY.");
     string public constant CUSIP = string("TO BE ASSIGNED");

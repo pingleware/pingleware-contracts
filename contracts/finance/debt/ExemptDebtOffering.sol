@@ -41,7 +41,7 @@ contract ExemptDebtOffering is Version, Owned {
 
    constructor()
   {
-    _Symbol[0] = "SASH-USD Bond";
+    _Symbol.push("SASH-USD Bond");
     _Fibonacci_number[0] = 8;
     _Fibonacci_epoch[0] = 1;
     _genesis_nonce_time[0] = 0;

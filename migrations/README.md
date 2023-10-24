@@ -67,3 +67,23 @@ truffle compile
 ```
 
 a shell script is provided called single_migration.sh
+
+# Issues
+
+If you receive the following error
+
+```
+CONNECTION ERROR: Couldn't connect to node http://localhost:7535.
+```
+
+when executing the following command,
+
+```
+truffle migrate --compile-none --f <migration number> --to <migration number>
+```
+
+try the command with compiler enabled,
+
+```
+truffle migrate --f <migration number> --to <migration number>
+```

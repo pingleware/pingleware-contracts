@@ -36,8 +36,14 @@ contract SimpleBond is ISimpleBond, Version, Frozen {
    mapping(uint256 => uint256) couponsRedeemed;
    mapping(address => uint256) bondsAmount;
 
-   constructor(string memory _name, uint256 _par, uint256 _parDecimals, uint256 _coupon,
-               uint256 _term, uint256 _cap, uint256 _timesToRedeem, address _tokenToRedeem,
+   constructor(string memory _name, 
+               uint256 _par, 
+               uint256 _parDecimals, 
+               uint256 _coupon,
+               uint256 _term, 
+               uint256 _cap, 
+               uint256 _timesToRedeem, 
+               address _tokenToRedeem,
                uint256 _loopLimit) {
         require(bytes(_name).length > 0,"name for bond cannot be empty");
         require(_coupon > 0,"coupon must be greater than zero");
