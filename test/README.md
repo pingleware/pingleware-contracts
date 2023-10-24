@@ -141,7 +141,7 @@ The following table created for tracking status when each contract has completed
 | :---------------------- | --------- | ----------------------------- | :--------: | :--------: | :--------------: |
 | Agriculture             |           |                               |            |            |                  |
 |                         |           | AgriChain                     |     Y     |     Y     |    1697931418    |
-|                         |           | AgriTrade                     |     N     |     N     |    1697948405    |
+|                         |           | AgriTrade                     |     Y     |     N     |    1697948405    |
 | Aviation                |           |                               |            |            |                  |
 |                         |           | AircraftOwnership             |     N     |     N     |    1697951611    |
 | Education               |           |                               |            |            |                  |
@@ -296,6 +296,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |     N     |     N     |    1697980933    |
 |                         |           | RideshareTrade                |     N     |     N     |    1697980955    |
 |                         |           | Transport                     |     N     |     N     |    1697980975    |
-| **TOTALS**        |           |                               | Y=1, N=122 | Y=1, N=122 |                  |
+| **TOTALS**        |           |                               | Y=2, N=122 | Y=1, N=122 |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.
