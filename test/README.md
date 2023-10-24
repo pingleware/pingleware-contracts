@@ -141,9 +141,9 @@ The following table created for tracking status when each contract has completed
 | :---------------------- | --------- | ----------------------------- | :--------: | :--------: | :--------------: |
 | Agriculture             |           |                               |            |            |                  |
 |                         |           | AgriChain                     |     Y     |     Y     |    1697931418    |
-|                         |           | AgriTrade                     |     Y     |     N     |    1697948405    |
+|                         |           | AgriTrade                     |     N     |     N     |    1697948405    |
 | Aviation                |           |                               |            |            |                  |
-|                         |           | AircraftOwnership             |     N     |     N     |    1697951611    |
+|                         |           | AircraftOwnership             |     Y     |     N     |    1697951611    |
 | Education               |           |                               |            |            |                  |
 |                         |           | Course                        |     N     |     N     |    1698151437    |
 |                         |           | EducationRoles                |     N     |     N     |    1698151468    |
