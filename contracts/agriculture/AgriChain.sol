@@ -21,7 +21,6 @@ contract AgriChain is Version, Frozen {
     // Adding a product
     function addProduct(uint prodId,string memory pname,string memory pstatus,string memory pcurLoc)
         external
-        returns (uint)
     {
         require(prodId >= 0 && prodId <= 15,"go home simon");
         prod[prodId].name = pname;
@@ -29,7 +28,6 @@ contract AgriChain is Version, Frozen {
         prod[prodId].curLoc = pcurLoc;
         prod[prodId].hash_value = sha256(string_tobytes(strConcat(pname,pstatus,pcurLoc)));
         productIds[prodId] = prodId;
-        return prodId;
     }
 
     // Retrieving the adopters
