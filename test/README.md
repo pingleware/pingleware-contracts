@@ -145,34 +145,35 @@ The following table created for tracking status when each contract has completed
 | Aviation                |           |                               |          |      |                  |
 |                         |           | AircraftOwnership             |    N    |  N  |    1697951611    |
 | Education               |           |                               |          |      |                  |
-|                         |           | Course                        |    N    |  N  |                  |
-|                         |           | EducationRoles                |    N    |  N  |                  |
-|                         |           | Lesson                        |    N    |  N  |                  |
+|                         |           | Course                        |    N    |  N  |    1698151437    |
+|                         |           | EducationRoles                |    N    |  N  |    1698151468    |
+|                         |           | Lesson                        |    N    |  N  |    1698151485    |
 |                         |           | Transcripts                   |    N    |  N  |    1697951791    |
 | Energy                  |           |                               |          |      |                  |
-|                         |           | EETP                          |    N    |  N  |                  |
-|                         |           | EnergyStore                   |    N    |  N  |                  |
-|                         |           | RINS                          |    N    |  N  |                  |
+|                         |           | EETP                          |    N    |  N  |    1698162652    |
+|                         |           | EnergyStore                   |    N    |  N  |    1698162661    |
+|                         |           | RINS                          |    N    |  N  |    1698162667    |
 | Finance                 |           |                               |          |      |                  |
 |                         | Banking   |                               |          |      |                  |
-|                         |           | PeerToPeerLending             |    N    |  N  |                  |
-|                         |           | SavingsAccount                |    N    |  N  |                  |
+|                         |           | PeerToPeerLending             |    N    |  N  |    1698160943    |
+|                         |           | SavingsAccount                |    N    |  N  |    1698161109    |
 |                         | Credit    |                               |          |      |                  |
-|                         |           | CreditReportAgency            |    N    |  N  |                  |
+|                         |           | CreditReportAgency            |    N    |  N  |    1698152467    |
 |                         | Currency  |                               |          |      |                  |
-|                         |           | Asian                         |    N    |  N  |                  |
-|                         |           | Forward                       |    N    |  N  |                  |
-|                         |           | Future                        |    N    |  N  |                  |
-|                         |           | Option                        |    N    |  N  |                  |
-|                         |           | Swap                          |    N    |  N  |                  |
-|                         |           | Touch                         |    N    |  N  |                  |
+|                         |           | Asian                         |    N    |  N  |    1698161319    |
+|                         |           | Forward                       |    N    |  N  |    1698161345    |
+|                         |           | Future                        |    N    |  N  |    1698161332    |
+|                         |           | Option                        |    N    |  N  |    1698161351    |
+|                         |           | Swap                          |    N    |  N  |    1698161338    |
+|                         |           | Touch                         |    N    |  N  |    1698161356    |
 |                         | DAO       |                               |          |      |                  |
-|                         |           | WyomingDAO                    |    N    |  N  |                  |
+|                         |           | WyomingDAO                    |    N    |  N  |    1698163091    |
 |                         | Debt      |                               |          |      |                  |
-|                         |           | CommercialPaper               |    N    |  N  |                  |
-|                         |           | ExemptDebtOffering            |    N    |  N  |                  |
-|                         |           | ExemptDebtOfferingStaking     |    N    |  N  |                  |
-|                         |           | SimpleBond                    |    N    |  N  |                  |
+|                         |           | CommercialPaper               |    N    |  N  |    1698163588    |
+|                         |           | DebtToken                     |    N    |  N  |    1698165642    |
+|                         |           | ExemptDebtOffering            |    N    |  N  |    1698163602    |
+|                         |           | ExemptDebtOfferingStaking     |    N    |  N  |    1698163618    |
+|                         |           | SimpleBond                    |    N    |  N  |    1698163627    |
 |                         |           |                               |          |      |                  |
 |                         | ELMX      |                               |          |      |                  |
 |                         |           | BestBooks                     |    N    |  N  |    1697952628    |
@@ -189,25 +190,25 @@ The following table created for tracking status when each contract has completed
 |                         |           | Reg3A11Equity                 |    N    |  N  |    1697952726    |
 |                         |           | Reg147ADebt                   |    N    |  N  |    1697953023    |
 |                         |           | Reg147AEquity                 |    N    |  N  |    1697953039    |
-|                         |           | Reg147Debt                    |    N    |  N  |                  |
-|                         |           | Reg147Equity                  |    N    |  N  |                  |
-|                         |           | Reg701Equity                  |    N    |  N  |                  |
-|                         |           | RegAT1Debt                    |    N    |  N  |                  |
-|                         |           | RegAT1Equity                  |    N    |  N  |                  |
+|                         |           | Reg147Debt                    |    N    |  N  |    1697953050    |
+|                         |           | Reg147Equity                  |    N    |  N  |    1697953012    |
+|                         |           | Reg701Equity                  |    N    |  N  |    1697953050    |
+|                         |           | RegAT1Debt                    |    N    |  N  |    1697952880    |
+|                         |           | RegAT1Equity                  |    N    |  N  |    1697952894    |
 |                         |           | RegD506CDebt                  |    N    |  N  |    1697953123    |
 |                         |           | RegD506CEquity                |    N    |  N  |    1697953109    |
 |                         |           | SecurityMeta                  |    N    |  N  |    1697953147    |
 |                         |           | StockCertificate              |    N    |  N  |    1698149824    |
 |                         |           | TokenManager                  |    N    |  N  |    1697953165    |
 |                         | Equity    |                               |          |      |                  |
-|                         |           | ATS                           |    N    |  N  |                  |
-|                         |           | CPAMM                         |    N    |  N  |                  |
-|                         |           | DelawareStockToken            |    N    |  N  |                  |
-|                         |           | DirectEquityOffering          |    N    |  N  |                  |
-|                         |           | ExemptEquityOffering          |    N    |  N  |                  |
-|                         |           | ICO                           |    N    |  N  |                  |
+|                         |           | ATS                           |    N    |  N  |    1697953240    |
+|                         |           | CPAMM                         |    N    |  N  |    1697953272    |
+|                         |           | DelawareStockToken            |    N    |  N  |    1697953300    |
+|                         |           | DirectEquityOffering          |    N    |  N  |    1697953329    |
+|                         |           | ExemptEquityOffering          |    N    |  N  |    1697953346    |
+|                         |           | ICO                           |    N    |  N  |    1697953361    |
 |                         | Utility   |                               |          |      |                  |
-|                         |           | BAToken                       |    N    |  N  |                  |
+|                         |           | BAToken                       |    N    |  N  |    1697953390    |
 | Government              |           |                               |          |      |                  |
 |                         | Federal   |                               |          |      |                  |
 |                         |           | Congress                      |    N    |  N  |                  |
@@ -232,7 +233,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | Healthcare                    |    N    |  N  |                  |
 |                         |           | PersonalInfo                  |    N    |  N  |                  |
 |                         | Pharma    |                               |          |      |                  |
-|                         |           | SampleGuardian                |    N    |  N  |                  |
+|                         |           | SampleGuardian                |    N    |  N  |    1697974823    |
 | Hospitality             |           |                               |          |      |                  |
 |                         |           | BlockchainBNB                 |    N    |  N  |                  |
 | Insurance               |           |                               |          |      |                  |
