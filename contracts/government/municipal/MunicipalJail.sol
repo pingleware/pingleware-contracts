@@ -1,18 +1,18 @@
 // SPDX-License-Identifier: BSL-1.1
 pragma solidity >=0.4.22 <0.9.0;
 
-import "./CityCouncil.sol";
+import "./MunicipalGovernment.sol";
 import "../Police.sol";
 import "../Case.sol";
 
-interface ICityCouncil {
+interface IMunicipalGovernment {
     enum ProposalStatus { Proposed, Approved, Rejected }
 
-    function getCityCouncilAddress() external view returns (address);
+    function getMunicipalGovernmentAddress() external view returns (address);
     function createProposal(string memory description) external;
 }
 
-contract CityJail is Police {
+contract MunicipalJail is Police {
 
     struct Inmate {
         string first_name;
@@ -48,10 +48,10 @@ contract CityJail is Police {
 
     string public facilityName;
 
-    ICityCouncil cityCouncilContract;
+    IMunicipalGovernment municipalGovernmentContract;
 
-    constructor(address cityCouncilAddress) {
-        cityCouncilContract = ICityCouncil(cityCouncilAddress);
+    constructor(address municipalGovernmentAddress) {
+        municipalGovernmentContract = IMunicipalGovernment(municipalGovernmentAddress);
     }
 
     modifier isInmate() {
