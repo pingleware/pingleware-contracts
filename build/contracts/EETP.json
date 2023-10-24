@@ -76,7 +76,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -89,7 +90,8 @@
       "name": "addNetwork",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -117,7 +119,8 @@
       "name": "buy",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -135,7 +138,8 @@
       "name": "cancel",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -153,7 +157,8 @@
       "name": "confirm",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -166,7 +171,8 @@
       "name": "pay",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"trans\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address payable\",\"name\":\"buyer\",\"type\":\"address\"}],\"name\":\"bought\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"trans\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address payable\",\"name\":\"buyer\",\"type\":\"address\"}],\"name\":\"confirmed\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"_network\",\"type\":\"address\"}],\"name\":\"addNetwork\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_trans\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_starting\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_duration\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_timestamp\",\"type\":\"uint256\"}],\"name\":\"buy\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_trans\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_timestamp\",\"type\":\"uint256\"}],\"name\":\"cancel\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_trans\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_timestamp\",\"type\":\"uint256\"}],\"name\":\"confirm\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"offers\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"buyer\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"starting\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"duration\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"confirmed\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_trans\",\"type\":\"bytes32\"}],\"name\":\"pay\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"From: https://github.com/Yassin-MT/EETP An Ethereum-Based Energy Trading Protocol This is an P2P Energy Trading Protocol built on Ethereum's Smart Contract technology. On this platform, any entity can buy or sell electricity, there is no limit on the number of participants, and there are no intermediaries (e.g. banks, traders and energy retailers). The proposed solution uses off-chain and on-chain processing (and storage) with the objective to perform as much processing off-chain as possible, without compromising the security of the solution. Using Ethereum's smart contract technology, the solution realizes a secure, decentralized, trustworthy, and low-cost energy trading in next generation smart grids. The Actors There are four actors in the proposed protocol.      a) the producer: an entity that has a block of electricity to sell sometime in the future;      b) the consumer: an entity that wants to buy electricity;      c) the energy agent: an entity that maintains an energy inventory, provided by producers, and matches it to consumer requests; and     (d) the distribution network: an electric power network that transports electricity between two end points.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/energy/EETP.sol\":\"EETP\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"project:/contracts/energy/EETP.sol\":{\"keccak256\":\"0x7d4544221fbbb788c089c06d782e5ceb740fb571f95509258bd5852d3c3cb621\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://679363d5f58fab629d17c660eac63923f8682b6e1cb003f7141a2cc9a90786f8\",\"dweb:/ipfs/QmTnvok2QUfQGHH5paFDsapYx4xxsUnK4hGS55YTLn4nUT\"]}},\"version\":1}",
@@ -5227,9 +5233,17 @@
     "name": "solc",
     "version": "0.8.18+commit.87f61d96.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1697930746463": {
+      "events": {},
+      "links": {},
+      "address": "0x640B4F401a4436D69d00389b206f6B9a21CCEdF4",
+      "transactionHash": "0xe31e0e0746fe94ded7bbdab6ecf469dc5223f94da9a9ea12da04e0e3ea982d93"
+    }
+  },
   "schemaVersion": "3.4.12",
-  "updatedAt": "2023-10-22T00:35:42.979Z",
+  "updatedAt": "2023-10-24T15:53:24.036Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
