@@ -11,5 +11,5 @@ filename="$1"
 
 # Invoke the truffle migrate command
 
-test_command="truffle test $filename --compile-none --migrate-none"
+test_command="truffle test $filename --compile-none --migrate-none --network development"
 echo "$test_command"

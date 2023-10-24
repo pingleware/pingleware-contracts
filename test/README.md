@@ -128,7 +128,7 @@ Usage:        truffle test [<test_file>] [--compile-all[-debug]] [--compile-none
 To conduct a test on a single file, change to the test directory then,
 
 ```
-truffle test agri_trade.js --compile-none --migrate-none
+truffle test agri_trade.js --compile-none --migrate-none --network development
 ```
 
 if the contract has already been compiled and deployed
@@ -175,30 +175,30 @@ The following table created for tracking status when each contract has completed
 |                         |           | SimpleBond                    |    N    |  N  |                  |
 |                         |           |                               |          |      |                  |
 |                         | ELMX      |                               |          |      |                  |
-|                         |           | BestBooks                     |    N    |  N  |                  |
-|                         |           | BondCertificate               |    N    |  N  |                  |
+|                         |           | BestBooks                     |    N    |  N  |    1697952628    |
+|                         |           | BondCertificate               |    N    |  N  |    1697952638    |
 |                         |           | ConsolidatedAuditTrail        |    N    |  N  |    1697934206    |
-|                         |           | EncryptionUtils               |    N    |  N  |                  |
-|                         |           | ExchangeFee                   |    N    |  N  |                  |
+|                         |           | EncryptionUtils               |    N    |  N  |    1697952652    |
+|                         |           | ExchangeFee                   |    N    |  N  |    1698116231    |
 |                         |           | ExemptLiquidityMarketExchange |    N    |  N  |    1697932593    |
-|                         |           | InvestorManager               |    N    |  N  |                  |
-|                         |           | MunicipalBond                 |    N    |  N  |                  |
-|                         |           | OrderBook                     |    N    |  N  |                  |
-|                         |           | PaymentWallet                 |    N    |  N  |                  |
-|                         |           | Reg3A11Debt                   |    N    |  N  |                  |
-|                         |           | Reg3A11Equity                 |    N    |  N  |                  |
-|                         |           | Reg147ADebt                   |    N    |  N  |                  |
-|                         |           | Reg147AEquity                 |    N    |  N  |                  |
+|                         |           | InvestorManager               |    N    |  N  |    1697952660    |
+|                         |           | ELMXMunicipalBond             |    N    |  N  |    1698150398    |
+|                         |           | OrderBook                     |    N    |  N  |    1697984615    |
+|                         |           | PaymentWallet                 |    N    |  N  |    1697952603    |
+|                         |           | Reg3A11Debt                   |    N    |  N  |    1697952710    |
+|                         |           | Reg3A11Equity                 |    N    |  N  |    1697952726    |
+|                         |           | Reg147ADebt                   |    N    |  N  |    1697953023    |
+|                         |           | Reg147AEquity                 |    N    |  N  |    1697953039    |
 |                         |           | Reg147Debt                    |    N    |  N  |                  |
 |                         |           | Reg147Equity                  |    N    |  N  |                  |
 |                         |           | Reg701Equity                  |    N    |  N  |                  |
 |                         |           | RegAT1Debt                    |    N    |  N  |                  |
 |                         |           | RegAT1Equity                  |    N    |  N  |                  |
-|                         |           | RegD506CDebt                  |    N    |  N  |                  |
-|                         |           | RegD506CEquity                |    N    |  N  |                  |
-|                         |           | SecurityMeta                  |    N    |  N  |                  |
-|                         |           | StockCertificate              |    N    |  N  |                  |
-|                         |           | TokenManager                  |    N    |  N  |                  |
+|                         |           | RegD506CDebt                  |    N    |  N  |    1697953123    |
+|                         |           | RegD506CEquity                |    N    |  N  |    1697953109    |
+|                         |           | SecurityMeta                  |    N    |  N  |    1697953147    |
+|                         |           | StockCertificate              |    N    |  N  |    1698149824    |
+|                         |           | TokenManager                  |    N    |  N  |    1697953165    |
 |                         | Equity    |                               |          |      |                  |
 |                         |           | ATS                           |    N    |  N  |                  |
 |                         |           | CPAMM                         |    N    |  N  |                  |
