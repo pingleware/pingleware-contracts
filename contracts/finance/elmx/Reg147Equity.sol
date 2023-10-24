@@ -50,8 +50,9 @@ contract Reg147Equity is AEquityToken {
 
         MAX_OFFERING_SHARES = tokenSupply;
 
-        exchangeContract.assignToken(address(this), tokenIssuer, tokenName, tokenSymbol, totalSupply, "Reg147");
-        exchangeContract.setOfferingContractAddress(symbol,address(this));
+        //exchangeContract.assignTokenManager(tokenManagerAddress);
+        //exchangeContract.assignToken(address(this), tokenIssuer, tokenName, tokenSymbol, totalSupply, "Reg147");
+        //exchangeContract.setOfferingContractAddress(symbol,address(this));
     }
 
     modifier isOwner() {

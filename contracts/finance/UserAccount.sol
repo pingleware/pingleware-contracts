@@ -5,6 +5,8 @@ contract UserAccount {
 
     mapping(address => uint256) private balances;
 
+    constructor() {}
+
     function balanceOf(address addr) public view returns (uint256) {
         return balances[addr];
     }

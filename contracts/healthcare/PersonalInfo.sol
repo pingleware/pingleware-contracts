@@ -34,9 +34,9 @@ contract PersonalInfo is Version, Frozen {
 
     constructor()
     {
-        User.addUserByAddress(msg.sender);
-        User.updateUserMeta("", "", "", "", "", DEFAULT_ADMIN_ROLE);
-        User.updateUserMeta("", "", "", "", "", PATIENT_ROLE);
+        User.addUser();
+        //User.updateUserMeta("", "", "", "", "", DEFAULT_ADMIN_ROLE);
+        //User.updateUserMeta("", "", "", "", "", PATIENT_ROLE);
     }
 
     // Return `true` if the account belongs to the admin role.

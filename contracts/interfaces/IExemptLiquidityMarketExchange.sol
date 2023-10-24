@@ -13,6 +13,7 @@ interface IExemptLiquidityMarketExchange is IInvestorManager, IConsolidatedAudit
     function getShares(address investor,address token)  external view returns (int256);
     function transferShares(address from,address to,address token,int256 amount) external;
     function setOfferingContractAddress(string calldata symbol,address tokenAddress) external;
+    function assignTokenManager(address tokenManagerAddress) external;
 
     // MemberPool
     /**

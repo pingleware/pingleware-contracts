@@ -350,6 +350,9 @@ contract ExemptLiquidityMarketExchange is AccessControl, EncryptionUtils {
     }
 
     // TOKEN MANAGER
+    function assignTokenManager(address tokenManagerAddress) external {
+        tokenManagerContract = ITokenManager(tokenManagerAddress);
+    }
     function assignToken(address tokenAddress, address issuer, string calldata name, string calldata symbol, uint256 totalSupply, string calldata regulation) external isTokenManagerContract {
         tokenManagerContract.assignToken(tokenAddress,issuer,name,symbol,totalSupply,regulation); 
     }

@@ -74,6 +74,7 @@ library User {
         external
     {
         require(userStorage().users[msg.sender] == 0,"user already exists");
+        userStorage().user_meta[msg.sender].role = OWNER_ROLE;
         userStorage().users[msg.sender] = 1;
         userStorage()._users.push(msg.sender);
         emit UserAdded(msg.sender);

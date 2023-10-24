@@ -118,7 +118,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -137,7 +138,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -161,7 +163,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -174,7 +177,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -193,7 +197,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"hash\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"VerifiedAddressAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"VerifiedAddressRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr1\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr2\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr3\",\"type\":\"address\"}],\"name\":\"VerifiedAddressSuperseded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"oldhash\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"hash\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"VerifiedAddressUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"hasHash\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"holderAt\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"holderCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"isHolder\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"isSuperseded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"addVerified(address,string)\":{\"params\":{\"addr\":\"The address of the person represented by the supplied hash.\",\"hash\":\"A cryptographic hash of the address holder's verified information.\"}},\"cancelAndReissue(address,address)\":{\"params\":{\"original\":\"The address to be superseded. This address MUST NOT be reused.\",\"replacement\":\"The address  that supersedes the original. This address MUST be verified.\"}},\"hasHash(address,bytes32)\":{\"params\":{\"addr\":\"The address to test.\",\"hash\":\"The hash to test.\"},\"returns\":{\"_0\":\"true if the hash matches the one supplied with the address in `addVerified`, or `updateVerified`.\"}},\"holderAt(uint256)\":{\"params\":{\"index\":\"The zero-based index of the holder.\"},\"returns\":{\"_0\":\"the address of the token holder with the given index.\"}},\"holderCount()\":{\"returns\":{\"_0\":\"the number of unique addresses that own tokens.\"}},\"isHolder(address)\":{\"params\":{\"addr\":\"The address to check.\"},\"returns\":{\"_0\":\"true if the supplied address owns a token.\"}},\"isSuperseded(address)\":{\"params\":{\"addr\":\"The address to check.\"},\"returns\":{\"_0\":\"true if the supplied address was superseded by another address.\"}},\"pruneShareholders(address,uint256)\":{\"params\":{\"addr\":\"The address to prune if their balance will be reduced to 0. @dev see https://ethereum.stackexchange.com/a/39311\"}},\"removeVerified(address)\":{\"params\":{\"addr\":\"The verified address to be removed.\"}},\"updateShareholders(address)\":{\"params\":{\"addr\":\"The address to add as a shareholder if it's not already.\"}},\"updateVerified(address,string)\":{\"params\":{\"addr\":\"The verified address of the person represented by the supplied hash.\",\"hash\":\"A new cryptographic hash of the address holder's updated verified information.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"addShareholder(address,address,Shareholder.InvestorType)\":{\"notice\":\"Shareholder level:    1 = non-accredited shareholder    2 = accredited shareholder    3 = affiliate shareholder \"},\"addVerified(address,string)\":{\"notice\":\"Add a verified address, along with an associated verification hash to the contract.  Upon successful addition of a verified address, the contract must emit  `VerifiedAddressAdded(addr, hash, msg.sender)`.  It MUST throw if the supplied address or hash are zero, or if the address has already been supplied.\"},\"cancelAndReissue(address,address)\":{\"notice\":\"Cancel the original address and reissue the Tokens to the replacement address.  Access to this function MUST be strictly controlled.  The `original` address MUST be removed from the set of verified addresses.  Throw if the `original` address supplied is not a   Throw if the replacement address is not a verified address.  This function MUST emit the `VerifiedAddressSuperseded` event.\"},\"hasHash(address,bytes32)\":{\"notice\":\"Checks that the supplied hash is associated with the given address.\"},\"holderAt(uint256)\":{\"notice\":\"By counting the number of token holders using `holderCount`  you can retrieve the complete list of token holders, one at a time.  It MUST throw if `index >= holderCount()`.\"},\"holderCount()\":{\"notice\":\"The number of addresses that own tokens.\"},\"isHolder(address)\":{\"notice\":\"Checks to see if the supplied address is a share holder.\"},\"isSuperseded(address)\":{\"notice\":\"Checks to see if the supplied address was superseded.\"},\"pruneShareholders(address,uint256)\":{\"notice\":\"If the address is in the `shareholders` array and the forthcoming  transfer or transferFrom will reduce their balance to 0, then  we need to remove them from the shareholders array.\"},\"removeVerified(address)\":{\"notice\":\"Remove a verified address, and the associated verification hash. If the address is  unkblock.timestampn to the contract then this does nothing. If the address is successfully removed, this  function must emit `VerifiedAddressRemoved(addr, msg.sender)`.  It MUST throw if an attempt is made to remove a verifiedAddress that owns Tokens.\"},\"updateShareholders(address)\":{\"notice\":\"If the address is not in the `shareholders` array then push it  and update the `holderIndices` mapping.\"},\"updateVerified(address,string)\":{\"notice\":\"Update the hash for a verified address known to the contract.  Upon successful update of a verified address the contract must emit  `VerifiedAddressUpdated(addr, oldHash, hash, msg.sender)`.  If the hash is the same as the value already stored then  no `VerifiedAddressUpdated` event is to be emitted.  It MUST throw if the hash is zero, or if the address is unverified.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/finance/Shareholder.sol\":\"Shareholder\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"project:/contracts/finance/Shareholder.sol\":{\"keccak256\":\"0x65c909682d4990c93dca72728fc19c4946431fff3f855a8016f8cff12a09a66a\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://5e329be97a00229973fc31673faefe27b223333e8628d51091540d0a3a43f81a\",\"dweb:/ipfs/QmUE7S9V6xdbYN8pp2vzAHBFNzVeWNjqWGSCkKGZDsWsDW\"]}},\"version\":1}",
@@ -26969,9 +26974,117 @@
     "name": "solc",
     "version": "0.8.18+commit.87f61d96.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1697930746463": {
+      "events": {
+        "0x550c196a77afc2d9b241c5742cef5ee82f2db8345acf38fed8ba8e2070b6451f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "VerifiedAddressAdded",
+          "type": "event"
+        },
+        "0x8071c01a493142de896a206c19ca180d32e91d6486fcf11ea299f569f5d922b5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "VerifiedAddressRemoved",
+          "type": "event"
+        },
+        "0xb64971100522354f3d25283cb14e2eefcb0dd26a757482ccfe42479d0a686857": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "addr1",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "addr2",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "addr3",
+              "type": "address"
+            }
+          ],
+          "name": "VerifiedAddressSuperseded",
+          "type": "event"
+        },
+        "0x956cac7563aec785f30b680b47233cb635844cd3f2a1a24c87f96b9b7d4e7544": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "oldhash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "sender",
+              "type": "address"
+            }
+          ],
+          "name": "VerifiedAddressUpdated",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x5bb68983aDB12284b2Ae44Bb7E2E490BC2b956fd",
+      "transactionHash": "0x3dc1e73ceccf4bc3b421c5e1705e3230c38d7089793fc6e7b8de808f1cbee192"
+    }
+  },
   "schemaVersion": "3.4.12",
-  "updatedAt": "2023-10-23T16:59:55.596Z",
+  "updatedAt": "2023-10-24T03:00:57.435Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

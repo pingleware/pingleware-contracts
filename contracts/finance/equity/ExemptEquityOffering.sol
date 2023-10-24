@@ -46,7 +46,9 @@ contract ExemptEquityOffering is Version, Frozen {
     IOfferingContract Offering;
 
     constructor(IOfferingContract.OfferingType offeringType,
-                address account_contract, address transferagent_contract, address shares_contract,
+                address account_contract, 
+                address transferagent_contract, 
+                address shares_contract,
                 uint256 initial_supply)
         notDPO(offeringType)
     {
