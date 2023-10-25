@@ -13,7 +13,7 @@ contract BestBooks is IBestBooks {
     mapping(uint256 => Entry) public ledger;
     mapping(string => Account) public chartOfAccounts;
 
-    uint256 public ledgerCount;
+    uint256 public ledgerCount=0;
 
     function addEntry(
         uint256 timestamp,
@@ -68,10 +68,12 @@ contract BestBooks is IBestBooks {
     function getLedgerEntryByRange(uint256 startingTimestamp,uint256 endingTimestamp) external payable  returns(Entry[] memory) {
         Entry[] memory entries;
         uint256 index=0;
-
-        for (uint256 i=0; i<ledgerCount; i++) {
-            if (ledger[i].timestamp >= startingTimestamp && ledger[i].timestamp < endingTimestamp) {
-                entries[index++] = ledger[i];
+        if (ledgerCount > 0) {
+            for (uint256 i=0; i<ledgerCount; i++) {
+                if (ledger[i].timestamp >= startingTimestamp && ledger[i].timestamp < endingTimestamp) {
+                    Entry memory entry = ledger[i];
+                    entries[index++] = entry;
+                }
             }
         }
         return entries;

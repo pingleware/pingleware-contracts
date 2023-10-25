@@ -176,7 +176,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | SimpleBond                    |     N     |     N     |    1698163627    |
 |                         |           |                               |            |            |                  |
 |                         | ELMX      |                               |            |            |                  |
-|                         |           | BestBooks                     |     N     |     N     |    1697952628    |
+|                         |           | BestBooks                     |     Y     |     N     |    1697952628    |
 |                         |           | BondCertificate               |     N     |     N     |    1697952638    |
 |                         |           | ConsolidatedAuditTrail        |     N     |     N     |    1697934206    |
 |                         |           | EncryptionUtils               |     N     |     N     |    1697952652    |
@@ -296,6 +296,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |     N     |     N     |    1697980933    |
 |                         |           | RideshareTrade                |     N     |     N     |    1697980955    |
 |                         |           | Transport                     |     N     |     N     |    1697980975    |
-| **TOTALS**        |           |                               | Y=6, N=117 | Y=4, N=119 |                  |
+| **TOTALS**        |           |                               | Y=7, N=116 | Y=4, N=119 |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.
