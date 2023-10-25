@@ -8,6 +8,10 @@ interface IInvestorManager {
     function isWhitelisted(address wallet)  external view returns (bool);
 
     function findInvestor(string calldata symbol,address wallet) external view returns (bool);
+    function addInvestor(address wallet) external;
+    function removeInvestor(address wallet) external;
+    function removeInvestorBySymbol(string calldata symbol,address wallet) external;
+    function removeInvestor(uint256 investor_type,address wallet) external;
     function addInvestor(string calldata symbol,address wallet) external;
 
     function isInvestor(string calldata symbol,address wallet) external view returns(bool);
@@ -19,6 +23,7 @@ interface IInvestorManager {
     function getInvestorStatus(address wallet) external view returns (bool);
     function getInvestorJurisdiction(address wallet) external view returns (string memory);
     function getInvestorLevel(address wallet) external view returns (uint);
+    function getInvestorsBySymbol(string calldata symbol) external view returns (address[] memory);
 
     function isAccredited(address wallet)  external view returns (bool);
     function isNonAccredited(address wallet)  external view returns (bool);
