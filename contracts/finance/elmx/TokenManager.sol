@@ -13,9 +13,12 @@ contract TokenManager is ITokenManager, AccessControl {
     function assignToken(address tokenAddress, address issuer, string calldata name, string calldata symbol, uint256 totalSupply, string calldata regulation) external  {
         require(tokenContracts[symbol].tokenAddress == address(0), "Token already exists");
 
-        tokenContracts[symbol] = TOKEN(name,symbol,tokenAddress,regulation);
+        tokenContracts[symbol] = TOKEN(name,symbol,tokenAddress,regulation,true);
  
         emit AssignedOffering(issuer,name,symbol,totalSupply);
+    }
+    function isTokenActive(string calldata symbol) external view returns (bool) {
+        return tokenContracts[symbol].active;
     }
     function updateTokenName(string calldata symbol,string calldata name)  external  {
         require(tokenContracts[symbol].tokenAddress != address(0x0),"token not found for symbol");
@@ -40,6 +43,7 @@ contract TokenManager is ITokenManager, AccessControl {
     }
     function removeToken(string calldata symbol)  external  {
         require(tokenContracts[symbol].tokenAddress != address(0x0),"token not found for symbol");
+        tokenContracts[symbol].active = false;
         delete tokenContracts[symbol];
         emit DelistedToken(symbol);
     }
