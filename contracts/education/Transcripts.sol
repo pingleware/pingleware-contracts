@@ -27,10 +27,10 @@ contract Transcripts is Course {
         isAdministrator
         returns (uint)
     {
-        semester[semester.length] = Semester({
+        semester.push(Semester({
             starting: _start,
             ending: _end
-        });
+        }));
         return semester.length;
     }
 
