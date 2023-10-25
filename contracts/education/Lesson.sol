@@ -26,13 +26,13 @@ contract Lesson is EducationRoles {
     LessonMetadata[] private lessons;
 
     function createLesson(string memory name, string memory description, string memory course, string memory subject, uint256 duration)
-        public
+        external
         isLessonPlanner
         returns (uint256)
     {
         string[] memory empty;
 
-        lessons[lessons.length] = LessonMetadata({
+        lessons.push(LessonMetadata({
             name: name,
             description: description,
             course: course,
@@ -48,7 +48,7 @@ contract Lesson is EducationRoles {
             references: empty,
             homework: empty,
             feedback: empty
-        });
+        }));
         return lessons.length;
     }
 

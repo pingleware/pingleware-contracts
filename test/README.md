@@ -147,7 +147,7 @@ The following table created for tracking status when each contract has completed
 | Education               |           |                               |            |            |                  |
 |                         |           | Course                        |     N     |     N     |    1698151437    |
 |                         |           | EducationRoles                |     N     |     N     |    1698151468    |
-|                         |           | Lesson                        |     N     |     N     |    1698151485    |
+|                         |           | Lesson                        |     Y     |     Y     |    1698151485    |
 |                         |           | Transcripts                   |     N     |     N     |    1697951791    |
 | Energy                  |           |                               |            |            |                  |
 |                         |           | EETP                          |     N     |     N     |    1698162652    |
@@ -296,6 +296,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |     N     |     N     |    1697980933    |
 |                         |           | RideshareTrade                |     N     |     N     |    1697980955    |
 |                         |           | Transport                     |     N     |     N     |    1697980975    |
-| **TOTALS**        |           |                               | Y=2, N=122 | Y=1, N=122 |                  |
+| **TOTALS**        |           |                               | Y=3, N=120 | Y=2, N=121 |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.

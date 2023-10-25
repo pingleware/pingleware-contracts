@@ -18,12 +18,12 @@ contract Course is Lesson {
     CourseMetadata[] private courses;
 
     function createCourse(string memory name, string memory description, uint credits, uint256 cost)
-        public
+        external
         isTeacher
         returns (uint)
     {
         uint[] memory empty;
-        courses[courses.length] = CourseMetadata({
+        courses.push(CourseMetadata({
             name: name,
             description: description,
             credits: credits,
@@ -31,7 +31,7 @@ contract Course is Lesson {
             lessons: empty,
             cost: cost,
             teacher: msg.sender
-        });
+        }));
         return courses.length;
     }
 
@@ -55,6 +55,7 @@ contract Course is Lesson {
         public
         isTeacher
     {
-        courses[course].lessons[courses[course].lessons.length] = lesson;
+        require(course < courses.length,"course is out of range");
+        courses[course].lessons.push(lesson);
     }
 }
