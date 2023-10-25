@@ -26,7 +26,7 @@ contract Lesson is EducationRoles {
     LessonMetadata[] private lessons;
 
     function createLesson(string memory name, string memory description, string memory course, string memory subject, uint256 duration)
-        external
+        public
         isLessonPlanner
         returns (uint256)
     {
@@ -74,7 +74,7 @@ contract Lesson is EducationRoles {
         returns (uint256)
     {
         require(lessons[index].created_by == msg.sender,"not the lesson planner who created this lesson");
-        lessons[index].objectives[lessons[index].objectives.length] = objective;
+        lessons[index].objectives.push(objective);
         return lessons[index].objectives.length;
     }
 
@@ -84,7 +84,7 @@ contract Lesson is EducationRoles {
         returns (uint256)
     {
         require(lessons[index].created_by == msg.sender,"not the lesson planner who created this lesson");
-        lessons[index].tasks[lessons[index].tasks.length] = task;
+        lessons[index].tasks.push(task);
         return lessons[index].tasks.length;
     }
 
@@ -94,7 +94,7 @@ contract Lesson is EducationRoles {
         returns (uint256)
     {
         require(lessons[index].created_by == msg.sender,"not the lesson planner who created this lesson");
-        lessons[index].action_plan[lessons[index].action_plan.length] = plan;
+        lessons[index].action_plan.push(plan);
         return lessons[index].action_plan.length;
     }
 
@@ -104,7 +104,7 @@ contract Lesson is EducationRoles {
         returns (uint256)
     {
         require(lessons[index].created_by == msg.sender,"not the lesson planner who created this lesson");
-        lessons[index].materials[lessons[index].materials.length] = material;
+        lessons[index].materials.push(material);
         return lessons[index].materials.length;
     }
 
@@ -114,7 +114,7 @@ contract Lesson is EducationRoles {
         returns (uint256)
     {
         require(lessons[index].created_by == msg.sender,"not the lesson planner who created this lesson");
-        lessons[index].equipment[lessons[index].equipment.length] = equipment;
+        lessons[index].equipment.push(equipment);
         return lessons[index].equipment.length;
     }
 
@@ -124,7 +124,7 @@ contract Lesson is EducationRoles {
         returns (uint256)
     {
         require(lessons[index].created_by == msg.sender,"not the lesson planner who created this lesson");
-        lessons[index].references[lessons[index].references.length] = _reference;
+        lessons[index].references.push(_reference);
         return lessons[index].references.length;
     }
 
@@ -134,7 +134,7 @@ contract Lesson is EducationRoles {
         returns (uint256)
     {
         require(lessons[index].created_by == msg.sender,"not the lesson planner who created this lesson");
-        lessons[index].homework[lessons[index].homework.length] = homework;
+        lessons[index].homework.push(homework);
         return lessons[index].homework.length;
     }
 
@@ -144,7 +144,7 @@ contract Lesson is EducationRoles {
         returns (uint256)
     {
         require(lessons[index].created_by == msg.sender,"not the lesson planner who created this lesson");
-        lessons[index].feedback[lessons[index].feedback.length] = feedback;
+        lessons[index].feedback.push(feedback);
         return lessons[index].feedback.length;
     }
 
