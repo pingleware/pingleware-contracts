@@ -88,9 +88,16 @@ import "../../interfaces/IPaymentWallet.sol";
 import "../../abstract/ADebtToken.sol";
 
 contract Reg147ADebt is ADebtToken, AccessControl {
- constructor() {
+     constructor() {
 
     }
+
+    IPaymentWallet paymentWalletContract;
+
+    function setPaymentWalletContract(address paymentWalletAddress) external {
+        paymentWalletContract = IPaymentWallet(paymentWalletAddress);
+    }
+
 
     function validate(address from,address to,uint tokens) external view returns (bool) {
         int valid = 0;
@@ -112,15 +119,19 @@ contract Reg147ADebt is ADebtToken, AccessControl {
         return false;
     }
     function transfer(address from,address to, uint tokens)  external returns (bool) {
-        IPaymentWallet(from).transfer(to, tokens, IPaymentWallet(from).getCVV());
+        require(from == msg.sender,"not from msg.sender");
+        require(address(paymentWalletContract) != address(0x0),"PaymentWallet contract is not set");
+        paymentWalletContract.transfer(to, tokens, paymentWalletContract.getCVV());
         return true;
     }
     function transferFrom(address from, address to, uint tokens)  external returns (bool) {
-        IPaymentWallet(from).transferFrom(to, tokens, "N/A");
+        require(address(paymentWalletContract) != address(0x0),"PaymentWallet contract is not set");
+        paymentWalletContract.transferFrom(from, to, tokens, "N/A");
         return true;
     }
     function getBalanceFrom(address wallet) external view returns (uint256) {
-        return IPaymentWallet(wallet).getBalance();
+        require(address(paymentWalletContract) != address(0x0),"PaymentWallet contract is not set");
+        return paymentWalletContract.getBalance(wallet);
     }
     function getTradingStatus() external view returns (bool) {
         return TRADING_ACTIVE;

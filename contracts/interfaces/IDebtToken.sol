@@ -15,5 +15,4 @@ interface IDebtToken is IOffering {
     event CouponPaymentMade(address,uint256);
     event BondRedeemed(address,uint256);
 
-
 }

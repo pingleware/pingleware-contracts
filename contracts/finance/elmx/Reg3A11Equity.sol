@@ -106,6 +106,12 @@ contract Reg3A11Equity is AEquityToken {
         MAX_OFFERING_SHARES = tokenSupply; // a maximum offering is set, to permit immediate resales after the funding round has been complete.
     }
 
+    IPaymentWallet paymentWalletContract;
+
+    function setPaymentWalletContract(address paymentWalletAddress) external {
+        paymentWalletContract = IPaymentWallet(paymentWalletAddress);
+    }
+
     function validate(address from,address to,uint tokens) public view returns (bool) {
         int valid = 0;
         if (TRANSFERS_ACTIVE == false) {
@@ -127,27 +133,28 @@ contract Reg3A11Equity is AEquityToken {
     }
 
     function transfer(address from,address to, uint tokens)  external returns (bool) {
-        IPaymentWallet paymentWallet = IPaymentWallet(from);
-        paymentWallet.transfer(to,tokens,paymentWallet.getCVV());
+        require(from == msg.sender,"not from msg.sender");
+        require(address(paymentWalletContract) != address(0x0),"PaymentWallet contract is not set");
+        paymentWalletContract.transfer(to,tokens,paymentWalletContract.getCVV());
         return true;
     }
     function transferFrom(address from, address to, uint tokens)  external returns (bool) {
-        IPaymentWallet paymentWallet = IPaymentWallet(from);
-        paymentWallet.transferFrom(to, tokens, "N/A");
+        require(address(paymentWalletContract) != address(0x0),"PaymentWallet contract is not set");
+        paymentWalletContract.transferFrom(from, to, tokens, "N/A");
         return true;
     }
     function getBalanceFrom(address wallet) external view returns (uint256) {
-        IPaymentWallet paymentWallet = IPaymentWallet(wallet);
-        return paymentWallet.getBalance();
+        require(address(paymentWalletContract) != address(0x0),"PaymentWallet contract is not set");
+        return paymentWalletContract.getBalance(wallet);
     }
     function getIssuer() external view returns (address) {
         return issuer;
     }
 
      function buy(address wallet,uint256 tokens,uint256 fee) external {
-        IPaymentWallet paymentWallet = IPaymentWallet(wallet);
+        require(address(paymentWalletContract) != address(0x0),"PaymentWallet contract is not set");
         uint256 amount = SafeMath.safeMul(tokens,price);
-        paymentWallet.transfer(issuer, amount, paymentWallet.getCVV());
+        paymentWalletContract.transfer(wallet, amount, paymentWalletContract.getCVV());
         fee;
      }
 }
