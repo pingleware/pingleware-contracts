@@ -124,6 +124,12 @@ contract("finance/elmx/InvestorManager", function (accounts) {
     const investor = await investorManagerInstance.getInvestor("0xE6483aA75C0194ECbe872214d4F68D85B28F1267");
     return assert.equal(investor[0],"0xE6483aA75C0194ECbe872214d4F68D85B28F1267",`expected "0xE6483aA75C0194ECbe872214d4F68D85B28F1267"`);
   })
+  it("add crowd funding portal",async function(){
+    const investorManagerInstance = await InvestorManager.deployed();
+    await investorManagerInstance.addInvestor("0x69394D81FfE0c1efb79BBC71bEaD4e8117923910",15,"FL");
+    const investor = await investorManagerInstance.getInvestor("0x69394D81FfE0c1efb79BBC71bEaD4e8117923910");
+    return assert.equal(investor[0],"0x69394D81FfE0c1efb79BBC71bEaD4e8117923910",`expected "0x69394D81FfE0c1efb79BBC71bEaD4e8117923910"`);
+  })
   it("get investors",async function(){
     const investorManagerInstance = await InvestorManager.deployed();
     const investors = await investorManagerInstance.getInvestors();
@@ -153,6 +159,7 @@ contract("finance/elmx/InvestorManager", function (accounts) {
     await investorManagerInstance.removeInvestor(12,"0xda58bf01a4dCA8B7a25f6dAC0d5DD40f9a3758f8");
     await investorManagerInstance.removeInvestor(13,"0x50542cF0903152E1761cffF01d2928C6F229D678");
     await investorManagerInstance.removeInvestor(14,"0xE6483aA75C0194ECbe872214d4F68D85B28F1267");
+    await investorManagerInstance.removeInvestor(15,"0x69394D81FfE0c1efb79BBC71bEaD4e8117923910");
     await investorManagerInstance.removeInvestor(accounts[0]);
     await investorManagerInstance.removeInvestor(accounts[1]); // remove accredited investor
     await investorManagerInstance.removeInvestor(accounts[2]); // remove affiliate investor
@@ -168,6 +175,7 @@ contract("finance/elmx/InvestorManager", function (accounts) {
     await investorManagerInstance.removeInvestor("0xda58bf01a4dCA8B7a25f6dAC0d5DD40f9a3758f8");
     await investorManagerInstance.removeInvestor("0x50542cF0903152E1761cffF01d2928C6F229D678");
     await investorManagerInstance.removeInvestor("0xE6483aA75C0194ECbe872214d4F68D85B28F1267");
+    await investorManagerInstance.removeInvestor("0x69394D81FfE0c1efb79BBC71bEaD4e8117923910");
     return assert.isTrue(true);
   })
 });

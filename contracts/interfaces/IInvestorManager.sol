@@ -19,7 +19,7 @@ interface IInvestorManager {
     function addInvestor(address investor, uint investor_type,string memory jurisdiction) external;
     function getInvestor(address wallet) external view returns (address,bool,string memory,uint);
     function getInvestors() external view returns (address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory);
-    function getIssuers()  external view returns (address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory);
+    function getIssuers()  external view returns (address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory);
     function getInvestorStatus(address wallet) external view returns (bool);
     function getInvestorJurisdiction(address wallet) external view returns (string memory);
     function getInvestorLevel(address wallet) external view returns (uint);
@@ -39,4 +39,6 @@ interface IInvestorManager {
     function isVotingTrust(address wallet)  external view returns (bool);
     function isBorrower(address wallet) external view returns (bool);
     function isIssuer(address wallet)  external view returns (bool);
+    function isMunicipalAdvisor(address wallet)  external view returns (bool);
+    function isCFPortal(address wallet)  external view returns (bool);
 }

@@ -30,6 +30,7 @@ contract InvestorManager is IInvestorManager {
     mapping(address => bool) private issuers;
     mapping(address => bool) private borrowers;
     mapping(address => bool) private municipalAdvisors;
+    mapping(address => bool) private cfportals;
 
     address[] private _accreditedInvestors;
     address[] private _accredited_investors;
@@ -48,6 +49,7 @@ contract InvestorManager is IInvestorManager {
     address[] private _issuers;
     address[] private _borrowers;
     address[] private _municipalAdvisors;
+    address[] private _cfportals;
 
     // Variable to track reentrant calls
     bool private reentrantGuard;
@@ -329,6 +331,19 @@ contract InvestorManager is IInvestorManager {
                     }
                 }
             }
+        } else if (investor_type == 15) {
+            for (uint256 i=0; i<_cfportals.length; i++) {
+                if (!found) {
+                    if (_cfportals[i] == wallet) {
+                        if (i < _cfportals.length) {
+                            delete _cfportals[i];
+                            _cfportals[i] = _cfportals[_cfportals.length - 1];
+                            _cfportals.pop();
+                            found = true;
+                        }
+                    }
+                }
+            }
         } else if (investor_type == 99) {
             for (uint256 i=0; i<_borrowers.length; i++) {
                 if (!found) {
@@ -361,6 +376,7 @@ contract InvestorManager is IInvestorManager {
      * TRUSTS = 12
      * ISSUER = 13
      * MUNICIPALITY ADVISOR = 14
+     * CFPORTALS = 15
      */
     function addInvestor(address investor, uint investor_type,string memory jurisdiction) external nonReentrant {
         require(whitelisted[investor].active == false,"investor already exists");
@@ -451,6 +467,12 @@ contract InvestorManager is IInvestorManager {
             }
             municipalAdvisors[investor] = true;
             investorAdded = true;
+        } else if (investor_type == 15) {
+            if (!findInvestor(_cfportals, investor)) {
+                _cfportals.push(investor);
+            }
+            cfportals[investor] = true;
+            investorAdded = true;
         } else if (investor_type == 99) {
             if (!findInvestor(_borrowers, investor)) {
                 _borrowers.push(investor);
@@ -478,8 +500,8 @@ contract InvestorManager is IInvestorManager {
     function getInvestors()  external view  returns (address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory) {
         return (_nonaccredited_investors,_accredited_investors,_affiliate_investors,_broker_dealers,_institutions,_investment_companies,_trusts); 
     }
-    function getIssuers()  external view  returns (address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory) {
-        return (_transfer_agents,_banks,_municipalities,_nonprofitentities,_churches,_lenders);
+    function getIssuers()  external view  returns (address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory,address[] memory) {
+        return (_transfer_agents,_banks,_municipalities,_nonprofitentities,_churches,_lenders,_municipalAdvisors,_cfportals);
     }
     function getInvestorStatus(address wallet)  external view  returns (bool) {
         return whitelisted[wallet].active;        
@@ -534,5 +556,8 @@ contract InvestorManager is IInvestorManager {
     }
     function isMunicipalAdvisor(address wallet) external view returns (bool) {
         return municipalAdvisors[wallet];
+    }
+    function isCFPortal(address wallet)  external view returns (bool) {
+        return cfportals[wallet];
     }
 }

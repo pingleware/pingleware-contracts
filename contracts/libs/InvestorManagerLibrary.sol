@@ -22,6 +22,7 @@ library InvestorManagerLibrary {
      * TRUSTS = 12
      * ISSUER = 13
      * MUNICIPALITY ADVISOR = 14
+     * CFPORTAL = 15
      */
     struct INVESTOR {
         address wallet;

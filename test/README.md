@@ -179,12 +179,12 @@ The following table created for tracking status when each contract has completed
 |                         |           |                               |            |            |      |                  |
 |                         | ELMX      |                               |            |            |      |                  |
 |                         |           | BestBooks                     |     Y     |     N     |   9   |    1697952628    |
-|                         |           | BondCertificate               |     N     |     N     |   7   |    1697952638    |
+|                         |           | BondCertificate               |     Y     |     N     |   7   |    1697952638    |
 |                         |           | ConsolidatedAuditTrail        |     Y     |     N     |   9   |    1697934206    |
 |                         |           | EncryptionUtils               |     Y     |     Y     |   5   |    1697952652    |
 |                         |           | ExchangeFee                   |     Y     |     N     |      |    1698116231    |
 |                         |           | ExemptLiquidityMarketExchange |     N     |     N     |      |    1697932593    |
-|                         |           | InvestorManager               |     Y     |     Y     |  23  |    1697952660    |
+|                         |           | InvestorManager               |     Y     |     Y     |  24  |    1697952660    |
 |                         |           | ELMXMunicipalBond             |     N     |     N     |      |    1698150398    |
 |                         |           | OrderBook                     |     N     |     N     |      |    1697984615    |
 |                         |           | PaymentWallet                 |     N     |     N     |      |    1697952603    |
@@ -199,7 +199,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | RegAT1Equity                  |     N     |     N     |      |    1697952894    |
 |                         |           | RegD506CDebt                  |     N     |     N     |      |    1697953123    |
 |                         |           | RegD506CEquity                |     N     |     N     |      |    1697953109    |
-|                         |           | SecurityMeta                  |     N     |     N     |      |    1697953147    |
+|                         |           | SecurityMeta                  |     Y     |     N     |   9   |    1697953147    |
 |                         |           | StockCertificate              |     N     |     N     |      |    1698149824    |
 |                         |           | TokenManager                  |     Y     |     Y     |   8   |    1697953165    |
 |                         | Equity    |                               |            |            |      |                  |
@@ -298,6 +298,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |     N     |     N     |      |    1697980933    |
 |                         |           | RideshareTrade                |     N     |     N     |      |    1697980955    |
 |                         |           | Transport                     |     N     |     N     |      |    1697980975    |
-| **TOTALS**        |           |                               | Y=8, N=115 | Y=4, N=119 |  61  |                  |
+| **TOTALS**        |           |                               | Y=8, N=115 | Y=4, N=119 |  71  |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.
