@@ -1,5 +1,7 @@
 # Testing
 
+Unit testing ensures that the contracts are operating per design and provide implementation guidance including required dependencies.
+
 Each test case is created for each Contract and not for abstract contracts, interfaces nor libraries as these cannot be instantiated, by using the command,
 
 ```
@@ -176,10 +178,10 @@ The following table created for tracking status when each contract has completed
 |                         |           | SimpleBond                    |     N     |     N     |      |    1698163627    |
 |                         |           |                               |            |            |      |                  |
 |                         | ELMX      |                               |            |            |      |                  |
-|                         |           | BestBooks                     |     Y     |     N     |      |    1697952628    |
-|                         |           | BondCertificate               |     N     |     N     |      |    1697952638    |
-|                         |           | ConsolidatedAuditTrail        |     Y     |     N     |      |    1697934206    |
-|                         |           | EncryptionUtils               |     N     |     N     |      |    1697952652    |
+|                         |           | BestBooks                     |     Y     |     N     |   9   |    1697952628    |
+|                         |           | BondCertificate               |     N     |     N     |   7   |    1697952638    |
+|                         |           | ConsolidatedAuditTrail        |     Y     |     N     |   9   |    1697934206    |
+|                         |           | EncryptionUtils               |     Y     |     Y     |   5   |    1697952652    |
 |                         |           | ExchangeFee                   |     Y     |     N     |      |    1698116231    |
 |                         |           | ExemptLiquidityMarketExchange |     N     |     N     |      |    1697932593    |
 |                         |           | InvestorManager               |     Y     |     Y     |  23  |    1697952660    |
@@ -296,6 +298,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |     N     |     N     |      |    1697980933    |
 |                         |           | RideshareTrade                |     N     |     N     |      |    1697980955    |
 |                         |           | Transport                     |     N     |     N     |      |    1697980975    |
-| **TOTALS**        |           |                               | Y=8, N=115 | Y=4, N=119 |  31  |                  |
+| **TOTALS**        |           |                               | Y=8, N=115 | Y=4, N=119 |  61  |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.

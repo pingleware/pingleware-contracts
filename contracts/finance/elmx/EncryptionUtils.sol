@@ -16,33 +16,46 @@ contract EncryptionUtils {
         _;
     }
 
-    // Encrypt data using AES-GCM
-    function encrypt(bytes memory key, string memory data) public pure returns (bytes memory) {
-        require(bytes(data).length > 0, "Data must not be empty");
+function encrypt(string memory content, string memory passcode) public pure returns (bytes memory) {
+        bytes memory contentBytes = bytes(content);
+        bytes memory passcodeBytes = bytes(passcode);
 
-        bytes memory encryptedData = bytes(data); //AES.encrypt(key, bytes(data));
-        key;
-        return encryptedData;
+        bytes memory result = new bytes(contentBytes.length);
+
+        for (uint256 i = 0; i < contentBytes.length; i++) {
+            uint8 contentChar = uint8(contentBytes[i]);
+            uint8 passcodeChar = uint8(passcodeBytes[i % passcodeBytes.length]);
+            uint8 encryptedChar = contentChar + passcodeChar;
+            result[i] = bytes1(encryptedChar);
+        }
+
+        return result;
     }
 
-    // Decrypt data using AES-GCM
-    function decrypt(bytes memory key, bytes memory encryptedData) public pure returns (string memory) {
-        require(encryptedData.length > 0, "Data must not be empty");
+    function decrypt(bytes memory content, string memory passcode) public pure returns (string memory) {
+        bytes memory passcodeBytes = bytes(passcode);
+        bytes memory resultBytes = new bytes(content.length);
 
-        string memory decryptedData = string(encryptedData); // string(AES.decrypt(key, encryptedData));
-        key;
-        return decryptedData;
+        for (uint256 i = 0; i < content.length; i++) {
+            uint8 encryptedChar = uint8(content[i]);
+            uint8 passcodeChar = uint8(passcodeBytes[i % passcodeBytes.length]);
+            uint8 decryptedChar = encryptedChar - passcodeChar;
+            resultBytes[i] = bytes1(decryptedChar);
+        }
+
+        string memory result = string(resultBytes);
+        return result;
     }
 
     // Example: Encrypt and emit
-    function encryptAndEmit(string memory data, bytes memory key) public {
-        bytes memory encrypted = encrypt(key, data);
-        emit Encrypted(encrypted);
+    function encryptAndEmit(string memory data, string memory key) public {
+        bytes memory _encrypted = encrypt(data, key);
+        emit Encrypted(_encrypted);
     }
 
     // Example: Decrypt and emit
-    function decryptAndEmit(bytes memory encryptedData, bytes memory key) public {
-        string memory decrypted = decrypt(key, encryptedData);
+    function decryptAndEmit(bytes memory encryptedData, string memory key) public {
+        string memory decrypted = decrypt(encryptedData, key);
         emit Decrypted(decrypted);
     }
 }
