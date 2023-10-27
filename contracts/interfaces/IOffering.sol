@@ -14,16 +14,15 @@ interface IOffering {
 
     function buy(address wallet,uint256 tokens,uint256 Fee) external;
 
-    //function getMaxOfferingShares() external view returns (uint256);
-    //function getOutstandingShares() external view returns (uint256);
+    function getMaxOfferingShares() external view returns (uint256);
+    function getOutstandingShares() external view returns (uint256);
     //function getSymbol() external view returns (string memory);
     //function getName() external view returns (string memory);
-    //function getPrice() external view returns (uint256);
+    function getPrice() external view returns (uint256);
     //function getTotalSupply() external view returns (uint256);
     //function getIssuer() external view returns (address);
 
     function getIssuer() external view returns (address);
-    function getOutstandingShares() external view returns (uint256);
     function getTotalSupply() external view returns (uint256);
     function getOfferingType() external view returns (string memory);
 }
