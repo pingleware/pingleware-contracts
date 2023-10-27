@@ -6,7 +6,7 @@ More information about ELMX can be found at [https://exemptliquiditymarket.excha
 
 The Exempt Liquidity Market Exchange operates on a private blockchain for compliance with the Right to Financial Privacy Law of 1978
 
-![1698428634409](image/README/1698428634409.png)
+![1698430156241](image/README/1698430156241.png)
 
 ## Benefits
 
