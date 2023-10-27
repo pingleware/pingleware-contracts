@@ -200,7 +200,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | RegAT1Equity                  |    N    |  N  |      |    1697952894    |
 |                         |           | RegD506CDebt                  |    N    |  N  |      |    1697953123    |
 |                         |           | RegD506CEquity                |    N    |  N  |      |    1697953109    |
-|                         |           | SecurityMeta                  |    Y    |  N  |   9   |    1697953147    |
+|                         |           | SecurityMeta                  |    Y    |  Y  |   9   |    1697953147    |
 |                         |           | StockCertificate              |    N    |  N  |      |    1698149824    |
 |                         |           | TokenManager                  |    Y    |  Y  |   8   |    1697953165    |
 |                         | Equity    |                               |          |      |      |                  |
