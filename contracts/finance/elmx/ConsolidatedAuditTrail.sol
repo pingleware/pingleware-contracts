@@ -179,7 +179,9 @@ contract ConsolidatedAuditTrail is IConsolidatedAuditTrail {
      * Exchnage rate is updated nightly at 5:00 pm NY Time
      */
     function setExchangeRate(uint256 newRate) external nonReentrant  {
+        uint256 oldRate = exchangeRate;
         exchangeRate = newRate;
+        emit ExchangeRateChange(oldRate, exchangeRate);
     }
 
     function getExchangeRate() external view returns (uint256) {

@@ -31,6 +31,7 @@ interface IConsolidatedAuditTrail {
 
     // Event emitted when a new audit entry is added
     event AuditEntryAdded(string symbol, bytes32 indexed uti, address indexed sender, uint256 timestamp, string eventType, string eventData);
+    event ExchangeRateChange(uint256,uint256);
     
     function addAuditEntry(string memory symbol, string memory eventDetail, string memory eventType, string memory eventData) external returns (bytes32);
     function getAuditTrail(string memory symbol, bytes32 uti) external view returns (AuditEntry[] memory);

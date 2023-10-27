@@ -192,7 +192,7 @@ The following table created for tracking status when each contract has completed
 |                         | ELMX      |                               |          |      |      |                  |
 |                         |           | BestBooks                     |    Y    |  Y  |  12  |    1697952628    |
 |                         |           | BondCertificate               |    Y    |  N  |   7   |    1697952638    |
-|                         |           | ConsolidatedAuditTrail        |    Y    |  N  |   9   |    1697934206    |
+|                         |           | ConsolidatedAuditTrail        |    Y    |  Y  |   9   |    1697934206    |
 |                         |           | ELMXMunicipalBond             |    N    |  N  |      |    1698150398    |
 |                         |           | EncryptionUtils               |    Y    |  Y  |   5   |    1697952652    |
 |                         |           | ExchangeFee                   |    Y    |  N  |   4   |    1698116231    |
