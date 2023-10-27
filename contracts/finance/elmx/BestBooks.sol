@@ -6,7 +6,6 @@ pragma solidity >=0.4.22 <0.9.0;
  */
 
 import "../../interfaces/IBestBooks.sol";
-import "../../interfaces/IMemberPool.sol";
 
 contract BestBooks is IBestBooks {
     mapping(string => int256) public balances;
@@ -22,7 +21,7 @@ contract BestBooks is IBestBooks {
         string memory description,
         int256 debitAmount,
         int256 creditAmount
-    ) override external {
+    ) override external accountExists(debitAccount) accountExists(creditAccount) {
         
         balances[debitAccount] += debitAmount;
         balances[creditAccount] += creditAmount;
@@ -38,11 +37,23 @@ contract BestBooks is IBestBooks {
         ledger[ledgerCount] = entry;
         ledgerCount++;
 
-        emit EntryAdded(timestamp, debitAccount, creditAccount, description, debitAmount, creditAmount);
+        emit EntryAdded((ledgerCount - 1),timestamp, debitAccount, creditAccount, description, debitAmount, creditAmount);
     }
 
-    function getBalance(string memory account) override external view  returns (int256) {
-        return balances[account];
+    function deleteEntry(uint256 index,string memory reason) external {
+        require(ledger[index].timestamp > 0,"entry does not exist");
+        require(keccak256(abi.encodePacked(reason)) != keccak256(abi.encodePacked("")),"reason cannot be left empty");
+        Entry memory deletedEntry = ledger[index];
+        delete ledger[index];
+        ledgerCount--;
+        // update the account balances
+        balances[deletedEntry.debitAccount] -= deletedEntry.debitAmount;
+        balances[deletedEntry.creditAccount] -= deletedEntry.creditAmount;
+        emit EntryDeleted(deletedEntry.timestamp, deletedEntry.debitAccount, deletedEntry.creditAccount, deletedEntry.description, deletedEntry.debitAmount, deletedEntry.creditAmount,reason);
+    }
+
+    function getBalance(string memory accountName) override external view accountExists(accountName)  returns (int256) {
+        return balances[accountName];
     }
 
     function getLedgerEntry(uint256 index) override external view  returns (
@@ -54,6 +65,7 @@ contract BestBooks is IBestBooks {
         int256
     ) {
         require(index < ledgerCount, "Invalid ledger index");
+        require(ledger[index].timestamp > 0,"entry does not exist");
         Entry memory entry = ledger[index];
         return (
             entry.timestamp,
@@ -65,6 +77,13 @@ contract BestBooks is IBestBooks {
         );
     }
 
+    function getLedgerIndex() external view returns (uint256) {
+        return ledgerCount;
+    }
+
+    /** 
+      * FIXME: receives index out of bounds error
+      *
     function getLedgerEntryByRange(uint256 startingTimestamp,uint256 endingTimestamp) external payable  returns(Entry[] memory) {
         Entry[] memory entries;
         uint256 index=0;
@@ -78,13 +97,19 @@ contract BestBooks is IBestBooks {
         }
         return entries;
     }
+    */
         
     modifier accountExists(string memory accountName) {
         require(bytes(chartOfAccounts[accountName].name).length > 0, "Account does not exist");
         _;
     }
+
+    modifier accountNotExist(string memory accountName) {
+        require(bytes(chartOfAccounts[accountName].name).length == 0, "Account already exists");
+        _;
+    }
     
-    function createAccount(string memory accountName, string memory category) override external {
+    function createAccount(string memory accountName, string memory category) override external accountNotExist(accountName) {
         require(bytes(accountName).length > 0, "Account name is required");
         require(bytes(category).length > 0, "Account category is required");
 
@@ -110,7 +135,7 @@ contract BestBooks is IBestBooks {
         emit AccountDeleted(accountName);
     }
     
-    function getAccount(string memory accountName) override external view  returns (string memory, string memory) {
+    function getAccount(string memory accountName) override external view accountExists(accountName) returns (string memory, string memory) {
         Account memory account = chartOfAccounts[accountName];
         return (account.name, account.category);
     }
