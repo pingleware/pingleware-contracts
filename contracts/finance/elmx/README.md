@@ -89,3 +89,28 @@ The Exempt Liquidity Market Exchange (ELMX) mitigates risk through registration 
 In summary, the lack of network effects can be a significant challenge for private blockchains and closed networks. Public blockchains, on the other hand, can benefit from broader adoption and network effects, but they come with their own set of challenges and considerations, such as privacy and scalability. The choice between a private or public blockchain should be made based on the specific needs and goals of the organization or network.
 
 Registration with the SEC will also mitigate the lack of network effects through being a trusted provider from regulation.
+
+# Safe Harbor and Non-Safe Harbor Security Offerings
+
+Safe harbor and non-safe harbor security offerings refer to two different regulatory frameworks in the United States that govern the sale of securities, particularly in the context of private placements. These frameworks provide guidelines and exemptions for businesses and individuals looking to raise capital through the sale of securities. Here are the key differences between safe harbor and non-safe harbor security offerings:
+
+1. Regulation D and Rule 506:
+
+   - Safe Harbor: Safe harbor offerings are typically associated with Regulation D, specifically Rule 506 of Regulation D. Rule 506 offerings are considered safe harbor offerings because they provide issuers with a clear set of rules and criteria to follow when conducting private placements. These offerings are exempt from certain registration and disclosure requirements under the Securities Act of 1933.
+   - Non-Safe Harbor: Non-safe harbor offerings are private placements that do not strictly adhere to the criteria outlined in Regulation D, and therefore, they do not qualify for the safe harbor provisions. This means that non-safe harbor offerings may be subject to more uncertainty and regulatory scrutiny.
+2. Accredited and Non-Accredited Investors:
+
+   - Safe Harbor: Safe harbor offerings under Regulation D typically limit the sale of securities to accredited investors or a limited number of non-accredited investors. Accredited investors are individuals or entities with a high income or substantial net worth, making them presumed to have the financial sophistication to evaluate investment opportunities.
+   - Non-Safe Harbor: Non-safe harbor offerings may have more flexibility in terms of the types of investors they can solicit. However, they often face stricter regulatory requirements, including more comprehensive disclosure obligations.
+3. Disclosure Requirements:
+
+   - Safe Harbor: Safe harbor offerings have well-defined disclosure requirements, which include providing certain information to investors. While these requirements are less stringent than a full registration with the Securities and Exchange Commission (SEC), they still involve some disclosure.
+   - Non-Safe Harbor: Non-safe harbor offerings may have more extensive disclosure obligations, which can vary depending on the specific circumstances. These offerings may not benefit from the same level of regulatory certainty provided by safe harbor offerings.
+4. State Securities Laws:
+
+   - Safe Harbor: Safe harbor offerings generally preempt state securities laws to a certain extent, making it easier for issuers to conduct offerings across multiple states without having to comply with each state's individual regulations.
+   - Non-Safe Harbor: Non-safe harbor offerings may still need to navigate state securities laws on a state-by-state basis, which can be more complex and time-consuming.
+
+In summary, the primary difference between safe harbor and non-safe harbor security offerings is the level of regulatory compliance and certainty they offer. Safe harbor offerings, such as those under Regulation D and Rule 506, provide a clearer and more defined path for private placements while offering certain exemptions from registration and disclosure requirements. Non-safe harbor offerings, on the other hand, may involve more flexibility but also come with a higher degree of regulatory complexity and potential scrutiny.
+
+**The Section 3(a)(11) is NOT a safe harbor security offering while the Rule 147, 147-A, Regulation A Tier 1 and Regulation D 506(c) are safe harbor security offerings**.
