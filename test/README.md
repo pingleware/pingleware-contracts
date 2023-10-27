@@ -147,7 +147,7 @@ truffle test agri_trade.js --compile-none --migrate-none --network development
 
 if the contract has already been compiled and deployed
 
-## Contract Test Status
+## Contract Test Matrix
 
 The following table created for tracking status when each contract has completed and passed testing. When a contract has passed the testing, that contract is considered to be stable. When all contracts are considered stable, this package will be released as stable.
 
@@ -190,7 +190,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | SimpleBond                    |    N    |  N  |      |    1698163627    |
 |                         |           |                               |          |      |      |                  |
 |                         | ELMX      |                               |          |      |      |                  |
-|                         |           | BestBooks                     |    Y    |  N  |   9   |    1697952628    |
+|                         |           | BestBooks                     |    Y    |  N  |  11  |    1697952628    |
 |                         |           | BondCertificate               |    Y    |  N  |   7   |    1697952638    |
 |                         |           | ConsolidatedAuditTrail        |    Y    |  N  |   9   |    1697934206    |
 |                         |           | ELMXMunicipalBond             |    N    |  N  |      |    1698150398    |
@@ -198,6 +198,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | ExchangeFee                   |    Y    |  N  |   4   |    1698116231    |
 |                         |           | ExemptLiquidityMarketExchange |    N    |  N  |      |    1697932593    |
 |                         |           | ExchangeTradedFund            |    N    |  N  |   6   |    1698361276    |
+|                         |           | Historical                    |    N    |  N  |      |    1698415738    |
 |                         |           | InvestorManager               |    Y    |  Y  |  24  |    1697952660    |
 |                         |           | OrderBook                     |    N    |  N  |      |    1697984615    |
 |                         |           | PaymentWallet                 |    Y    |  Y  |  16  |    1697952603    |
@@ -311,6 +312,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |    N    |  N  |      |    1697980933    |
 |                         |           | RideshareTrade                |    N    |  N  |      |    1697980955    |
 |                         |           | Transport                     |    N    |  N  |      |    1697980975    |
-| **TOTALS**        |           |                               |          |      |  97  |                  |
+| **TOTALS**        |           |                               |          |      |  99  |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.
