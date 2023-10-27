@@ -6,6 +6,8 @@ More information about ELMX can be found at [https://exemptliquiditymarket.excha
 
 The Exempt Liquidity Market Exchange operates on a private blockchain for compliance with the Right to Financial Privacy Law of 1978
 
+![1698428634409](image/README/1698428634409.png)
+
 ## Benefits
 
 Using a private permissioned blockchain for a stock trading exchange to remain in compliance with the Right to Financial Privacy Law of 1978 (RFPL) offers several potential benefits. The RFPL is designed to protect the privacy of financial records of individuals held by financial institutions. While blockchain technology can help enhance transparency and security, it can also help stock trading exchanges meet the legal requirements of the RFPL. Here are some benefits:
