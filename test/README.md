@@ -130,6 +130,18 @@ Usage:        truffle test [<test_file>] [--compile-all[-debug]] [--compile-none
 To conduct a test on a single file, change to the test directory then,
 
 ```
+truffle migrte --f 1697948405 --t 1697948405
+```
+
+and without re-compiling,
+
+```
+truffle migrte --compile-none --f 1697948405 --t 1697948405
+```
+
+then execute the test, if you receive a connect error or no contract address is given, re-run the truffle migrate command,
+
+```
 truffle test agri_trade.js --compile-none --migrate-none --network development
 ```
 
