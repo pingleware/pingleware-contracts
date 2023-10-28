@@ -20,6 +20,10 @@ contract StockCertificate is AccessControl {
 
     uint256 private nextCertificateId = 1; // Next available certificate ID
 
+    // Events to log certificate creation and transfer
+    event StockCertificateCreated(uint certificateNumber, address owner, string symbol);
+    event StockCertificateTransferred(uint certificateNumber, address from, address to);
+
 
     // Function to issue a certificate to an investor
     function issueCertificate(address tokenAddress, string calldata symbol, address _investor, uint256 _initialBalance) external returns(uint256) {
@@ -34,6 +38,8 @@ contract StockCertificate is AccessControl {
 
         // Increment the next available certificate ID
         nextCertificateId++;
+
+        emit StockCertificateCreated((nextCertificateId - 1),_investor,symbol);
 
         return nextCertificateId - 1;
     }
@@ -51,6 +57,8 @@ contract StockCertificate is AccessControl {
 
         // Add the certificate ID to the recipient's list of certificates
         investorCertificates[_to].push(_certificateId);
+
+        emit StockCertificateTransferred(_certificateId,from,_to);
     }
 
     // Function to check the balance of a specific certificate

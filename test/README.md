@@ -214,7 +214,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | RegD506CDebt                  |    N    |  N  |      |    1697953123    |
 |                         |           | RegD506CEquity                |    N    |  N  |      |    1697953109    |
 |                         |           | SecurityMeta                  |    Y    |  Y  |   9   |    1697953147    |
-|                         |           | StockCertificate              |    N    |  N  |      |    1698149824    |
+|                         |           | StockCertificate              |    Y    |  Y  |   6   |    1698149824    |
 |                         |           | TokenManager                  |    Y    |  Y  |   8   |    1697953165    |
 |                         | Equity    |                               |          |      |      |                  |
 |                         |           | ATS                           |    N    |  N  |      |    1697953240    |
@@ -312,6 +312,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |    N    |  N  |      |    1697980933    |
 |                         |           | RideshareTrade                |    N    |  N  |      |    1697980955    |
 |                         |           | Transport                     |    N    |  N  |      |    1697980975    |
-| **TOTALS**        |           |                               |          |      |  102  |                  |
+| **TOTALS**        |           |                               |          |      |  101  |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.
