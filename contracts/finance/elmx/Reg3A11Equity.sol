@@ -157,4 +157,10 @@ contract Reg3A11Equity is AEquityToken {
         paymentWalletContract.transfer(wallet, amount, paymentWalletContract.getCVV());
         fee;
      }
+    function getMaxOfferingShares() external view returns (uint256) {
+        return MAX_OFFERING_SHARES;
+    }
+    function getPrice() external view returns (uint256) {
+        return price;
+    }
 }

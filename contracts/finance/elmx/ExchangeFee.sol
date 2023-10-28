@@ -28,9 +28,9 @@ contract ExchangeFee is AAccessControl, AExchangeFee {
     function subFee(address tokenAddress, int256 amount) external nonReentrant isOwner {
         require(fees[tokenAddress] > 0,"NSF");
         if (amount == 0) {
-            amount = SafeMath.safeMul(fees[tokenAddress], int256(FeePercentage));
+            amount *= int256(FeePercentage);
         }
-        fees[tokenAddress] = SafeMath.safeSub(fees[tokenAddress], amount);
+        fees[tokenAddress] -= amount;
         bestbooksContract.addEntry(block.timestamp, "CASH", "FEES", "Exchange Fee ADJUSTED", amount, amount);
         emit TokenFeeAdjusted(tokenAddress,amount);
     }

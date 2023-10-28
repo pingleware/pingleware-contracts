@@ -195,7 +195,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | ConsolidatedAuditTrail        |    Y    |  Y  |   9   |    1697934206    |
 |                         |           | ELMXMunicipalBond             |    N    |  N  |      |    1698150398    |
 |                         |           | EncryptionUtils               |    Y    |  Y  |   5   |    1697952652    |
-|                         |           | ExchangeFee                   |    Y    |  N  |   4   |    1698116231    |
+|                         |           | ExchangeFee                   |    Y    |  Y  |   5   |    1698116231    |
 |                         |           | ExemptLiquidityMarketExchange |    N    |  N  |      |    1697932593    |
 |                         |           | ExchangeTradedFund            |    N    |  N  |   6   |    1698361276    |
 |                         |           | Historical                    |    N    |  N  |      |    1698415738    |
@@ -312,6 +312,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |    N    |  N  |      |    1697980933    |
 |                         |           | RideshareTrade                |    N    |  N  |      |    1697980955    |
 |                         |           | Transport                     |    N    |  N  |      |    1697980975    |
-| **TOTALS**        |           |                               |          |      |  100  |                  |
+| **TOTALS**        |           |                               |          |      |  101  |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.
