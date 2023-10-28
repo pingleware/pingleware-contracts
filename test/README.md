@@ -198,7 +198,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | ExchangeFee                   |    Y    |  Y  |   5   |    1698116231    |
 |                         |           | ExemptLiquidityMarketExchange |    N    |  N  |      |    1697932593    |
 |                         |           | ExchangeTradedFund            |    N    |  N  |   6   |    1698361276    |
-|                         |           | Historical                    |    N    |  N  |      |    1698415738    |
+|                         |           | Historical                    |    Y    |  Y  |   4   |    1698415738    |
 |                         |           | InvestorManager               |    Y    |  Y  |  24  |    1697952660    |
 |                         |           | OrderBook                     |    N    |  N  |      |    1697984615    |
 |                         |           | PaymentWallet                 |    Y    |  Y  |  16  |    1697952603    |

@@ -28,6 +28,9 @@ contract Historical {
         return quotes[token];
     }
 
+    /**
+      * FIXME: Error: invalid BigNumber string (argument="value", value="NaN", code=INVALID_ARGUMENT, version=bignumber/5.6.2)
+      *
     function getHistoricalByRange(address token,uint256 beginning,uint256 ending) external view returns (Quote[] memory) {
         Quote[] memory _quotes;
         uint256 index=0;
@@ -43,5 +46,6 @@ contract Historical {
         }
         return _quotes;
     }
+    */
 
 }
