@@ -1,6 +1,6 @@
 # Redeecash Exchange (RCEX)
 
-The Redeecash Exchange is a SEC registered National Market Exchnage (NMS) for use by registered broker-dealers to trade listed tokenized reql world assets including both exempt and non-exempt securities.
+The Redeecash Exchange is a SEC registered National Market Exchange (NMS) for use by registered broker-dealers to trade listed tokenized reql world assets including both exempt and non-exempt securities.
 
 The REDEECASH EXCHANGE (RCEX) is a public blockchain trading exchange where members are not natural persons for complaince with the Right to Fianncial Privacy Act  of 1978.
 
