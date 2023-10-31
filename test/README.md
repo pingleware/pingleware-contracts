@@ -196,11 +196,11 @@ The following table created for tracking status when each contract has completed
 |                         |           | ELMXMunicipalBond             |    N    |  N  |      |    1698150398    |
 |                         |           | EncryptionUtils               |    Y    |  Y  |   5   |    1697952652    |
 |                         |           | ExchangeFee                   |    Y    |  Y  |   5   |    1698116231    |
-|                         |           | ExemptLiquidityMarketExchange |    N    |  N  |      |    1697932593    |
+|                         |           | ExemptLiquidityMarketExchange |    N    |  N  |  38  |    1697932593    |
 |                         |           | ExchangeTradedFund            |    N    |  N  |   6   |    1698361276    |
 |                         |           | Historical                    |    Y    |  Y  |   4   |    1698415738    |
 |                         |           | InvestorManager               |    Y    |  Y  |  24  |    1697952660    |
-|                         |           | OrderBook                     |    N    |  N  |      |    1697984615    |
+|                         |           | OrderBook                     |    N    |  N  |  46  |    1697984615    |
 |                         |           | PaymentWallet                 |    Y    |  Y  |  16  |    1697952603    |
 |                         |           | Reg3A11Debt                   |    N    |  N  |      |    1697952710    |
 |                         |           | Reg3A11Equity                 |    N    |  N  |      |    1697952726    |
@@ -223,6 +223,8 @@ The following table created for tracking status when each contract has completed
 |                         |           | DirectEquityOffering          |    N    |  N  |      |    1697953329    |
 |                         |           | ExemptEquityOffering          |    N    |  N  |      |    1697953346    |
 |                         |           | ICO                           |    N    |  N  |      |    1697953361    |
+|                         | RCEX      |                               |          |      |      |                  |
+|                         |           | RedeecashExchange             |    N    |  N  |      |    1698786016    |
 |                         | Utility   |                               |          |      |      |                  |
 |                         |           | BAToken                       |    N    |  N  |      |    1697953390    |
 | Government              |           |                               |          |      |      |                  |
@@ -312,6 +314,8 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |    N    |  N  |      |    1697980933    |
 |                         |           | RideshareTrade                |    N    |  N  |      |    1697980955    |
 |                         |           | Transport                     |    N    |  N  |      |    1697980975    |
-| **TOTALS**        |           |                               |          |      |  101  |                  |
+| **TOTALS**        |           |                               |          |      |  185  |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.
+
+Some implementation may be removed and labelled FIXME: These incidents are not included in the testing matrix metrics. A work around has been included in the associated test file until the issue has been resolved in the contract code.
