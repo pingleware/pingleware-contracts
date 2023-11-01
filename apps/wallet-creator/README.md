@@ -14,6 +14,10 @@ The wallet imported into metamask as a COMMUNITY WALLET,
 
 ![1698859115950](image/README/1698859115950.png)
 
+The COMMUNITY WALLET has a single Goerli Test Token for the Ethereum Smart Contract Creator at [https://testnets.opensea.io/assets/goerli/0xf4910c763ed4e47a585e2d34baa9a4b611ae448c/36333753202514414869774196218446368102124864803313914227828195908039628392096](https://testnets.opensea.io/assets/goerli/0xf4910c763ed4e47a585e2d34baa9a4b611ae448c/36333753202514414869774196218446368102124864803313914227828195908039628392096). You can download the application from [https://snapcraft.io/ethereum-contract-creator](https://snapcraft.io/ethereum-contract-creator), which requires a Goerli Test Token to gain access to the beta version available on snapcraft.io. You can always use your own wallet on the Goerli test network, request free test ether and buyu your own test token from the llink above.
+
+You must import the community wallet into your metamask account using the above private key and set that wallet as the active wallet. Then download and launch the application. The first launch will setup your environment variables in a JSON file under your user directory, then subsequent launches require connecting to metamask with the Community Wallet (or your own wallet with a vallid license), that signs a message and starts the local blockchain.
+
 ## TODO
 
 Store the keys on a hardware USB wallet that can interact with metamask.
