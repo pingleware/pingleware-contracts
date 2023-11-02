@@ -72,6 +72,9 @@ Once login is successful, the customer can see their balance and when a they wan
 
 If you have a physical store, importing the PAN with expiration date and CVV code to Apple, Samsung, Google wallets, you can customer can make an in store purchase using their account number, if you do not accept cryptocurrency directly.
 
+### Debt Offering
+
+Using an exempt offering under Regulation A Tier 1, Regulation D 506(c) or an intrastate offering under Section 3(a)(11) or Rule 147|147-A, you can solicit investors to provide the reserves for the customers credit accounts. Both [Redeecash Exchange](https://redeecash.exchange) and [Exempt Liquidity Market Exchange](https://exemptliquiditymarket.exchange) is a future SEC regulated NMS for exempt offerings.
 
 ## TODO
 
