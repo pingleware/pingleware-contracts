@@ -61,7 +61,7 @@ A QR Code for importing into metamask is also created as 9840600009935055166.png
 
 ![1698954536878](image/README/1698954536878.png)
 
-a wallet JSON file is created for storage on an encrypted USB device.
+a wallet 9840600009935055166.wallet.json file is created for storage on an encrypted USB device.
 
 ```
 {
