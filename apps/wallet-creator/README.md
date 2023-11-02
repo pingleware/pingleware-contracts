@@ -18,6 +18,48 @@ The COMMUNITY WALLET has a single Goerli Test Token for the Ethereum Smart Contr
 
 You must import the community wallet into your metamask account using the above private key and set that wallet as the active wallet. Then download and launch the application. The first launch will setup your environment variables in a JSON file under your user directory, then subsequent launches require connecting to metamask with the Community Wallet (or your own wallet with a vallid license), that signs a message and starts the local blockchain.
 
+## Associating an Account Number with a Wallet Address 
+
+A primary account with expiration date and cvv code is created from the wallet address using the Luhn algorithm, the same used for creating card numbers,
+
+```
+Private Key (hex): 0b63fe264df263e0b2dc1b818f598e3e9e4f91d11afe00100ca5f0c0683d084d
+Public Key (hex): fb92f56a7236196df06da34954fbd250711fb3504520a56ea85ad219b087808487d9848ef2771f6235545234eef60578629e8599ae3b29684924aae96bf2630e
+Ethereum Address: 0xaff83951250ded03918ca0047fbed0adf7979665
+Primary Account Number: 9840600001004608964
+Expiration Date: 1128
+CVV: 216
+Password: a56a08e4ef5be418adf0d0a9cd5096badc898fbbaa77b7ab7740d428ed8ea6ff4e3ec276b678bd982c4b6aa3e89f2795af2191b608fb6b9124fc6a4275721ca928
+```
+
+Associating an account number with an expiration date and CVV code to a wallet address can offer several benefits, particularly in the context of financial transactions and security. Here are some of the advantages:
+
+1. Enhanced Security:
+
+   - Verification: The CVV code serves as an additional layer of authentication, helping to verify the cardholder's identity during transactions. It adds a level of security beyond just the account number and expiration date.
+   - Fraud Prevention: Combining these details makes it more difficult for unauthorized individuals to use the card information, reducing the risk of fraud and unauthorized transactions.
+2. Reduced Unauthorized Access:
+
+   - Expiration Date: The expiration date ensures that the cardholder has access to the card, and the associated funds are still valid for transactions.
+   - Two-Factor Authentication: The combination of the CVV code and the other card details can be seen as a form of two-factor authentication, which provides an extra level of protection against unauthorized access.
+3. Seamless Payment Experience:
+
+   - Convenience: By associating these card details with a wallet address, users can make payments and transactions more quickly, as they don't have to enter this information repeatedly.
+   - Efficiency: The wallet address becomes a centralized hub for managing payment methods, streamlining the checkout process for online purchases.
+4. Better Record-Keeping:
+
+   - Tracking and Management: Associating card details with a wallet address allows users to keep track of their payment methods more easily. This can help with monitoring spending, managing subscriptions, and simplifying financial management.
+5. Cross-Platform Usage:
+
+   - Multiple Devices: Wallet addresses can often be used across different devices, making it easier for users to access their payment methods on smartphones, tablets, and computers.
+   - Cross-Platform Consistency: Card information can be updated once and applied to multiple platforms, ensuring consistency and minimizing the need to update payment information in multiple places.
+6. Faster Transaction Processing:
+
+   - Instant Verification: The stored card details can help expedite transaction processing, as the verification process is smoother and quicker.
+   - Reduced Checkout Friction: With the card information readily available, users can complete purchases more efficiently, which is particularly useful in e-commerce and online services.
+
+It's important to note that while there are benefits to associating card details with a wallet address, this practice also carries some security risks. If the wallet address is compromised, it could potentially lead to unauthorized access to the card details. Therefore, strong security measures and encryption protocols should be in place to protect this sensitive information and safeguard user privacy.
+
 ## TODO
 
 Store the keys on a hardware USB wallet that can interact with metamask.
