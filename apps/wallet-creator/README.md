@@ -60,6 +60,19 @@ Associating an account number with an expiration date and CVV code to a wallet a
 
 It's important to note that while there are benefits to associating card details with a wallet address, this practice also carries some security risks. If the wallet address is compromised, it could potentially lead to unauthorized access to the card details. Therefore, strong security measures and encryption protocols should be in place to protect this sensitive information and safeguard user privacy.
 
+## Use Case
+
+You have an ecommerce that you cotnrol the inventory and wish to offer attractive financing to your customers. 
+
+A customer provides personal identifying information on your secured website, using a proven KYC process, a new crpytocurrency wallet is created with an associated primary account number (PAN) with expiration date and CVV code that the customer can use on your website.
+
+The customer can use a third party money transmitter service to add ether to their new wallet and use those funds to make a payment on their account (PAN). The customer can log into their account by providing the PAN and connecting their cryptocurrency wallet to sign a message containing both the PAN and wallet address, which is verified on the server side.
+
+Once login is successful, the customer can see their balance and when a they want to make a payment, they initiate a payment through the metamask wallet using their wallet address to send funds to be credited on their account.
+
+If you have a physical store, importing the PAN with expiration date and CVV code to Apple, Samsung, Google wallets, you can customer can make an in store purchase using their account number, if you do not accept cryptocurrency directly.
+
+
 ## TODO
 
 Store the keys on a hardware USB wallet that can interact with metamask.
