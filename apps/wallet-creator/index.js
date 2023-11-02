@@ -1,8 +1,12 @@
 "use strict"
 
+const fs = require('fs');
 const crypto = require('crypto');
 const ethUtil = require('ethereumjs-util');
 const CryptoJS = require('crypto-js');
+const bip39 = require('bip39');
+const QRCode = require('qrcode');
+
 
 function DESEncryption(data, key) {
     const encryptedData = CryptoJS.DES.encrypt(data, key);
@@ -119,10 +123,22 @@ function calculateLuhnCheckDigit(input) {
     return String(checksum);
 }
 
-// Generate an Ethereum wallet
+// Function to generate a 32-bit hash
+function generate32BitHash(pan) {
+    const privateKey = crypto
+    .createHmac('sha256', pan)
+    .update(pan)
+    .digest('hex');    
+    //const privateKey = crypto.randomBytes(128).toString('hex');
+    return '0x' + privateKey.substring(0,64);
+}
+
+// Generate mnemonic
+const mnemonic = bip39.generateMnemonic()
 
 // Generate a random 32-byte private key
-const privateKey = crypto.randomBytes(32);
+const privateKey = crypto.createHmac('sha256',mnemonic).digest(); //randomBytes(32);
+
 
 // Derive the corresponding public key
 const publicKey = ethUtil.privateToPublic(privateKey);
@@ -147,6 +163,12 @@ const panBase = '9840' + iin + walletId.toString().substring(0,9);
 // Calculate the Luhn check digit and append it to the PAN
 const luhnCheckDigit = calculateLuhnCheckDigit(panBase);
 const pan = panBase + luhnCheckDigit;
+
+const cvk = generate32BitHash(pan);
+
+// Generate a 3-digit service code (e.g., '123')
+const serviceCode = '999';
+const svcCode = (serviceCode + "000").substring(0, 3);
 
 const message = `Account Number: ${pan} for Wallet ${address}`;
 
@@ -182,4 +204,50 @@ console.log('Ethereum Address:', `0x${address}`);
 console.log('Primary Account Number:', pan);
 console.log('Expiration Date:', expiry);
 console.log('CVV:', cvv);
+console.log('CVK:', cvk);
+console.log('Service Code:', svcCode);
 console.log('Password:', signatureHex); // this password is saved to the off-chain database associated with the ethereum address
+console.log('Mnemonic:',mnemonic);
+
+const walletInfo = {
+    PAN: pan,
+    EXP: expiry,
+    CVV: cvv,
+    CVK: cvk,
+    SVC: svcCode,
+    ADDRESS: `0x${address}`,
+    PUBLICKEY: privateKey.toString('hex'),
+    PRIVATEKEY: publicKey.toString('hex'),
+    PASSWORD: signatureHex,
+    MNEMONIC: mnemonic
+};
+
+fs.writeFileSync(`${pan}.json`,JSON.stringify(walletInfo));
+
+const hwCrypto = {
+    wallet_name: "redeecash",
+    mnemonic_phrase: mnemonic,
+    bip32_path: "m/44'/60'/0'/0",
+    accounts: [
+        {
+            account_name: `0x${address}`,
+            extended_public_key: publicKey.toString('hex'),
+            balance: "",
+            transactions: []    
+        }
+    ]
+}
+
+fs.writeFileSync(`${pan}.wallet.json`,JSON.stringify(hwCrypto));
+
+// Create an Ethereum URI to import the wallet into MetaMask
+const ethereumUri = `ethereum:0x${address}?private_key=${privateKey.toString('hex')}`;
+
+// Generate a QR code for the Ethereum URI
+QRCode.toFile(`${pan}.png`, ethereumUri, function (err) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(`QR code saved as ${pan}.png`);
+    }
+});

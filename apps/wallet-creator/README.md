@@ -23,13 +23,60 @@ You must import the community wallet into your metamask account using the above 
 A primary account with expiration date and cvv code is created from the wallet address using the Luhn algorithm, the same used for creating card numbers,
 
 ```
-Private Key (hex): 0b63fe264df263e0b2dc1b818f598e3e9e4f91d11afe00100ca5f0c0683d084d
-Public Key (hex): fb92f56a7236196df06da34954fbd250711fb3504520a56ea85ad219b087808487d9848ef2771f6235545234eef60578629e8599ae3b29684924aae96bf2630e
-Ethereum Address: 0xaff83951250ded03918ca0047fbed0adf7979665
-Primary Account Number: 9840600001004608964
+Private Key (hex): 8d34366b466a8b832af33e28ade7867621d5dd59367ea5aaa0066a2e7b2ea2d7
+Public Key (hex): 5c785344703f16bf6f2dd4b0eadba82d8a3ae7514a2992df5476d59894166f7e07388c5dc373b6a4f8b276ab87a9f437554fc80649d216d89c4b9e3d14f85a77
+Ethereum Address: 0xae065401c5acd15b1918abad43aa4be2bfb8c1e6
+Primary Account Number: 9840600009935055166
 Expiration Date: 1128
-CVV: 216
-Password: a56a08e4ef5be418adf0d0a9cd5096badc898fbbaa77b7ab7740d428ed8ea6ff4e3ec276b678bd982c4b6aa3e89f2795af2191b608fb6b9124fc6a4275721ca928
+CVV: 219
+CVK: 0xfe7fb097e6b90cf469f837d2bc5171b4c14b5595a3567d816008129acf9b527b
+Service Code: 999
+Password: 0e53be539578dec2494f7b9fa99f5b44561b906e69a34cf952d3bbfbe1d79ea84cf43d71d00ca8fad2be66f52eb8e66091229ed0854c4c40008cc2d6f4bb00ef27
+Mnemonic: teach piece peace cliff history electric valid system tackle float debris pool
+QR code saved as 9840600009935055166.png
+```
+
+and creates the file identified by the primary account number,
+
+`9840600009935055166.json`
+
+```
+{
+    "PAN": "9840600009935055166",
+    "EXP": "1128",
+    "CVV": "219",
+    "CVK": "0xfe7fb097e6b90cf469f837d2bc5171b4c14b5595a3567d816008129acf9b527b",
+    "SVC": "999",
+    "ADDRESS": "0xae065401c5acd15b1918abad43aa4be2bfb8c1e6",
+    "PUBLICKEY": "8d34366b466a8b832af33e28ade7867621d5dd59367ea5aaa0066a2e7b2ea2d7",
+    "PRIVATEKEY": "5c785344703f16bf6f2dd4b0eadba82d8a3ae7514a2992df5476d59894166f7e07388c5dc373b6a4f8b276ab87a9f437554fc80649d216d89c4b9e3d14f85a77",
+    "PASSWORD": "0e53be539578dec2494f7b9fa99f5b44561b906e69a34cf952d3bbfbe1d79ea84cf43d71d00ca8fad2be66f52eb8e66091229ed0854c4c40008cc2d6f4bb00ef27",
+    "MNEMONIC": "teach piece peace cliff history electric valid system tackle float debris pool"
+}
+```
+
+containing the metadata above.
+
+A QR Code for importing into metamask is also created as 9840600009935055166.png,
+
+![1698954536878](image/README/1698954536878.png)
+
+a wallet JSON file is created for storage on an encrypted USB device.
+
+```
+{
+    "wallet_name": "redeecash",
+    "mnemonic_phrase": "teach piece peace cliff history electric valid system tackle float debris pool",
+    "bip32_path": "m/44'/60'/0'/0",
+    "accounts": [
+        {
+            "account_name": "0xae065401c5acd15b1918abad43aa4be2bfb8c1e6",
+            "extended_public_key": "5c785344703f16bf6f2dd4b0eadba82d8a3ae7514a2992df5476d59894166f7e07388c5dc373b6a4f8b276ab87a9f437554fc80649d216d89c4b9e3d14f85a77",
+            "balance": "",
+            "transactions": []
+        }
+    ]
+}
 ```
 
 Associating an account number with an expiration date and CVV code to a wallet address can offer several benefits, particularly in the context of financial transactions and security. Here are some of the advantages:
@@ -79,3 +126,5 @@ Using an exempt offering under Regulation A Tier 1, Regulation D 506(c) or an in
 ## TODO
 
 Store the keys on a hardware USB wallet that can interact with metamask.
+
+https://hackernoon.com/how-to-create-a-cold-storage-crypto-wallet-with-a-usb-memory-stick
