@@ -1,6 +1,6 @@
 # PINGLEWARE Smart Contracts for Solidity
 
-The following is a collection of smart contracts for solidity that will help accelerate blockchain development and deployment through the tokenization of Real World Assets (RWA).
+The following is a collection of smart contracts for solidity that will help accelerate blockchain development and deployment through the tokenization of Real World Assets (RWA). For updates, see [NEWS.md](NEWS.md).
 
 # Installation
 
