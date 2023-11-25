@@ -219,7 +219,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | RegD504B1iDebt                |    N    |  N  |      |    1700949305    |
 |                         |           | RegD504B1iEquity              |    N    |  N  |      |    1700949310    |
 |                         |           | RegD504B1iiDebt               |    N    |  N  |      |    1700949318    |
-|                         |           | RegD504B1iiEquity             |    N    |  N  |      |   /1700949323   |
+|                         |           | RegD504B1iiEquity             |    N    |  N  |      |    1700949323    |
 |                         |           | RegD504B1iiiDebt              |    N    |  N  |      |    1700949328    |
 |                         |           | RegD504B1iiiEquity            |    N    |  N  |      |    1700949332    |
 |                         |           | RegD506BDebt                  |    N    |  N  |      |    1700523005    |
