@@ -190,6 +190,8 @@ The following table created for tracking status when each contract has completed
 |                         |           | SimpleBond                    |    N    |  N  |      |    1698163627    |
 |                         |           |                               |          |      |      |                  |
 |                         | ELMX      |                               |          |      |      |                  |
+|                         |           | AccessControl                 |    N    |  N  |      |    1700949105    |
+|                         |           | AES                           |          |      |      |    1700949137    |
 |                         |           | BestBooks                     |    Y    |  Y  |  12  |    1697952628    |
 |                         |           | BondCertificate               |    Y    |  Y  |   8   |    1697952638    |
 |                         |           | ConsolidatedAuditTrail        |    Y    |  Y  |   9   |    1697934206    |
@@ -202,6 +204,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | InvestorManager               |    Y    |  Y  |  24  |    1697952660    |
 |                         |           | OrderBook                     |    N    |  N  |  46  |    1697984615    |
 |                         |           | PaymentWallet                 |    Y    |  Y  |  16  |    1697952603    |
+|                         |           | Reg3A9Debt                    |    N    |  N  |      |    1700949172    |
 |                         |           | Reg3A11Debt                   |    N    |  N  |      |    1697952710    |
 |                         |           | Reg3A11Equity                 |    N    |  N  |      |    1697952726    |
 |                         |           | Reg147ADebt                   |    N    |  N  |      |    1697953023    |
@@ -211,8 +214,35 @@ The following table created for tracking status when each contract has completed
 |                         |           | Reg701Equity                  |    N    |  N  |      |    1697953050    |
 |                         |           | RegAT1Debt                    |    N    |  N  |      |    1697952880    |
 |                         |           | RegAT1Equity                  |    N    |  N  |      |    1697952894    |
+|                         |           | RegD504B1Debt                 |    N    |  N  |      |    1700949282    |
+|                         |           | Reg504B1Equity                |    N    |  N  |      |    1700949298    |
+|                         |           | RegD504B1iDebt                |    N    |  N  |      |    1700949305    |
+|                         |           | RegD504B1iEquity              |    N    |  N  |      |    1700949310    |
+|                         |           | RegD504B1iiDebt               |    N    |  N  |      |    1700949318    |
+|                         |           | RegD504B1iiEquity             |    N    |  N  |      |   /1700949323   |
+|                         |           | RegD504B1iiiDebt              |    N    |  N  |      |    1700949328    |
+|                         |           | RegD504B1iiiEquity            |    N    |  N  |      |    1700949332    |
+|                         |           | RegD506BDebt                  |    N    |  N  |      |    1700523005    |
+|                         |           | RegD506BEquity                |    N    |  N  |      |    1700523108    |
+|                         |           | RegD506BDebt                  |    N    |  N  |      |    1700523005    |
+|                         |           | RegD506BEquity                |    N    |  N  |      |    1700523108    |
 |                         |           | RegD506CDebt                  |    N    |  N  |      |    1697953123    |
 |                         |           | RegD506CEquity                |    N    |  N  |      |    1697953109    |
+|                         |           | Section3C1Equity              |    N    |  N  |      |    1700949648    |
+|                         |           | Section3C2Equity              |    N    |  N  |      |    1700949662    |
+|                         |           | Section3C3                    |    N    |  N  |      |    1700949678    |
+|                         |           | Section3C4Debt                |    N    |  N  |      |    1700949691    |
+|                         |           | Section3C5Debt                |    N    |  N  |      |    1700949696    |
+|                         |           | Section3C6                    |    N    |  N  |      |    1700949701    |
+|                         |           | Section3C7                    |    N    |  N  |      |    1700949704    |
+|                         |           | Section3C9                    |    N    |  N  |      |    1700949709    |
+|                         |           | Section3C10                   |    N    |  N  |      |    1700949713    |
+|                         |           | Section3C11                   |    N    |  N  |      |    1700949717    |
+|                         |           | Section3C12                   |    N    |  N  |      |    1700949720    |
+|                         |           | Section3C13                   |    N    |  N  |      |    1700949723    |
+|                         |           | Section3C14                   |    N    |  N  |      |    1700949726    |
+|                         |           | Section4A5Debt                |    N    |  N  |      |    1700949742    |
+|                         |           | Section4A5Equity              |    N    |  N  |      |    1700949748    |
 |                         |           | SecurityMeta                  |    Y    |  Y  |   9   |    1697953147    |
 |                         |           | StockCertificate              |    Y    |  Y  |   6   |    1698149824    |
 |                         |           | TokenManager                  |    Y    |  Y  |   8   |    1697953165    |
@@ -225,8 +255,12 @@ The following table created for tracking status when each contract has completed
 |                         |           | ICO                           |    N    |  N  |      |    1697953361    |
 |                         | RCEX      |                               |          |      |      |                  |
 |                         |           | RedeecashExchange             |    N    |  N  |      |    1698786016    |
+|                         |           | RCEX_InvestorManager          |    N    |  N  |      |    1698788198    |
+|                         |           | RCEX_ExchangeTradedFund       |    N    |  N  |      |    1698794326    |
 |                         | Utility   |                               |          |      |      |                  |
 |                         |           | BAToken                       |    N    |  N  |      |    1697953390    |
+| Games                   |           |                               |          |      |      |                  |
+|                         |           | InstantBingo                  |    N    |  N  |      |    1699454644    |
 | Government              |           |                               |          |      |      |                  |
 |                         | Federal   |                               |          |      |      |                  |
 |                         |           | Congress                      |    N    |  N  |      |    1697974620    |
@@ -268,7 +302,7 @@ The following table created for tracking status when each contract has completed
 |                         |           | MediGap                       |    N    |  N  |      |    1697979629    |
 |                         |           | MotoreVehicleServiceAgreement |    N    |  N  |      |    1697979671    |
 |                         |           | ProfessionalLiability         |    N    |  N  |      |    1697979701    |
-|                         |           | Quote                         |    N    |  N  |      |    1697979719    |
+|                         |           | InsuranceQuote                |    N    |  N  |      |    1697979719    |
 |                         |           | ServiceWarranty               |    N    |  N  |      |    1697979741    |
 |                         |           | SurplusLines                  |    N    |  N  |      |    1697979765    |
 |                         |           | Title                         |    N    |  N  |      |    1697979780    |
