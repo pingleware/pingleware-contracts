@@ -30,7 +30,22 @@ When using remix.ethereum.org, you can import directly from github.com
         }
     }
 
-## Compiling and Testing
+## Creating, Compiling and Testing
+
+Truffle create option,
+
+```
+Usage:        truffle create <artifact_type> <ArtifactName> 
+  Description:  Helper to create new contracts, migrations and tests
+  Options: 
+                <artifact_type>
+                    Create a new artifact where artifact_type is one of the following: contract, migration,
+                    test or all. The new artifact is created along with one (or all) of the following
+                    files: `contracts/ArtifactName.sol`, `migrations/####_artifact_name.js` or
+                    `tests/artifact_name.js`. (required)
+                <ArtifactName>
+                    Name of new artifact. (required)
+```
 
 Truffle compiler options,
 
@@ -60,7 +75,7 @@ An application is being developed to help developers and business owenrs fast tr
 
 ![1698075933917](image/README/1698075933917.png)
 
-The Ethereum Smart Contract Creator will also introduce using a NFT as software license, https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/36333753202514414869774196218446368102124864803313914227828195910238651647648/
+The Ethereum Smart Contract Creator will also introduce using a NFT as software license, [https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/36333753202514414869774196218446368102124864803313914227828195910238651647648/](https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/36333753202514414869774196218446368102124864803313914227828195910238651647648/)
 
 ## Where to Download?
 
@@ -74,7 +89,7 @@ There will be a comprehensive soft copy (PDF) manual included at no charge since
 
 ## Why Blockchain Could Prevent Another Theranos
 
-From: https://investorplace.com/2022/01/why-blockchain-could-prevent-another-theranos/
+From: [https://investorplace.com/2022/01/why-blockchain-could-prevent-another-theranos/](https://investorplace.com/2022/01/why-blockchain-could-prevent-another-theranos/)
 
 Before developing the Equity token smart contracts for exempt offerings, I research existing use cases and to my surprise, there were no existing use case. There were plenty of discussions without the implementation. The smart contract is open source, available for inspection by anyone. Also the smart contract can stay in compliance with the rules of an exempt offering by incorporating those restrictions whether timed or not, into the contract code. The most beneficial feature is the blockchain exempt equity token can offer liquidity of restricted securities when conditions have been satisfied to permit such transfers? The blockchain exempt equity token can also provide a future mechanism for exempt equity token conversion to public shares after an IPO/DPO has become effective. The blockchain exempt offering can be the first choice for unicorn startups, because the smart contract can be coded to restrict verified accredited investors ONLY from buying, selling and transferring the exempt equity tokens. Publishing an exempt equity token contract to the public blockchain does not violate the General Solicitation as long as no reference is made to solicitation of investors? A Defi DAPP is needed in conjunction with the exempt equity token contract to maintain the exemption of the offering through use restriction by accredited and qualified investors only! The Defi DAPP can be a mobile app which validates the investor one time on in a hosted environment and then adds their wallet to the authroized investor queue on the blockchain, further interaction is perform execlusively with the blockchain without any need to revisit the hosted environment unless changes and intervention are required?
 
@@ -86,7 +101,7 @@ The remix desktop was rebuilt as a webapp because I found the straight-browser v
 
 Use the following command to interface with remix,
 
-    > remixd -s ./ --remix-ide https://remix.ethereum.org
+`	remixd -s ./ --remix-ide https://remix.ethereum.org`
 
 # What's included?
 
@@ -129,41 +144,32 @@ Before launching an exempt equity or debt offering you are required to submit th
 
 # Release Schedule
 
-    Date          Version
+|    Date    | Version |                                                                                                                                                                                                                                                                                                                                           |
+| :--------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 10/21/2023 |  1.6.4  | Added government, nft,non-profit, retail; refactor interface names                                                                                                                                                                                                                                                                        |
+| 07/17/2022 |  1.6.3  | Added finance/banking/SavingsAccount.sol, libs/DateTime.sol. and useful documents                                                                                                                                                                                                                                                         |
+| 04/30/2022 |  1.6.2  | Added RideshareTrade contract under Transportation category                                                                                                                                                                                                                                                                               |
+| 04/29/2022 |  1.6.1  | Remove package.json dependencies not needed; added package keywords                                                                                                                                                                                                                                                                       |
+| 04/29/2022 |  1.6.0  | Added Government contracts; refactor Frozen to include selfdestruct while extending Owned;                                                                                                                                                                                                                                                |
+| 03/09/2022 |  1.5.0  | Added  Aviation, Education, Hospitality and Blockchain arbitration; social network, newfeed, and token deployments;                                                                                                                                                                                                                       |
+| 02/27/2022 |  1.4.0  | Added BAToken and Peer-to-Peer lending to finance/token and finance/banking, respectively                                                                                                                                                                                                                                                 |
+| 02/23/2022 |  1.3.0  | Add RINS (Renewal Identification Number) contract                                                                                                                                                                                                                                                                                         |
+| 02/23/2022 |  1.2.2  | Maintenance fixes and refactoring; added SimpleBond.sol under finance                                                                                                                                                                                                                                                                     |
+| 02/23/2022 |  1.2.1  | Maintenance; merge fixes;                                                                                                                                                                                                                                                                                                                 |
+| 02/23/2022 |  1.2.0  | Add News contract; example tokens under finance/token; Token Exchange contract; Added CommercialPaper in<br />Debt financing;<br />Deployment of exempt offering token at [https://ropsten.etherscan.io/address/0x39db214c0373eda0eeee10bbf3fdc49a7faec46d](https://ropsten.etherscan.io/address/0x39db214c0373eda0eeee10bbf3fdc49a7faec46d) |
+| 02/23/2022 |  1.1.1  | Fixed additional subdirectory files not being included during the packing.                                                                                                                                                                                                                                                                |
+| 02/17/2022 |  1.1.0  | Refactor of contracts to permit sharing when deployed; add new contracts for:<br />agriculture, energy, finance.currency, healthcare, insurance, non-profit, real estate, retail, scm and transportation                                                                                                                                 |
+| 01/28/2022 |  1.0.7  | Remove third-party dependencies; added placeholder contracts for insurance industry;                                                                                                                                                                                                                                                      |
+| 01/27/2022 |  1.0.6  | Refactor equity, debt and membership; added additional industry smart contracts                                                                                                                                                                                                                                                           |
+| 12/25/2021 |  1.0.5  | Refactoring credit, social and some equity contractsBETA status indicates that the smart contracts compile cleanly.<br /> Functionality is subject to change and is not completely stable.                                                                                                                                                |
+| 12/21/2021 |  1.0.4  | Fixes identified through remix debugging; added followers and friends;NPMJS.COM repository permits the<br />tagging of releases as stable. See the workflow.                                                                                                                                                                              |
+| 12/19/2021 |  1.0.3  | General fixes and compiler warnings cleanupThe project is currently in an alpha-beta state,<br />which means that production use is not recommended. Production ready will be tagged as stable.                                                                                                                                           |
+| 12/19/2021 |  1.0.2  | Employee Benefit Plan contract implementedState of the Project                                                                                                                                                                                                                                                                            |
+| 12/19/2021 |  1.0.1  | The remaining ExemptOffering contracts implemented with the exception of Employee Benefit Plan                                                                                                                                                                                                                                            |
+| 12/19/2021 |  1.0.0  | Initial release with only ExemptEquityOffering506C contract implemented                                                                                                                                                                                                                                                                   |
 
-    10/21/2023       1.6.4          Added government, nft,non-profit, retail; refactor interface names
-    07/17/2022       1.6.3          Added finance/banking/SavingsAccount.sol, libs/DateTime.sol. and useful documents
-    04/30/2022       1.6.2          Added RideshareTrade contract under Transportation category
-    04/29/2022       1.6.1          Remove package.json dependencies not needed; added package keywords
-    04/29/2022       1.6.0          Added Government contracts; refactor Frozen to include selfdestruct while extending Owned;
-    03/09/2022       1.5.0          Added  Aviation, Education, Hospitality and Blockchain arbitration; social network, newfeed, and token deployments;
-    02/27/2022       1.4.0          Added BAToken and Peer-to-Peer lending to finance/token and finance/banking, respectively
-    02/23/2022       1.3.0          Add RINS (Renewal Identification Number) contract
-    02/23/2022       1.2.2          Maintenance fixes and refactoring; added SimpleBond.sol under finance|debt
-    02/23/2022       1.2.1          Maintenance; merge fixes;
-    02/23/2022       1.2.0          Add News contract; example tokens under finance/token; Token Exchange contract; Added CommercialPaper in Debt financing;
-                                                Deployment of exempt offering token at https://ropsten.etherscan.io/address/0x39db214c0373eda0eeee10bbf3fdc49a7faec46d
-    02/23/2022       1.1.1	        Fixed additional subdirectory files not being included during the packing.
-    02/17/2022       1.1.0          Refactor of contracts to permit sharing when deployed; add new contracts for:
-                                                agriculture, energy, finance.currency, healthcare, insurance, non-profit, real estate,
-                                                retail, scm and transportation
-    01/28/2022       1.0.7          Remove third-party dependencies; added placeholder contracts for insurance industry;
-    01/27/2022       1.0.6          Refactor equity, debt and membership; added additional industry smart contracts
-    12/25/2021       1.0.5          Refactoring credit, social and some equity contracts
-    12/21/2021       1.0.4          Fixes identified through remix debugging; added followers and friends;
-    12/19/2021       1.0.3          General fixes and compiler warnings cleanup
-    12/19/2021       1.0.2          Employee Benefit Plan contract implemented
-    12/19/2021       1.0.1          The remaining ExemptOffering contracts implemented with the exception of Employee Benefit Plan
-    12/19/2021       1.0.0          Initial release with only ExemptEquityOffering506C contract implemented
-
-# State of the Project
-
-The project is currently in an alpha-beta state, which means that production use is not recommended. Production ready will be tagged as stable.
-NPMJS.COM repository permits the tagging of releases as stable. See the workflow.
-
-BETA status indicates that the smart contracts compile cleanly. Functionality is subject to change and is not completely stable.
-
-## Auditing
+  
+ Auditing
 
 Initial audits are conducted using ChatGPT
 
@@ -213,23 +219,17 @@ Crowdfunding is an exempt offering and highly regulated meaning, to perform a su
 
 One such funding portal, https://cryptolaunch.us/ offering crowd funding on the blockchain through an Security Token Offering (STO). They also offer a Mini-STO. See the difference between the two at https://cryptolaunch.us/help/article/44,
 
-    "It depends on your situation.
-
-    If a max total raise of $5 million USD is enough for your company to reach a meaningful milestone,
-    or if you do not have up to $100,000 to spend upfront or if you have to move fast with your
-    fundraising campaign, then Mini-STO is better. Otherwise and STO is better solution for your
-    situation.
-
-    Basically, the difference between the Mini-STO and STO boils down to the difference between
-    Reg CF and Reg A+. Simple like that. ", - cryptolaunch.us
+```
+"It depends on your situation. If a max total raise of $5 million USD is enough for your company to reach a meaningful milestone, or if you do not have up to $100,000 to spend upfront or if you have to move fast with you fundraising campaign, then Mini-STO is better. Otherwise and STO is better solution for your situation. Basically, the difference between the Mini-STO and STO boils down to the difference between Reg CF and Reg A+. Simple like that. ", - cryptolaunch.us
+```
 
 CRYPTOLAUNCH.US is the easiest crowwdfunding platform for equity offerings.
 
-See https://www.sec.gov/divisions/marketreg/tmcompliance/fpregistrationguide.htm
+See [https://www.sec.gov/divisions/marketreg/tmcompliance/fpregistrationguide.htm](https://www.sec.gov/divisions/marketreg/tmcompliance/fpregistrationguide.htm)
 
 # Online Token Builder
 
-The following service, https://www.thetokenlauncher.com/buildtoken, a user can build a token, download the source code and launch through the platform (cost 0.1 ETH to launch)
+The following service, [https://www.thetokenlauncher.com/buildtoken](https://www.thetokenlauncher.com/buildtoken), a user can build a token, download the source code and launch through the platform (cost 0.1 ETH to launch)
 
 The available tokens include,
 
@@ -245,11 +245,11 @@ with an option to make any offering into an ICO crowdsale.
 
 ## Asset Backed Currency
 
-See https://medium.com/ico-launch-malta/what-is-an-asset-backed-token-a-complete-guide-to-security-token-assets-f7a0f111d443
+See [https://medium.com/ico-launch-malta/what-is-an-asset-backed-token-a-complete-guide-to-security-token-assets-f7a0f111d443](https://medium.com/ico-launch-malta/what-is-an-asset-backed-token-a-complete-guide-to-security-token-assets-f7a0f111d443)
 
 An Asset-backed currency would be considered as an Asset-back security (ABS) as defined by the SEC. See finance/debt/ABS.md
 
-SEC Asset-backed securities disclosure rules at https://www.sec.gov/rules/final/2014/33-9638.pdf
+SEC Asset-backed securities disclosure rules at [https://www.sec.gov/rules/final/2014/33-9638.pdf](https://www.sec.gov/rules/final/2014/33-9638.pdf)
 
 ABS public registration uses form ABS-15G and ABS-EE
 ABS private registration uses form D
@@ -262,9 +262,9 @@ A Security Token represents an asset or an entitlement to an earning stream or d
 
 Fan tokens are a form of cryptocurrency that gives holders access to a variety of fan-related membership perks like voting on club decisions, rewards, merchandise designs and unique experiences.
 
-See more at https://coinmarketcap.com/alexandria/article/what-are-fan-tokens
+See more at [https://coinmarketcap.com/alexandria/article/what-are-fan-tokens](https://coinmarketcap.com/alexandria/article/what-are-fan-tokens)
 
-Fan Tokens are typically an NFT. NFT is like a trading card or collectible, any gains made on the sale of the NFT is taxable. See https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/
+Fan Tokens are typically an NFT. NFT is like a trading card or collectible, any gains made on the sale of the NFT is taxable. See [https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/](https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/)
 
 ## Fund
 
@@ -278,7 +278,7 @@ An old incentive for the blockchain. User purchases a game token to be used in a
 
 A Utility Token provides access to the goods and services that a project launched or will launch in the future, and can be used as a type of discount or premium access to the services. A lot of tokens tend to be used specifically as a funding mechanism for companies.
 
-A Utility token would not be a security as long as trading/swapping with third parties is not provided. Utility token would be like a discount coupon book where you prepaid to get a future discount. See https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/
+A Utility token would not be a security as long as trading/swapping with third parties is not provided. Utility token would be like a discount coupon book where you prepaid to get a future discount. See [https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/](https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/)
 
 # What is different between pingleware-contracts and other contract frameworks?
 
@@ -288,18 +288,18 @@ While the other contract frameworks provide templates to help you build contract
 
 The following network faucet(s) give the most and permit one request per twenty four hours,
 
-    https://faucet.egorfine.com/
+    [https://faucet.egorfine.com/](https://faucet.egorfine.com/)
 
 # Private Ethereum Network
 
-See https://geth.ethereum.org/docs/interface/private-network for more information.
+See [https://geth.ethereum.org/docs/interface/private-network](https://geth.ethereum.org/docs/interface/private-network) for more information.
 
     1. Create a unique chainID and symbol, see https://chainid.network to check for uniqueness. You chainID and networkID will be the same.
     2. (optional) If you want credibility for your private network, then consider taking your cryptocurrency public through an S-1, where the asset class is cryptocurrency.
-        Then get a symbol assigned from FINRA (https://www.securitieslawyer101.com/2015/market-maker). Since you have a private network (private meaning separate from mainnet)
+        Then get a symbol assigned from FINRA ([https://www.securitieslawyer101.com/2015/market-maker](https://www.securitieslawyer101.com/2015/market-maker)). Since you have a private network (private meaning separate from mainnet)
         you will need to register the network as an ATS (alternative trading system), as well as the issuer of the cryptocurrency, register as a transfer agent. You will
         also need to get a license as a Money Transmitter the jurisdictions that you conduct business. When you perform an S-1 the quantity is the maximum number of tokens that
-        will be issued. The fee for filing an S-1 is $92.70 per $1,000,000 (https://www.sec.gov/ofm/Article/feeamt.html), or
+        will be issued. The fee for filing an S-1 is $92.70 per $1,000,000 ([https://www.sec.gov/ofm/Article/feeamt.html](https://www.sec.gov/ofm/Article/feeamt.html)), or
 
     total offering = token initial price * number of tokens (if you have a par value, then the minimum price is the par value)
 
@@ -308,7 +308,7 @@ See https://geth.ethereum.org/docs/interface/private-network for more informatio
 
     You can have multiple offerings of S-1, the first S-1 makes your company a public company.
 
-    When you apply for a trading symbol from FINRA, requires a market maker (https://www.finra.org/about/firms-we-regulate/broker-dealer-firms-we-regulate), because they will handle the KYC and AML for your clients, buying your token at a discount or par value.
+    When you apply for a trading symbol from FINRA, requires a market maker ([https://www.finra.org/about/firms-we-regulate/broker-dealer-firms-we-regulate](https://www.finra.org/about/firms-we-regulate/broker-dealer-firms-we-regulate)), because they will handle the KYC and AML for your clients, buying your token at a discount or par value.
 
 Command line option,
 
@@ -316,7 +316,7 @@ Command line option,
 
 ## List Private Network on chainid.network
 
-    1. Clone the project https://github.com/ethereum-lists/chains
+    1. Clone the project[https://github.com/ethereum-lists/chains](https://github.com/ethereum-lists/chains)
     2. Create a new file in ./_data/chains directory using the file convention of eip115-`<chainID>`.json
     3. Create a logo for your private network
     4. Copyright the logo.
