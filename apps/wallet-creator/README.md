@@ -34,6 +34,7 @@ Service Code: 999
 Password: 0e53be539578dec2494f7b9fa99f5b44561b906e69a34cf952d3bbfbe1d79ea84cf43d71d00ca8fad2be66f52eb8e66091229ed0854c4c40008cc2d6f4bb00ef27
 Mnemonic: teach piece peace cliff history electric valid system tackle float debris pool
 QR code saved as 9840600009935055166.png
+Welcome letter saved as 9840600009935055166.html
 ```
 
 and creates the file identified by the primary account number,
