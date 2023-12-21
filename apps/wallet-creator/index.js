@@ -28,9 +28,16 @@ var argv = yargs(hideBin(process.argv))
     default: 'NEW MEMBER',
     required: false
 })
+.option('out', {
+    type: 'string',
+    description: 'The output path to save the generated files',
+    default: './',
+    required: false
+})
 .parse()
 
 const fs = require('fs');
+const path = require('path');
 const crypto = require('crypto');
 const ethUtil = require('ethereumjs-util');
 const CryptoJS = require('crypto-js');
@@ -38,6 +45,7 @@ const bip39 = require('bip39');
 const QRCode = require('qrcode');
 const generate = require('./letter');
 
+const output_dir = argv['out'];
 
 function DESEncryption(data, key) {
     const encryptedData = CryptoJS.DES.encrypt(data, key);
@@ -248,6 +256,7 @@ console.log('Password:', signatureHex); // this password is saved to the off-cha
 console.log('Mnemonic:',mnemonic);
 
 const walletInfo = {
+    OWNER: argv['name'],
     PAN: pan,
     EXP: expiry,
     CVV: cvv,
@@ -260,9 +269,10 @@ const walletInfo = {
     MNEMONIC: mnemonic
 };
 
-fs.writeFileSync(`${pan}.json`,JSON.stringify(walletInfo));
+fs.writeFileSync(path.join(output_dir,`${pan}.json`),JSON.stringify(walletInfo));
 
 const hwCrypto = {
+    owner: argv['name'],
     wallet_name: "redeecash",
     mnemonic_phrase: mnemonic,
     bip32_path: "m/44'/60'/0'/0",
@@ -276,20 +286,20 @@ const hwCrypto = {
     ]
 }
 
-fs.writeFileSync(`${pan}.wallet.json`,JSON.stringify(hwCrypto));
+fs.writeFileSync(path.join(output_dir,`${pan}.wallet.json`),JSON.stringify(hwCrypto));
 
 // Create an Ethereum URI to import the wallet into MetaMask
 const ethereumUri = `ethereum:0x${address}?private_key=${privateKey.toString('hex')}`;
 
 // Generate a QR code for the Ethereum URI
-QRCode.toFile(`${pan}.png`, ethereumUri, function (err) {
+QRCode.toFile(path.join(output_dir,`${pan}.png`), ethereumUri, function (err) {
     if (err) {
       console.error(err);
     } else {
       console.log(`QR code saved as ${pan}.png`);
       const qrcode_file = fs.readFileSync(`${pan}.png`).toString('base64');
-      const contents = generate(argv['name'],`0x${address}`,publicKey.toString('hex'),privateKey.toString('hex'),qrcode_file);
-      fs.writeFileSync(`${pan}.html`,contents);
+      const contents = generate(argv['name'],`0x${address}`,publicKey.toString('hex'),privateKey.toString('hex'),qrcode_file,mnemonic);
+      fs.writeFileSync(path.join(output_dir,`${pan}.html`),contents);
       console.log(`Welcome letter saved as ${pan}.html`);
     }
 });

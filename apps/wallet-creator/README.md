@@ -8,7 +8,7 @@ To get help for command line options,
 
 will give,
 
-![1703172194567](image/README/1703172194567.png)
+![1703172633372](image/README/1703172633372.png)
 
 The public and private keys along with the wallet are sent to the user via a secured method. The user will import their new wallet into metamask using the private key.
 

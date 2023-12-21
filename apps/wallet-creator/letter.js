@@ -1,4 +1,4 @@
-function generate(name,wallet,public_key,private_key,qrcode,live="https://redeecash.exchange/",test="https://testnet.redeecash.exchange/") {
+function generate(name,wallet,public_key,private_key,qrcode,mnemonic,live="https://redeecash.exchange/",test="https://testnet.redeecash.exchange/") {
     return `<?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
@@ -60,6 +60,7 @@ function generate(name,wallet,public_key,private_key,qrcode,live="https://redeec
     <p class="paragraph-P3">- Public Key: <b>${public_key}</b></p>
     
     <p class="paragraph-P3">- Private Key: <b>${private_key}</b></p>
+    <p class="paragraph-P3">- Mnemonic: <b>${mnemonic}</b></p>
     <p class="paragraph-P3"> </p>
     <p class="paragraph-P3">If you already possess an Ethereum wallet and prefer to use it, you can log into our Member Access Portal using the following credentials:</p>
     <p class="paragraph-P3"> </p>
