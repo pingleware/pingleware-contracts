@@ -125,7 +125,7 @@ Using an exempt offering under Regulation A Tier 1, Regulation D 506(c) or an in
 
 ## TODO
 
-* Create a cold storage wallet for the Community Wallet on a hardware USB wallet that can interact with metamask. See [https://hackernoon.com/how-to-create-a-cold-storage-crypto-wallet-with-a-usb-memory-stick](https://hackernoon.com/how-to-create-a-cold-storage-crypto-wallet-with-a-usb-memory-stick)
+* Create a cold storage wallet for the Community Wallet on a hardware USB wallet that can interact with metamask. See [https://hackernoon.com/how-to-create-a-cold-storage-crypto-wallet-with-a-usb-memory-stick](https://hackernoon.com/how-to-create-a-cold-storage-crypto-wallet-with-a-usb-memory-stick). Apparently [Legder hardware wallet had a problem with compromised code.](https://www.ledger.com/blog/a-letter-from-ledger-chairman-ceo-pascal-gauthier-regarding-ledger-connect-kit-exploit)
 * Add the Community Wallet PAN to Apple, Google, Samsung digital wallet.
 
 ## Why a Community Wallet

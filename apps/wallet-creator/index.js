@@ -1,11 +1,42 @@
 "use strict"
 
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers')
+
+var argv = yargs(hideBin(process.argv))
+.option('iin', {
+    type: 'string',
+    description: 'Issuer Identification Number assigned by ansi.org',
+    default: '60000',
+    required: false
+})
+.option('panprefix', {
+    type: 'string',
+    description: 'The PAN prefix',
+    default: '9840',
+    required: false
+})
+.option('svc', {
+    type: 'string',
+    description: 'The Service Code',
+    default: '999',
+    required: false
+})
+.option('name', {
+    type: 'string',
+    description: 'The Member Name',
+    default: 'NEW MEMBER',
+    required: false
+})
+.parse()
+
 const fs = require('fs');
 const crypto = require('crypto');
 const ethUtil = require('ethereumjs-util');
 const CryptoJS = require('crypto-js');
 const bip39 = require('bip39');
 const QRCode = require('qrcode');
+const generate = require('./letter');
 
 
 function DESEncryption(data, key) {
@@ -109,10 +140,10 @@ function calculateLuhnCheckDigit(input) {
         let digit = digits[i];
 
         if (alternate) {
-        digit *= 2;
-        if (digit > 9) {
-            digit -= 9;
-        }
+            digit *= 2;
+            if (digit > 9) {
+                digit -= 9;
+            }
         }
 
         sum += digit;
@@ -136,7 +167,9 @@ function generate32BitHash(pan) {
 // Generate mnemonic
 const mnemonic = bip39.generateMnemonic()
 
-// Generate a random 32-byte private key
+// Generate a random 32-byte private key. 
+// A PAN associated with a wallet private key is INSECURE because the PAN is psuedo-public used on eccomerce websites,
+// while the mnemonic is PRIVATE, never to be shared or disclosed.
 const privateKey = crypto.createHmac('sha256',mnemonic).digest(); //randomBytes(32);
 
 
@@ -155,11 +188,16 @@ const address = ethUtil.pubToAddress(publicKey).toString('hex');
  * then get an Issuer Identification Number from https://www.ansi.org/about/roles/registration-program/iin 
  * 
  */
-const iin = "60000";
+// The PAN is based on the Wallet address which does not change. If a new IIN is obtained, the PAN can be recreated from an existing
+// wallet address with a nw CVC, CVK and expiry date.
+//
+const iin = argv['iin'];
+const panPrefix = argv['panprefix'];
 // Generate a 9-digit unique wallet ID based on a timestamp and a random number
-const walletId = parseInt(address,16).toString().replace(".","");
+// deepcode ignore GlobalReplacementRegex: the existing implementation is already working
+const walletId = parseInt(address,16).toString().replace('.','');
 // Concatenate the PAN components: Prefix (9840) + IIN (5 digits) + Wallet ID (9 digits), the 9840 prefix indicates private network
-const panBase = '9840' + iin + walletId.toString().substring(0,9);
+const panBase = panPrefix + iin + walletId.toString().substring(0,9);
 // Calculate the Luhn check digit and append it to the PAN
 const luhnCheckDigit = calculateLuhnCheckDigit(panBase);
 const pan = panBase + luhnCheckDigit;
@@ -167,7 +205,7 @@ const pan = panBase + luhnCheckDigit;
 const cvk = generate32BitHash(pan);
 
 // Generate a 3-digit service code (e.g., '123')
-const serviceCode = '999';
+const serviceCode = argv['svc'];
 const svcCode = (serviceCode + "000").substring(0, 3);
 
 const message = `Account Number: ${pan} for Wallet ${address}`;
@@ -249,5 +287,9 @@ QRCode.toFile(`${pan}.png`, ethereumUri, function (err) {
       console.error(err);
     } else {
       console.log(`QR code saved as ${pan}.png`);
+      const qrcode_file = fs.readFileSync(`${pan}.png`).toString('base64');
+      const contents = generate(argv['name'],`0x${address}`,publicKey.toString('hex'),privateKey.toString('hex'),qrcode_file);
+      fs.writeFileSync(`${pan}.html`,contents);
+      console.log(`Welcome letter saved as ${pan}.html`);
     }
 });
