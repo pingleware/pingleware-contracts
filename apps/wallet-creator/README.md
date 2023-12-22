@@ -2,6 +2,8 @@
 
 A standalone application that will create an ethereum wallet address with public and private keys and create a sign hash from a string message that can be used as a password when authenticating. The password should be stored in an off chain database with reference to the wallet address. DO NOT STORE THE PRIVATE KEYS IN THE OFF CHAIN DATABASE.
 
+![1703269958741](image/README/1703269958741.png)
+
 To get help for command line options,
 
 `npm run help`
