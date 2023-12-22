@@ -25,7 +25,25 @@ var argv = yargs(hideBin(process.argv))
 .option('name', {
     type: 'string',
     description: 'The Member Name',
-    default: 'NEW MEMBER',
+    default: 'John Doe',
+    required: false
+})
+.option('mailing', {
+    type: 'string',
+    description: 'First line of the mailing address for the above NAME',
+    default: '123 Maple Street',
+    required: false
+})
+.option('csz', {
+    type: 'string',
+    description: 'City, State and Zip Code of the mailing address for the above NAME',
+    default: 'Anytown, PA 17101',
+    required: false
+})
+.option('date', {
+    type: 'string',
+    description: 'Welcome letter date',
+    default: 'January 1, 2024',
     required: false
 })
 .option('out', {
@@ -205,7 +223,7 @@ const panPrefix = argv['panprefix'];
 // deepcode ignore GlobalReplacementRegex: the existing implementation is already working
 const walletId = parseInt(address,16).toString().replace('.','');
 // Concatenate the PAN components: Prefix (9840) + IIN (5 digits) + Wallet ID (9 digits), the 9840 prefix indicates private network
-const panBase = panPrefix + iin + walletId.toString().substring(0,9);
+const panBase = panPrefix + iin + walletId.toString().substring(0,6);
 // Calculate the Luhn check digit and append it to the PAN
 const luhnCheckDigit = calculateLuhnCheckDigit(panBase);
 const pan = panBase + luhnCheckDigit;
@@ -238,6 +256,7 @@ const signatureBuffer = Buffer.from(concatenatedSignature, 'hex');
 
 // Convert the buffer to a hexadecimal string
 const signatureHex = signatureBuffer.toString('hex');
+
 
 // Assign expiration date
 const expiry = generateExpirationDate(); // option years parameter for future expiration date
@@ -298,7 +317,7 @@ QRCode.toFile(path.join(output_dir,`${pan}.png`), ethereumUri, function (err) {
     } else {
       console.log(`QR code saved as ${pan}.png`);
       const qrcode_file = fs.readFileSync(`${pan}.png`).toString('base64');
-      const contents = generate(argv['name'],`0x${address}`,publicKey.toString('hex'),privateKey.toString('hex'),qrcode_file,mnemonic);
+      const contents = generate(argv['name'],`0x${address}`,publicKey.toString('hex'),privateKey.toString('hex'),qrcode_file,mnemonic,argv['mailing'],argv['csz'],argv['date'],pan);
       fs.writeFileSync(path.join(output_dir,`${pan}.html`),contents);
       console.log(`Welcome letter saved as ${pan}.html`);
     }
