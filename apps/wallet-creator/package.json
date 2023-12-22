@@ -1,16 +1,38 @@
 {
   "name": "wallet-creator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Am ethereum wallet creator with a primary account number association",
   "main": "index.js",
+  "build": {
+    "appId": "work.pingleware.walletcreator",
+    "buildVersion": "1",
+    "productName": "Waller Creator",
+    "copyright": "Copyright © 2023 PRESSPAGE ENTERTAINMENT INC",
+    "win": {
+      "icon": "image/logo.png"
+    },
+    "mac": {
+      "icon": "image/logo.icns"
+    },
+    "linux": {
+      "icon": "image/logo.png"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .",
-    "help": "node . --help"
+    "start": "node . --electron=false",
+    "start:electron": "electron .",
+    "help": "node . --help",
+    "build:mac": "electron-builder --mac --universal",
+    "build:win": "electron-builder --win --universal",
+    "build:snap": "snapcraft remote-build --build-on=amd64,arm64",
+    "create:icns": "./icns_creator.sh image/logo.png image/logo"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "PRESSPAGE ENTERTAINMENT INC dba PINGLEWARE <maintainers@pingleware.work>",
+  "license": "CC-BY-4.0",
+  "bugs": {
+    "url": "https://pingleware.support"
+  },
   "dependencies": {
     "bip39": "^3.1.0",
     "crypto": "^1.0.1",
@@ -18,5 +40,9 @@
     "ethereumjs-util": "^7.1.5",
     "qrcode": "^1.5.3",
     "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1"
   }
 }
