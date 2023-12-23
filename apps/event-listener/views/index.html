@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <title>Event Listener</title>
+    </head>
+    <body>
+        <!-- HEADER -->
+        <div class="w3-container w3-blue w3-top">
+            <h4>Event Listener</h4>
+        </div>
+        <!-- MAIN -->
+        <div class="w3-container" id="main">
+            <br/><br/><br/><br/>
+            <label for="network">Blockchain Network</label>
+            <select id="network" class="w3-input w3-block">
+                <option value-"">Select</option>
+            </select>
+            <label for="events">Events</label>
+            <textarea id="events" rows="20" class="w3-input w3-block w3-pale-yellow" readonly></textarea>
+            <br/><br/><br/><br/>
+        </div>
+        <!-- FOOTER -->
+        <div class="w3-container w3-card w3-blue w3-bottom">
+            <p class="w3-center">
+                &copy; <a id="year">2023</a> <a href="https://presspage.info" target="_blank" style="text-decoration: none;">PressPage Entertainment Inc.</a> DBA <a href="https://pingleware.work" target="_blank" style="text-decoration: none;">PINGLEWARE</a>
+                &nbsp;All rights reserved.
+                &nbsp;<span class="w3-tiny" id="version"></span>
+            </p>
+        </div>
+        <!-- SUCCESS DIALOG -->
+        <div id="success-dialog" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <h2 class="w3-green" id="success-dialog-title">Success</h2>
+                    <p id="success-dialog-message"></p>
+                    <br />
+                    <button class="w3-button w3-block w3-black" id="success-dialog-ok">OK</button>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <!-- ERROR DIALOG -->
+        <div id="error-dialog" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <h2 class="w3-red" id="error-dialog-title">Error</h2>
+                    <p id="error-dialog-message"></p>
+                    <br />
+                    <button class="w3-button w3-block w3-black" id="error-dialog-ok">OK</button>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <!-- CONFIRM DIALOG -->
+        <div id="confirm-dialog" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <h2 class="w3-red" id="confirm-dialog-title">Error</h2>
+                    <p id="confirm-dialog-message"></p>
+                    <br />
+                    <button class="w3-button w3-block w3-light-grey" id="confirm-dialog-yes">Yes</button>
+                    <br />
+                    <button class="w3-button w3-block w3-light-grey" id="confirm-dialog-no">No</button>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <!-- JavaScript References-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+                const year = new Date().getFullYear();
+                if (year > 2023) {
+                    document.getElementById("year").innerHTML = `2023-${year}`;
+                }
+
+                const networks = JSON.parse(localStorage.getItem("networks"));
+                console.log(networks);
+
+                document.getElementById("network").innerHTML = `<option value-"">Select</option>`;
+                networks.forEach(function(network) {
+                    document.getElementById("network").innerHTML += `<option value="${network.url}">${network.name}</option>`;
+                })
+            }
+        </script>
+    </body>
+</html>
