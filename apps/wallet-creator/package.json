@@ -9,7 +9,7 @@
     "productName": "Wallet Creator",
     "copyright": "Copyright © 2023 PRESSPAGE ENTERTAINMENT INC",
     "appx": {
-      "identityName": "PRESSPAGEENTERTAINMENT.TimeBoxingVirtualAssistant",
+      "identityName": "PRESSPAGEENTERTAINMENT.WalletCreator",
       "publisher": "CN=AB16B97C-F4DC-49DA-AB7D-4EF246E94958",
       "publisherDisplayName": "PRESSPAGE ENTERTAINMENT",
       "applicationId": "Wallet Creator",
@@ -33,9 +33,18 @@
       "icon": "image/logo.icns"
     },
     "linux": {
-      "target": "snap",
+      "target": [
+        {
+          "target": "snap",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
       "category": "Finance",
-      "icon": "image/logo.png"
+      "icon": "image/logo.png",
+      "synopsis": "Ethereum wallet creator with primary account number association"
     },
     "files": [],
     "extraFiles": []
@@ -46,6 +55,7 @@
     "help": "node . --help",
     "build:mac": "electron-builder --mac --universal",
     "build:win": "electron-builder --win --universal",
+    "build:linux": "electron-builder --linux snap",
     "build:snap": "snapcraft remote-build --build-on=amd64,arm64",
     "create:icns": "./icns_creator.sh image/logo.png image/logo"
   },
