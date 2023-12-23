@@ -8,7 +8,7 @@ The contract user interface of the Ethereum Contract Creator as a stand alone ap
 
 ## Event Listener
 
-Monitor all the events on both the [Redeecash Exchange](https://redeecash.exchange) (RCEX) and the [Exempt Liquidity Market Exchange](https://exemptliquiditymarket.exchange) (ELMX)
+The Event Listener will listen to the event notifications sent by the framework regardless on which blockchain the framework is deployed.
 
 ## Wallet Creator
 
