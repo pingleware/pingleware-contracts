@@ -28,3 +28,6 @@ contextBridge.exposeInMainWorld("api", {
 
   const networks = require('./networks.json');
   localStorage.setItem('networks',JSON.stringify(networks));
+
+  const events = require('./events.json');
+  localStorage.setItem('events',JSON.stringify(events));
