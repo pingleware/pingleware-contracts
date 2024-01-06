@@ -36,6 +36,16 @@ The Event Listener will listen to the event notifications sent by the framework 
 |                |           |                       | AddressRemovedFromWhitelist | address indexed AuthorizedBy, address indexed AddressRemoved                                      |
 | education      |           |                       |                             |                                                                                                   |
 | energy         |           |                       |                             |                                                                                                   |
+|                |           | EETP.sol              |                             |                                                                                                   |
+|                |           |                       | bought                      | bytes32 trans, address buyer                                                                      |
+|                |           |                       | confirmed                   | bytes32 trans, address buyer                                                                      |
+|                |           | EnergyStore.sol       |                             |                                                                                                   |
+|                |           |                       | producerRegistered          | address indexed producer                                                                          |
+|                |           |                       | producerDeregistered        | address indexed producer                                                                          |
+|                |           |                       | BidMade                     | address indexed producer, uint32 indexed day, uint32 indexed price, uint64 energy                 |
+|                |           |                       | BidRevoked                  | address indexed producer, uint32 indexed day, uint32 indexed price, uint64 energy                 |
+|                |           |                       | Deal                        | address indexed producer, uint32 indexed day, uint32 price, uint64 energy, uint32 indexed userID  |
+|                |           |                       | DealRevoked                 | address indexed producer, uint32 indexed day, uint32 price, uint64 energy, uint32 indexed userID  |
 | finance        |           |                       |                             |                                                                                                   |
 |                | banking   |                       |                             |                                                                                                   |
 |                | credit    |                       |                             |                                                                                                   |
@@ -47,7 +57,25 @@ The Event Listener will listen to the event notifications sent by the framework 
 |                | rcex      |                       |                             |                                                                                                   |
 |                | utility   |                       |                             |                                                                                                   |
 | games          |           |                       |                             |                                                                                                   |
+|                |           | InstantBingo.sol      |                             |                                                                                                   |
+|                |           |                       | GameCreated                 | uint256 game                                                                                      |
+|                |           |                       | GameCardNumbersAdded        | uint256 game, uint256 card, uint256 formNumber, uint256 serialNo                                  |
+|                |           |                       | GameTicketPurchase          | uint256 game, uint256 ticketNo, uint256 gameSerialNo                                              |
+|                |           |                       | GameEnded                   | uint256 game, uint256 winningNumber                                                               |
+|                |           |                       | GamePrizeClaimed            | uint256 game, address winner, uint256 amount                                                      |
+|                |           |                       | ContractBalanceWithdrawn    | uint256 balance                                                                                   |
+|                |           |                       | MoniesReceived              | address sender, uint256 amount                                                                    |
 | government     |           |                       |                             |                                                                                                   |
+|                |           | BusStop.sol           |                             |                                                                                                   |
+|                |           |                       | BusStopAdded                |                                                                                                   |
+|                |           |                       | BusStopUpdated              |                                                                                                   |
+|                |           | Case.sol              |                             |                                                                                                   |
+|                |           |                       | NewCaseCreated              | string caseIndex, address plaintiff, address defendant, string description                        |
+|                |           |                       | CaseAssignedJudge           | string caseIndex, address judge                                                                   |
+|                |           |                       | LegalRepresentativeAssigned | string caseIndex, address representative                                                          |
+|                |           | Courts.sol            |                             |                                                                                                   |
+|                |           |                       | CaseFiled                   | string caseId, address plaintiff, address defendant, string description, uint256 filingDate       |
+|                |           |                       | CaseResolved                | string caseId                                                                                     |
 |                | county    |                       |                             |                                                                                                   |
 |                | federal   |                       |                             |                                                                                                   |
 |                | municipal |                       |                             |                                                                                                   |

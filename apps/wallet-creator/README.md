@@ -2,6 +2,20 @@
 
 A standalone application that will create an ethereum wallet address with public and private keys and create a sign hash from a string message that can be used as a password when authenticating. The password should be stored in an off chain database with reference to the wallet address. DO NOT STORE THE PRIVATE KEYS IN THE OFF CHAIN DATABASE.
 
+[How to code a blockchain wallet Staep-by-step](https://www.youtube.com/watch?v=wSTbBIK8qrY&t=1294s)
+
+## Building Linux Snap on Mac M1
+
+Since this project is open source, using the snapcraft CI server is sufficient.
+
+1. Open a terminal in vscode
+2. Change to the wallet-creator project directory
+3. Run the command, if do not have a snap path, **snapcraft init**
+4. Edit the snap/snapcraft.yaml with the name, version, grade and confinment. For each version change in package.json, snap/snapcraft.yaml version must also be change manually to reflect the version in package.json.
+5. Run the command, **npm run build:snap**
+
+## User Interface
+
 ![1703269958741](image/README/1703269958741.png)
 
 To get help for command line options,
@@ -148,3 +162,7 @@ Help with adoption of using an NFT as a software license as well as wallet for u
 Permits perpetual licensing on a public immutable blockchain. Microsoft moved from CD Keys to Server activation for Windows XP and Windows 7, but if you want to install or reinstall Windows 7 using your install media and license key, there is no Windows 7 license server available in 2023+ to activate the system and Windows 7 ceases to function thrity days later.
 
 Using a NFT software license, there is no license activation server and planned obsolence doesn't apply, but adopts an immortal EOL doctrine. When a piece of software is useful, there should never be a End-Of-Life (EOL) doctrine or use the planned obsolence model.
+
+## Welcome Letter
+
+Use a stamp from https://nostalgicimpressions.com/products/create-your-own-wax-seal-stamp and the corporate embosser seal on each letter to retain authenticity.

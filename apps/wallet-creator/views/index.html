@@ -19,10 +19,15 @@
       <br/><br/><br/><br/>
       <label for="name">Name</label>
       <input type="text" id="name" class="w3-input w3-block" value="" placeholder="John Doe" />
-      <label for="mailing">Mailing Address</label>
-      <input type="text" id="mailing" class="w3-input w3-block" value="" placeholder="123 Maple Street" />
-      <label for="csz">City, State and Zip Code for the Mailing Address</label>
-      <input type="text" id="csz" class="w3-input w3-block" value="" placeholder="Anytown, PA 17101" />
+      <label for="address_1">Address</label> 
+      <input type="text" class="w3-input w3-block" id="address_1" value="" placeholder="123 Maple Street" />
+      <input type="text" class="w3-input w3-block" id="address_2" value="" />
+      <label for="city">City</label> 
+      <input type="text" class="w3-input w3-block" id="city" value="" placeholder="Anytown" />
+      <label for="state">State</label>
+      <input type="text" class="w3-input w3-block" id="state" value="" placeholder="PA" />
+      <label for="zipcode">Zip Code</label>
+      <input type="text" class="w3-input w3-block" id="zipcode" value="" placeholder="17101" />
       <label for="date">Welcome Letter Date</label>
       <input type="date" id="date" class="w3-input w3-block" value="" placeholder="January 1, 2024" />
       <label for="iin">Issuer Identification Number (IIN)</label>
@@ -58,6 +63,26 @@
         <input type="text" class="w3-input w3-block w3-light-grey" id="mnemonic" value="" placeholder="asset wild danger town banana dolphin nature member voice double funny work" readonly />
         <br/>
         <button class="w3-button w3-block w3-green" data-html="" id="welcome_letter">View Welcome Letter</button>
+      </fieldset>
+      <fieldset>
+        <legend>Redeecash Exchange</legend>
+        <label for="user-role">User Role</label>
+        <select class="w3-input w3-block" id="user-role">
+          <option value="0">Select</option>
+        </select>
+        <fieldset>
+          <legend>Additional User Identity</legend>
+          <label for="contact">Contact</label>
+          <input type="text" class="w3-input w3-block" id="contact" value="" />
+          <label for="email">EMail</label>
+          <input type="email" class="w3-input w3-block" id="email" value="" />
+          <label for="phone">Phone</label>
+          <input type="text" class="w3-input w3-block" id="phone" value="" />
+          <label for="tin">Tax Payer Number</label>
+          <input type="text" class="w3-input w3-block" id="tin" value="" />
+        </fieldset>
+        <br/>
+        <button class="w3-button w3-block w3-green" id="create_exchange_user">Create New Exchnge User</button>
       </fieldset>
       <br/><br/><br/><br/>
     </div>
@@ -172,8 +197,8 @@
           e.preventDefault();
 
           const name = document.getElementById("name").value;
-          const mailing = document.getElementById("mailing").value;
-          const csz = document.getElementById("csz").value;
+          const mailing = document.getElementById("address_1").value + ", " + document.getElementById("address_2").value;
+          const csz = document.getElementById("city").value + ", " + document.getElementById("state").value  + " " + document.getElementById("zipcode").value;
           const date = document.getElementById("date").value;
           const iin = document.getElementById("iin").value;
           const panPrefix = document.getElementById("panPrefix").value;

@@ -18,10 +18,9 @@
     "win": {
       "target": [
         {
-          "target": "appx",
+          "target": "msi",
           "arch": [
             "x64",
-            "ia32",
             "arm64"
           ]
         }
@@ -46,12 +45,19 @@
       "icon": "image/logo.png",
       "synopsis": "Ethereum wallet creator with primary account number association"
     },
-    "files": [],
+    "files": [
+      {
+        "from": ".",
+        "to": ".",
+        "filter": [
+          "!**/._*"
+        ]
+      }
+    ],
     "extraFiles": []
   },
   "scripts": {
-    "start": "node . --electron=false",
-    "start:electron": "electron .",
+    "start": "electron .",
     "help": "node . --help",
     "build:mac": "electron-builder --mac --universal",
     "build:win": "electron-builder --win --universal",
@@ -65,9 +71,9 @@
   "bugs": {
     "url": "https://pingleware.support"
   },
+  "funding": "https://pingleware.support",
   "dependencies": {
     "bip39": "^3.1.0",
-    "crypto": "^1.0.1",
     "crypto-js": "^4.2.0",
     "ethereumjs-util": "^7.1.5",
     "qrcode": "^1.5.3",
