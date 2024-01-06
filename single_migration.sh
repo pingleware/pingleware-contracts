@@ -10,4 +10,5 @@ fi
 number="$1"
 
 # Invoke the truffle migrate command
-truffle migrate --compile-none --f $number --to $number
+migration_command="truffle migrate --compile-none --f $number --to $number"
+echo "$migration_command"

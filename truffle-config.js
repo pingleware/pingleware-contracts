@@ -74,6 +74,21 @@ module.exports = {
       port: 7535,
       network_id: "*"
     },
+    ethereumcontractcreator: {
+      host: "localhost",
+      port: 7525,
+      network_id: "*"
+    },
+    elmx: {
+      host: "192.168.0.103",
+      port: 8545,
+      network_id: "*"
+    },
+    truffle: {
+      host: "127.0.0.1",
+      port: 9545,
+      network_id: "*"
+    }
     //
     // An additional network, but with some advanced options…
     // advanced: {
@@ -104,7 +119,10 @@ module.exports = {
   },
 
   // IMPORTANT: change the following path to the contracts you want to test
-  contracts_directory: './contracts/',
+  contracts_build_directory: './build/contracts',
+  contracts_directory: './contracts',
+  test_directory: './test',
+  migrations_directory: './migrations',
 
   // Set default mocha options here, use special reporters, etc.
   mocha: {
@@ -121,6 +139,7 @@ module.exports = {
           enabled: true,
           runs: 1
         },
+        viaIR: true,
         evmVersion: "byzantium"
       }
     }
