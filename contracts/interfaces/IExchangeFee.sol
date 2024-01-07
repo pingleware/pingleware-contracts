@@ -12,4 +12,5 @@ interface IExchangeFee {
     function addFee(address tokenAddress, int256 amount) external;
     function subFee(address tokenAddress, int256 amount) external;
     function getTotal(address tokenAddress) external view returns (int256);
+    function payFee(address tokenAddress, int256 amount) external payable;
 }

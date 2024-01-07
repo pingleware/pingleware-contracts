@@ -1,20 +1,11 @@
 // SPDX-License-Identifier: BSL-1.1
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../interfaces/IAccessControl.sol";
 import "../interfaces/IDebtToken.sol";
+import "./AToken.sol";
 
-abstract contract ADebtToken is IAccessControl, IDebtToken {
-    uint256 constant public SIXMONTHS = 180 days;
-    uint256 constant public YEAR = 365 days;
-    bool public TRANSFERS_ACTIVE    =   false;
-    bool public TRADING_ACTIVE = false;
+abstract contract ADebtToken is AToken, IDebtToken {
 
-    uint256 public OUTSTANDING_SHARES = 0;
-    uint256 public MAX_OFFERING_SHARES = 0;
-
-    string public name; // Name of the corporate bond
-    address public issuer; // Address of the bond issuer
     uint256 public bondPrincipal; // Principal amount of the bond
     uint256 public bondCouponRate; // Annual coupon rate (in basis points)
     uint256 public bondMaturityDate; // Unix timestamp of the bond maturity date
@@ -22,10 +13,33 @@ abstract contract ADebtToken is IAccessControl, IDebtToken {
 
     BondHolder[] public bondHolders;
 
-    string public offeringType = "DEBT";
 
-    event TransferStatusChange(bool,string);
-    event TradingStatusChange(bool,string);
+    function purchaseBonds(address investor,uint256 amount,uint256 fee) public {
+        require(amount > 0 && amount <= MAX_OFFERING_SHARES && amount <= (MAX_OFFERING_SHARES - OUTSTANDING_SHARES), "Invalid bond amount");
+        require(block.timestamp < bondMaturityDate, "Bond maturity date reached");
+
+        OUTSTANDING_SHARES += amount;
+        paymentWalletContract.transferFrom(address(this), investor, amount, "N/A");
+
+        if (fee > 0) {
+            exchangeContract.addEntry(block.timestamp,"Cash","RCEX Fee",string(abi.encodePacked("RCEX Fee for ",name," token")),int256(fee),int256(fee));
+        }
+
+        emit BondPurchased(investor, amount);
+    }
+
+    function redeemBonds(address investor,uint256 amount,uint256 fee) public {
+        require(amount <= OUTSTANDING_SHARES, "Insufficient bond balance");
+
+        OUTSTANDING_SHARES -= amount;
+        paymentWalletContract.transferFrom(investor, address(this), amount, "N/A");
+
+        if (fee > 0) {
+            exchangeContract.addEntry(block.timestamp,"Cash","RCEX Fee",string(abi.encodePacked("RCEX Fee for ",name," token")),int256(fee),int256(fee));
+        }
+
+        emit BondRedeemed(investor, amount);
+    }
 
     
     function getMarketValue() public returns (uint256) {
@@ -64,12 +78,7 @@ abstract contract ADebtToken is IAccessControl, IDebtToken {
 
         return maturityYears;
     }
-    function changeTradingStatus(bool status,string calldata reason) external {
-        TRADING_ACTIVE = status;
-        emit TradingStatusChange(status,reason);
-    }
-    function changeTransferStatus(bool status,string calldata reason) external {
-        TRANSFERS_ACTIVE = status;
-        emit TransferStatusChange(status,reason);
+    function getPrice() external view returns (uint256) {
+        return bondPrincipal;
     }
 }

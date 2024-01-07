@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../common/Version.sol";
-import "../common/Frozen.sol";
-import "../common/IERC20TOKEN.sol";
-import "../libs/SafeMath.sol";
+//import "../common/Version.sol";
+//import "../common/Frozen.sol";
+//import "../common/IERC20TOKEN.sol";
+//import "../libs/SafeMath.sol";
 
+contract RINS {}
+
+/*
 contract RINS is Version, Frozen, IERC20TOKEN {
     string public constant DESCRIPTION = string("");
 
@@ -207,3 +210,4 @@ contract RINS is Version, Frozen, IERC20TOKEN {
     }
 
 }
+*/

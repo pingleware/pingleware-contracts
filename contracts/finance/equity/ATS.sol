@@ -1,78 +1,7 @@
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.7.0 <0.9.0;
 
-interface OfferingTypeInterface {
-    enum OfferingType {
-        SECTION3A11,
-        RULE147,
-        RULE147A,
-        SECTION4A2,
-        RULE504,
-        RULE505,
-        RULE506B,
-        RULE506C,
-        RULE701,
-        REGAT1,
-        REGAT2,
-        REGS,
-        REGCF,
-        S1,
-        S3,
-        F1,
-        F3
-    }
-}
-
-interface IERC20 {
-    function totalSupply() external view returns (uint256);
-    function balanceOf(address account) external view returns (uint256);
-    function allowance(address owner, address spender) external view returns (uint256);
-    function transfer(address recipient, uint256 amount) external returns (bool);
-    function approve(address spender, uint256 amount) external returns (bool);
-    function transferFrom(address sender, address recipient, uint256 tokens) external returns (bool);
-
-    function name() external returns (string memory);
-    function symbol() external returns (string memory);
-
-    event Transfer(address indexed from, address indexed to, uint256 tokens);
-    event Approval(address indexed tokenOwner, address indexed spender, uint256 tokens);
-    event Buyerlist(address indexed tokenHolder);
-    event issueDivi(address indexed tokenHolder,uint256 amount);
-    event startSale(uint256 fromtime,uint256 totime,uint256 rate,uint256 supply);
-}
-
-
-interface OfferingInfoInterface {
-    struct OfferingInfo {
-        IERC20          token;
-        string          name;
-        string          symbol;
-        uint256         maxShares;
-        OfferingTypeInterface.OfferingType    offeringType;
-        uint256         minOffering;
-        uint256         maxOffering;
-        uint256         started;            // epoch timestamp
-        uint256         expiry;             // epoch timestamp, 0=no expiry
-        uint256         maxAccredited;
-        uint256         maxSophisticated;
-        uint256         maxNonAccredited;
-        uint256         lastTimeRequest;
-        uint256         outstanding;
-        uint256         remaining;
-        string          cusip;
-        string          isin;
-        address         issuer;
-        bool            restricted;
-        bool            active;
-        uint256         price; // initial share price
-        uint256         bid;
-        uint256         ask;
-        uint256         fee; // transfer fee
-        uint256         totalSupply;
-        uint256         reserve;
-    }    
-}
-
+import "../../interfaces/IOfferingInfoInterface.sol";
 
 contract ATS {
 
@@ -92,7 +21,7 @@ contract ATS {
         mapping (address => bool) broker_dealers;
 
         mapping (address => mapping (string => uint256)) balances;
-        mapping (address => mapping (string => OfferingInfoInterface.OfferingInfo)) offering;
+        mapping (address => mapping (string => IOfferingInfoInterface.OfferingInfo)) offering;
         mapping (address => uint256) fee;
 
         // liquidity
@@ -200,7 +129,7 @@ contract ATS {
     }
     /*
      */
-    function registerSecurity(address _issuer, OfferingTypeInterface.OfferingType _offeringType,address _token,string memory _symbol,uint256 tokens) public payable isIssuerOrTransferAgent returns (uint256) {
+    function registerSecurity(address _issuer, IOfferingTypeInterface.OfferingType _offeringType,address _token,string memory _symbol,uint256 tokens) public payable isIssuerOrTransferAgent returns (uint256) {
         require(atsStorage().offering[_issuer][_symbol].active == false,"security is already registered");
     
         atsStorage().offering[_issuer][_symbol].token = IERC20(_token);
@@ -500,13 +429,11 @@ contract ATS {
         return atsStorage().balances[msg.sender][atsStorage().offering[_issuer][_symbol].symbol];
     }
 
-    function getOfferingType(address _issuer,string memory _symbol) public view returns (OfferingTypeInterface.OfferingType) {
+    function getOfferingType(address _issuer,string memory _symbol) public view returns (IOfferingTypeInterface.OfferingType) {
         return atsStorage().offering[_issuer][_symbol].offeringType;
     }
 
-    function getOffering(address _issuer,string memory _symbol) public view returns (OfferingInfoInterface.OfferingInfo memory) {
+    function getOffering(address _issuer,string memory _symbol) public view returns (IOfferingInfoInterface.OfferingInfo memory) {
         return atsStorage().offering[_issuer][_symbol];
     }
-
-
 }

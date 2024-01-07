@@ -18,6 +18,8 @@ contract AgriChain is Version, Frozen {
 
     mapping(uint => Data) prod;
 
+    event ProductAdded(uint prodId,string pname,string pstatus,string pcurLoc,bytes32 hash);
+
     // Adding a product
     function addProduct(uint prodId,string memory pname,string memory pstatus,string memory pcurLoc)
         external
@@ -28,6 +30,8 @@ contract AgriChain is Version, Frozen {
         prod[prodId].curLoc = pcurLoc;
         prod[prodId].hash_value = sha256(string_tobytes(strConcat(pname,pstatus,pcurLoc)));
         productIds[prodId] = prodId;
+
+        emit ProductAdded(prodId, pname, pstatus, pcurLoc, prod[prodId].hash_value);
     }
 
     // Retrieving the adopters

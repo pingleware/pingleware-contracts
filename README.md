@@ -117,7 +117,6 @@ There are prebuilt smart contracts
   * Credit
   * Currency
   * Debt
-  * ELMX
   * Equity
   * Utility
 * Government
@@ -168,7 +167,6 @@ Before launching an exempt equity or debt offering you are required to submit th
 | 12/19/2021 |  1.0.1  | The remaining ExemptOffering contracts implemented with the exception of Employee Benefit Plan                                                                                                                                                                                                                                            |
 | 12/19/2021 |  1.0.0  | Initial release with only ExemptEquityOffering506C contract implemented                                                                                                                                                                                                                                                                   |
 
-  
  Auditing
 
 Initial audits are conducted using ChatGPT

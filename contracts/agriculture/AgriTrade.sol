@@ -64,8 +64,6 @@ contract AgriTrade is Version, Owned {
     mapping (bytes => lot) l1;
     lot[] public l;
 
-
-
     function produce(bytes memory id, bytes32 name, bytes32 loc, bytes32 cr, uint256 con, uint q, uint pr)
         external
     {

@@ -11,8 +11,10 @@ interface IDebtToken is IOffering {
         uint256 investedAmount;
     }
 
-    event Transfer(address indexed from, address indexed to, uint256 value);
-    event CouponPaymentMade(address,uint256);
-    event BondRedeemed(address,uint256);
+    function purchaseBonds(address investor,uint256 amount,uint256 fee) external;
+    function redeemBonds(address investor,uint256 amount,uint256 fee) external;
 
+    event CouponPaymentMade(address,uint256);
+    event BondPurchased(address indexed purchaser, uint256 amount);
+    event BondRedeemed(address indexed holder, uint256 amount);
 }

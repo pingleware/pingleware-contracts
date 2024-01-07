@@ -27,6 +27,12 @@ abstract contract AAccessControl is IAccessControl {
         _;
     }
 
+    modifier validDestination( address to ) {
+        require(to != address(0x0));
+        require(to != address(this) );
+        _;
+    }
+
     modifier nonReentrant() {
         require(!reentrantGuard, "Reentrant call detected");
         reentrantGuard = true;
@@ -34,7 +40,7 @@ abstract contract AAccessControl is IAccessControl {
         reentrantGuard = false;
     }
 
-    function getOwner() external view returns (address) {
+    function getOwner() public view returns (address) {
         return owner;
     }
 

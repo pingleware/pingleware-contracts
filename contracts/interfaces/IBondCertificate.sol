@@ -8,5 +8,5 @@ interface IBondCertificate {
     function getCertificateBalance(address tokenAddress, uint256 _certificateId) external view returns (uint256);
     function getCertificatesByOwner(address _owner) external view returns (uint[] memory);
     function getCertificateByNumber(address tokenAddress,uint _certificateNumber) external view returns (uint certificateNumber,address owner,string memory bondName,uint256 bondAmount,uint256 maturityDate);
-    function redeemBond(address wallet, uint _certificateNumber) external;
+    function redeemBond(address token, address wallet, uint _certificateNumber) external;
 }

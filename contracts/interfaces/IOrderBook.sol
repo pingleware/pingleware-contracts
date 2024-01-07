@@ -2,32 +2,49 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 interface IOrderBook {
+    enum OrderType { 
+        Buy, 
+        Sell, 
+        BuyLimit, 
+        SellLimit,
+        BuyStopLimit,
+        SellStopLimit,
+        BuyIOC,             // Buy immediately or cancel
+        SellIOC,            // Sell immediately or cancel
+        BuyFOK,             // Buy fill ot kill
+        SellFOK,            // Sell fill or kill
+        BuyAON,             // Buy all or none
+        SellAON,            // Sell all or none
+        BuyGTD,             // Buy good til day
+        SellGTD             // Sell good til day
+    }
+
     struct Order {
-        uint256 orderId;
-        address wallet;
-        uint256 quantity;
+        address trader;
+        OrderType orderType;
         uint256 price;
-        uint256 paid;
+        uint256 quantity;
+        uint256 limitPrice; // Added for limit orders
+        uint256 stopPrice;  // Added for stop-limit orders
+        bool immediateOrCancel; // Added for Immediate or Cancel orders
+        bool fillOrKill; // Added for Fill or Kill orders
+        bool allOrNone; // Added for All or None orders
+        uint256 expirationDate; // Added for Good 'Til Date orders
     }
 
-    struct Trade {
-        address buyer;
-        address seller;
-        address token;
-        uint amount;
-        bool isCompleted;
-    }
+    // Event to log order placement
+    event OrderPlaced(address token,address indexed trader, OrderType orderType, uint256 price, uint256 quantity, uint256 limitPrice, uint256 stopPrice);
+    event OrderExecuted(address indexed token,address indexed buyer, address indexed seller, uint256 price, uint256 quantity);
+    event OrderExpired(uint256 index, OrderType orderType, address trader);
 
-    function setThreshold(uint256 value) external;
-    function setPriceThreshold(uint256 value) external;
-    function setFeeRecipient(address wallet) external;
+    function setContract(address catAddress,address exchangeFeeAddress,address paymentWalletAddress,address quoteHistoricalAddress) external;
+    function setCATContract(address catAddress) external;
+    function setExchangeFeeContract(address exchangeFeeAddress) external;
+    function setPaymentWalletContract(address paymentWalletAddress) external;
+    function setQuoteHistoricalContract(address quoteHistoricalAddress) external;
     function setOfferingContractAddress(string calldata symbol,address offeringContractAddress) external;
-    function getOrders(string calldata symbol) external view returns(Order[] memory,Order[] memory);
-    function quote(string calldata symbol) external view returns (uint256, uint256);
-    function buy(address wallet,string calldata symbol,uint256 quantity,uint256 price,uint256 amount) external;
-    function cancelBuy(address wallet, string calldata symbol,uint256 orderId) external;
-    function sell(address wallet,string calldata symbol,uint256 quantity,uint256 price) external;
-    function cancelSell(address wallet,string calldata symbol,uint256 orderId) external;
-    function detectMarketAbuse(string memory symbol) external view returns (bool);
-    function detectManipulativeBehaviorDetected(string memory symbol,uint256 orderId) external view returns (bool);
+
+    function placeMarketOrder(string calldata _symbol, OrderType _orderType, uint256 _quantity, uint256 _slippagePercentage, uint256 _expirationDate) external returns(uint256);
+    function getBestPrice(string calldata _symbol, OrderType _orderType) external returns (uint256);
+    function quote(string calldata symbol) external returns (uint256,uint256,uint256,uint256,uint256);
 }

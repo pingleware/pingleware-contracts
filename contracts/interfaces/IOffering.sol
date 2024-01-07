@@ -4,6 +4,8 @@ pragma solidity >=0.4.22 <0.9.0;
 interface IOffering {
     event TransferStatusChanged(bool,string);
     event TradingStatusChanged(bool,string);
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
 
     function validate(address from,address to,uint tokens) external view returns (bool);
     function transfer(address from,address to, uint tokens)  external returns (bool);
@@ -16,7 +18,7 @@ interface IOffering {
 
     function getMaxOfferingShares() external view returns (uint256);
     function getOutstandingShares() external view returns (uint256);
-    //function getSymbol() external view returns (string memory);
+    function getSymbol() external view returns (string memory);
     //function getName() external view returns (string memory);
     function getPrice() external view returns (uint256);
     //function getTotalSupply() external view returns (uint256);

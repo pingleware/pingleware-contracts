@@ -8,9 +8,18 @@ interface IConsolidatedAuditTrail {
         address sender;     // Address of the sender
         bytes32 routedOrderID; 
         uint256 timestamp;  // Timestamp of the event
-        string symbol;      // Symbol
-        string eventType;   // Type of event being recorded
-        string eventData;   // Additional data related to the event
+        string  symbol;      // Symbol
+        REPORABLE_EVENT eventType;   // Type of event being recorded
+        string  eventData;   // Additional data related to the event
+    }
+
+    enum REPORABLE_EVENT {
+        RECEIPT,
+        ORDER_ROUTING,
+        ORDER_ROUTING_RECEIPT,
+        ORDER_MODIFIED,
+        ORDER_CANCELLED,
+        ORDER_EXECUTED
     }
 
     enum CANCELLED_REASON {
@@ -30,10 +39,45 @@ interface IConsolidatedAuditTrail {
     }
 
     // Event emitted when a new audit entry is added
-    event AuditEntryAdded(string symbol, bytes32 indexed uti, address indexed sender, uint256 timestamp, string eventType, string eventData);
+    event AuditEntryAdded(string symbol, bytes32 indexed uti, address indexed sender, uint256 timestamp, IConsolidatedAuditTrail.REPORABLE_EVENT eventType, string eventData);
     event ExchangeRateChange(uint256,uint256);
+
+    function formatEventDataForReceipt(string calldata _customer_id,
+                            string calldata _order_id,
+                            string calldata _reporter_id,
+                            string calldata _date,
+                            string calldata _time,
+                            string calldata _terms) external returns (string memory eventData);
+    function formatEventDataForOrderRouting(string calldata _order_id,
+                            string calldata _reporter_id,
+                            string calldata _reporter_id_receiver,
+                            string calldata _date,
+                            string calldata _time,
+                            string calldata _internal,
+                            string calldata _terms) external returns (string memory eventData);
+    function formatEventDataForOrderRoutingReceipt(string calldata _order_id,
+                            string calldata _reporter_id,
+                            string calldata _reporter_id_receiver,
+                            string calldata _date,
+                            string calldata _time,
+                            string calldata _terms) external returns (string memory eventData);
+    function formatEventDataForOrderModifiedCancelled(string calldata _order_id,
+                            string calldata _reporter_id,
+                            string calldata _date,
+                            string calldata _time,
+                            string calldata _price,
+                            string calldata _size,
+                            string calldata _changes) external returns (string memory eventData);
+    function formatEventDataForOrderExecuted(string calldata _order_id,
+                            string calldata _reporter_id,
+                            string calldata _date,
+                            string calldata _time,
+                            string calldata _capacity,
+                            string calldata _price,
+                            string calldata _size,
+                            string calldata _reporting_plan) external returns (string memory eventData);
     
-    function addAuditEntry(string memory symbol, string memory eventDetail, string memory eventType, string memory eventData) external returns (bytes32);
+    function addAuditEntry(string memory symbol, string memory eventDetail, IConsolidatedAuditTrail.REPORABLE_EVENT eventType, string memory eventData) external returns (bytes32);
     function getAuditTrail(string memory symbol, bytes32 uti) external view returns (AuditEntry[] memory);
     function getAuditTrailRange(uint256 startingTimestamp,uint256 endingTimestamp,string memory symbol,bytes32 uti) external returns (AuditEntry[] memory);
     function getAuditTrailRange(uint256 startingTimestamp, uint256 endingTimestamp, string memory symbol, bytes32 uti, uint256 page, uint256 pageSize) external view returns (AuditEntry[] memory);
