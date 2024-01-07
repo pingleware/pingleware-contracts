@@ -130,19 +130,19 @@ Usage:        truffle test [<test_file>] [--compile-all[-debug]] [--compile-none
 To conduct a test on a single file, change to the test directory then,
 
 ```
-truffle migrte --f 1697948405 --t 1697948405
+truffle migrate --f 1697948405 --to 1697948405 --network truffle
 ```
 
 and without re-compiling,
 
 ```
-truffle migrte --compile-none --f 1697948405 --t 1697948405
+truffle migrate --compile-none --f 1697948405 --to 1697948405 --network truffle
 ```
 
 then execute the test, if you receive a connect error or no contract address is given, re-run the truffle migrate command,
 
 ```
-truffle test agri_trade.js --compile-none --migrate-none --network development
+truffle test agri_trade.js --compile-none --migrate-none --network truffle
 ```
 
 if the contract has already been compiled and deployed
@@ -188,64 +188,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | ExemptDebtOffering            |    N    |  N  |      |    1698163602    |
 |                         |           | ExemptDebtOfferingStaking     |    N    |  N  |      |    1698163618    |
 |                         |           | SimpleBond                    |    N    |  N  |      |    1698163627    |
-|                         |           |                               |          |      |      |                  |
-|                         | ELMX      |                               |          |      |      |                  |
-|                         |           | AccessControl                 |    N    |  N  |      |    1700949105    |
-|                         |           | AES                           |          |      |      |    1700949137    |
-|                         |           | BestBooks                     |    Y    |  Y  |  12  |    1697952628    |
-|                         |           | BondCertificate               |    Y    |  Y  |   8   |    1697952638    |
-|                         |           | ConsolidatedAuditTrail        |    Y    |  Y  |   9   |    1697934206    |
-|                         |           | ELMXMunicipalBond             |    N    |  N  |      |    1698150398    |
-|                         |           | EncryptionUtils               |    Y    |  Y  |   5   |    1697952652    |
-|                         |           | ExchangeFee                   |    Y    |  Y  |   5   |    1698116231    |
-|                         |           | ExemptLiquidityMarketExchange |    N    |  N  |  38  |    1697932593    |
-|                         |           | ExchangeTradedFund            |    N    |  N  |   6   |    1698361276    |
-|                         |           | Historical                    |    Y    |  Y  |   4   |    1698415738    |
-|                         |           | InvestorManager               |    Y    |  Y  |  24  |    1697952660    |
-|                         |           | OrderBook                     |    N    |  N  |  46  |    1697984615    |
-|                         |           | PaymentWallet                 |    Y    |  Y  |  16  |    1697952603    |
-|                         |           | Reg3A9Debt                    |    N    |  N  |      |    1700949172    |
-|                         |           | Reg3A11Debt                   |    N    |  N  |      |    1697952710    |
-|                         |           | Reg3A11Equity                 |    N    |  N  |      |    1697952726    |
-|                         |           | Reg147ADebt                   |    N    |  N  |      |    1697953023    |
-|                         |           | Reg147AEquity                 |    N    |  N  |      |    1697953039    |
-|                         |           | Reg147Debt                    |    N    |  N  |      |    1697953050    |
-|                         |           | Reg147Equity                  |    N    |  N  |      |    1697953012    |
-|                         |           | Reg701Equity                  |    N    |  N  |      |    1697953050    |
-|                         |           | RegAT1Debt                    |    N    |  N  |      |    1697952880    |
-|                         |           | RegAT1Equity                  |    N    |  N  |      |    1697952894    |
-|                         |           | RegD504B1Debt                 |    N    |  N  |      |    1700949282    |
-|                         |           | Reg504B1Equity                |    N    |  N  |      |    1700949298    |
-|                         |           | RegD504B1iDebt                |    N    |  N  |      |    1700949305    |
-|                         |           | RegD504B1iEquity              |    N    |  N  |      |    1700949310    |
-|                         |           | RegD504B1iiDebt               |    N    |  N  |      |    1700949318    |
-|                         |           | RegD504B1iiEquity             |    N    |  N  |      |    1700949323    |
-|                         |           | RegD504B1iiiDebt              |    N    |  N  |      |    1700949328    |
-|                         |           | RegD504B1iiiEquity            |    N    |  N  |      |    1700949332    |
-|                         |           | RegD506BDebt                  |    N    |  N  |      |    1700523005    |
-|                         |           | RegD506BEquity                |    N    |  N  |      |    1700523108    |
-|                         |           | RegD506BDebt                  |    N    |  N  |      |    1700523005    |
-|                         |           | RegD506BEquity                |    N    |  N  |      |    1700523108    |
-|                         |           | RegD506CDebt                  |    N    |  N  |      |    1697953123    |
-|                         |           | RegD506CEquity                |    N    |  N  |      |    1697953109    |
-|                         |           | Section3C1Equity              |    N    |  N  |      |    1700949648    |
-|                         |           | Section3C2Equity              |    N    |  N  |      |    1700949662    |
-|                         |           | Section3C3                    |    N    |  N  |      |    1700949678    |
-|                         |           | Section3C4Debt                |    N    |  N  |      |    1700949691    |
-|                         |           | Section3C5Debt                |    N    |  N  |      |    1700949696    |
-|                         |           | Section3C6                    |    N    |  N  |      |    1700949701    |
-|                         |           | Section3C7                    |    N    |  N  |      |    1700949704    |
-|                         |           | Section3C9                    |    N    |  N  |      |    1700949709    |
-|                         |           | Section3C10                   |    N    |  N  |      |    1700949713    |
-|                         |           | Section3C11                   |    N    |  N  |      |    1700949717    |
-|                         |           | Section3C12                   |    N    |  N  |      |    1700949720    |
-|                         |           | Section3C13                   |    N    |  N  |      |    1700949723    |
-|                         |           | Section3C14                   |    N    |  N  |      |    1700949726    |
-|                         |           | Section4A5Debt                |    N    |  N  |      |    1700949742    |
-|                         |           | Section4A5Equity              |    N    |  N  |      |    1700949748    |
-|                         |           | SecurityMeta                  |    Y    |  Y  |   9   |    1697953147    |
-|                         |           | StockCertificate              |    Y    |  Y  |   6   |    1698149824    |
-|                         |           | TokenManager                  |    Y    |  Y  |   8   |    1697953165    |
 |                         | Equity    |                               |          |      |      |                  |
 |                         |           | ATS                           |    N    |  N  |      |    1697953240    |
 |                         |           | CPAMM                         |    N    |  N  |      |    1697953272    |
@@ -253,10 +195,6 @@ The following table created for tracking status when each contract has completed
 |                         |           | DirectEquityOffering          |    N    |  N  |      |    1697953329    |
 |                         |           | ExemptEquityOffering          |    N    |  N  |      |    1697953346    |
 |                         |           | ICO                           |    N    |  N  |      |    1697953361    |
-|                         | RCEX      |                               |          |      |      |                  |
-|                         |           | RedeecashExchange             |    N    |  N  |      |    1698786016    |
-|                         |           | RCEX_InvestorManager          |    N    |  N  |      |    1698788198    |
-|                         |           | RCEX_ExchangeTradedFund       |    N    |  N  |      |    1698794326    |
 |                         | Utility   |                               |          |      |      |                  |
 |                         |           | BAToken                       |    N    |  N  |      |    1697953390    |
 | Games                   |           |                               |          |      |      |                  |
@@ -348,8 +286,68 @@ The following table created for tracking status when each contract has completed
 |                         |           | RentalCar                     |    N    |  N  |      |    1697980933    |
 |                         |           | RideshareTrade                |    N    |  N  |      |    1697980955    |
 |                         |           | Transport                     |    N    |  N  |      |    1697980975    |
-| **TOTALS**        |           |                               |          |      |  185  |                  |
+| **TOTALS**        |           |                               |          |      |      |                  |
 
 Complete refers when the contract test script is fully implemented, while Pass refers to the contract passing the test.
 
 Some implementation may be removed and labelled FIXME: These incidents are not included in the testing matrix metrics. A work around has been included in the associated test file until the issue has been resolved in the contract code.
+
+## Truffle Develop
+
+Executing the command
+
+```
+truffle develop
+```
+
+will produce
+
+```
+Truffle Develop started at http://127.0.0.1:9545/
+
+Accounts:
+(0) 0x75427d76a19b39d3e362dc7d7661d62a78f31836
+(1) 0xa2d230353031596c22d8121a675aee1156b5b208
+(2) 0x9baba078418edd9044fe5dfba58aa3f428e5eac6
+(3) 0x17345955b8bf7b4196a727ffd6e443fc705c9b28
+(4) 0x8aa36de28c6470fb4b665b6104498186303d7d0a
+(5) 0xdf56e03daf1222780ae4a78fa14c6acc2eb22974
+(6) 0x86d1248296e9d5cbf8cec001209d8acdc1cd90a8
+(7) 0xb25b99e27b7d448dc45e9ad52dfae169438725ce
+(8) 0x3d7d3d024a184a5df1f26d64d974a592d8508402
+(9) 0xccd0f57510d2ba66c8e7ccab960153a299abffa8
+
+Private Keys:
+(0) e8953b137dc4a9a6b492a8bb26e9f7130d600aef1999243a1ad37942282f9b57
+(1) 2f0dcc1a945987a2ca629ad3521595a8baa2fd20f49fd7b53d25a289b23a35c0
+(2) 6b05ad71f2bb62e7b41524d3535e433b07f702d2ab42a2274880ef6669b107a5
+(3) 809bba1a6239398034ae9f617684490bd47cf04710e3bea73290053caa35d19d
+(4) 5b0c8817b29c57dbe361b26e1eb50d4b5193e9cafc6fb01331c5118a85da5b81
+(5) 39c5048e950317e2c6c4f02065dcaf245b95fd15f90f4c72b8d537f6383ed623
+(6) 7d60ca657679a57778eed351f527b5df9a48ab2a4346d13c40d988df57739dd3
+(7) 60eaab7127163ec5f7df02ebf992fd7be2b6a456fb4def7ec12b72865499b0b1
+(8) 45acbc69015cc2db5fb1d3bb0d31588a7ad2bfc53e1994b12a9d145cbf5120ff
+(9) 0b4ff0cf31a95546fb4d288fe129ee92fa5834dd4e914d639bcc82311a600207
+```
+
+then from the truffle prompt, you can compile
+
+```
+> compile
+```
+
+migrate,
+
+```
+> migrate --compile-none --f 1698786016 --to 1698786016
+```
+
+specifying --f and --to with the same migration will ensure that only the selected contract is deployed.
+
+and test,
+
+```
+> test redeecash_exchange.js --compile-none --migrate-none
+```
+
+..
