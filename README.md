@@ -207,15 +207,11 @@ Skip to step #5, if deploying on a DEX like polymath.network,
 
 While a private placement has restricted liquidity, a public offering token using a S-1 filing does not have restricted liquidity, hence a CUSIP and ISIN numbers are both needed. The ideal method for unrestricted liquidity is to issue your public offering (S-1) on an established DEX, but I am discovering this to be more tedious and sometimes more costly than listing on NYSE, NASDAQ, AMEX, Pinksheets or any other brick and mortar exchange? The other option is create an alternative trading system (ATS) with an orderbook and order matching and register your ATS with the SEC. If your ATS is solely for your own company's securities, than FINRA, CFTC and NFA registration may not be needed? (check with your attorney)
 
-A thrid option (when approved) is to list your exempt offering on the [Exempt Liquiidity Market Exchange](https://exemptliquiditymarket.exchange). A SEC registered (pending) National Market System (NMS) by the creator of this framework and the founder of PRESSPAGE ENTERTAINMENT INC.
-
-The [Exempt Liquiidity Market Exchange](https://exemptliquiditymarket.exchange) used a private permissioned blockchain to remain in compliance with the Right to Financial Privacy Act of 1978, which off-chain funds transfer in fiat currency (no cryptocurrency is required or needed) by a licensed money transmitter (the same as your ecommerce website). The [Exempt Liquiidity Market Exchange](https://exemptliquiditymarket.exchange) is responsible for onboarding all participants requiring KYC affidavits including an resident physical address verification affidavit, since the exempt offerings are restricted by jurisdiction as well as investor class. Committing perjury on the affidavits will result in the temporary or permanent lost of holdings and a referral to the Security and Exchange Commission (SEC) enforcement division.
-
 # Crowdfunding
 
 Crowdfunding is an exempt offering and highly regulated meaning, to perform a successful equity crowdfund campaign, you must use a registered SEC funding portal. A funding portal is registered with the SEC and regulated by FINRA. The list of current and expired crowdfunding portals/platforms can be found at https://www.finra.org/about/firms-we-regulate/funding-portals-we-regulate.
 
-One such funding portal, https://cryptolaunch.us/ offering crowd funding on the blockchain through an Security Token Offering (STO). They also offer a Mini-STO. See the difference between the two at https://cryptolaunch.us/help/article/44,
+One such funding portal, [https://cryptolaunch.us/ ](https://cryptolaunch.us/)offering crowd funding on the blockchain through an Security Token Offering (STO). They also offer a Mini-STO. See the difference between the two at https://cryptolaunch.us/help/article/44,
 
 ```
 "It depends on your situation. If a max total raise of $5 million USD is enough for your company to reach a meaningful milestone, or if you do not have up to $100,000 to spend upfront or if you have to move fast with you fundraising campaign, then Mini-STO is better. Otherwise and STO is better solution for your situation. Basically, the difference between the Mini-STO and STO boils down to the difference between Reg CF and Reg A+. Simple like that. ", - cryptolaunch.us
