@@ -5,7 +5,7 @@ const Immigration = artifacts.require("Immigration");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("Immigration", function (/* accounts */) {
+contract("government/federal/Immigration", function (/* accounts */) {
   it("should assert true", async function () {
     await Immigration.deployed();
     return assert.isTrue(true);

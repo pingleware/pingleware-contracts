@@ -5,7 +5,7 @@ const SocialNetwork = artifacts.require("SocialNetwork");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("SocialNetwork", function (/* accounts */) {
+contract("social/SocialNetwork", function (/* accounts */) {
   it("should assert true", async function () {
     await SocialNetwork.deployed();
     return assert.isTrue(true);

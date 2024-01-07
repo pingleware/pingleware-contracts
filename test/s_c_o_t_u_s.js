@@ -5,7 +5,7 @@ const SCOTUS = artifacts.require("SCOTUS");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("SCOTUS", function (/* accounts */) {
+contract("government/federal/SCOTUS", function (/* accounts */) {
   it("should assert true", async function () {
     await SCOTUS.deployed();
     return assert.isTrue(true);

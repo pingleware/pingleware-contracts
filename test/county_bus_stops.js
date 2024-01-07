@@ -5,7 +5,7 @@ const {Web3} = require("web3");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("CountyBusStops", function (accounts) {
+contract("government/county/CountyBusStops", function (accounts) {
   it("should assert true", async function () {
     await CountyBusStops.deployed();
     return assert.isTrue(true);

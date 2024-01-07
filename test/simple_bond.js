@@ -5,7 +5,7 @@ const SimpleBond = artifacts.require("SimpleBond");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("SimpleBond", function (/* accounts */) {
+contract("finance/debt/SimpleBond", function (/* accounts */) {
   it("should assert true", async function () {
     await SimpleBond.deployed();
     return assert.isTrue(true);

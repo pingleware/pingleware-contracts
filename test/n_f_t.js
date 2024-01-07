@@ -5,7 +5,7 @@ const NFT = artifacts.require("NFT");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("NFT", function (/* accounts */) {
+contract("nft/NFT", function (/* accounts */) {
   it("should assert true", async function () {
     await NFT.deployed();
     return assert.isTrue(true);

@@ -5,7 +5,7 @@ const Inventory = artifacts.require("Inventory");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("Inventory", function (/* accounts */) {
+contract("retail/Inventory", function (/* accounts */) {
   it("should assert true", async function () {
     await Inventory.deployed();
     return assert.isTrue(true);

@@ -5,7 +5,7 @@ const EndUserRole = artifacts.require("EndUserRole");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("EndUserRole", function (/* accounts */) {
+contract("scm/EndUserRole", function (/* accounts */) {
   it("should assert true", async function () {
     await EndUserRole.deployed();
     return assert.isTrue(true);

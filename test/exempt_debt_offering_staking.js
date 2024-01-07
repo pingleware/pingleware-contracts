@@ -5,7 +5,7 @@ const ExemptDebtOfferingStaking = artifacts.require("ExemptDebtOfferingStaking")
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("ExemptDebtOfferingStaking", function (/* accounts */) {
+contract("finance/debt/ExemptDebtOfferingStaking", function (/* accounts */) {
   it("should assert true", async function () {
     await ExemptDebtOfferingStaking.deployed();
     return assert.isTrue(true);

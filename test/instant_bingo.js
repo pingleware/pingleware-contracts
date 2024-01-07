@@ -16,7 +16,7 @@ let game = 0;
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("InstantBingo", function (accounts) {
+contract("games/InstantBingo", function (accounts) {
   before(async function(){
     const contractInstance = await InstantBingo.deployed();
     const games = await contractInstance.getGames();

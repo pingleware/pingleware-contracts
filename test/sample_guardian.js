@@ -5,7 +5,7 @@ const SampleGuardian = artifacts.require("SampleGuardian");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("SampleGuardian", function (/* accounts */) {
+contract("healthcare/pharma/SampleGuardian", function (/* accounts */) {
   it("should assert true", async function () {
     await SampleGuardian.deployed();
     return assert.isTrue(true);

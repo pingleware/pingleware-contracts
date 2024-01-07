@@ -5,7 +5,7 @@ const RINS = artifacts.require("RINS");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("RINS", function (/* accounts */) {
+contract("energy/RINS", function (/* accounts */) {
   it("should assert true", async function () {
     await RINS.deployed();
     return assert.isTrue(true);

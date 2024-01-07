@@ -5,7 +5,7 @@ const Driver = artifacts.require("Driver");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("Driver", function (/* accounts */) {
+contract("transportation/Driver", function (/* accounts */) {
   it("should assert true", async function () {
     await Driver.deployed();
     return assert.isTrue(true);

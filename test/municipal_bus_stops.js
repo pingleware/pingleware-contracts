@@ -5,7 +5,7 @@ const MunicipalBusStops = artifacts.require("MunicipalBusStops");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("MunicipalBusStops", function (/* accounts */) {
+contract("government/municipal/MunicipalBusStops", function (/* accounts */) {
   it("should assert true", async function () {
     await MunicipalBusStops.deployed();
     return assert.isTrue(true);

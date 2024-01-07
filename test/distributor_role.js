@@ -5,7 +5,7 @@ const DistributorRole = artifacts.require("DistributorRole");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("DistributorRole", function (/* accounts */) {
+contract("scm/DistributorRole", function (/* accounts */) {
   it("should assert true", async function () {
     await DistributorRole.deployed();
     return assert.isTrue(true);

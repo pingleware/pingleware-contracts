@@ -5,7 +5,7 @@ const EETP = artifacts.require("EETP");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("EETP", function (/* accounts */) {
+contract("energy/EETP", function (/* accounts */) {
   it("should assert true", async function () {
     await EETP.deployed();
     return assert.isTrue(true);

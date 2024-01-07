@@ -5,7 +5,7 @@ const PeerToPeerLending = artifacts.require("PeerToPeerLending");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("PeerToPeerLending", function (/* accounts */) {
+contract("finance/banking/PeerToPeerLending", function (/* accounts */) {
   it("should assert true", async function () {
     await PeerToPeerLending.deployed();
     return assert.isTrue(true);

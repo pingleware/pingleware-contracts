@@ -5,7 +5,7 @@ const BlockchainBNB = artifacts.require("BlockchainBNB");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("BlockchainBNB", function (/* accounts */) {
+contract("hospitality/BlockchainBNB", function (/* accounts */) {
   it("should assert true", async function () {
     await BlockchainBNB.deployed();
     return assert.isTrue(true);

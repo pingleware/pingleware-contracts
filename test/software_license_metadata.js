@@ -5,7 +5,7 @@ const SoftwareLicenseMetadata = artifacts.require("SoftwareLicenseMetadata");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("SoftwareLicenseMetadata", function (/* accounts */) {
+contract("technology/SoftwareLicenseMetadata", function (/* accounts */) {
   it("should assert true", async function () {
     await SoftwareLicenseMetadata.deployed();
     return assert.isTrue(true);

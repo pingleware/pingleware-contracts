@@ -5,7 +5,7 @@ const EnergyStore = artifacts.require("EnergyStore");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("EnergyStore", function (/* accounts */) {
+contract("energy/EnergyStore", function (/* accounts */) {
   it("should assert true", async function () {
     await EnergyStore.deployed();
     return assert.isTrue(true);

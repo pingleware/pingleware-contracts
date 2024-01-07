@@ -5,7 +5,7 @@ const Membership = artifacts.require("Membership");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("Membership", function (/* accounts */) {
+contract("membership/Membership", function (/* accounts */) {
   it("should assert true", async function () {
     await Membership.deployed();
     return assert.isTrue(true);

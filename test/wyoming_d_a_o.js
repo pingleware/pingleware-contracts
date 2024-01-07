@@ -5,7 +5,7 @@ const WyomingDAO = artifacts.require("WyomingDAO");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("WyomingDAO", function (/* accounts */) {
+contract("finance/dao/WyomingDAO", function (/* accounts */) {
   it("should assert true", async function () {
     await WyomingDAO.deployed();
     return assert.isTrue(true);

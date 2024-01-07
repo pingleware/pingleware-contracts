@@ -5,7 +5,7 @@ const StateGovernment = artifacts.require("StateGovernment");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("StateGovernment", function (/* accounts */) {
+contract("government/state/StateGovernment", function (/* accounts */) {
   it("should assert true", async function () {
     await StateGovernment.deployed();
     return assert.isTrue(true);

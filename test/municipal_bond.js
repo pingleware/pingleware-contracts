@@ -5,7 +5,7 @@ const MunicipalBond = artifacts.require("MunicipalBond");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("MunicipalBond", function (/* accounts */) {
+contract("government/municipal/MunicipalBond", function (/* accounts */) {
   it("should assert true", async function () {
     await MunicipalBond.deployed();
     return assert.isTrue(true);

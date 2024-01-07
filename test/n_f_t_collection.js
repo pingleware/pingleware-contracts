@@ -5,7 +5,7 @@ const NFTCollection = artifacts.require("NFTCollection");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("NFTCollection", function (/* accounts */) {
+contract("nft/NFTCollection", function (/* accounts */) {
   it("should assert true", async function () {
     await NFTCollection.deployed();
     return assert.isTrue(true);

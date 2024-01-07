@@ -5,7 +5,7 @@ const FutureCurrency = artifacts.require("FutureCurrency");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("FutureCurrency", function (/* accounts */) {
+contract("finance/currency/FutureCurrency", function (/* accounts */) {
   it("should assert true", async function () {
     await FutureCurrency.deployed();
     return assert.isTrue(true);

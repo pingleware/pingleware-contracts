@@ -5,7 +5,7 @@ const ForwardCurrency = artifacts.require("ForwardCurrency");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("ForwardCurrency", function (/* accounts */) {
+contract("finance/currency/ForwardCurrency", function (/* accounts */) {
   it("should assert true", async function () {
     await ForwardCurrency.deployed();
     return assert.isTrue(true);

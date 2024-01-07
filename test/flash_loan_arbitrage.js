@@ -5,7 +5,7 @@ const FlashLoanArbitrage = artifacts.require("FlashLoanArbitrage");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("FlashLoanArbitrage", function (/* accounts */) {
+contract("finance/banking/FlashLoanArbitrage", function (/* accounts */) {
   it("should assert true", async function () {
     await FlashLoanArbitrage.deployed();
     return assert.isTrue(true);

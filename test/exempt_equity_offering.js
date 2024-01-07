@@ -5,7 +5,7 @@ const ExemptEquityOffering = artifacts.require("ExemptEquityOffering");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("ExemptEquityOffering", function (/* accounts */) {
+contract("finance/equity/ExemptEquityOffering", function (/* accounts */) {
   it("should assert true", async function () {
     await ExemptEquityOffering.deployed();
     return assert.isTrue(true);

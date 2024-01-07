@@ -5,7 +5,7 @@ const RealEstate = artifacts.require("RealEstate");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("RealEstate", function (/* accounts */) {
+contract("realestate/RealEstate", function (/* accounts */) {
   it("should assert true", async function () {
     await RealEstate.deployed();
     return assert.isTrue(true);

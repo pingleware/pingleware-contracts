@@ -5,7 +5,7 @@ const PersonalInfo = artifacts.require("PersonalInfo");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("PersonalInfo", function (/* accounts */) {
+contract("healthcare/PersonalInfo", function (/* accounts */) {
   it("should assert true", async function () {
     await PersonalInfo.deployed();
     return assert.isTrue(true);

@@ -5,7 +5,7 @@ const ICO = artifacts.require("ICO");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("ICO", function (/* accounts */) {
+contract("finance/equity/ICO", function (/* accounts */) {
   it("should assert true", async function () {
     await ICO.deployed();
     return assert.isTrue(true);

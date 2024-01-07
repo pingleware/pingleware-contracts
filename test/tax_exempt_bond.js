@@ -5,7 +5,7 @@ const TaxExemptBond = artifacts.require("TaxExemptBond");
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("TaxExemptBond", function (/* accounts */) {
+contract("non-profit/TaxExemptBond", function (/* accounts */) {
   it("should assert true", async function () {
     await TaxExemptBond.deployed();
     return assert.isTrue(true);
