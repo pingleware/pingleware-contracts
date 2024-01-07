@@ -347,7 +347,7 @@ specifying --f and --to with the same migration will ensure that only the select
 and test,
 
 ```
-> test redeecash_exchange.js --compile-none --migrate-none
+> test aviation.js --compile-none --migrate-none
 ```
 
 ..
