@@ -181,27 +181,27 @@ Skip to step #5, if deploying on a DEX like polymath.network,
     3. Implement a DAPP using HTML, CSS, and JavaScript (jQuery and vanilla - no other JS frameworks) that connect to each contract deployed on a local truffle-ganache configuration.
     4. Deploy on an ethereum testnet for further testing and public preview.
 
-    5. Create a private placement memorandum with a qualified attorney review, https://theppmattorney.com/
-    6. Register with the SEC as an EDGAR filer, obtain a CIK number, https://www.sec.gov/edgar/filer-information/how-do-i
-    7. File the appropriate exempt offering with the Security and Exchange Commission (SEC) via EDGAR, 	 	https://www.portal.edgarfiling.sec.gov/Welcome/EDGAROnlineFormsLogin.htm
-    8. Register as a Transfer Agent with the SEC using https://www.sec.gov/about/forms/formta-1.pdf
-    9. Apply for a CUSIP at https://www.cusip.com/apply/index.html
+    5. Create a private placement memorandum with a qualified attorney review,[https://theppmattorney.com/](https://theppmattorney.com/)
+    6. Register with the SEC as an EDGAR filer, obtain a CIK number, [https://www.sec.gov/edgar/filer-information/how-do-i](https://www.sec.gov/edgar/filer-information/how-do-i)
+    7. File the appropriate exempt offering with the Security and Exchange Commission (SEC) via EDGAR at [https://www.portal.edgarfiling.sec.gov/Welcome/EDGAROnlineFormsLogin.htm](https://www.portal.edgarfiling.sec.gov/Welcome/EDGAROnlineFormsLogin.htm)
+    8. Register as a Transfer Agent with the SEC using[https://www.sec.gov/about/forms/formta-1.pdf](https://www.sec.gov/about/forms/formta-1.pdf)
+    9. Apply for a CUSIP at [https://www.cusip.com/apply/index.html](https://www.cusip.com/apply/index.html)
     10. Prepare most recent balance sheet, profit and loss and retained earnings statements, equivalent financial information for the two prior fiscal years
-            Balance sheet - https://www.investopedia.com/terms/b/balancesheet.asp
-            Profit and Loss - https://corporatefinanceinstitute.com/resources/knowledge/accounting/profit-and-loss-statement-pl/
-            Retained Earnings Statement - https://www.accountingformanagement.org/statement-of-retained-earnings
-    11. Apply for a Ticker Symbol from FINRA using https://www.finra.org/sites/default/files/p126234.pdf
-    12. Signup at polymath.network and reserve your symbol at https://eth-tokenstudio.polymath.network/ticker, finalized STO process on this network.
+            Balance sheet - [https://www.investopedia.com/terms/b/balancesheet.asp](https://www.investopedia.com/terms/b/balancesheet.asp)
+            Profit and Loss - [https://corporatefinanceinstitute.com/resources/knowledge/accounting/profit-and-loss-statement-pl/](https://corporatefinanceinstitute.com/resources/knowledge/accounting/profit-and-loss-statement-pl/)
+            Retained Earnings Statement - [https://www.accountingformanagement.org/statement-of-retained-earnings](https://www.accountingformanagement.org/statement-of-retained-earnings)
+    11. Apply for a Ticker Symbol from FINRA using [https://www.finra.org/sites/default/files/p126234.pdf](https://www.finra.org/sites/default/files/p126234.pdf)
+    12. Signup at polymath.network and reserve your symbol at [https://eth-tokenstudio.polymath.network/ticker](https://eth-tokenstudio.polymath.network/ticker), finalized STO process on this network.
 
     12-A. (alternative). Deploy on ethereum mainnet using the symbol assigned by FINRA, integrate with a custom DAPP.
 
     13. Contact preselect accredited investors for participation.
     14. Tag this project as stable.
 
-* Initial DEX Offering at https://coinmarketcap.com/alexandria/glossary/initial-dex-offering
-* CoinMarketCap listing criteria at https://support.coinmarketcap.com/hc/en-us/articles/360043659351-Listings-Criteria#section_b3
-* Security Token Offerings (STO) at https://itsblockchain.com/security-token-offerings-stos/
-* STO Market https://stomarket.com/market
+* Initial DEX Offering at [https://coinmarketcap.com/alexandria/glossary/initial-dex-offering](https://coinmarketcap.com/alexandria/glossary/initial-dex-offering)
+* CoinMarketCap listing criteria at [https://support.coinmarketcap.com/hc/en-us/articles/360043659351-Listings-Criteria#section_b3](https://support.coinmarketcap.com/hc/en-us/articles/360043659351-Listings-Criteria#section_b3)
+* Security Token Offerings (STO) at [https://itsblockchain.com/security-token-offerings-stos/](https://itsblockchain.com/security-token-offerings-stos/)
+* STO Market [https://stomarket.com/market](https://stomarket.com/market)
 
 # Liquidity and the Blockchain
 
@@ -209,9 +209,9 @@ While a private placement has restricted liquidity, a public offering token usin
 
 # Crowdfunding
 
-Crowdfunding is an exempt offering and highly regulated meaning, to perform a successful equity crowdfund campaign, you must use a registered SEC funding portal. A funding portal is registered with the SEC and regulated by FINRA. The list of current and expired crowdfunding portals/platforms can be found at https://www.finra.org/about/firms-we-regulate/funding-portals-we-regulate.
+Crowdfunding is an exempt offering and highly regulated meaning, to perform a successful equity crowdfund campaign, you must use a registered SEC funding portal. A funding portal is registered with the SEC and regulated by FINRA. The list of current and expired crowdfunding portals/platforms can be found at [https://www.finra.org/about/firms-we-regulate/funding-portals-we-regulate](https://www.finra.org/about/firms-we-regulate/funding-portals-we-regulate).
 
-One such funding portal, [https://cryptolaunch.us/ ](https://cryptolaunch.us/)offering crowd funding on the blockchain through an Security Token Offering (STO). They also offer a Mini-STO. See the difference between the two at https://cryptolaunch.us/help/article/44,
+One such funding portal, [https://cryptolaunch.us/ ](https://cryptolaunch.us/)offering crowd funding on the blockchain through an Security Token Offering (STO). They also offer a Mini-STO. See the difference between the two at [https://cryptolaunch.us/help/article/44](https://cryptolaunch.us/help/article/44),
 
 ```
 "It depends on your situation. If a max total raise of $5 million USD is enough for your company to reach a meaningful milestone, or if you do not have up to $100,000 to spend upfront or if you have to move fast with you fundraising campaign, then Mini-STO is better. Otherwise and STO is better solution for your situation. Basically, the difference between the Mini-STO and STO boils down to the difference between Reg CF and Reg A+. Simple like that. ", - cryptolaunch.us
@@ -241,7 +241,7 @@ with an option to make any offering into an ICO crowdsale.
 
 See [https://medium.com/ico-launch-malta/what-is-an-asset-backed-token-a-complete-guide-to-security-token-assets-f7a0f111d443](https://medium.com/ico-launch-malta/what-is-an-asset-backed-token-a-complete-guide-to-security-token-assets-f7a0f111d443)
 
-An Asset-backed currency would be considered as an Asset-back security (ABS) as defined by the SEC. See finance/debt/ABS.md
+An Asset-backed currency would be considered as an Asset-back security (ABS) as defined by the SEC. See [finance/debt/ABS.md](finance/debt/ABS.md)
 
 SEC Asset-backed securities disclosure rules at [https://www.sec.gov/rules/final/2014/33-9638.pdf](https://www.sec.gov/rules/final/2014/33-9638.pdf)
 
@@ -266,7 +266,7 @@ A fund token would be a donation for a tax exempt non-profit organization, and a
 
 ## Game Token
 
-An old incentive for the blockchain. User purchases a game token to be used in a game. As long as the game token is used for game play and redemption inside the game with no perceived financial gains, the game token would not be a security. See https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/
+An old incentive for the blockchain. User purchases a game token to be used in a game. As long as the game token is used for game play and redemption inside the game with no perceived financial gains, the game token would not be a security. See [https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/](https://www.romanolaw.com/2021/12/13/nfts-collectibles-or-securities/)
 
 ## Utility Token
 
