@@ -196,3 +196,4 @@ The rules of the DAO are
 3. Anyone can submit a public proposal with a fee of 0.005 ETH (5000000000000000 WEI) and the owner becomes the creator
 4. Members can create a proposal with a deadline without fees and the only cost are gas fees. The member that creates the proposal is responsible for updating the GovernanceAction contract and executing the proposal which only executes if enough support and more than 50% of the members have voted before the deadline.
 5. New membership requests have a 30 day deadline for existing members to vote.
+6. The DefaultGovernance contract is a placeholder contract for proposal executions that involve offchain processing.
