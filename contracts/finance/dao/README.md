@@ -44,6 +44,8 @@ The WY DAO LLC smart cotnract will need to include the parent exempt organzation
 
 From: https://sos.wyo.gov/Forms/WyoBiz/DAO_Supplement.pdf
 
+Name reservation for up to 120 days at [https://sos.wyo.gov/Forms/Business/General/LLC/DAOLLC-NameReservation.pdf](https://sos.wyo.gov/Forms/Business/General/LLC/DAOLLC-NameReservation.pdf) and search for existing names at [https://wyobiz.wyo.gov/Business/FilingSearch.aspx](https://wyobiz.wyo.gov/Business/FilingSearch.aspx).
+
 ### 17-31-101. Short title.
 
 This chapter shall be known and may be cited as the "Wyoming Decentralized Autonomous Organization Supplement."
