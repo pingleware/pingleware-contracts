@@ -163,3 +163,36 @@ smart contract are in conflict, the smart contract shall preempt any conflicting
 ### 17-31-116. Foreign decentralized autonomous organization.
 
 The secretary of state shall not issue a certificate of authority for a foreign decentralized autonomous organization.
+
+## Example DAO - GovernanceDOA
+
+A testnet deployment of GovernanceDAO and DefaultGovernance contracts have been deployed on GEORLI testnet with the following addresses.
+
+| Contract          | Address                                    | Network                                                                                           |
+| ----------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| DefaultGovernance | 0xc346390e5f95B3b5fDa05BCfBE1757e345f6e717 | https://goerli.etherscan.io/tx/0x2f5b909137a6fc6bac8815ea65224e7ab2be1a67373f78d9f72fd116eb188b6c |
+| GovernanceDAO     | 0xA902F786e02eC1355a798D31934dF29Dc6B81f1A | https://goerli.etherscan.io/tx/0x3e293ec3eac74fca5b322376c34d8a4d7fd37b68db0111c2e92136614e62eb15 |
+
+To connect, start REMIX at [https://remix.ethereum.org/](https://remix.ethereum.org/) and load GovernanceDAO contract into the editor and compiles cleanly.
+
+Then from the deployment panel,
+
+1. Ensure GovernanceDAO is selected
+2. Deoloy name parameter is empty
+3. AtAddress parameter is set to 0xA902F786e02eC1355a798D31934dF29Dc6B81f1A
+
+![1705846669841](image/README/1705846669841.png)
+
+then press the At Address button,
+
+![1705846699022](image/README/1705846699022.png)
+
+![1705846709501](image/README/1705846709501.png)
+
+The rules of the DAO are
+
+1. Membership is requested and require a payment one time payment of 0.0001 ETH (100000000000000 WEI)
+2. At least 50% of existing members must vote on all proposals. No additional osst besides gas fees for voting
+3. Anyone can submit a public proposal with a fee of 0.005 ETH (5000000000000000 WEI) and the owner becomes the creator
+4. Members can create a proposal with a deadline without fees and the only cost are gas fees. The member that creates the proposal is responsible for updating the GovernanceAction contract and executing the proposal which only executes if enough support and more than 50% of the members have voted before the deadline.
+5. New membership requests have a 30 day deadline for existing members to vote.
