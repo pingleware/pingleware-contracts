@@ -166,7 +166,7 @@ The secretary of state shall not issue a certificate of authority for a foreign 
 
 ## Example DAO - GovernanceDOA
 
-This example GovernanceDAO demonstrates governance for SEC SRO governance over proposal generation, voting and implementation. A testnet deployment of GovernanceDAO and DefaultGovernance contracts have been deployed on GEORLI testnet with the following addresses. The name of this GovernanceDAO is REDEECASH EXCHANGE.
+This example GovernanceDAO demonstrates governance for SEC SRO governance over proposal generation, voting and implementation. A testnet deployment of GovernanceDAO and DefaultGovernance contracts have been deployed on GOERLI testnet with the following addresses. The name of this GovernanceDAO is REDEECASH EXCHANGE.
 
 | Contract          | Address                                    | Network                                                                                           |
 | ----------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
