@@ -1,4 +1,4 @@
-# Wallet Creator
+# ubllicWallet Creator
 
 A standalone application that will create an ethereum wallet address with public and private keys and create a sign hash from a string message that can be used as a password when authenticating. The password should be stored in an off chain database with reference to the wallet address. DO NOT STORE THE PRIVATE KEYS IN THE OFF CHAIN DATABASE.
 
@@ -80,7 +80,7 @@ and creates the file identified by the primary account number,
 }
 ```
 
-containing the metadata above.
+containing the metadata above. The password is a signed message using the wallet private key. This parameter will authenticate access using wallet signing technology instead of a usernam and password combination.
 
 A QR Code for importing into metamask is also created as 9840600009935055166.png,
 
@@ -165,4 +165,16 @@ Using a NFT software license, there is no license activation server and planned 
 
 ## Welcome Letter
 
-Use a stamp from https://nostalgicimpressions.com/products/create-your-own-wax-seal-stamp and the corporate embosser seal on each letter to retain authenticity.
+Use a stamp from [https://nostalgicimpressions.com/products/create-your-own-wax-seal-stamp]([https://nostalgicimpressions.com/products/create-your-own-wax-seal-stam](https://nostalgicimpressions.com/products/create-your-own-wax-seal-stamp)) and the corporate embosser seal on each letter to retain authenticity.
+
+![1705692204019](image/README/1705692204019.png)
+
+## Public Key Publishing
+
+The public key generated can be published on PGP servers for end-to-end encryption implementation. How to publish the public key at [https://kb.mailfence.com/kb/how-to-publish-update-your-openpgp-public-key-on-public-key-server](https://kb.mailfence.com/kb/how-to-publish-update-your-openpgp-public-key-on-public-key-server) and distributing public keys at [https://security.stackexchange.com/questions/406/how-should-i-distribute-my-public-key](https://security.stackexchange.com/questions/406/how-should-i-distribute-my-public-key).
+
+Best way to distribute your key is by using one of the key servers that are available, such as **[keyserver.ubuntu.com](http://keyserver.ubuntu.com/),** **[pgp.mit.edu](http://pgp.mit.edu/) or** [keyserver.pgp.com](https://keyserver.pgp.com/).
+
+## Geth Account JSON
+
+When wallets are created for vetted members, each wallet private key and initial 1000 ETH (**not legal tender**) balance is added to the account.json for the proviate network. After launch, new accounts are added to the accounts.json every saturday after a successful onboarding. A new member will need to wait up to a week after completing onboarding to be added to the private blockchain.
