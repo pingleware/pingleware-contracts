@@ -276,7 +276,7 @@ A Utility token would not be a security as long as trading/swapping with third p
 
 # What is different between pingleware-contracts and other contract frameworks?
 
-While the other contract frameworks provide templates to help you build contracts, they fall short from real world model implementation. pingleware-contracts provide a template for real world use of smart contracts across many industries, saving you development time and expense?
+While the other contract frameworks provide templates to help you build contracts, they fall short from real world model (aka Real World Assets [RWA]) implementation. pingleware-contracts provide a template for real world (RWA) use of smart contracts across many industries, saving you development time and expense?
 
 # Getting Test Ether
 
@@ -324,7 +324,7 @@ Command line option,
 
 When a piece of software is useful, there should never be an EOL doctrine. The intention for this application is to achieve immoratlity ;).
 At some point of time in the future, this project may appear to be dead and abandon. The opposite will be true!
-When this project reaches that stage, this project has matured to a level where maintenance is minimal (mostly updating to latest version of Node).
+When this project reaches that stage, this project has matured to a level where maintenance is minimal and hopefully automated (mostly updating to latest version of Node).
 
     Patrick O. Ingle
     December 19, 2021
