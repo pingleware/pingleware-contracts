@@ -166,7 +166,7 @@ The secretary of state shall not issue a certificate of authority for a foreign 
 
 ## Example DAO - GovernanceDOA
 
-A testnet deployment of GovernanceDAO and DefaultGovernance contracts have been deployed on GEORLI testnet with the following addresses.
+This example GovernanceDAO demonstrates governance for SEC SRO governance over proposal generation, voting and implementation. A testnet deployment of GovernanceDAO and DefaultGovernance contracts have been deployed on GEORLI testnet with the following addresses. The name of this GovernanceDAO is REDEECASH EXCHANGE.
 
 | Contract          | Address                                    | Network                                                                                           |
 | ----------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
@@ -197,3 +197,4 @@ The rules of the DAO are
 4. Members can create a proposal with a deadline without fees and the only cost are gas fees. The member that creates the proposal is responsible for updating the GovernanceAction contract and executing the proposal which only executes if enough support and more than 50% of the members have voted before the deadline.
 5. New membership requests have a 30 day deadline for existing members to vote.
 6. The DefaultGovernance contract is a placeholder contract for proposal executions that involve offchain processing.
+7. If a proposal does not receive enough suppport (for Votes) prior to the deadline, the proposal will not be processed and deleted no earlier than 30 days after the deadline.
