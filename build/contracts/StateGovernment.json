@@ -1,0 +1,3624 @@
+{
+  "contractName": "StateGovernment",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "billId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sponsor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "name": "BillIntroduced",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "billId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum StateGovernment.BillStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "name": "BillStatusChange",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "billCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "bills",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "billId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "sponsor",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "enum StateGovernment.BillStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "governor",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "houseMembers",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "senateMembers",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stateName",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isSenateMember",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isHouseMember",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newMember",
+          "type": "address"
+        }
+      ],
+      "name": "addSenateMember",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newMember",
+          "type": "address"
+        }
+      ],
+      "name": "addHouseMember",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "name": "introduceBill",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "billId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum StateGovernment.BillStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "name": "passBill",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"billId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sponsor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"}],\"name\":\"BillIntroduced\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"billId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"enum StateGovernment.BillStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"name\":\"BillStatusChange\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newMember\",\"type\":\"address\"}],\"name\":\"addHouseMember\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newMember\",\"type\":\"address\"}],\"name\":\"addSenateMember\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"billCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"bills\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"billId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"sponsor\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"enum StateGovernment.BillStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"governor\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"houseMembers\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"}],\"name\":\"introduceBill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isHouseMember\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isSenateMember\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"billId\",\"type\":\"uint256\"},{\"internalType\":\"enum StateGovernment.BillStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"name\":\"passBill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"senateMembers\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stateName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/government/state/StateGovernment.sol\":\"StateGovernment\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/government/state/StateGovernment.sol\":{\"keccak256\":\"0x5e7c402a4ea3eee7ac515395986af5f0607379a52f6149314e7ad15024f1641f\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://e3429916b27f88d7b8eb5bc574847f9eaab232057732e2b7593ec3f273b8d70b\",\"dweb:/ipfs/QmdC3cPSepycXXeypojVXT6oRv46yCCDdqqC1rAFYUM7DQ\"]}},\"version\":1}",
+  "bytecode": "0x608060405234620002f55762000e1b803803806200001d81620002fa565b9283398101906020918282820312620002f55781516001604060020a0392838211620002f5570192601f92828486011215620002f5578451818111620001b457601f19956200007282870188168501620002fa565b94828652848383010111620002f557839060005b838110620002e0575050600091850101528251908111620001b457600054946002938487049560018098168015620002d5575b85881014620002a6578087116200025b575b83949596508592818511600114620001ef575050600092620001e3575b505060088202840a600019041916908302176000555b600160a060020a03199233848254161781558254680100000000000000009384821015620001b45782820180825582101562000185576000528260002001338582541617905560035492831015620001b45782018060035582101562000185576003600052600020019033908254161790556000600555604051610afa9081620003218239f35b7f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b015190503880620000e8565b928895938895169260008052876000209360005b8982821062000241575050851162000225575b505050500201600055620000fe565b0151908316600802840a60001904191690553880808062000216565b8385015187558c998c995090960195938401930162000203565b600080528460002085828601048101978686106200029b575b9086838b93010401975b8881106200028e575050620000cb565b600081550188906200027e565b909750879062000274565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602260045260246000fd5b96607f1696620000b9565b81810183015187820184015285920162000086565b600080fd5b6040519190601f01601f191682016001604060020a03811183821017620001b45760405256fe608080604052600436101561001357600080fd5b60e060020a6000350490630c340a2482146108535750806328bdcde81461075057806339ee3c17146107275780633eac1824146106d257806346c28a08146103f35780634ed89ab6146103c4578063779d5fda1461038b5780637c9e64c7146103465780639d7a033914610328578063ba3addc91461021b578063c127d9a2146101385763c226aedb146100a657600080fd5b3461013357602036600319011261013357600435600160a060020a0381811691829003610133576100dc81600154163314610a47565b600254604060020a811015610119578060016100fb920160025561095b565b909260088454920260020a8093029283910216911916179055600080f35b60e060020a634e487b710260009081526041600452602490fd5b600080fd5b346101335760003660031901126101335760405160009060005461015b81610877565b8083526001918083169081156101f4575060011461019c575b61019883610184818703826108b6565b6040519182916020835260208301906108d9565b0390f35b600080805260209450917f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5635b8284106101e15750505081019091019061018481610174565b80548585018701529285019281016101c8565b610198955061018493506020915091849260ff191682840152151581028201019350610174565b3461013357604036600319011261013357600435602435600581101561013357610251600160a060020a03600154163314610a47565b81600052600460205260ff60036040600020015416600581101561030e576102c657816102c36040927fcb2f5d9b75374e2f47d0fb8fb90447b80c7e9a633b7272375579232228b1e6a49460005260046020526102b48160038660002001610aac565b83519283526020830190610919565ba1005b60405160e560020a62461bcd02815260206004820152601c60248201527f546869732062696c6c2063616e6e6f74206265206368616e6765642e000000006044820152606490fd5b60e060020a634e487b710260009081526021600452602490fd5b34610133576000366003190112610133576020600554604051908152f35b34610133576020366003190112610133576004356002548110156101335761036f60209161095b565b9054604051600890920260020a9004600160a060020a03168152f35b3461013357602036600319011261013357600435600160a060020a0381168103610133576103ba60209161099f565b6040519015158152f35b3461013357602036600319011261013357600435600160a060020a0381168103610133576103ba6020916109f4565b34610133576020366003190112610133576004356001604060020a038082116101335736602383011215610133578160040135918183116101195760405191601f1993601f9261044a6020878685011601866108b6565b8185523660248383010111610133578160009260246020930183880137850101526104743361099f565b1561067257610484600554610976565b93846005556040519260808401848110848211176101195760405285845260208401953387526040850190868252600060608701526000526004602052604060002096855188556001880190600160a060020a03905116600160a060020a031982541617905551908151938411610119576105026002880154610877565b818111610628575b506020928185116001146105b2575050918091606094936000926105a7575b5050816002029160080260020a6000190419161760028501555b015191600583101561030e577f37857be678fc43a22c7cce89173b9ca3e4d048fd6c0fca4854aeec4a3a0e2f6992600361057d9201610aac565b6005546105a260405192839283523360208401526060604084015260608301906108d9565b0390a1005b015190508680610529565b849391929316926002880160005260206000209360005b81811061061057509285926001959260609897600296106105f5575b5050505002016002850155610543565b0151908316600802840a6000190419169055878080806105e5565b929460206001819288860151815501960193016105c9565b6002880160005260206000208260208188010482019260208810610668575b602091010401905b81811061065c575061050a565b6000815560010161064f565b9192508291610647565b60405160e560020a62461bcd02815260206004820152602c60248201527f4f6e6c792053656e617465206d656d626572732063616e20706572666f726d20604482015260a160020a6b3a3434b99030b1ba34b7b717026064820152608490fd5b3461013357602036600319011261013357600435600160a060020a03818116918290036101335761070881600154163314610a47565b600354604060020a811015610119578060016100fb9201600355610926565b34610133576020366003190112610133576004356003548110156101335761036f602091610926565b34610133576020806003193601126101335760043560005260048152604060002080549060018060a060020a038183015416916002810191856040519360009281549161079c83610877565b8088529282811690811561083357506001146107fa575b505050509160ff60036107ef936107cf846101989703856108b6565b0154169360405196879687528601526080604086015260808501906108d9565b916060840190610919565b6000908152838120939450925b82841061082057505050830101856003836107cf6107b3565b8054878501860152928401928101610807565b60ff191685890152505050151581028401019050856003836107cf6107b3565b3461013357600036600319011261013357600154600160a060020a03168152602090f35b90600160028304921680156108ac575b602083101461089257565b60e060020a634e487b710260009081526022600452602490fd5b91607f1691610887565b601f909101601f19168101906001604060020a0382119082101761011957604052565b919082519283825260005b848110610905575050826000602080949584010152601f8019910116010190565b6020818301810151848301820152016108e4565b90600582101561030e5752565b60035481101561094157600360005260206000200190600090565b60e060020a634e487b710260009081526032600452602490fd5b60025481101561094157600260005260206000200190600090565b60001981146109855760010190565b60e060020a634e487b710260009081526011600452602490fd5b600280549160005b8381106109b75750505050600090565b6109c08161095b565b9054600160a060020a038481166008909302860a90910416146109eb576109e690610976565b6109a7565b50505050600190565b6003549060005b828110610a0a57505050600090565b610a1381610926565b9054600160a060020a03848116600890930260020a9091041614610a3f57610a3a90610976565b6109fb565b505050600190565b15610a4e57565b60405160e560020a62461bcd02815260206004820152602a60248201527f4f6e6c792074686520476f7665726e6f722063616e20706572666f726d207468604482015260b160020a6934b99030b1ba34b7b717026064820152608490fd5b90600581101561030e5760ff8019835416911617905556fea264697066735822122059b151141536ba0f500eb94cee46e7e745d20deacf8804c22674318241bc8ab364736f6c63430008120033",
+  "deployedBytecode": "0x608080604052600436101561001357600080fd5b60e060020a6000350490630c340a2482146108535750806328bdcde81461075057806339ee3c17146107275780633eac1824146106d257806346c28a08146103f35780634ed89ab6146103c4578063779d5fda1461038b5780637c9e64c7146103465780639d7a033914610328578063ba3addc91461021b578063c127d9a2146101385763c226aedb146100a657600080fd5b3461013357602036600319011261013357600435600160a060020a0381811691829003610133576100dc81600154163314610a47565b600254604060020a811015610119578060016100fb920160025561095b565b909260088454920260020a8093029283910216911916179055600080f35b60e060020a634e487b710260009081526041600452602490fd5b600080fd5b346101335760003660031901126101335760405160009060005461015b81610877565b8083526001918083169081156101f4575060011461019c575b61019883610184818703826108b6565b6040519182916020835260208301906108d9565b0390f35b600080805260209450917f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5635b8284106101e15750505081019091019061018481610174565b80548585018701529285019281016101c8565b610198955061018493506020915091849260ff191682840152151581028201019350610174565b3461013357604036600319011261013357600435602435600581101561013357610251600160a060020a03600154163314610a47565b81600052600460205260ff60036040600020015416600581101561030e576102c657816102c36040927fcb2f5d9b75374e2f47d0fb8fb90447b80c7e9a633b7272375579232228b1e6a49460005260046020526102b48160038660002001610aac565b83519283526020830190610919565ba1005b60405160e560020a62461bcd02815260206004820152601c60248201527f546869732062696c6c2063616e6e6f74206265206368616e6765642e000000006044820152606490fd5b60e060020a634e487b710260009081526021600452602490fd5b34610133576000366003190112610133576020600554604051908152f35b34610133576020366003190112610133576004356002548110156101335761036f60209161095b565b9054604051600890920260020a9004600160a060020a03168152f35b3461013357602036600319011261013357600435600160a060020a0381168103610133576103ba60209161099f565b6040519015158152f35b3461013357602036600319011261013357600435600160a060020a0381168103610133576103ba6020916109f4565b34610133576020366003190112610133576004356001604060020a038082116101335736602383011215610133578160040135918183116101195760405191601f1993601f9261044a6020878685011601866108b6565b8185523660248383010111610133578160009260246020930183880137850101526104743361099f565b1561067257610484600554610976565b93846005556040519260808401848110848211176101195760405285845260208401953387526040850190868252600060608701526000526004602052604060002096855188556001880190600160a060020a03905116600160a060020a031982541617905551908151938411610119576105026002880154610877565b818111610628575b506020928185116001146105b2575050918091606094936000926105a7575b5050816002029160080260020a6000190419161760028501555b015191600583101561030e577f37857be678fc43a22c7cce89173b9ca3e4d048fd6c0fca4854aeec4a3a0e2f6992600361057d9201610aac565b6005546105a260405192839283523360208401526060604084015260608301906108d9565b0390a1005b015190508680610529565b849391929316926002880160005260206000209360005b81811061061057509285926001959260609897600296106105f5575b5050505002016002850155610543565b0151908316600802840a6000190419169055878080806105e5565b929460206001819288860151815501960193016105c9565b6002880160005260206000208260208188010482019260208810610668575b602091010401905b81811061065c575061050a565b6000815560010161064f565b9192508291610647565b60405160e560020a62461bcd02815260206004820152602c60248201527f4f6e6c792053656e617465206d656d626572732063616e20706572666f726d20604482015260a160020a6b3a3434b99030b1ba34b7b717026064820152608490fd5b3461013357602036600319011261013357600435600160a060020a03818116918290036101335761070881600154163314610a47565b600354604060020a811015610119578060016100fb9201600355610926565b34610133576020366003190112610133576004356003548110156101335761036f602091610926565b34610133576020806003193601126101335760043560005260048152604060002080549060018060a060020a038183015416916002810191856040519360009281549161079c83610877565b8088529282811690811561083357506001146107fa575b505050509160ff60036107ef936107cf846101989703856108b6565b0154169360405196879687528601526080604086015260808501906108d9565b916060840190610919565b6000908152838120939450925b82841061082057505050830101856003836107cf6107b3565b8054878501860152928401928101610807565b60ff191685890152505050151581028401019050856003836107cf6107b3565b3461013357600036600319011261013357600154600160a060020a03168152602090f35b90600160028304921680156108ac575b602083101461089257565b60e060020a634e487b710260009081526022600452602490fd5b91607f1691610887565b601f909101601f19168101906001604060020a0382119082101761011957604052565b919082519283825260005b848110610905575050826000602080949584010152601f8019910116010190565b6020818301810151848301820152016108e4565b90600582101561030e5752565b60035481101561094157600360005260206000200190600090565b60e060020a634e487b710260009081526032600452602490fd5b60025481101561094157600260005260206000200190600090565b60001981146109855760010190565b60e060020a634e487b710260009081526011600452602490fd5b600280549160005b8381106109b75750505050600090565b6109c08161095b565b9054600160a060020a038481166008909302860a90910416146109eb576109e690610976565b6109a7565b50505050600190565b6003549060005b828110610a0a57505050600090565b610a1381610926565b9054600160a060020a03848116600890930260020a9091041614610a3f57610a3a90610976565b6109fb565b505050600190565b15610a4e57565b60405160e560020a62461bcd02815260206004820152602a60248201527f4f6e6c792074686520476f7665726e6f722063616e20706572666f726d207468604482015260b160020a6934b99030b1ba34b7b717026064820152608490fd5b90600581101561030e5760ff8019835416911617905556fea264697066735822122059b151141536ba0f500eb94cee46e7e745d20deacf8804c22674318241bc8ab364736f6c63430008120033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "70:2485:93:-:0;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;;-1:-1:-1;;70:2485:93;;;;;-1:-1:-1;;70:2485:93;;;;;;;;;;;;;;;;1154:10;;70:2485;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;70:2485:93;;-1:-1:-1;70:2485:93;;1154:10;70:2485;;;;;;;1214:12;70:2485;;;;;;;;;;1214:12;70:2485;;;;;;1214:12;-1:-1:-1;70:2485:93;-1:-1:-1;70:2485:93;;1154:10;;70:2485;;;;;;;-1:-1:-1;1253:15:93;70:2485;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;-1:-1:-1;70:2485:93;;;-1:-1:-1;70:2485:93;;;;;-1:-1:-1;70:2485:93;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;-1:-1:-1;70:2485:93;;-1:-1:-1;70:2485:93;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;-1:-1:-1;70:2485:93;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;-1:-1:-1;;70:2485:93;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;:::o",
+  "deployedSourceMap": "70:2485:93:-:0;;;;;;;;;;;;;;-1:-1:-1;;;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;687:77;70:2485;;;;695:10;:22;687:77;:::i;:::-;70:2485;;-1:-1:-1;;;70:2485:93;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;-1:-1:-1;;;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;;;;;;;;;;687:77;70:2485;;;;;;;;695:10;:22;687:77;:::i;:::-;70:2485;;;;;;;;;;;2382:20;70:2485;;;;;;;;;;;;;;2514:32;70:2485;;;;;;2470:29;70:2485;;;;;2470:20;:29;:::i;:::-;70:2485;;;;;;;;;;:::i;:::-;2514:32;70:2485;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;483:26;70:2485;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;;;;159:30;;;;;;70:2485;159:30;;:::i;:::-;70:2485;;;;;;;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;:::i;:::-;;;;;;-1:-1:-1;;70:2485:93;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;834:26;849:10;834:26;:::i;:::-;70:2485;;;2114:13;;70:2485;2114:13;:::i;:::-;70:2485;;2114:13;70:2485;;;;;;;;;;;;;;;;;;;;;;2158:59;;849:10;;70:2485;;;2158:59;;70:2485;;;;;2158:59;;;70:2485;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;2158:59;70:2485;;;;;;;;;;;;;;;;;;;;;;;;;;;;2158:59;70:2485;;2114:13;70:2485;;;;;2232:46;70:2485;;;;;;:::i;:::-;2114:13;70:2485;;;;;;;;;849:10;70:2485;;;;2158:59;70:2485;;;;2158:59;70:2485;;;;:::i;:::-;2232:46;;;70:2485;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2158:59;70:2485;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;687:77;70:2485;;;;695:10;:22;687:77;:::i;:::-;70:2485;;-1:-1:-1;;;70:2485:93;;;;;;;;;;;;;:::i;:::-;;;;;;-1:-1:-1;;70:2485:93;;;;;;;;195:29;;;;;;70:2485;195:29;;:::i;70:2485::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;440:37;;;70:2485;;440:37;70:2485;440:37;;70:2485;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;440:37;70:2485;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;-1:-1:-1;;;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;-1:-1:-1;;;70:2485:93;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;70:2485:93;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;:::o;:::-;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;-1:-1:-1;70:2485:93;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;195:29;70:2485;;;;;;195:29;-1:-1:-1;70:2485:93;;-1:-1:-1;70:2485:93;;;-1:-1:-1;70:2485:93;:::o;:::-;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;159:30;70:2485;;;;;;159:30;-1:-1:-1;70:2485:93;;-1:-1:-1;70:2485:93;;;-1:-1:-1;70:2485:93;:::o;:::-;-1:-1:-1;;70:2485:93;;;;;;;:::o;:::-;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;1281:258;1383:13;70:2485;;;1376:1;1379:24;;;;;;1520:12;;;;1376:1;1281:258;:::o;1405:3::-;1428:16;;;:::i;:::-;70:2485;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;1428:27;1424:77;;1405:3;;;:::i;:::-;1364:13;;1424:77;1475:11;;;;70:2485;1475:11;:::o;1545:255::-;1646:12;70:2485;;1639:1;1642:23;;;;;;1781:12;;;1639:1;1545:255;:::o;1667:3::-;1690:15;;;:::i;:::-;70:2485;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;1690:26;1686:76;;1667:3;;;:::i;:::-;1627:13;;1686:76;1736:11;;;70:2485;1736:11;:::o;70:2485::-;;;;:::o;:::-;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;70:2485:93;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: BSL-1.1\npragma solidity >=0.4.22 <0.9.0;\n\ncontract StateGovernment {\n    string public stateName;\n    address public governor;\n    address[] public senateMembers;\n    address[] public houseMembers;\n\n    enum BillStatus { Introduced, PassedSenate, PassedHouse, SignedIntoLaw, Vetoed }\n\n    struct Bill {\n        uint256 billId;\n        address sponsor;\n        string title;\n        BillStatus status;\n    }\n\n    mapping(uint256 => Bill) public bills;\n    uint256 public billCounter;\n\n    event BillIntroduced(uint256 billId, address sponsor, string title);\n    event BillStatusChange(uint256 billId, BillStatus status);\n\n    modifier onlyGovernor() {\n        require(msg.sender == governor, \"Only the Governor can perform this action.\");\n        _;\n    }\n\n    modifier onlySenateMember() {\n        require(isSenateMember(msg.sender), \"Only Senate members can perform this action.\");\n        _;\n    }\n\n    modifier onlyHouseMember() {\n        require(isHouseMember(msg.sender), \"Only House members can perform this action.\");\n        _;\n    }\n\n    constructor(string memory name) {\n        stateName = name;\n        governor = msg.sender;\n        senateMembers.push(msg.sender);\n        houseMembers.push(msg.sender);\n        billCounter = 0;\n    }\n\n    function isSenateMember(address account) public view returns (bool) {\n        for (uint256 i = 0; i < senateMembers.length; i++) {\n            if (senateMembers[i] == account) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    function isHouseMember(address account) public view returns (bool) {\n        for (uint256 i = 0; i < houseMembers.length; i++) {\n            if (houseMembers[i] == account) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    function addSenateMember(address newMember) public onlyGovernor {\n        senateMembers.push(newMember);\n    }\n\n    function addHouseMember(address newMember) public onlyGovernor {\n        houseMembers.push(newMember);\n    }\n\n    function introduceBill(string memory title) public onlySenateMember {\n        billCounter++;\n        bills[billCounter] = Bill(billCounter, msg.sender, title, BillStatus.Introduced);\n        emit BillIntroduced(billCounter, msg.sender, title);\n    }\n\n    function passBill(uint256 billId, BillStatus status) public onlyGovernor {\n        require(bills[billId].status == BillStatus.Introduced, \"This bill cannot be changed.\");\n        bills[billId].status = status;\n        emit BillStatusChange(billId, status);\n    }\n}\n",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/government/state/StateGovernment.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/government/state/StateGovernment.sol",
+    "exportedSymbols": {
+      "StateGovernment": [
+        35335
+      ]
+    },
+    "id": 35336,
+    "license": "BSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 35060,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:32:93"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "StateGovernment",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 35335,
+        "linearizedBaseContracts": [
+          35335
+        ],
+        "name": "StateGovernment",
+        "nameLocation": "79:15:93",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "c127d9a2",
+            "id": 35062,
+            "mutability": "mutable",
+            "name": "stateName",
+            "nameLocation": "115:9:93",
+            "nodeType": "VariableDeclaration",
+            "scope": 35335,
+            "src": "101:23:93",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 35061,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "101:6:93",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "0c340a24",
+            "id": 35064,
+            "mutability": "mutable",
+            "name": "governor",
+            "nameLocation": "145:8:93",
+            "nodeType": "VariableDeclaration",
+            "scope": 35335,
+            "src": "130:23:93",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 35063,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "130:7:93",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "7c9e64c7",
+            "id": 35067,
+            "mutability": "mutable",
+            "name": "senateMembers",
+            "nameLocation": "176:13:93",
+            "nodeType": "VariableDeclaration",
+            "scope": 35335,
+            "src": "159:30:93",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_address_$dyn_storage",
+              "typeString": "address[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 35065,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "159:7:93",
+                "stateMutability": "nonpayable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "id": 35066,
+              "nodeType": "ArrayTypeName",
+              "src": "159:9:93",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                "typeString": "address[]"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "39ee3c17",
+            "id": 35070,
+            "mutability": "mutable",
+            "name": "houseMembers",
+            "nameLocation": "212:12:93",
+            "nodeType": "VariableDeclaration",
+            "scope": 35335,
+            "src": "195:29:93",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_address_$dyn_storage",
+              "typeString": "address[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 35068,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "195:7:93",
+                "stateMutability": "nonpayable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "id": 35069,
+              "nodeType": "ArrayTypeName",
+              "src": "195:9:93",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                "typeString": "address[]"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "StateGovernment.BillStatus",
+            "id": 35076,
+            "members": [
+              {
+                "id": 35071,
+                "name": "Introduced",
+                "nameLocation": "249:10:93",
+                "nodeType": "EnumValue",
+                "src": "249:10:93"
+              },
+              {
+                "id": 35072,
+                "name": "PassedSenate",
+                "nameLocation": "261:12:93",
+                "nodeType": "EnumValue",
+                "src": "261:12:93"
+              },
+              {
+                "id": 35073,
+                "name": "PassedHouse",
+                "nameLocation": "275:11:93",
+                "nodeType": "EnumValue",
+                "src": "275:11:93"
+              },
+              {
+                "id": 35074,
+                "name": "SignedIntoLaw",
+                "nameLocation": "288:13:93",
+                "nodeType": "EnumValue",
+                "src": "288:13:93"
+              },
+              {
+                "id": 35075,
+                "name": "Vetoed",
+                "nameLocation": "303:6:93",
+                "nodeType": "EnumValue",
+                "src": "303:6:93"
+              }
+            ],
+            "name": "BillStatus",
+            "nameLocation": "236:10:93",
+            "nodeType": "EnumDefinition",
+            "src": "231:80:93"
+          },
+          {
+            "canonicalName": "StateGovernment.Bill",
+            "id": 35086,
+            "members": [
+              {
+                "constant": false,
+                "id": 35078,
+                "mutability": "mutable",
+                "name": "billId",
+                "nameLocation": "347:6:93",
+                "nodeType": "VariableDeclaration",
+                "scope": 35086,
+                "src": "339:14:93",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 35077,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "339:7:93",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 35080,
+                "mutability": "mutable",
+                "name": "sponsor",
+                "nameLocation": "371:7:93",
+                "nodeType": "VariableDeclaration",
+                "scope": 35086,
+                "src": "363:15:93",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 35079,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "363:7:93",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 35082,
+                "mutability": "mutable",
+                "name": "title",
+                "nameLocation": "395:5:93",
+                "nodeType": "VariableDeclaration",
+                "scope": 35086,
+                "src": "388:12:93",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 35081,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "388:6:93",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 35085,
+                "mutability": "mutable",
+                "name": "status",
+                "nameLocation": "421:6:93",
+                "nodeType": "VariableDeclaration",
+                "scope": 35086,
+                "src": "410:17:93",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_BillStatus_$35076",
+                  "typeString": "enum StateGovernment.BillStatus"
+                },
+                "typeName": {
+                  "id": 35084,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 35083,
+                    "name": "BillStatus",
+                    "nameLocations": [
+                      "410:10:93"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 35076,
+                    "src": "410:10:93"
+                  },
+                  "referencedDeclaration": 35076,
+                  "src": "410:10:93",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_BillStatus_$35076",
+                    "typeString": "enum StateGovernment.BillStatus"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Bill",
+            "nameLocation": "324:4:93",
+            "nodeType": "StructDefinition",
+            "scope": 35335,
+            "src": "317:117:93",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "28bdcde8",
+            "id": 35091,
+            "mutability": "mutable",
+            "name": "bills",
+            "nameLocation": "472:5:93",
+            "nodeType": "VariableDeclaration",
+            "scope": 35335,
+            "src": "440:37:93",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$35086_storage_$",
+              "typeString": "mapping(uint256 => struct StateGovernment.Bill)"
+            },
+            "typeName": {
+              "id": 35090,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 35087,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "448:7:93",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "440:24:93",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$35086_storage_$",
+                "typeString": "mapping(uint256 => struct StateGovernment.Bill)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 35089,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 35088,
+                  "name": "Bill",
+                  "nameLocations": [
+                    "459:4:93"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 35086,
+                  "src": "459:4:93"
+                },
+                "referencedDeclaration": 35086,
+                "src": "459:4:93",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Bill_$35086_storage_ptr",
+                  "typeString": "struct StateGovernment.Bill"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "9d7a0339",
+            "id": 35093,
+            "mutability": "mutable",
+            "name": "billCounter",
+            "nameLocation": "498:11:93",
+            "nodeType": "VariableDeclaration",
+            "scope": 35335,
+            "src": "483:26:93",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 35092,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "483:7:93",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "37857be678fc43a22c7cce89173b9ca3e4d048fd6c0fca4854aeec4a3a0e2f69",
+            "id": 35101,
+            "name": "BillIntroduced",
+            "nameLocation": "522:14:93",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 35100,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35095,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "billId",
+                  "nameLocation": "545:6:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35101,
+                  "src": "537:14:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 35094,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "537:7:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 35097,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "sponsor",
+                  "nameLocation": "561:7:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35101,
+                  "src": "553:15:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 35096,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "553:7:93",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 35099,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "title",
+                  "nameLocation": "577:5:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35101,
+                  "src": "570:12:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 35098,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "570:6:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "536:47:93"
+            },
+            "src": "516:68:93"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "cb2f5d9b75374e2f47d0fb8fb90447b80c7e9a633b7272375579232228b1e6a4",
+            "id": 35108,
+            "name": "BillStatusChange",
+            "nameLocation": "595:16:93",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 35107,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35103,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "billId",
+                  "nameLocation": "620:6:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35108,
+                  "src": "612:14:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 35102,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "612:7:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 35106,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "status",
+                  "nameLocation": "639:6:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35108,
+                  "src": "628:17:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_BillStatus_$35076",
+                    "typeString": "enum StateGovernment.BillStatus"
+                  },
+                  "typeName": {
+                    "id": 35105,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 35104,
+                      "name": "BillStatus",
+                      "nameLocations": [
+                        "628:10:93"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 35076,
+                      "src": "628:10:93"
+                    },
+                    "referencedDeclaration": 35076,
+                    "src": "628:10:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BillStatus_$35076",
+                      "typeString": "enum StateGovernment.BillStatus"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "611:35:93"
+            },
+            "src": "589:58:93"
+          },
+          {
+            "body": {
+              "id": 35119,
+              "nodeType": "Block",
+              "src": "677:105:93",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 35114,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 35111,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "695:3:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 35112,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "699:6:93",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "695:10:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 35113,
+                          "name": "governor",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 35064,
+                          "src": "709:8:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "695:22:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c792074686520476f7665726e6f722063616e20706572666f726d207468697320616374696f6e2e",
+                        "id": 35115,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "719:44:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_0396819a5bf1ca94b0e3c46f051b00ba3fc5ecc9d73f170f1897a2c39f96b872",
+                          "typeString": "literal_string \"Only the Governor can perform this action.\""
+                        },
+                        "value": "Only the Governor can perform this action."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_0396819a5bf1ca94b0e3c46f051b00ba3fc5ecc9d73f170f1897a2c39f96b872",
+                          "typeString": "literal_string \"Only the Governor can perform this action.\""
+                        }
+                      ],
+                      "id": 35110,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "687:7:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 35116,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "687:77:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35117,
+                  "nodeType": "ExpressionStatement",
+                  "src": "687:77:93"
+                },
+                {
+                  "id": 35118,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "774:1:93"
+                }
+              ]
+            },
+            "id": 35120,
+            "name": "onlyGovernor",
+            "nameLocation": "662:12:93",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 35109,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "674:2:93"
+            },
+            "src": "653:129:93",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 35131,
+              "nodeType": "Block",
+              "src": "816:111:93",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 35124,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "849:3:93",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 35125,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "853:6:93",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "849:10:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 35123,
+                          "name": "isSenateMember",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 35209,
+                          "src": "834:14:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) view returns (bool)"
+                          }
+                        },
+                        "id": 35126,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "834:26:93",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c792053656e617465206d656d626572732063616e20706572666f726d207468697320616374696f6e2e",
+                        "id": 35127,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "862:46:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_78c5eb6663161ce02887678679ce60f3f199522ed93422cd6f5691be4c9348b5",
+                          "typeString": "literal_string \"Only Senate members can perform this action.\""
+                        },
+                        "value": "Only Senate members can perform this action."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_78c5eb6663161ce02887678679ce60f3f199522ed93422cd6f5691be4c9348b5",
+                          "typeString": "literal_string \"Only Senate members can perform this action.\""
+                        }
+                      ],
+                      "id": 35122,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "826:7:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 35128,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "826:83:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35129,
+                  "nodeType": "ExpressionStatement",
+                  "src": "826:83:93"
+                },
+                {
+                  "id": 35130,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "919:1:93"
+                }
+              ]
+            },
+            "id": 35132,
+            "name": "onlySenateMember",
+            "nameLocation": "797:16:93",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 35121,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "813:2:93"
+            },
+            "src": "788:139:93",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 35143,
+              "nodeType": "Block",
+              "src": "960:109:93",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 35136,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "992:3:93",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 35137,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "996:6:93",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "992:10:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 35135,
+                          "name": "isHouseMember",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 35241,
+                          "src": "978:13:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) view returns (bool)"
+                          }
+                        },
+                        "id": 35138,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "978:25:93",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c7920486f757365206d656d626572732063616e20706572666f726d207468697320616374696f6e2e",
+                        "id": 35139,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1005:45:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a3037c94d82cdd42a51164c50090617a86c3d700f3a0d282176e4690c463c23f",
+                          "typeString": "literal_string \"Only House members can perform this action.\""
+                        },
+                        "value": "Only House members can perform this action."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_a3037c94d82cdd42a51164c50090617a86c3d700f3a0d282176e4690c463c23f",
+                          "typeString": "literal_string \"Only House members can perform this action.\""
+                        }
+                      ],
+                      "id": 35134,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "970:7:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 35140,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "970:81:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35141,
+                  "nodeType": "ExpressionStatement",
+                  "src": "970:81:93"
+                },
+                {
+                  "id": 35142,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1061:1:93"
+                }
+              ]
+            },
+            "id": 35144,
+            "name": "onlyHouseMember",
+            "nameLocation": "942:15:93",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 35133,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "957:2:93"
+            },
+            "src": "933:136:93",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 35176,
+              "nodeType": "Block",
+              "src": "1107:168:93",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 35151,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 35149,
+                      "name": "stateName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35062,
+                      "src": "1117:9:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 35150,
+                      "name": "name",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35146,
+                      "src": "1129:4:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1117:16:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 35152,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1117:16:93"
+                },
+                {
+                  "expression": {
+                    "id": 35156,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 35153,
+                      "name": "governor",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35064,
+                      "src": "1143:8:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 35154,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967281,
+                        "src": "1154:3:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 35155,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1158:6:93",
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "1154:10:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1143:21:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 35157,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1143:21:93"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 35161,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1193:3:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 35162,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1197:6:93",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1193:10:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "id": 35158,
+                        "name": "senateMembers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35067,
+                        "src": "1174:13:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 35160,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1188:4:93",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "1174:18:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$_t_address_$returns$__$attached_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                        "typeString": "function (address[] storage pointer,address)"
+                      }
+                    },
+                    "id": 35163,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1174:30:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35164,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1174:30:93"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 35168,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1232:3:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 35169,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1236:6:93",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1232:10:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "id": 35165,
+                        "name": "houseMembers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35070,
+                        "src": "1214:12:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 35167,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1227:4:93",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "1214:17:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$_t_address_$returns$__$attached_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                        "typeString": "function (address[] storage pointer,address)"
+                      }
+                    },
+                    "id": 35170,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1214:29:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35171,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1214:29:93"
+                },
+                {
+                  "expression": {
+                    "id": 35174,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 35172,
+                      "name": "billCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35093,
+                      "src": "1253:11:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "30",
+                      "id": 35173,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1267:1:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "1253:15:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 35175,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1253:15:93"
+                }
+              ]
+            },
+            "id": 35177,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 35147,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35146,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "1101:4:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35177,
+                  "src": "1087:18:93",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 35145,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1087:6:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1086:20:93"
+            },
+            "returnParameters": {
+              "id": 35148,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1107:0:93"
+            },
+            "scope": 35335,
+            "src": "1075:200:93",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 35208,
+              "nodeType": "Block",
+              "src": "1349:190:93",
+              "statements": [
+                {
+                  "body": {
+                    "id": 35204,
+                    "nodeType": "Block",
+                    "src": "1410:101:93",
+                    "statements": [
+                      {
+                        "condition": {
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "id": 35199,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "baseExpression": {
+                              "id": 35195,
+                              "name": "senateMembers",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 35067,
+                              "src": "1428:13:93",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                "typeString": "address[] storage ref"
+                              }
+                            },
+                            "id": 35197,
+                            "indexExpression": {
+                              "id": 35196,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 35185,
+                              "src": "1442:1:93",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1428:16:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "id": 35198,
+                            "name": "account",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 35179,
+                            "src": "1448:7:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1428:27:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 35203,
+                        "nodeType": "IfStatement",
+                        "src": "1424:77:93",
+                        "trueBody": {
+                          "id": 35202,
+                          "nodeType": "Block",
+                          "src": "1457:44:93",
+                          "statements": [
+                            {
+                              "expression": {
+                                "hexValue": "74727565",
+                                "id": 35200,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "bool",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1482:4:93",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                "value": "true"
+                              },
+                              "functionReturnParameters": 35183,
+                              "id": 35201,
+                              "nodeType": "Return",
+                              "src": "1475:11:93"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 35191,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 35188,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35185,
+                      "src": "1379:1:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "expression": {
+                        "id": 35189,
+                        "name": "senateMembers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35067,
+                        "src": "1383:13:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 35190,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1397:6:93",
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "src": "1383:20:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1379:24:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 35205,
+                  "initializationExpression": {
+                    "assignments": [
+                      35185
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 35185,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "1372:1:93",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 35205,
+                        "src": "1364:9:93",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 35184,
+                          "name": "uint256",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "1364:7:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 35187,
+                    "initialValue": {
+                      "hexValue": "30",
+                      "id": 35186,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1376:1:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "1364:13:93"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 35193,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "1405:3:93",
+                      "subExpression": {
+                        "id": 35192,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35185,
+                        "src": "1405:1:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 35194,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1405:3:93"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "1359:152:93"
+                },
+                {
+                  "expression": {
+                    "hexValue": "66616c7365",
+                    "id": 35206,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "1527:5:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "false"
+                  },
+                  "functionReturnParameters": 35183,
+                  "id": 35207,
+                  "nodeType": "Return",
+                  "src": "1520:12:93"
+                }
+              ]
+            },
+            "functionSelector": "779d5fda",
+            "id": 35209,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isSenateMember",
+            "nameLocation": "1290:14:93",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 35180,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35179,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1313:7:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35209,
+                  "src": "1305:15:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 35178,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1305:7:93",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1304:17:93"
+            },
+            "returnParameters": {
+              "id": 35183,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35182,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35209,
+                  "src": "1343:4:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 35181,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1343:4:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1342:6:93"
+            },
+            "scope": 35335,
+            "src": "1281:258:93",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 35240,
+              "nodeType": "Block",
+              "src": "1612:188:93",
+              "statements": [
+                {
+                  "body": {
+                    "id": 35236,
+                    "nodeType": "Block",
+                    "src": "1672:100:93",
+                    "statements": [
+                      {
+                        "condition": {
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "id": 35231,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "baseExpression": {
+                              "id": 35227,
+                              "name": "houseMembers",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 35070,
+                              "src": "1690:12:93",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                "typeString": "address[] storage ref"
+                              }
+                            },
+                            "id": 35229,
+                            "indexExpression": {
+                              "id": 35228,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 35217,
+                              "src": "1703:1:93",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1690:15:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "id": 35230,
+                            "name": "account",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 35211,
+                            "src": "1709:7:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1690:26:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 35235,
+                        "nodeType": "IfStatement",
+                        "src": "1686:76:93",
+                        "trueBody": {
+                          "id": 35234,
+                          "nodeType": "Block",
+                          "src": "1718:44:93",
+                          "statements": [
+                            {
+                              "expression": {
+                                "hexValue": "74727565",
+                                "id": 35232,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "bool",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1743:4:93",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                "value": "true"
+                              },
+                              "functionReturnParameters": 35215,
+                              "id": 35233,
+                              "nodeType": "Return",
+                              "src": "1736:11:93"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 35223,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 35220,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35217,
+                      "src": "1642:1:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "expression": {
+                        "id": 35221,
+                        "name": "houseMembers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35070,
+                        "src": "1646:12:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 35222,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1659:6:93",
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "src": "1646:19:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1642:23:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 35237,
+                  "initializationExpression": {
+                    "assignments": [
+                      35217
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 35217,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "1635:1:93",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 35237,
+                        "src": "1627:9:93",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 35216,
+                          "name": "uint256",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "1627:7:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 35219,
+                    "initialValue": {
+                      "hexValue": "30",
+                      "id": 35218,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1639:1:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "1627:13:93"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 35225,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "1667:3:93",
+                      "subExpression": {
+                        "id": 35224,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35217,
+                        "src": "1667:1:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 35226,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1667:3:93"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "1622:150:93"
+                },
+                {
+                  "expression": {
+                    "hexValue": "66616c7365",
+                    "id": 35238,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "1788:5:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "false"
+                  },
+                  "functionReturnParameters": 35215,
+                  "id": 35239,
+                  "nodeType": "Return",
+                  "src": "1781:12:93"
+                }
+              ]
+            },
+            "functionSelector": "4ed89ab6",
+            "id": 35241,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isHouseMember",
+            "nameLocation": "1554:13:93",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 35212,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35211,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1576:7:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35241,
+                  "src": "1568:15:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 35210,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1568:7:93",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1567:17:93"
+            },
+            "returnParameters": {
+              "id": 35215,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35214,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35241,
+                  "src": "1606:4:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 35213,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1606:4:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1605:6:93"
+            },
+            "scope": 35335,
+            "src": "1545:255:93",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 35254,
+              "nodeType": "Block",
+              "src": "1870:46:93",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 35251,
+                        "name": "newMember",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35243,
+                        "src": "1899:9:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "id": 35248,
+                        "name": "senateMembers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35067,
+                        "src": "1880:13:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 35250,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1894:4:93",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "1880:18:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$_t_address_$returns$__$attached_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                        "typeString": "function (address[] storage pointer,address)"
+                      }
+                    },
+                    "id": 35252,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1880:29:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35253,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1880:29:93"
+                }
+              ]
+            },
+            "functionSelector": "c226aedb",
+            "id": 35255,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 35246,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 35245,
+                  "name": "onlyGovernor",
+                  "nameLocations": [
+                    "1857:12:93"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 35120,
+                  "src": "1857:12:93"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1857:12:93"
+              }
+            ],
+            "name": "addSenateMember",
+            "nameLocation": "1815:15:93",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 35244,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35243,
+                  "mutability": "mutable",
+                  "name": "newMember",
+                  "nameLocation": "1839:9:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35255,
+                  "src": "1831:17:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 35242,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1831:7:93",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1830:19:93"
+            },
+            "returnParameters": {
+              "id": 35247,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1870:0:93"
+            },
+            "scope": 35335,
+            "src": "1806:110:93",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 35268,
+              "nodeType": "Block",
+              "src": "1985:45:93",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 35265,
+                        "name": "newMember",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35257,
+                        "src": "2013:9:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "id": 35262,
+                        "name": "houseMembers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35070,
+                        "src": "1995:12:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 35264,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "2008:4:93",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "1995:17:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$_t_address_$returns$__$attached_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                        "typeString": "function (address[] storage pointer,address)"
+                      }
+                    },
+                    "id": 35266,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1995:28:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35267,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1995:28:93"
+                }
+              ]
+            },
+            "functionSelector": "3eac1824",
+            "id": 35269,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 35260,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 35259,
+                  "name": "onlyGovernor",
+                  "nameLocations": [
+                    "1972:12:93"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 35120,
+                  "src": "1972:12:93"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1972:12:93"
+              }
+            ],
+            "name": "addHouseMember",
+            "nameLocation": "1931:14:93",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 35258,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35257,
+                  "mutability": "mutable",
+                  "name": "newMember",
+                  "nameLocation": "1954:9:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35269,
+                  "src": "1946:17:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 35256,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1946:7:93",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1945:19:93"
+            },
+            "returnParameters": {
+              "id": 35261,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1985:0:93"
+            },
+            "scope": 35335,
+            "src": "1922:108:93",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 35299,
+              "nodeType": "Block",
+              "src": "2104:181:93",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 35277,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "2114:13:93",
+                    "subExpression": {
+                      "id": 35276,
+                      "name": "billCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35093,
+                      "src": "2114:11:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 35278,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2114:13:93"
+                },
+                {
+                  "expression": {
+                    "id": 35290,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 35279,
+                        "name": "bills",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35091,
+                        "src": "2137:5:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$35086_storage_$",
+                          "typeString": "mapping(uint256 => struct StateGovernment.Bill storage ref)"
+                        }
+                      },
+                      "id": 35281,
+                      "indexExpression": {
+                        "id": 35280,
+                        "name": "billCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35093,
+                        "src": "2143:11:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2137:18:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Bill_$35086_storage",
+                        "typeString": "struct StateGovernment.Bill storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 35283,
+                          "name": "billCounter",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 35093,
+                          "src": "2163:11:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 35284,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "2176:3:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 35285,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2180:6:93",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "2176:10:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "id": 35286,
+                          "name": "title",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 35271,
+                          "src": "2188:5:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 35287,
+                            "name": "BillStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 35076,
+                            "src": "2195:10:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_BillStatus_$35076_$",
+                              "typeString": "type(enum StateGovernment.BillStatus)"
+                            }
+                          },
+                          "id": 35288,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "2206:10:93",
+                          "memberName": "Introduced",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 35071,
+                          "src": "2195:21:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BillStatus_$35076",
+                            "typeString": "enum StateGovernment.BillStatus"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_enum$_BillStatus_$35076",
+                            "typeString": "enum StateGovernment.BillStatus"
+                          }
+                        ],
+                        "id": 35282,
+                        "name": "Bill",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35086,
+                        "src": "2158:4:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Bill_$35086_storage_ptr_$",
+                          "typeString": "type(struct StateGovernment.Bill storage pointer)"
+                        }
+                      },
+                      "id": 35289,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2158:59:93",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Bill_$35086_memory_ptr",
+                        "typeString": "struct StateGovernment.Bill memory"
+                      }
+                    },
+                    "src": "2137:80:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bill_$35086_storage",
+                      "typeString": "struct StateGovernment.Bill storage ref"
+                    }
+                  },
+                  "id": 35291,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2137:80:93"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 35293,
+                        "name": "billCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35093,
+                        "src": "2247:11:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 35294,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2260:3:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 35295,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2264:6:93",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2260:10:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 35296,
+                        "name": "title",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35271,
+                        "src": "2272:5:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 35292,
+                      "name": "BillIntroduced",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35101,
+                      "src": "2232:14:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (uint256,address,string memory)"
+                      }
+                    },
+                    "id": 35297,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2232:46:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35298,
+                  "nodeType": "EmitStatement",
+                  "src": "2227:51:93"
+                }
+              ]
+            },
+            "functionSelector": "46c28a08",
+            "id": 35300,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 35274,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 35273,
+                  "name": "onlySenateMember",
+                  "nameLocations": [
+                    "2087:16:93"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 35132,
+                  "src": "2087:16:93"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2087:16:93"
+              }
+            ],
+            "name": "introduceBill",
+            "nameLocation": "2045:13:93",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 35272,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35271,
+                  "mutability": "mutable",
+                  "name": "title",
+                  "nameLocation": "2073:5:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35300,
+                  "src": "2059:19:93",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 35270,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2059:6:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2058:21:93"
+            },
+            "returnParameters": {
+              "id": 35275,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2104:0:93"
+            },
+            "scope": 35335,
+            "src": "2036:249:93",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 35333,
+              "nodeType": "Block",
+              "src": "2364:189:93",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_BillStatus_$35076",
+                          "typeString": "enum StateGovernment.BillStatus"
+                        },
+                        "id": 35317,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 35311,
+                              "name": "bills",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 35091,
+                              "src": "2382:5:93",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$35086_storage_$",
+                                "typeString": "mapping(uint256 => struct StateGovernment.Bill storage ref)"
+                              }
+                            },
+                            "id": 35313,
+                            "indexExpression": {
+                              "id": 35312,
+                              "name": "billId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 35302,
+                              "src": "2388:6:93",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "2382:13:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Bill_$35086_storage",
+                              "typeString": "struct StateGovernment.Bill storage ref"
+                            }
+                          },
+                          "id": 35314,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2396:6:93",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 35085,
+                          "src": "2382:20:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BillStatus_$35076",
+                            "typeString": "enum StateGovernment.BillStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 35315,
+                            "name": "BillStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 35076,
+                            "src": "2406:10:93",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_BillStatus_$35076_$",
+                              "typeString": "type(enum StateGovernment.BillStatus)"
+                            }
+                          },
+                          "id": 35316,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "2417:10:93",
+                          "memberName": "Introduced",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 35071,
+                          "src": "2406:21:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BillStatus_$35076",
+                            "typeString": "enum StateGovernment.BillStatus"
+                          }
+                        },
+                        "src": "2382:45:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "546869732062696c6c2063616e6e6f74206265206368616e6765642e",
+                        "id": 35318,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2429:30:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_bb3b6cc5454d57a4c28b4993b0cebb6a595b1dbdde798f22fa061241578df3c5",
+                          "typeString": "literal_string \"This bill cannot be changed.\""
+                        },
+                        "value": "This bill cannot be changed."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_bb3b6cc5454d57a4c28b4993b0cebb6a595b1dbdde798f22fa061241578df3c5",
+                          "typeString": "literal_string \"This bill cannot be changed.\""
+                        }
+                      ],
+                      "id": 35310,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2374:7:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 35319,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2374:86:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35320,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2374:86:93"
+                },
+                {
+                  "expression": {
+                    "id": 35326,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 35321,
+                          "name": "bills",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 35091,
+                          "src": "2470:5:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$35086_storage_$",
+                            "typeString": "mapping(uint256 => struct StateGovernment.Bill storage ref)"
+                          }
+                        },
+                        "id": 35323,
+                        "indexExpression": {
+                          "id": 35322,
+                          "name": "billId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 35302,
+                          "src": "2476:6:93",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "2470:13:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Bill_$35086_storage",
+                          "typeString": "struct StateGovernment.Bill storage ref"
+                        }
+                      },
+                      "id": 35324,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "2484:6:93",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 35085,
+                      "src": "2470:20:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BillStatus_$35076",
+                        "typeString": "enum StateGovernment.BillStatus"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 35325,
+                      "name": "status",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35305,
+                      "src": "2493:6:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BillStatus_$35076",
+                        "typeString": "enum StateGovernment.BillStatus"
+                      }
+                    },
+                    "src": "2470:29:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BillStatus_$35076",
+                      "typeString": "enum StateGovernment.BillStatus"
+                    }
+                  },
+                  "id": 35327,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2470:29:93"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 35329,
+                        "name": "billId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35302,
+                        "src": "2531:6:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 35330,
+                        "name": "status",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35305,
+                        "src": "2539:6:93",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_BillStatus_$35076",
+                          "typeString": "enum StateGovernment.BillStatus"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_enum$_BillStatus_$35076",
+                          "typeString": "enum StateGovernment.BillStatus"
+                        }
+                      ],
+                      "id": 35328,
+                      "name": "BillStatusChange",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 35108,
+                      "src": "2514:16:93",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_enum$_BillStatus_$35076_$returns$__$",
+                        "typeString": "function (uint256,enum StateGovernment.BillStatus)"
+                      }
+                    },
+                    "id": 35331,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2514:32:93",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 35332,
+                  "nodeType": "EmitStatement",
+                  "src": "2509:37:93"
+                }
+              ]
+            },
+            "functionSelector": "ba3addc9",
+            "id": 35334,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 35308,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 35307,
+                  "name": "onlyGovernor",
+                  "nameLocations": [
+                    "2351:12:93"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 35120,
+                  "src": "2351:12:93"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2351:12:93"
+              }
+            ],
+            "name": "passBill",
+            "nameLocation": "2300:8:93",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 35306,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 35302,
+                  "mutability": "mutable",
+                  "name": "billId",
+                  "nameLocation": "2317:6:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35334,
+                  "src": "2309:14:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 35301,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2309:7:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 35305,
+                  "mutability": "mutable",
+                  "name": "status",
+                  "nameLocation": "2336:6:93",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 35334,
+                  "src": "2325:17:93",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_BillStatus_$35076",
+                    "typeString": "enum StateGovernment.BillStatus"
+                  },
+                  "typeName": {
+                    "id": 35304,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 35303,
+                      "name": "BillStatus",
+                      "nameLocations": [
+                        "2325:10:93"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 35076,
+                      "src": "2325:10:93"
+                    },
+                    "referencedDeclaration": 35076,
+                    "src": "2325:10:93",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BillStatus_$35076",
+                      "typeString": "enum StateGovernment.BillStatus"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2308:35:93"
+            },
+            "returnParameters": {
+              "id": 35309,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2364:0:93"
+            },
+            "scope": 35335,
+            "src": "2291:262:93",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 35336,
+        "src": "70:2485:93",
+        "usedErrors": []
+      }
+    ],
+    "src": "36:2520:93"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:26.338Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

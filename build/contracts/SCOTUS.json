@@ -1,0 +1,2560 @@
+{
+  "contractName": "SCOTUS",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_chiefJustice",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_associateJustices",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseIndex",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "judge",
+          "type": "address"
+        }
+      ],
+      "name": "CaseAssignedJudge",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "decision",
+          "type": "string"
+        }
+      ],
+      "name": "CaseDecided",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "petitioner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "respondent",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseTitle",
+          "type": "string"
+        }
+      ],
+      "name": "CaseFiled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseIndex",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "representative",
+          "type": "address"
+        }
+      ],
+      "name": "LegalRepresentativeAssigned",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseIndex",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "plaintiff",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        }
+      ],
+      "name": "NewCaseCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_judge",
+          "type": "address"
+        }
+      ],
+      "name": "assignJudge",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_representative",
+          "type": "address"
+        }
+      ],
+      "name": "assignLegalRepresentative",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "assignedJudge",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "associateJustices",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "caseCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "cases",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "index",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "plaintiff",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "filingDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum Case.CaseStatus",
+          "name": "status",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "decision",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "checkAssignedAttorney",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "chiefJustice",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "decision",
+          "type": "string"
+        }
+      ],
+      "name": "closeCase",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_plaintiff",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_defendant",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        }
+      ],
+      "name": "createCase",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        }
+      ],
+      "name": "getCaseIndexByDefendant",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "getCaseInfo",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "index",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "plaintiff",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "defendant",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "filingDate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum Case.CaseStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "decision",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct Case.CaseRecord",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "getCaseStatus",
+      "outputs": [
+        {
+          "internalType": "enum Case.CaseStatus",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "isCaseResolved",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "legalRepresentatives",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isJustice",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "respondent",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "caseTitle",
+          "type": "string"
+        }
+      ],
+      "name": "fileCase",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "decision",
+          "type": "string"
+        }
+      ],
+      "name": "decideCase",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_chiefJustice\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"_associateJustices\",\"type\":\"address[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseIndex\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"judge\",\"type\":\"address\"}],\"name\":\"CaseAssignedJudge\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseId\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"name\":\"CaseDecided\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseId\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"petitioner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"respondent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseTitle\",\"type\":\"string\"}],\"name\":\"CaseFiled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseIndex\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"representative\",\"type\":\"address\"}],\"name\":\"LegalRepresentativeAssigned\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseIndex\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"name\":\"NewCaseCreated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_judge\",\"type\":\"address\"}],\"name\":\"assignJudge\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_representative\",\"type\":\"address\"}],\"name\":\"assignLegalRepresentative\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"assignedJudge\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"associateJustices\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"caseCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"cases\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"index\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"filingDate\",\"type\":\"uint256\"},{\"internalType\":\"enum Case.CaseStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"checkAssignedAttorney\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"chiefJustice\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"name\":\"closeCase\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"}],\"name\":\"createCase\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"caseId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"name\":\"decideCase\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"respondent\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"caseTitle\",\"type\":\"string\"}],\"name\":\"fileCase\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"}],\"name\":\"getCaseIndexByDefendant\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"getCaseInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"index\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"filingDate\",\"type\":\"uint256\"},{\"internalType\":\"enum Case.CaseStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"internalType\":\"struct Case.CaseRecord\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"getCaseStatus\",\"outputs\":[{\"internalType\":\"enum Case.CaseStatus\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"isCaseResolved\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isJustice\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"legalRepresentatives\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/government/federal/SCOTUS.sol\":\"SCOTUS\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/government/Case.sol\":{\"keccak256\":\"0xafd82f9abdbc922d6eb3f3f3351fb371a2aad3de22cd207d7b14f6a17d22720f\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://7b0fea16592cba93bbd2dc8e6944941e309b54baef3a0b320159d1f431fa1112\",\"dweb:/ipfs/QmSUNCBAjGy9ik7ELHgEs4q9Bt9vV4cAhoYrbPbdcHdVax\"]},\"project:/contracts/government/federal/SCOTUS.sol\":{\"keccak256\":\"0x5776d7eecfb322696b1d5ec4c9fb903ee3d32c25e4c4c45214c8125524c61ba5\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://e9263ebe025fa1e8b124fd60717a94946d55d8afc14af57b8ae24590ab2aba8d\",\"dweb:/ipfs/QmaBpQXgnur6krTif41JKG6f88uk3juBEKjPTGKPmdmoNg\"]}},\"version\":1}",
+  "bytecode": "0x6080604052346200019b5762001c8f803803806200001d81620001a0565b9283398101906040818303126200019b576200003981620001c6565b602092838301516001604060020a03938482116200019b57019080601f830112156200019b57815190848211620001525785820292866200007c818601620001a0565b80948152018781958301019283116200019b5787809201905b8382106200018157505060058054600160a060020a031916600160a060020a03968716179055505051928311620001525768010000000000000000831162000152576006548360065580841062000126575b509060066000528360002060005b848110620001115760008055604051611ab39081620001dc8239f35b835183168282015592850192600101620000f5565b6000600681528486822092830192015b82811062000146575050620000e7565b81815560010162000136565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b8280916200018f84620001c6565b81520191019062000095565b600080fd5b6040519190601f01601f191682016001604060020a038111838210176200015257604052565b5190600160a060020a03821682036200019b5756fe60406080815260048036101561001457600080fd5b60009060e060020a8235046307c272828114610b885780630ea4cb3514610b1e57806338e23ad514610af757806343ab8dd314610ada5780634864003f14610a165780635aa0c87d1461081f5780636bfaa515146108045780638d4f291f1461079b578063956048741461075e57806396031062146106f1578063a1bf7369146106a9578063b9340d941461067a578063d75aa15714610613578063da21ad8b146105ea578063df965829146104f4578063e17a703d14610323578063f10dc2e8146101e25763ff501927146100e957600080fd5b346101de57826003193601126101de57610101610e67565b906024356001604060020a0381116101da576101209036908301610dac565b9061012a33611a2a565b1561017557509261016f846101627fac3f31ed3362a8ee6aaec307cb65e27a8cf716f6e7d3adf24e5650112ae4a057959685336111de565b92519384933390856111a1565b0390a180f35b845160e560020a62461bcd028152602091810191909152603060248201527f4f6e6c79204173736f6369617465204a757374696365732063616e20706572666044820152608160020a6f37b936903a3434b99030b1ba34b7b717026064820152608490fd5b8380fd5b5080fd5b50346101de576101f136610e93565b60055491929091600160a060020a031633036102bf57610210836118ab565b61026757509261016f846102467f5eb3938a6b80aba6c1810b442c5c1f4f34baeb26003cb913d474202c74abc1099596856116fd565b6102598351948486958652850190610e1b565b908382036020850152610e1b565b845160e560020a62461bcd028152602091810191909152602360248201527f5468697320636173652068617320616c7265616479206265656e206465636964604482015260e960020a6232b217026064820152608490fd5b845160e560020a62461bcd028152602091810191909152602f60248201527f4f6e6c7920746865204368696566204a7573746963652063616e20706572666f6044820152608960020a6e3936903a3434b99030b1ba34b7b717026064820152608490fd5b5091346101de57806003193601126101de5782356001604060020a0381116104f0576103529036908501610dac565b9061035b610e7d565b815183519160209283860190610372818584610df8565b830160018152600184868260a060020a0396879403019020015416331480156104c7575b1561044d57836103b0918651809381928a51928391610df8565b81016003815203019020805490604060020a821015610437577f224b236d0a25f71407f98f4be8f238b4923010de28942c14866f91f772ef0cb9979850816103fe9160018694018155610f0e565b939092169260088354910260020a809202809285021691191617905561042d8351948486958652850190610e1b565b918301520390a180f35b60e060020a634e487b7102885260418952602488fd5b845160e560020a62461bcd028152808901859052604260248201527f4f6e6c792074686520706c61696e74696666206f7220646566656e64616e742060448201527f63616e2061737369676e2061206c6567616c20726570726573656e7461746976606482015260f160020a61329702608482015260a490fd5b50826002865186818a516104dc818389610df8565b810160018152030190200154163314610396565b8280fd5b509190346105e75760203660031901126105e7578235906001604060020a0382116105e757506105b09261054560206105336105e39436908501610dac565b81865193828580945193849201610df8565b81016001815203019020926105d661055c85610f65565b946105c6600160a060020a0380600184015416906002840154169561058360038501610f65565b908401549661059c600660ff6005880154169601610f65565b9680519b8c9b60e08d5260e08d0190610e1b565b9360208c01528a015288820360608a0152610e1b565b93608087015260a0860190610e40565b83820360c0850152610e1b565b0390f35b80fd5b8284346101de57816003193601126101de576005549051600160a060020a039091168152602090f35b509190346105e75760603660031901126105e75761062f610e67565b92610638610e7d565b91604435906001604060020a0382116105e75750916106616105e3959261066794369101610dac565b916111de565b9051918291602083526020830190610e1b565b8284346101de5760203660031901126101de576020906106a061069b610e67565b611a2a565b90519015158152f35b508290346104f05760203660031901126104f05735916006548310156105e757506106d5602092610ed9565b90549151600890910260020a909104600160a060020a03168152f35b508290346104f057816003193601126104f0578035906001604060020a0382116101da5761072191369101610dac565b9161073d60206024359481855193828580945193849201610df8565b810160038152030190209081548410156105e757506020926106d591610f0e565b509190346105e75760203660031901126105e7578235906001604060020a0382116105e757506107966020936106a092369101610dac565b6118ab565b509190346105e75760203660031901126105e7578235906001604060020a0382116105e757506020926107d091369101610dac565b826107e383519283815193849201610df8565b600290820190815281900383019020549051600160a060020a039091168152f35b82346105e75761081c61081636610e93565b906116fd565b80f35b50346101de57826003193601126101de576001604060020a03908035908282116101da57366023830112156101da57818101359283116101da57602482019160248436920101116101da57610872610e7d565b9185518092858383378582016001815260018060a060020a0393849260209788910301902001541633036109be5760ff600589518886823786818a8101600181520301902001541660038110156109a85761096457509286928580936060967f04f0c25d4ee138ed9348d42279193a35ed1fa6ab5c21f93634b88b696510a2f4999a51838382378481858101600281520301902094169384600160a060020a031982541617905560058651838382378481858101600181520301902001600160ff198254161790558551978689978852870152868601378383018501889052830152601f01601f19168101030190a180f35b875160e560020a62461bcd02815290810184905260186024820152604160020a772a34329031b0b9b29034b9903737ba103832b73234b73397026044820152606490fd5b60e060020a634e487b7102885260218252602488fd5b875160e560020a62461bcd028152908101849052602660248201527f4f6e6c792074686520706c61696e746966662063616e2061737369676e206120604482015260d160020a65353ab233b297026064820152608490fd5b5091346101de57602092836003193601126104f05780356001604060020a0381116101da57849391610a4a91369101610dac565b8381019190815b84518251610a60818388610df8565b81019087816003938481520301902054821015610acf5781610a9c9188885180928751610a8e81848d610df8565b820190815203019020610f0e565b9054600890910260020a9004600160a060020a03163314610ac6575b610ac19061100a565b610a51565b60019250610ab8565b868487519015158152f35b8284346101de57816003193601126101de57602091549051908152f35b8284346101de5760203660031901126101de576105e390610667610b19610e67565b6118e4565b509190346105e75760203660031901126105e7578235906001604060020a0382116105e7575060ff6005610b706020610b5e8197610b8696369101610dac565b81875193828580945193849201610df8565b8101600181520301902001541691518092610e40565bf35b5090346105e757602092836003193601126101de5782356001604060020a0381116104f05790610c0485610bc260c0959436908801610dac565b8351610bcd81610d1e565b60609681888093528785820152878782015282808201528760808201528760a0820152015281845193828580945193849201610df8565b8101600181520301902093815194610c1b86610d1e565b610c2481610f65565b86526001810154600160a060020a039081168888019081526002830154821685890190815290969190610c5960038501610f65565b93838a01948552858101549760808b0198895260ff6005830154169060a08c01976003831015610d085750508652600601610c9390610f65565b9560c08a019687528281519b8c9b818d5251908c0160e090526101008c01610cba91610e1b565b995116908a015251169087015251601f199485878203016080880152610cdf91610e1b565b925160a08601525160c08501610cf491610e40565b51918382030160e08401526105e391610e1b565b60e060020a634e487b7102825260219052602490fd5b60e081019081106001604060020a03821117610d3957604052565b60e060020a634e487b710260009081526041600452602490fd5b602081019081106001604060020a03821117610d3957604052565b601f909101601f19168101906001604060020a03821190821017610d3957604052565b6001604060020a038111610d3957601f01601f191660200190565b81601f82011215610df357803590610dc382610d91565b92610dd16040519485610d6e565b82845260208383010111610df357816000926020809301838601378301015290565b600080fd5b60005b838110610e0b5750506000910152565b8181015183820152602001610dfb565b90602091610e3481518092818552858086019101610df8565b601f01601f1916010190565b906003821015610e4d5752565b60e060020a634e487b710260009081526021600452602490fd5b60043590600160a060020a0382168203610df357565b60243590600160a060020a0382168203610df357565b906040600319830112610df3576001604060020a03600435818111610df35783610ebf91600401610dac565b92602435918211610df357610ed691600401610dac565b90565b600654811015610ef457600660005260206000200190600090565b60e060020a634e487b710260009081526032600452602490fd5b8054821015610ef45760005260206000200190600090565b9060016002830492168015610f5b575b6020831014610f4157565b60e060020a634e487b710260009081526022600452602490fd5b91607f1691610f36565b9060405191826000825492610f7984610f26565b908184526001948581169081600014610fe85750600114610fa5575b5050610fa392500383610d6e565b565b9093915060005260209081600020936000915b818310610fd0575050610fa393508201013880610f95565b85548884018501529485019487945091830191610fb8565b915050610fa394506020925060ff191682840152151581028201013880610f95565b60001981146110195760010190565b60e060020a634e487b710260009081526011600452602490fd5b90601f811161104157505050565b60009182526020822090602080601f8601048301941061107d575b601f602091010401915b82811061107257505050565b818155600101611066565b909250829061105c565b906003811015610e4d5760ff80198354169116179055565b600454811015610ef45760046000526007602060002091020190600090565b9080821461119d576110d08154610f26565b906001604060020a038211610d395781906110f5826110ef8654610f26565b86611033565b600090601f831160011461112e57600092611123575b5050816002029160080260020a600019041916179055565b01549050388061110b565b81526020808220858352818320935090601f1985169083905b8282106111845750509160029391856001969410611169575b50505002019055565b01546008601f841602840a6000190419169055388080611160565b8495819295850154815560018091019601940190611147565b5050565b90916111b9610ed69593608084526080840190610e1b565b600160a060020a03918216602084015293166040820152808303606090910152610e1b565b600160a060020a0380831693929190811680851461169e5761120160005461100a565b9485600055611256602061121d6112174261194c565b9861194c565b9760405198816112368b93518092868087019101610df8565b820161124a82518093868085019101610df8565b01038089520187610d6e565b6040519061126382610d53565b600082526040519261127484610d1e565b87845260208401526040830152846060830152426080830152600060a083015260c082015260405160208187516112ae8183858c01610df8565b60019082019081520301902081518051906001604060020a038211610d395781906112dd826110ef8654610f26565b602090601f83116001146116355760009261162a575b5050816002029160080260020a6000190419161781555b6020820151600182018054600160a060020a03928316600160a060020a03199182161790915560408401516002840180549190931691161790556060820151805160038301916001604060020a038211610d3957819061136e826110ef8654610f26565b602090601f83116001146115c1576000926115b6575b5050816002029160080260020a6000190419161790555b6080820151600482015560a08201516003811015610e4d57816113c5600692600560c09501611087565b019101518051906001604060020a038211610d395781906113ea826110ef8654610f26565b602090601f831160011461154d57600092611542575b5050816002029160080260020a6000190419161790555b604051602081865161142c8183858b01610df8565b8101600181520301902092600454604060020a811015610d3957806001611456920160045561109f565b9190916115285784827f4c57de14bab31f374bb1da2f58131adeaa55e473dfe313a2b201a8a5415f0bd69661149a94036114a0575b505060405193849387856111a1565b0390a190565b600680836114b161152195856110be565b6001818101549085018054600160a060020a03928316600160a060020a03199182161790915560028084015490870180549190931691161790556114fb60038083019086016110be565b6004810154600485015561151960ff60058301541660058601611087565b0191016110be565b388061148b565b60e060020a634e487b710260009081526004819052602490fd5b015190503880611400565b6000858152602081209350601f198516905b81811061159e57509160029391856001969410611583575b50505002019055611417565b01516008601f841602840a6000190419169055388080611577565b9293602060018192878601518155019501930161155f565b015190503880611384565b6000858152602081209350601f198516905b818110611612575091600293918560019694106115f7575b5050500201905561139b565b01516008601f841602840a60001904191690553880806115eb565b929360206001819287860151815501950193016115d3565b0151905038806112f3565b6000858152602081209350601f198516905b8181106116865750916002939185600196941061166b575b5050500201815561130a565b01516008601f841602840a600019041916905538808061165f565b92936020600181928786015181550195019301611647565b60405160e560020a62461bcd02815260206004820152602b60248201527f506c61696e7469666620616e6420646566656e64616e742063616e6e6f742062604482015260a960020a6a32903a34329039b0b6b297026064820152608490fd5b6040519181519260209384840190611716818484610df8565b6002908301818152839003860190922054600160a060020a0316330361184c5761177b856006926040519660058151611750818b86610df8565b890198848160019b8c815203019020018660ff19825416179055604051938492839251928391610df8565b810187815203019020835191019490926001604060020a038411610d39576117ad846117a78854610f26565b88611033565b81601f85116001146117e657508394506000936117db575b505082810292600802900a600019041916179055565b0151915038806117c5565b919084601f9594951981168860005284600020946000905b8983831061183257505050106118175750505002019055565b01516008601f841602840a6000190419169055388080611160565b8587015188559096019594850194879350908101906117fe565b60405160e560020a62461bcd02815260048101869052602b60248201527f4f6e6c79207468652061737369676e6564206a756467652063616e20636c6f73604482015260a960020a6a32903a34329031b0b9b297026064820152608490fd5b60056118c8602060ff938160405193828580945193849201610df8565b810160018152030190200154166003811015610e4d5760021490565b6004549060005b8281106119085750505060405161190181610d53565b6000815290565b60026119138261109f565b50600160a0830a0391829101541690831614611937576119329061100a565b6118eb565b610ed69250611946915061109f565b50610f65565b80156119f957600081805b6119e5575061196581610d91565b906119736040519283610d6e565b808252601f1961198282610d91565b013660208401375b809280156119de576000198201918211611019578193600a9260309084840682018092116110195785511115610ef45760ff1660f860020a02600160f860020a03191660001a908401601f0153049161198a565b5050905090565b906119f1600a9161100a565b910480611957565b50604080519081016001604060020a03811182821017610d39576040526001815260fc60020a600302602082015290565b6006549060005b828110611a4057505050600090565b611a4981610ed9565b9054600160a060020a03848116600890930260020a9091041614611a7557611a709061100a565b611a31565b50505060019056fea2646970667358221220206e118709c703ec0cbd057db2952fa46037f9f21d2875422b21b26b0b2e294b64736f6c63430008120033",
+  "deployedBytecode": "0x60406080815260048036101561001457600080fd5b60009060e060020a8235046307c272828114610b885780630ea4cb3514610b1e57806338e23ad514610af757806343ab8dd314610ada5780634864003f14610a165780635aa0c87d1461081f5780636bfaa515146108045780638d4f291f1461079b578063956048741461075e57806396031062146106f1578063a1bf7369146106a9578063b9340d941461067a578063d75aa15714610613578063da21ad8b146105ea578063df965829146104f4578063e17a703d14610323578063f10dc2e8146101e25763ff501927146100e957600080fd5b346101de57826003193601126101de57610101610e67565b906024356001604060020a0381116101da576101209036908301610dac565b9061012a33611a2a565b1561017557509261016f846101627fac3f31ed3362a8ee6aaec307cb65e27a8cf716f6e7d3adf24e5650112ae4a057959685336111de565b92519384933390856111a1565b0390a180f35b845160e560020a62461bcd028152602091810191909152603060248201527f4f6e6c79204173736f6369617465204a757374696365732063616e20706572666044820152608160020a6f37b936903a3434b99030b1ba34b7b717026064820152608490fd5b8380fd5b5080fd5b50346101de576101f136610e93565b60055491929091600160a060020a031633036102bf57610210836118ab565b61026757509261016f846102467f5eb3938a6b80aba6c1810b442c5c1f4f34baeb26003cb913d474202c74abc1099596856116fd565b6102598351948486958652850190610e1b565b908382036020850152610e1b565b845160e560020a62461bcd028152602091810191909152602360248201527f5468697320636173652068617320616c7265616479206265656e206465636964604482015260e960020a6232b217026064820152608490fd5b845160e560020a62461bcd028152602091810191909152602f60248201527f4f6e6c7920746865204368696566204a7573746963652063616e20706572666f6044820152608960020a6e3936903a3434b99030b1ba34b7b717026064820152608490fd5b5091346101de57806003193601126101de5782356001604060020a0381116104f0576103529036908501610dac565b9061035b610e7d565b815183519160209283860190610372818584610df8565b830160018152600184868260a060020a0396879403019020015416331480156104c7575b1561044d57836103b0918651809381928a51928391610df8565b81016003815203019020805490604060020a821015610437577f224b236d0a25f71407f98f4be8f238b4923010de28942c14866f91f772ef0cb9979850816103fe9160018694018155610f0e565b939092169260088354910260020a809202809285021691191617905561042d8351948486958652850190610e1b565b918301520390a180f35b60e060020a634e487b7102885260418952602488fd5b845160e560020a62461bcd028152808901859052604260248201527f4f6e6c792074686520706c61696e74696666206f7220646566656e64616e742060448201527f63616e2061737369676e2061206c6567616c20726570726573656e7461746976606482015260f160020a61329702608482015260a490fd5b50826002865186818a516104dc818389610df8565b810160018152030190200154163314610396565b8280fd5b509190346105e75760203660031901126105e7578235906001604060020a0382116105e757506105b09261054560206105336105e39436908501610dac565b81865193828580945193849201610df8565b81016001815203019020926105d661055c85610f65565b946105c6600160a060020a0380600184015416906002840154169561058360038501610f65565b908401549661059c600660ff6005880154169601610f65565b9680519b8c9b60e08d5260e08d0190610e1b565b9360208c01528a015288820360608a0152610e1b565b93608087015260a0860190610e40565b83820360c0850152610e1b565b0390f35b80fd5b8284346101de57816003193601126101de576005549051600160a060020a039091168152602090f35b509190346105e75760603660031901126105e75761062f610e67565b92610638610e7d565b91604435906001604060020a0382116105e75750916106616105e3959261066794369101610dac565b916111de565b9051918291602083526020830190610e1b565b8284346101de5760203660031901126101de576020906106a061069b610e67565b611a2a565b90519015158152f35b508290346104f05760203660031901126104f05735916006548310156105e757506106d5602092610ed9565b90549151600890910260020a909104600160a060020a03168152f35b508290346104f057816003193601126104f0578035906001604060020a0382116101da5761072191369101610dac565b9161073d60206024359481855193828580945193849201610df8565b810160038152030190209081548410156105e757506020926106d591610f0e565b509190346105e75760203660031901126105e7578235906001604060020a0382116105e757506107966020936106a092369101610dac565b6118ab565b509190346105e75760203660031901126105e7578235906001604060020a0382116105e757506020926107d091369101610dac565b826107e383519283815193849201610df8565b600290820190815281900383019020549051600160a060020a039091168152f35b82346105e75761081c61081636610e93565b906116fd565b80f35b50346101de57826003193601126101de576001604060020a03908035908282116101da57366023830112156101da57818101359283116101da57602482019160248436920101116101da57610872610e7d565b9185518092858383378582016001815260018060a060020a0393849260209788910301902001541633036109be5760ff600589518886823786818a8101600181520301902001541660038110156109a85761096457509286928580936060967f04f0c25d4ee138ed9348d42279193a35ed1fa6ab5c21f93634b88b696510a2f4999a51838382378481858101600281520301902094169384600160a060020a031982541617905560058651838382378481858101600181520301902001600160ff198254161790558551978689978852870152868601378383018501889052830152601f01601f19168101030190a180f35b875160e560020a62461bcd02815290810184905260186024820152604160020a772a34329031b0b9b29034b9903737ba103832b73234b73397026044820152606490fd5b60e060020a634e487b7102885260218252602488fd5b875160e560020a62461bcd028152908101849052602660248201527f4f6e6c792074686520706c61696e746966662063616e2061737369676e206120604482015260d160020a65353ab233b297026064820152608490fd5b5091346101de57602092836003193601126104f05780356001604060020a0381116101da57849391610a4a91369101610dac565b8381019190815b84518251610a60818388610df8565b81019087816003938481520301902054821015610acf5781610a9c9188885180928751610a8e81848d610df8565b820190815203019020610f0e565b9054600890910260020a9004600160a060020a03163314610ac6575b610ac19061100a565b610a51565b60019250610ab8565b868487519015158152f35b8284346101de57816003193601126101de57602091549051908152f35b8284346101de5760203660031901126101de576105e390610667610b19610e67565b6118e4565b509190346105e75760203660031901126105e7578235906001604060020a0382116105e7575060ff6005610b706020610b5e8197610b8696369101610dac565b81875193828580945193849201610df8565b8101600181520301902001541691518092610e40565bf35b5090346105e757602092836003193601126101de5782356001604060020a0381116104f05790610c0485610bc260c0959436908801610dac565b8351610bcd81610d1e565b60609681888093528785820152878782015282808201528760808201528760a0820152015281845193828580945193849201610df8565b8101600181520301902093815194610c1b86610d1e565b610c2481610f65565b86526001810154600160a060020a039081168888019081526002830154821685890190815290969190610c5960038501610f65565b93838a01948552858101549760808b0198895260ff6005830154169060a08c01976003831015610d085750508652600601610c9390610f65565b9560c08a019687528281519b8c9b818d5251908c0160e090526101008c01610cba91610e1b565b995116908a015251169087015251601f199485878203016080880152610cdf91610e1b565b925160a08601525160c08501610cf491610e40565b51918382030160e08401526105e391610e1b565b60e060020a634e487b7102825260219052602490fd5b60e081019081106001604060020a03821117610d3957604052565b60e060020a634e487b710260009081526041600452602490fd5b602081019081106001604060020a03821117610d3957604052565b601f909101601f19168101906001604060020a03821190821017610d3957604052565b6001604060020a038111610d3957601f01601f191660200190565b81601f82011215610df357803590610dc382610d91565b92610dd16040519485610d6e565b82845260208383010111610df357816000926020809301838601378301015290565b600080fd5b60005b838110610e0b5750506000910152565b8181015183820152602001610dfb565b90602091610e3481518092818552858086019101610df8565b601f01601f1916010190565b906003821015610e4d5752565b60e060020a634e487b710260009081526021600452602490fd5b60043590600160a060020a0382168203610df357565b60243590600160a060020a0382168203610df357565b906040600319830112610df3576001604060020a03600435818111610df35783610ebf91600401610dac565b92602435918211610df357610ed691600401610dac565b90565b600654811015610ef457600660005260206000200190600090565b60e060020a634e487b710260009081526032600452602490fd5b8054821015610ef45760005260206000200190600090565b9060016002830492168015610f5b575b6020831014610f4157565b60e060020a634e487b710260009081526022600452602490fd5b91607f1691610f36565b9060405191826000825492610f7984610f26565b908184526001948581169081600014610fe85750600114610fa5575b5050610fa392500383610d6e565b565b9093915060005260209081600020936000915b818310610fd0575050610fa393508201013880610f95565b85548884018501529485019487945091830191610fb8565b915050610fa394506020925060ff191682840152151581028201013880610f95565b60001981146110195760010190565b60e060020a634e487b710260009081526011600452602490fd5b90601f811161104157505050565b60009182526020822090602080601f8601048301941061107d575b601f602091010401915b82811061107257505050565b818155600101611066565b909250829061105c565b906003811015610e4d5760ff80198354169116179055565b600454811015610ef45760046000526007602060002091020190600090565b9080821461119d576110d08154610f26565b906001604060020a038211610d395781906110f5826110ef8654610f26565b86611033565b600090601f831160011461112e57600092611123575b5050816002029160080260020a600019041916179055565b01549050388061110b565b81526020808220858352818320935090601f1985169083905b8282106111845750509160029391856001969410611169575b50505002019055565b01546008601f841602840a6000190419169055388080611160565b8495819295850154815560018091019601940190611147565b5050565b90916111b9610ed69593608084526080840190610e1b565b600160a060020a03918216602084015293166040820152808303606090910152610e1b565b600160a060020a0380831693929190811680851461169e5761120160005461100a565b9485600055611256602061121d6112174261194c565b9861194c565b9760405198816112368b93518092868087019101610df8565b820161124a82518093868085019101610df8565b01038089520187610d6e565b6040519061126382610d53565b600082526040519261127484610d1e565b87845260208401526040830152846060830152426080830152600060a083015260c082015260405160208187516112ae8183858c01610df8565b60019082019081520301902081518051906001604060020a038211610d395781906112dd826110ef8654610f26565b602090601f83116001146116355760009261162a575b5050816002029160080260020a6000190419161781555b6020820151600182018054600160a060020a03928316600160a060020a03199182161790915560408401516002840180549190931691161790556060820151805160038301916001604060020a038211610d3957819061136e826110ef8654610f26565b602090601f83116001146115c1576000926115b6575b5050816002029160080260020a6000190419161790555b6080820151600482015560a08201516003811015610e4d57816113c5600692600560c09501611087565b019101518051906001604060020a038211610d395781906113ea826110ef8654610f26565b602090601f831160011461154d57600092611542575b5050816002029160080260020a6000190419161790555b604051602081865161142c8183858b01610df8565b8101600181520301902092600454604060020a811015610d3957806001611456920160045561109f565b9190916115285784827f4c57de14bab31f374bb1da2f58131adeaa55e473dfe313a2b201a8a5415f0bd69661149a94036114a0575b505060405193849387856111a1565b0390a190565b600680836114b161152195856110be565b6001818101549085018054600160a060020a03928316600160a060020a03199182161790915560028084015490870180549190931691161790556114fb60038083019086016110be565b6004810154600485015561151960ff60058301541660058601611087565b0191016110be565b388061148b565b60e060020a634e487b710260009081526004819052602490fd5b015190503880611400565b6000858152602081209350601f198516905b81811061159e57509160029391856001969410611583575b50505002019055611417565b01516008601f841602840a6000190419169055388080611577565b9293602060018192878601518155019501930161155f565b015190503880611384565b6000858152602081209350601f198516905b818110611612575091600293918560019694106115f7575b5050500201905561139b565b01516008601f841602840a60001904191690553880806115eb565b929360206001819287860151815501950193016115d3565b0151905038806112f3565b6000858152602081209350601f198516905b8181106116865750916002939185600196941061166b575b5050500201815561130a565b01516008601f841602840a600019041916905538808061165f565b92936020600181928786015181550195019301611647565b60405160e560020a62461bcd02815260206004820152602b60248201527f506c61696e7469666620616e6420646566656e64616e742063616e6e6f742062604482015260a960020a6a32903a34329039b0b6b297026064820152608490fd5b6040519181519260209384840190611716818484610df8565b6002908301818152839003860190922054600160a060020a0316330361184c5761177b856006926040519660058151611750818b86610df8565b890198848160019b8c815203019020018660ff19825416179055604051938492839251928391610df8565b810187815203019020835191019490926001604060020a038411610d39576117ad846117a78854610f26565b88611033565b81601f85116001146117e657508394506000936117db575b505082810292600802900a600019041916179055565b0151915038806117c5565b919084601f9594951981168860005284600020946000905b8983831061183257505050106118175750505002019055565b01516008601f841602840a6000190419169055388080611160565b8587015188559096019594850194879350908101906117fe565b60405160e560020a62461bcd02815260048101869052602b60248201527f4f6e6c79207468652061737369676e6564206a756467652063616e20636c6f73604482015260a960020a6a32903a34329031b0b9b297026064820152608490fd5b60056118c8602060ff938160405193828580945193849201610df8565b810160018152030190200154166003811015610e4d5760021490565b6004549060005b8281106119085750505060405161190181610d53565b6000815290565b60026119138261109f565b50600160a0830a0391829101541690831614611937576119329061100a565b6118eb565b610ed69250611946915061109f565b50610f65565b80156119f957600081805b6119e5575061196581610d91565b906119736040519283610d6e565b808252601f1961198282610d91565b013660208401375b809280156119de576000198201918211611019578193600a9260309084840682018092116110195785511115610ef45760ff1660f860020a02600160f860020a03191660001a908401601f0153049161198a565b5050905090565b906119f1600a9161100a565b910480611957565b50604080519081016001604060020a03811182821017610d39576040526001815260fc60020a600302602082015290565b6006549060005b828110611a4057505050600090565b611a4981610ed9565b9054600160a060020a03848116600890930260020a9091041614611a7557611a709061100a565b611a31565b50505060019056fea2646970667358221220206e118709c703ec0cbd057db2952fa46037f9f21d2875422b21b26b0b2e294b64736f6c63430008120033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "93:1512:87:-:0;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;717:28:87;93:1512;;-1:-1:-1;;;;;;93:1512:87;-1:-1:-1;;;;;93:1512:87;;;;;;-1:-1:-1;;93:1512:87;;;;;;;;;;;755:38;93:1512;;755:38;93:1512;;;;;;;;;755:38;-1:-1:-1;93:1512:87;;-1:-1:-1;93:1512:87;-1:-1:-1;93:1512:87;;;;;;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;755:38:87;93:1512;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;-1:-1:-1;93:1512:87;;;;;;;;:::i;:::-;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;;;;;-1:-1:-1;;93:1512:87;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;:::o;:::-;;;-1:-1:-1;;;;;93:1512:87;;;;;;:::o",
+  "deployedSourceMap": "93:1512:87:-:0;;;;;;;;;;;;;;;;;-1:-1:-1;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;:::i;:::-;547:10;537:21;547:10;537:21;:::i;:::-;93:1512;;;547:10;;1276:55;547:10;1216:45;1276:55;547:10;;;;1216:45;:::i;:::-;93:1512;;547:10;;;;1276:55;;;:::i;:::-;;;;93:1512;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;408:12;93:1512;;;;;-1:-1:-1;;;;;93:1512:87;394:10;:26;93:1512;;1453:22;;;:::i;:::-;93:1512;;1543:8;;93:1512;1543:8;;1567:29;1543:8;;;;:::i;:::-;93:1512;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;:::i;:::-;;;;:::i;:::-;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;2143:27:70;93:1512:87;;2129:10:70;:41;:86;;;;93:1512:87;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;2366:56:70;93:1512:87;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;2366:56:70;;;93:1512:87;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;2129:86:70;93:1512:87;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;2188:27:70;93:1512:87;;2129:10:70;2174:41;2129:86;;93:1512:87;;;;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;397:42:70;93:1512:87;397:42:70;;;:::i;:::-;93:1512:87;;;;;;;397:42:70;93:1512:87;397:42:70;;93:1512:87;;397:42:70;93:1512:87;397:42:70;;93:1512:87;;397:42:70;;93:1512:87;397:42:70;;;:::i;:::-;;;;93:1512:87;397:42:70;;;93:1512:87;397:42:70;;;93:1512:87;;397:42:70;;;:::i;:::-;93:1512:87;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;:::i;:::-;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;123:27;93:1512;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;:::i;:::-;;;;:::i;:::-;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;:::i;:::-;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;;;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;156:34;93:1512;156:34;;;;;;;93:1512;156:34;;:::i;:::-;93:1512;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;498:56:70;;;;;;93:1512:87;498:56:70;;;;:::i;93:1512:87:-;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;:::i;:::-;;;:::i;:::-;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1686:27:70;93:1512:87;;1672:10:70;:41;93:1512:87;;;1774:24:70;93:1512:87;;;;;;;;;;;;;;;;;;1774:24:70;93:1512:87;;;;;;;;;;;;;;;;;;;1968:37:70;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1774:24:70;93:1512:87;;;;;;;;;;;;;;;;;;1904:24:70;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;93:1512:87;;;1968:37:70;;;;93:1512:87;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;:::i;:::-;;;;;3534:21:70;;3623:3;93:1512:87;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;3580:41:70;;;;;93:1512:87;3646:35:70;93:1512:87;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;3646:35:70;:::i;:::-;93:1512:87;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;3685:10:70;3646:49;3642:103;;3623:3;;;;:::i;:::-;3570:8;;3642:103;93:1512:87;;-1:-1:-1;3642:103:70;;3580:41;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;2828:24:70;93:1512:87;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;2828:24:70;93:1512:87;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;:::i;:::-;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;:::i;:::-;;;;:::i;:::-;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;:::o;:::-;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;1218:74:70;93:1512:87;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;:::o;:::-;;;;;-1:-1:-1;;93:1512:87;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;:::o;:::-;-1:-1:-1;;;;;93:1512:87;;;;;;-1:-1:-1;;93:1512:87;;;;:::o;:::-;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;:::i;:::-;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;93:1512:87;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;-1:-1:-1;;93:1512:87;;;;:::o;:::-;;;;;;;;;:::o;:::-;-1:-1:-1;;;;;;93:1512:87;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;:::o;:::-;;;;-1:-1:-1;;;;;93:1512:87;;;;;;:::o;:::-;;;-1:-1:-1;;93:1512:87;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;:::o;:::-;156:34;93:1512;;;;;;156:34;-1:-1:-1;93:1512:87;;-1:-1:-1;93:1512:87;;;-1:-1:-1;93:1512:87;:::o;:::-;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;-1:-1:-1;93:1512:87;;;-1:-1:-1;93:1512:87;:::o;:::-;;;;;;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;:::o;:::-;;;;;-1:-1:-1;93:1512:87;;;;-1:-1:-1;93:1512:87;;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;:::o;:::-;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;-1:-1:-1;93:1512:87;;;-1:-1:-1;93:1512:87;;;;;-1:-1:-1;93:1512:87;:::o;:::-;;;;;;;;;;;:::i;:::-;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;:::i;:::-;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;-1:-1:-1;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;:::i;:::-;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;:::i;885:691:70:-;-1:-1:-1;;;;;93:1512:87;;;;885:691:70;;;93:1512:87;;1022:24:70;;;93:1512:87;;1161:13:70;1133:18;93:1512:87;1161:13:70;:::i;:::-;93:1512:87;;1133:18:70;93:1512:87;1218:74:70;;1266:25;1235:29;1248:15;1235:29;:::i;:::-;1266:25;;:::i;:::-;93:1512:87;;;;;;;;;1218:74:70;;;;;;93:1512:87;;;:::i;:::-;;;;;;;;;;;;;;;:::i;:::-;;1218:74:70;;;;;;;:::i;:::-;93:1512:87;;;;;;:::i;:::-;1133:18:70;93:1512:87;;;;;;;;:::i;:::-;;;;1218:74:70;1322:94;;93:1512:87;;1322:94:70;;93:1512:87;1322:94:70;;;;93:1512:87;1248:15:70;1322:94;;;93:1512:87;1133:18:70;93:1512:87;1322:94:70;;93:1512:87;1322:94:70;;;93:1512:87;;;1218:74:70;93:1512:87;;;;1218:74:70;;;;;93:1512:87;:::i;:::-;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;:::i;:::-;1218:74:70;93:1512:87;;;;;;;;1133:18:70;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;1218:74:70;1322:94;;93:1512:87;;;;;;-1:-1:-1;;;;;93:1512:87;;;-1:-1:-1;;;;;;93:1512:87;;;;;;;;1322:94:70;;93:1512:87;;;;;;;;;;;;;;;1322:94:70;;;93:1512:87;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;:::i;:::-;1218:74:70;93:1512:87;;;;;;;;1133:18:70;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;1322:94:70;;;93:1512:87;;;;;;1322:94:70;;93:1512:87;;;;;;;;;;;;1322:94:70;93:1512:87;;;:::i;:::-;;1322:94:70;;93:1512:87;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1218:74:70;93:1512:87;;;;;;;;1133:18:70;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;1218:74:70;93:1512:87;;;;1218:74:70;;;;;93:1512:87;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;1471:63:70;93:1512:87;1471:63:70;93:1512:87;;;;;;;;;1471:63:70;;;;;;:::i;:::-;;;;885:691;:::o;93:1512:87:-;;;;;;;;;:::i;:::-;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;-1:-1:-1;;;;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;:::i;:::-;;;;;;-1:-1:-1;;;;;1133:18:70;93:1512:87;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;1133:18:70;93:1512:87;;;1218:74:70;93:1512:87;;;-1:-1:-1;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;;;;;;;1218:74:70;93:1512:87;;;;;;;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;1133:18:70;93:1512:87;;;1218:74:70;93:1512:87;;;-1:-1:-1;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;;;;;;;1218:74:70;93:1512:87;;;;;;;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;1133:18:70;93:1512:87;;;1218:74:70;93:1512:87;;;-1:-1:-1;;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;;;;;;;1218:74:70;93:1512:87;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;2435:288:70;93:1512:87;;;;;;;;;;;;;;;;;:::i;:::-;2542:13:70;93:1512:87;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;2528:10:70;:39;93:1512:87;;;;2679:26:70;93:1512:87;;;;2625:24:70;93:1512:87;;;;;;;:::i;:::-;;;;;;;;;;;;;;;2625:24:70;93:1512:87;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;2679:26:70;;;93:1512:87;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;:::i;:::-;;;:::i;:::-;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;;;;;;;;;2435:288:70:o;93:1512:87:-;;;;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;-1:-1:-1;93:1512:87;;-1:-1:-1;93:1512:87;;;;;;;;;;;;;;;;;;;;;2435:288:70:o;93:1512:87:-;;;;;;;;;;-1:-1:-1;;93:1512:87;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;2867:148:70;2962:24;93:1512:87;;;2867:148:70;93:1512:87;;;;;;;;;;;;;;:::i;:::-;;;2962:5:70;93:1512:87;;;;;;2962:24:70;93:1512:87;;;;;;;;2990:17:70;2962:45;2867:148;:::o;3155:279::-;3272:6;93:1512:87;;3265:1:70;3268:17;;;;;;93:1512:87;;;;;;;;:::i;:::-;3265:1:70;93:1512:87;;3155:279:70;:::o;3287:3::-;93:1512:87;3310:9:70;;;:::i;:::-;93:1512:87;;;;;;3310:19:70;;;;93:1512:87;;;;;3310:32:70;3306:93;;3287:3;;;:::i;:::-;3258:8;;3306:93;93:1512:87;3369:9:70;;;;;;:::i;:::-;93:1512:87;;:::i;3792:510:70:-;3878:10;;3874:51;;3887:1;3935:17;;3990:9;;;93:1512:87;;;;:::i;:::-;;;;;;;;:::i;:::-;;;;-1:-1:-1;;93:1512:87;;;:::i;:::-;;;;;;;4117:147:70;4124:10;;;;;;-1:-1:-1;;93:1512:87;;;;;;;4150:11:70;4045:2;;4205;;93:1512:87;;;;;;;;;;;;;-1:-1:-1;93:1512:87;;;;;-1:-1:-1;;;93:1512:87;-1:-1:-1;;;;;;93:1512:87;3887:1:70;4175:53;;93:1512:87;;;;4175:53:70;93:1512:87;4117:147:70;;;4124:10;;;;;3792:510;:::o;3983:75::-;4015:8;;4045:2;4015:8;;:::i;:::-;93:1512:87;;3983:75:70;;;3874:51;-1:-1:-1;93:1512:87;;;;;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;-1:-1:-1;;;;;93:1512:87;;;;3904:10:70;:::o;831:261:87:-;928:17;93:1512;;921:1;924:28;;;;;;1073:12;;;921:1;831:261;:::o;954:3::-;977:20;;;:::i;:::-;93:1512;;-1:-1:-1;;;;;93:1512:87;;;;;;;;;;;;;977:31;973:81;;954:3;;;:::i;:::-;909:13;;973:81;1028:11;;;93:1512;1028:11;:::o",
+  "source": "// SPDX-License-Identifier: BSL-1.1\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"../Case.sol\";\n\ncontract SCOTUS is Case {\n    address public chiefJustice;\n    address[] public associateJustices;\n\n\n    event CaseFiled(string caseId, address petitioner, address respondent, string caseTitle);\n    event CaseDecided(string caseId, string decision);\n\n    modifier onlyChiefJustice() {\n        require(msg.sender == chiefJustice, \"Only the Chief Justice can perform this action.\");\n        _;\n    }\n\n    modifier onlyJustice() {\n        require(isJustice(msg.sender), \"Only Associate Justices can perform this action.\");\n        _;\n    }\n\n    constructor(address _chiefJustice, address[] memory _associateJustices) {\n        chiefJustice = _chiefJustice;\n        associateJustices = _associateJustices;\n        caseCounter = 0;\n    }\n\n    function isJustice(address account) public view returns (bool) {\n        for (uint256 i = 0; i < associateJustices.length; i++) {\n            if (associateJustices[i] == account) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    function fileCase(address respondent, string memory caseTitle) public onlyJustice {\n        string memory caseIndex = createCase(msg.sender, respondent, caseTitle);\n        emit CaseFiled(caseIndex, msg.sender, respondent, caseTitle);\n    }\n\n    function decideCase(string memory caseId, string memory decision) public onlyChiefJustice {\n        require(!isCaseResolved(caseId), \"This case has already been decided.\");\n        closeCase(caseId, decision);\n        emit CaseDecided(caseId, decision);\n    }\n}\n",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/government/federal/SCOTUS.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/government/federal/SCOTUS.sol",
+    "exportedSymbols": {
+      "Case": [
+        29937
+      ],
+      "SCOTUS": [
+        33046
+      ]
+    },
+    "id": 33047,
+    "license": "BSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 32889,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:32:87"
+      },
+      {
+        "absolutePath": "project:/contracts/government/Case.sol",
+        "file": "../Case.sol",
+        "id": 32890,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 33047,
+        "sourceUnit": 29938,
+        "src": "70:21:87",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 32891,
+              "name": "Case",
+              "nameLocations": [
+                "112:4:87"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 29937,
+              "src": "112:4:87"
+            },
+            "id": 32892,
+            "nodeType": "InheritanceSpecifier",
+            "src": "112:4:87"
+          }
+        ],
+        "canonicalName": "SCOTUS",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 33046,
+        "linearizedBaseContracts": [
+          33046,
+          29937
+        ],
+        "name": "SCOTUS",
+        "nameLocation": "102:6:87",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "da21ad8b",
+            "id": 32894,
+            "mutability": "mutable",
+            "name": "chiefJustice",
+            "nameLocation": "138:12:87",
+            "nodeType": "VariableDeclaration",
+            "scope": 33046,
+            "src": "123:27:87",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 32893,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "123:7:87",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "a1bf7369",
+            "id": 32897,
+            "mutability": "mutable",
+            "name": "associateJustices",
+            "nameLocation": "173:17:87",
+            "nodeType": "VariableDeclaration",
+            "scope": 33046,
+            "src": "156:34:87",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_address_$dyn_storage",
+              "typeString": "address[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 32895,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "156:7:87",
+                "stateMutability": "nonpayable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "id": 32896,
+              "nodeType": "ArrayTypeName",
+              "src": "156:9:87",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                "typeString": "address[]"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "ac3f31ed3362a8ee6aaec307cb65e27a8cf716f6e7d3adf24e5650112ae4a057",
+            "id": 32907,
+            "name": "CaseFiled",
+            "nameLocation": "204:9:87",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 32906,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32899,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "caseId",
+                  "nameLocation": "221:6:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32907,
+                  "src": "214:13:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32898,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "214:6:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32901,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "petitioner",
+                  "nameLocation": "237:10:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32907,
+                  "src": "229:18:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 32900,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "229:7:87",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32903,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "respondent",
+                  "nameLocation": "257:10:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32907,
+                  "src": "249:18:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 32902,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "249:7:87",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32905,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "caseTitle",
+                  "nameLocation": "276:9:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32907,
+                  "src": "269:16:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32904,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "269:6:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "213:73:87"
+            },
+            "src": "198:89:87"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "5eb3938a6b80aba6c1810b442c5c1f4f34baeb26003cb913d474202c74abc109",
+            "id": 32913,
+            "name": "CaseDecided",
+            "nameLocation": "298:11:87",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 32912,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32909,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "caseId",
+                  "nameLocation": "317:6:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32913,
+                  "src": "310:13:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32908,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "310:6:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32911,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "decision",
+                  "nameLocation": "332:8:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32913,
+                  "src": "325:15:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32910,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "325:6:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "309:32:87"
+            },
+            "src": "292:50:87"
+          },
+          {
+            "body": {
+              "id": 32924,
+              "nodeType": "Block",
+              "src": "376:114:87",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 32919,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 32916,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "394:3:87",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 32917,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "398:6:87",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "394:10:87",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 32918,
+                          "name": "chiefJustice",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 32894,
+                          "src": "408:12:87",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "394:26:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c7920746865204368696566204a7573746963652063616e20706572666f726d207468697320616374696f6e2e",
+                        "id": 32920,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "422:49:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_e12a312426f2b1055d0c2a942c83ed3aab131dfaad5c462a93eea1fd6f297397",
+                          "typeString": "literal_string \"Only the Chief Justice can perform this action.\""
+                        },
+                        "value": "Only the Chief Justice can perform this action."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_e12a312426f2b1055d0c2a942c83ed3aab131dfaad5c462a93eea1fd6f297397",
+                          "typeString": "literal_string \"Only the Chief Justice can perform this action.\""
+                        }
+                      ],
+                      "id": 32915,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "386:7:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 32921,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "386:86:87",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32922,
+                  "nodeType": "ExpressionStatement",
+                  "src": "386:86:87"
+                },
+                {
+                  "id": 32923,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "482:1:87"
+                }
+              ]
+            },
+            "id": 32925,
+            "name": "onlyChiefJustice",
+            "nameLocation": "357:16:87",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 32914,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "373:2:87"
+            },
+            "src": "348:142:87",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 32936,
+              "nodeType": "Block",
+              "src": "519:110:87",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 32929,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "547:3:87",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 32930,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "551:6:87",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "547:10:87",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 32928,
+                          "name": "isJustice",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 32990,
+                          "src": "537:9:87",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) view returns (bool)"
+                          }
+                        },
+                        "id": 32931,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "537:21:87",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c79204173736f6369617465204a757374696365732063616e20706572666f726d207468697320616374696f6e2e",
+                        "id": 32932,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "560:50:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_d69fee6b2506008f3cafd4afa03f3ba3faa434c07f3fa9e2164e1853b71166c8",
+                          "typeString": "literal_string \"Only Associate Justices can perform this action.\""
+                        },
+                        "value": "Only Associate Justices can perform this action."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_d69fee6b2506008f3cafd4afa03f3ba3faa434c07f3fa9e2164e1853b71166c8",
+                          "typeString": "literal_string \"Only Associate Justices can perform this action.\""
+                        }
+                      ],
+                      "id": 32927,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "529:7:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 32933,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "529:82:87",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32934,
+                  "nodeType": "ExpressionStatement",
+                  "src": "529:82:87"
+                },
+                {
+                  "id": 32935,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "621:1:87"
+                }
+              ]
+            },
+            "id": 32937,
+            "name": "onlyJustice",
+            "nameLocation": "505:11:87",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 32926,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "516:2:87"
+            },
+            "src": "496:133:87",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 32957,
+              "nodeType": "Block",
+              "src": "707:118:87",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 32947,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 32945,
+                      "name": "chiefJustice",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32894,
+                      "src": "717:12:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 32946,
+                      "name": "_chiefJustice",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32939,
+                      "src": "732:13:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "717:28:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 32948,
+                  "nodeType": "ExpressionStatement",
+                  "src": "717:28:87"
+                },
+                {
+                  "expression": {
+                    "id": 32951,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 32949,
+                      "name": "associateJustices",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32897,
+                      "src": "755:17:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                        "typeString": "address[] storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 32950,
+                      "name": "_associateJustices",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32942,
+                      "src": "775:18:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                        "typeString": "address[] memory"
+                      }
+                    },
+                    "src": "755:38:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                      "typeString": "address[] storage ref"
+                    }
+                  },
+                  "id": 32952,
+                  "nodeType": "ExpressionStatement",
+                  "src": "755:38:87"
+                },
+                {
+                  "expression": {
+                    "id": 32955,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 32953,
+                      "name": "caseCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29487,
+                      "src": "803:11:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "30",
+                      "id": 32954,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "817:1:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "803:15:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 32956,
+                  "nodeType": "ExpressionStatement",
+                  "src": "803:15:87"
+                }
+              ]
+            },
+            "id": 32958,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32943,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32939,
+                  "mutability": "mutable",
+                  "name": "_chiefJustice",
+                  "nameLocation": "655:13:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32958,
+                  "src": "647:21:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 32938,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "647:7:87",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32942,
+                  "mutability": "mutable",
+                  "name": "_associateJustices",
+                  "nameLocation": "687:18:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32958,
+                  "src": "670:35:87",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 32940,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "670:7:87",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 32941,
+                    "nodeType": "ArrayTypeName",
+                    "src": "670:9:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "646:60:87"
+            },
+            "returnParameters": {
+              "id": 32944,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "707:0:87"
+            },
+            "scope": 33046,
+            "src": "635:190:87",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32989,
+              "nodeType": "Block",
+              "src": "894:198:87",
+              "statements": [
+                {
+                  "body": {
+                    "id": 32985,
+                    "nodeType": "Block",
+                    "src": "959:105:87",
+                    "statements": [
+                      {
+                        "condition": {
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "id": 32980,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "baseExpression": {
+                              "id": 32976,
+                              "name": "associateJustices",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 32897,
+                              "src": "977:17:87",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                "typeString": "address[] storage ref"
+                              }
+                            },
+                            "id": 32978,
+                            "indexExpression": {
+                              "id": 32977,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 32966,
+                              "src": "995:1:87",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "977:20:87",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "id": 32979,
+                            "name": "account",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 32960,
+                            "src": "1001:7:87",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "977:31:87",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 32984,
+                        "nodeType": "IfStatement",
+                        "src": "973:81:87",
+                        "trueBody": {
+                          "id": 32983,
+                          "nodeType": "Block",
+                          "src": "1010:44:87",
+                          "statements": [
+                            {
+                              "expression": {
+                                "hexValue": "74727565",
+                                "id": 32981,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "bool",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1035:4:87",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                "value": "true"
+                              },
+                              "functionReturnParameters": 32964,
+                              "id": 32982,
+                              "nodeType": "Return",
+                              "src": "1028:11:87"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 32972,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 32969,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32966,
+                      "src": "924:1:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "expression": {
+                        "id": 32970,
+                        "name": "associateJustices",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32897,
+                        "src": "928:17:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 32971,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "946:6:87",
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "src": "928:24:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "924:28:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 32986,
+                  "initializationExpression": {
+                    "assignments": [
+                      32966
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 32966,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "917:1:87",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 32986,
+                        "src": "909:9:87",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 32965,
+                          "name": "uint256",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "909:7:87",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 32968,
+                    "initialValue": {
+                      "hexValue": "30",
+                      "id": 32967,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "921:1:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "909:13:87"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 32974,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "954:3:87",
+                      "subExpression": {
+                        "id": 32973,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32966,
+                        "src": "954:1:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 32975,
+                    "nodeType": "ExpressionStatement",
+                    "src": "954:3:87"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "904:160:87"
+                },
+                {
+                  "expression": {
+                    "hexValue": "66616c7365",
+                    "id": 32987,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "1080:5:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "false"
+                  },
+                  "functionReturnParameters": 32964,
+                  "id": 32988,
+                  "nodeType": "Return",
+                  "src": "1073:12:87"
+                }
+              ]
+            },
+            "functionSelector": "b9340d94",
+            "id": 32990,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isJustice",
+            "nameLocation": "840:9:87",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32961,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32960,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "858:7:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32990,
+                  "src": "850:15:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 32959,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "850:7:87",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "849:17:87"
+            },
+            "returnParameters": {
+              "id": 32964,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32963,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32990,
+                  "src": "888:4:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 32962,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "888:4:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "887:6:87"
+            },
+            "scope": 33046,
+            "src": "831:261:87",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 33016,
+              "nodeType": "Block",
+              "src": "1180:158:87",
+              "statements": [
+                {
+                  "assignments": [
+                    33000
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 33000,
+                      "mutability": "mutable",
+                      "name": "caseIndex",
+                      "nameLocation": "1204:9:87",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 33016,
+                      "src": "1190:23:87",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string"
+                      },
+                      "typeName": {
+                        "id": 32999,
+                        "name": "string",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1190:6:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage_ptr",
+                          "typeString": "string"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 33007,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 33002,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1227:3:87",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 33003,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1231:6:87",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1227:10:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 33004,
+                        "name": "respondent",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32992,
+                        "src": "1239:10:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 33005,
+                        "name": "caseTitle",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32994,
+                        "src": "1251:9:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 33001,
+                      "name": "createCase",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29614,
+                      "src": "1216:10:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_string_memory_ptr_$returns$_t_string_memory_ptr_$",
+                        "typeString": "function (address,address,string memory) returns (string memory)"
+                      }
+                    },
+                    "id": 33006,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1216:45:87",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1190:71:87"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 33009,
+                        "name": "caseIndex",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 33000,
+                        "src": "1286:9:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 33010,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1297:3:87",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 33011,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1301:6:87",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1297:10:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 33012,
+                        "name": "respondent",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32992,
+                        "src": "1309:10:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 33013,
+                        "name": "caseTitle",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32994,
+                        "src": "1321:9:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 33008,
+                      "name": "CaseFiled",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32907,
+                      "src": "1276:9:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_address_$_t_address_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory,address,address,string memory)"
+                      }
+                    },
+                    "id": 33014,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1276:55:87",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 33015,
+                  "nodeType": "EmitStatement",
+                  "src": "1271:60:87"
+                }
+              ]
+            },
+            "functionSelector": "ff501927",
+            "id": 33017,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 32997,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 32996,
+                  "name": "onlyJustice",
+                  "nameLocations": [
+                    "1168:11:87"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 32937,
+                  "src": "1168:11:87"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1168:11:87"
+              }
+            ],
+            "name": "fileCase",
+            "nameLocation": "1107:8:87",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32995,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32992,
+                  "mutability": "mutable",
+                  "name": "respondent",
+                  "nameLocation": "1124:10:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 33017,
+                  "src": "1116:18:87",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 32991,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1116:7:87",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32994,
+                  "mutability": "mutable",
+                  "name": "caseTitle",
+                  "nameLocation": "1150:9:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 33017,
+                  "src": "1136:23:87",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32993,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1136:6:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1115:45:87"
+            },
+            "returnParameters": {
+              "id": 32998,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1180:0:87"
+            },
+            "scope": 33046,
+            "src": "1098:240:87",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 33044,
+              "nodeType": "Block",
+              "src": "1434:169:87",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 33030,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "1452:23:87",
+                        "subExpression": {
+                          "arguments": [
+                            {
+                              "id": 33028,
+                              "name": "caseId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 33019,
+                              "src": "1468:6:87",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_memory_ptr",
+                                "typeString": "string memory"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_string_memory_ptr",
+                                "typeString": "string memory"
+                              }
+                            ],
+                            "id": 33027,
+                            "name": "isCaseResolved",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 29766,
+                            "src": "1453:14:87",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_view$_t_string_memory_ptr_$returns$_t_bool_$",
+                              "typeString": "function (string memory) view returns (bool)"
+                            }
+                          },
+                          "id": 33029,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1453:22:87",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "5468697320636173652068617320616c7265616479206265656e20646563696465642e",
+                        "id": 33031,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1477:37:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_b9e06d1e0acd90474d657cf5c8f40d728bdf63818dd44f55abce560b4e2778d3",
+                          "typeString": "literal_string \"This case has already been decided.\""
+                        },
+                        "value": "This case has already been decided."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_b9e06d1e0acd90474d657cf5c8f40d728bdf63818dd44f55abce560b4e2778d3",
+                          "typeString": "literal_string \"This case has already been decided.\""
+                        }
+                      ],
+                      "id": 33026,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1444:7:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 33032,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1444:71:87",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 33033,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1444:71:87"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 33035,
+                        "name": "caseId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 33019,
+                        "src": "1535:6:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 33036,
+                        "name": "decision",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 33021,
+                        "src": "1543:8:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 33034,
+                      "name": "closeCase",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29735,
+                      "src": "1525:9:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory,string memory)"
+                      }
+                    },
+                    "id": 33037,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1525:27:87",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 33038,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1525:27:87"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 33040,
+                        "name": "caseId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 33019,
+                        "src": "1579:6:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 33041,
+                        "name": "decision",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 33021,
+                        "src": "1587:8:87",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 33039,
+                      "name": "CaseDecided",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32913,
+                      "src": "1567:11:87",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory,string memory)"
+                      }
+                    },
+                    "id": 33042,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1567:29:87",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 33043,
+                  "nodeType": "EmitStatement",
+                  "src": "1562:34:87"
+                }
+              ]
+            },
+            "functionSelector": "f10dc2e8",
+            "id": 33045,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 33024,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 33023,
+                  "name": "onlyChiefJustice",
+                  "nameLocations": [
+                    "1417:16:87"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 32925,
+                  "src": "1417:16:87"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1417:16:87"
+              }
+            ],
+            "name": "decideCase",
+            "nameLocation": "1353:10:87",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 33022,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 33019,
+                  "mutability": "mutable",
+                  "name": "caseId",
+                  "nameLocation": "1378:6:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 33045,
+                  "src": "1364:20:87",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 33018,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1364:6:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 33021,
+                  "mutability": "mutable",
+                  "name": "decision",
+                  "nameLocation": "1400:8:87",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 33045,
+                  "src": "1386:22:87",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 33020,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1386:6:87",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1363:46:87"
+            },
+            "returnParameters": {
+              "id": 33025,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1434:0:87"
+            },
+            "scope": 33046,
+            "src": "1344:259:87",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 33047,
+        "src": "93:1512:87",
+        "usedErrors": []
+      }
+    ],
+    "src": "36:1570:87"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:26.209Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

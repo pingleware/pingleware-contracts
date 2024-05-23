@@ -1,0 +1,2797 @@
+{
+  "contractName": "DisputeResolution",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "arbitrationAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "arbitrators",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "party",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "asPartyA",
+          "type": "bool"
+        }
+      ],
+      "name": "addParty",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "dispute",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "submitDispute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "dispute",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "resolvedInFavorOfPartyA",
+          "type": "bool"
+        }
+      ],
+      "name": "resolveDispute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "dispute",
+          "type": "address"
+        }
+      ],
+      "name": "resetDispute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"arbitrationAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"party\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"asPartyA\",\"type\":\"bool\"}],\"name\":\"addParty\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"arbitrators\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"dispute\",\"type\":\"address\"}],\"name\":\"resetDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"dispute\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"resolvedInFavorOfPartyA\",\"type\":\"bool\"}],\"name\":\"resolveDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"dispute\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"}],\"name\":\"submitDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/legal/DisputeReolution.sol\":\"DisputeResolution\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/legal/DisputeReolution.sol\":{\"keccak256\":\"0xccfc1b6078e213d6968476844e26a32180014d401b9d8eaf5c71bce7f1fbbad0\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://0e10179fc698dc4ed00de4d342468bf66a5895a0021e3bc82b62faefc047707e\",\"dweb:/ipfs/QmcXsKB3GQuNrALorPVQkfUhPrriba22wQHjBeuJWm7gUJ\"]}},\"version\":1}",
+  "bytecode": "0x6080346100745761076d80380390601f19601f83011683019183831067ffffffffffffffff841117610079578084926020946040528339810103126100745751600160a060020a038116908190036100745760048054600160a060020a0319169190911790556040516106c490816100a98239f35b600080fd5b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fdfe6040608081526004908136101561001557600080fd5b60009160e060020a83350490633738de3f82146103b157816351d0ea371461037357816357c1d4ff146103045781638d1ff7cc146100ae575063fb833b331461005d57600080fd5b346100aa5760203660031901126100aa57610076610588565b338352600260205261008d60ff83852054166105d2565b600160a060020a0316825260036020528120805460ff1916905580f35b5080fd5b8383346100aa57806003193601126100aa576100c8610588565b602493843592916001604060020a03908185116101d157366023860112156101d157848301359182116101d15786850194878336920101116101d157338652602086815260ff858820541680156102f3575b1561029d57600160a060020a03918216808852600382528588205460ff1685811015610288576102435787985033885287825260ff86892054166000146101d557875260039052838620805460ff19166001179055825416803b156101d157835160e360020a6304aaeb9f02815294869386938492869284926101a09290918401610666565b03925af19081156101c857506101b557505080f35b6101be90610639565b6101c55780f35b80fd5b513d84823e3d90fd5b8580fd5b875260039052838620805460ff1916600217905582549295939491921690813b1561023f57845160e060020a63366262e702815295869384928692849261021f9290918401610666565b03925af19081156101c85750610233575080f35b61023c90610639565b80f35b8380fd5b855160e560020a62461bcd028152808601839052601b818b01527f546865726520697320616c7265616479206120646973707574652e00000000006044820152606490fd5b60e060020a634e487b71028952602186528989fd5b845160e560020a62461bcd028152808501919091528088018890527f596f7520617265206e6f74206120706172747920746f2074686520636f6e7472604482015260e160020a6330b1ba17026064820152608490fd5b506001815260ff858820541661011a565b5050346100aa57610314366105a3565b338452600260205261032b60ff84862054166105d2565b1561035057600160a060020a0316825260208290528120805460ff1916600117905580f35b600160a060020a0316825260016020819052908220805460ff1916909117905580f35b5050346100aa5760203660031901126100aa5760209160ff908290600160a060020a0361039e610588565b1681526002855220541690519015158152f35b905034610584576103c1366105a3565b338552602092600284526103da60ff86882054166105d2565b600160a060020a03928316808752600385528587205490939060ff168281101561056e5715610516578154865160e060020a639a8e813d0281529186918391859183918c91165af190811561050c5787916104a6575b50156104645750600392919015610454578452528120805460ff1916600317905580f35b8452528120805460ff1916905580f35b845160e560020a62461bcd02815290810184905260166024820152605260020a751d9bdd1a5b99c81a185cc81b9bdd08195e1c1a5c9959026044820152606490fd5b9050843d8611610505575b601f8101601f191682016001604060020a038111838210176104ef57869183918952810103126104eb575180151581036104eb5738610430565b8680fd5b60e060020a634e487b7102895260418452602489fd5b503d6104b1565b86513d89823e3d90fd5b855160e560020a62461bcd028152808301869052602660248201527f5468657265206973206e6f20616374697665206469737075746520746f207265604482015260d160020a6539b7b63b3297026064820152608490fd5b60e060020a634e487b7102885260218352602488fd5b8280fd5b60043590600160a060020a038216820361059e57565b600080fd5b604090600319011261059e57600435600160a060020a038116810361059e5790602435801515810361059e5790565b156105d957565b60405160e560020a62461bcd02815260206004820152602c60248201527f4f6e6c79207468652061726269747261746f722063616e20706572666f726d20604482015260a160020a6b3a3434b99030b1ba34b7b717026064820152608490fd5b6001604060020a03811161064c57604052565b60e060020a634e487b710260009081526041600452602490fd5b90918060409360208452816020850152848401376000828201840152601f01601f191601019056fea26469706673582212201aa9e5e202948cc6c881c318fe033be6f608ded2c9c5e7cb0af61526c670639364736f6c63430008120033",
+  "deployedBytecode": "0x6040608081526004908136101561001557600080fd5b60009160e060020a83350490633738de3f82146103b157816351d0ea371461037357816357c1d4ff146103045781638d1ff7cc146100ae575063fb833b331461005d57600080fd5b346100aa5760203660031901126100aa57610076610588565b338352600260205261008d60ff83852054166105d2565b600160a060020a0316825260036020528120805460ff1916905580f35b5080fd5b8383346100aa57806003193601126100aa576100c8610588565b602493843592916001604060020a03908185116101d157366023860112156101d157848301359182116101d15786850194878336920101116101d157338652602086815260ff858820541680156102f3575b1561029d57600160a060020a03918216808852600382528588205460ff1685811015610288576102435787985033885287825260ff86892054166000146101d557875260039052838620805460ff19166001179055825416803b156101d157835160e360020a6304aaeb9f02815294869386938492869284926101a09290918401610666565b03925af19081156101c857506101b557505080f35b6101be90610639565b6101c55780f35b80fd5b513d84823e3d90fd5b8580fd5b875260039052838620805460ff1916600217905582549295939491921690813b1561023f57845160e060020a63366262e702815295869384928692849261021f9290918401610666565b03925af19081156101c85750610233575080f35b61023c90610639565b80f35b8380fd5b855160e560020a62461bcd028152808601839052601b818b01527f546865726520697320616c7265616479206120646973707574652e00000000006044820152606490fd5b60e060020a634e487b71028952602186528989fd5b845160e560020a62461bcd028152808501919091528088018890527f596f7520617265206e6f74206120706172747920746f2074686520636f6e7472604482015260e160020a6330b1ba17026064820152608490fd5b506001815260ff858820541661011a565b5050346100aa57610314366105a3565b338452600260205261032b60ff84862054166105d2565b1561035057600160a060020a0316825260208290528120805460ff1916600117905580f35b600160a060020a0316825260016020819052908220805460ff1916909117905580f35b5050346100aa5760203660031901126100aa5760209160ff908290600160a060020a0361039e610588565b1681526002855220541690519015158152f35b905034610584576103c1366105a3565b338552602092600284526103da60ff86882054166105d2565b600160a060020a03928316808752600385528587205490939060ff168281101561056e5715610516578154865160e060020a639a8e813d0281529186918391859183918c91165af190811561050c5787916104a6575b50156104645750600392919015610454578452528120805460ff1916600317905580f35b8452528120805460ff1916905580f35b845160e560020a62461bcd02815290810184905260166024820152605260020a751d9bdd1a5b99c81a185cc81b9bdd08195e1c1a5c9959026044820152606490fd5b9050843d8611610505575b601f8101601f191682016001604060020a038111838210176104ef57869183918952810103126104eb575180151581036104eb5738610430565b8680fd5b60e060020a634e487b7102895260418452602489fd5b503d6104b1565b86513d89823e3d90fd5b855160e560020a62461bcd028152808301869052602660248201527f5468657265206973206e6f20616374697665206469737075746520746f207265604482015260d160020a6539b7b63b3297026064820152608490fd5b60e060020a634e487b7102885260218352602488fd5b8280fd5b60043590600160a060020a038216820361059e57565b600080fd5b604090600319011261059e57600435600160a060020a038116810361059e5790602435801515810361059e5790565b156105d957565b60405160e560020a62461bcd02815260206004820152602c60248201527f4f6e6c79207468652061726269747261746f722063616e20706572666f726d20604482015260a160020a6b3a3434b99030b1ba34b7b717026064820152608490fd5b6001604060020a03811161064c57604052565b60e060020a634e487b710260009081526041600452602490fd5b90918060409360208452816020850152848401376000828201840152601f01601f191601019056fea26469706673582212201aa9e5e202948cc6c881c318fe033be6f608ded2c9c5e7cb0af61526c670639364736f6c63430008120033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "295:2273:160:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;706:54;295:2273;;-1:-1:-1;;;;;;295:2273:160;;;;;;;;;;;;;;;;;-1:-1:-1;295:2273:160;;;;-1:-1:-1;295:2273:160;;;;;-1:-1:-1;295:2273:160",
+  "deployedSourceMap": "295:2273:160:-:0;;;;;;;;;;;;;;;;;;-1:-1:-1;;;295:2273:160;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;295:2273:160;;;;;;:::i;:::-;1125:10;295:2273;;;;;1105:80;295:2273;;;;;;1105:80;:::i;:::-;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;-1:-1:-1;;295:2273:160;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;969:10;295:2273;;;;;;;;;;;;960:44;;;;295:2273;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;;;;;;;;;;969:10;;;;295:2273;;;;;;;;;;;1609:318;295:2273;;;;;;;;;;;;;-1:-1:-1;;295:2273:160;;;;;;;;1715:52;;;;;295:2273;;-1:-1:-1;;;;;1715:52:160;;295:2273;;;;;;;;;;;1715:52;;295:2273;;1715:52;;;:::i;:::-;;;;;;;;;;;;;1609:318;;295:2273;;1715:52;;;;:::i;:::-;295:2273;;;;;;;1715:52;295:2273;;;;;;;;1715:52;295:2273;;;1609:318;295:2273;;;;;;;;;;-1:-1:-1;;295:2273:160;;;;;;;;;;;;;;;1864:52;;;;;295:2273;;-1:-1:-1;;;;;1864:52:160;;295:2273;;;;;;;;;1864:52;;295:2273;;1864:52;;;:::i;:::-;;;;;;;;;;;;;1609:318;295:2273;;1864:52;;;;:::i;:::-;295:2273;;1864:52;295:2273;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;960:44;295:2273;;;;;;;;;;960:44;;295:2273;;;;;;;;;:::i;:::-;1125:10;295:2273;;;;;1105:80;295:2273;;;;;;1105:80;:::i;:::-;1290:114;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;-1:-1:-1;;295:2273:160;;;;;;;1290:114;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;-1:-1:-1;;295:2273:160;;;;;;;;;;;;;;;;-1:-1:-1;;295:2273:160;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1125:10;295:2273;;;;;;;1105:80;295:2273;;;;;;1105:80;:::i;:::-;-1:-1:-1;;;;;295:2273:160;;;;;;2051:13;295:2273;;;;;;;;;;;;;;;;;2051:49;295:2273;;;;;;-1:-1:-1;;;;;2161:40:160;;295:2273;;;;;;;;;;;;2161:40;;;;;;;;;;;295:2273;;;;;-1:-1:-1;2051:13:160;;2246:180;;;;;295:2273;;;;;;;-1:-1:-1;;295:2273:160;2051:13;295:2273;;;;;2246:180;295:2273;;;;;;;-1:-1:-1;;295:2273:160;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;2161:40;;;;;;;;;;295:2273;;;-1:-1:-1;;295:2273:160;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;2161:40;;295:2273;;;;;;;;;;;;2161:40;;;295:2273;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;2161:40;;;;;;295:2273;;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;:::o;:::-;;;;;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;;;;:::o;:::-;;;;:::o;:::-;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;;;-1:-1:-1;;;;;295:2273:160;;;;;;:::o;:::-;-1:-1:-1;;;;;295:2273:160;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;295:2273:160;;;;:::o",
+  "source": "// SPDX-License-Identifier: CC-BY-4.0\npragma solidity >=0.4.22 <0.9.0;\n\ninterface IArbitration {\n    function hasVoteTimeExpired() external returns (bool);\n    function addSideAViewpointComment(string calldata _A) external;\n    function addSideBViewpointComment(string calldata _B) external;\n}\n\ncontract DisputeResolution {\n\n    mapping(address => bool) private partiesA;\n    mapping(address => bool) private partiesB;\n    mapping(address => bool) public arbitrators;\n    \n    enum DisputeStatus { NoDispute, PartyADispute, PartyBDispute, Resolved }\n\n    mapping(address => DisputeStatus) private disputeStatus;\n\n    IArbitration arbitrationContract;\n\n    constructor(address arbitrationAddress) {\n        arbitrationContract = IArbitration(arbitrationAddress);\n        //partyA = msg.sender;\n        //partyB = _partyB;\n        //arbitrator = _arbitrator;\n        //disputeStatus = DisputeStatus.NoDispute;\n    }\n\n    modifier onlyParties() {\n        require(partiesA[msg.sender] || partiesB[msg.sender], \"You are not a party to the contract.\");\n        _;\n    }\n\n    modifier onlyArbitrator() {\n        require(arbitrators[msg.sender], \"Only the arbitrator can perform this action.\");\n        _;\n    }\n\n    function addParty(address party,bool asPartyA) external onlyArbitrator {\n        if (asPartyA) {\n            partiesA[party] = true;\n        } else {\n            partiesB[party] = true;\n        }\n    }\n\n    function submitDispute(address dispute,string calldata reason) external onlyParties {\n        require(disputeStatus[dispute] == DisputeStatus.NoDispute, \"There is already a dispute.\");\n        if (partiesA[msg.sender]) {\n            disputeStatus[dispute] = DisputeStatus.PartyADispute;\n            arbitrationContract.addSideAViewpointComment(reason);\n        } else {\n            disputeStatus[dispute] = DisputeStatus.PartyBDispute;\n            arbitrationContract.addSideBViewpointComment(reason);\n        }\n    }\n\n    function resolveDispute(address dispute,bool resolvedInFavorOfPartyA) external onlyArbitrator {\n        require(disputeStatus[dispute] != DisputeStatus.NoDispute, \"There is no active dispute to resolve.\");\n        require(arbitrationContract.hasVoteTimeExpired(),\"voting has not expired\");\n        \n        if (resolvedInFavorOfPartyA) {\n            disputeStatus[dispute] = DisputeStatus.Resolved;\n        } else {\n            disputeStatus[dispute] = DisputeStatus.NoDispute;\n        }\n    }\n\n    function resetDispute(address dispute) external onlyArbitrator {\n        disputeStatus[dispute] = DisputeStatus.NoDispute;\n    }\n}\n",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/legal/DisputeReolution.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/legal/DisputeReolution.sol",
+    "exportedSymbols": {
+      "DisputeResolution": [
+        42896
+      ],
+      "IArbitration": [
+        42690
+      ]
+    },
+    "id": 42897,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 42674,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:32:160"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IArbitration",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 42690,
+        "linearizedBaseContracts": [
+          42690
+        ],
+        "name": "IArbitration",
+        "nameLocation": "82:12:160",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "9a8e813d",
+            "id": 42679,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "hasVoteTimeExpired",
+            "nameLocation": "110:18:160",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42675,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "128:2:160"
+            },
+            "returnParameters": {
+              "id": 42678,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42677,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42679,
+                  "src": "149:4:160",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 42676,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "149:4:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "148:6:160"
+            },
+            "scope": 42690,
+            "src": "101:54:160",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "25575cf8",
+            "id": 42684,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addSideAViewpointComment",
+            "nameLocation": "169:24:160",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42682,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42681,
+                  "mutability": "mutable",
+                  "name": "_A",
+                  "nameLocation": "210:2:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42684,
+                  "src": "194:18:160",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 42680,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "194:6:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "193:20:160"
+            },
+            "returnParameters": {
+              "id": 42683,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "222:0:160"
+            },
+            "scope": 42690,
+            "src": "160:63:160",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "366262e7",
+            "id": 42689,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addSideBViewpointComment",
+            "nameLocation": "237:24:160",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42687,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42686,
+                  "mutability": "mutable",
+                  "name": "_B",
+                  "nameLocation": "278:2:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42689,
+                  "src": "262:18:160",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 42685,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "262:6:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "261:20:160"
+            },
+            "returnParameters": {
+              "id": 42688,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "290:0:160"
+            },
+            "scope": 42690,
+            "src": "228:63:160",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 42897,
+        "src": "72:221:160",
+        "usedErrors": []
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "DisputeResolution",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 42896,
+        "linearizedBaseContracts": [
+          42896
+        ],
+        "name": "DisputeResolution",
+        "nameLocation": "304:17:160",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 42694,
+            "mutability": "mutable",
+            "name": "partiesA",
+            "nameLocation": "362:8:160",
+            "nodeType": "VariableDeclaration",
+            "scope": 42896,
+            "src": "329:41:160",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+              "typeString": "mapping(address => bool)"
+            },
+            "typeName": {
+              "id": 42693,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 42691,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "337:7:160",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "329:24:160",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                "typeString": "mapping(address => bool)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 42692,
+                "name": "bool",
+                "nodeType": "ElementaryTypeName",
+                "src": "348:4:160",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                }
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": false,
+            "id": 42698,
+            "mutability": "mutable",
+            "name": "partiesB",
+            "nameLocation": "409:8:160",
+            "nodeType": "VariableDeclaration",
+            "scope": 42896,
+            "src": "376:41:160",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+              "typeString": "mapping(address => bool)"
+            },
+            "typeName": {
+              "id": 42697,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 42695,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "384:7:160",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "376:24:160",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                "typeString": "mapping(address => bool)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 42696,
+                "name": "bool",
+                "nodeType": "ElementaryTypeName",
+                "src": "395:4:160",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                }
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": false,
+            "functionSelector": "51d0ea37",
+            "id": 42702,
+            "mutability": "mutable",
+            "name": "arbitrators",
+            "nameLocation": "455:11:160",
+            "nodeType": "VariableDeclaration",
+            "scope": 42896,
+            "src": "423:43:160",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+              "typeString": "mapping(address => bool)"
+            },
+            "typeName": {
+              "id": 42701,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 42699,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "431:7:160",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "423:24:160",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                "typeString": "mapping(address => bool)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 42700,
+                "name": "bool",
+                "nodeType": "ElementaryTypeName",
+                "src": "442:4:160",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "DisputeResolution.DisputeStatus",
+            "id": 42707,
+            "members": [
+              {
+                "id": 42703,
+                "name": "NoDispute",
+                "nameLocation": "498:9:160",
+                "nodeType": "EnumValue",
+                "src": "498:9:160"
+              },
+              {
+                "id": 42704,
+                "name": "PartyADispute",
+                "nameLocation": "509:13:160",
+                "nodeType": "EnumValue",
+                "src": "509:13:160"
+              },
+              {
+                "id": 42705,
+                "name": "PartyBDispute",
+                "nameLocation": "524:13:160",
+                "nodeType": "EnumValue",
+                "src": "524:13:160"
+              },
+              {
+                "id": 42706,
+                "name": "Resolved",
+                "nameLocation": "539:8:160",
+                "nodeType": "EnumValue",
+                "src": "539:8:160"
+              }
+            ],
+            "name": "DisputeStatus",
+            "nameLocation": "482:13:160",
+            "nodeType": "EnumDefinition",
+            "src": "477:72:160"
+          },
+          {
+            "constant": false,
+            "id": 42712,
+            "mutability": "mutable",
+            "name": "disputeStatus",
+            "nameLocation": "597:13:160",
+            "nodeType": "VariableDeclaration",
+            "scope": 42896,
+            "src": "555:55:160",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_enum$_DisputeStatus_$42707_$",
+              "typeString": "mapping(address => enum DisputeResolution.DisputeStatus)"
+            },
+            "typeName": {
+              "id": 42711,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 42708,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "563:7:160",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "555:33:160",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_enum$_DisputeStatus_$42707_$",
+                "typeString": "mapping(address => enum DisputeResolution.DisputeStatus)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 42710,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 42709,
+                  "name": "DisputeStatus",
+                  "nameLocations": [
+                    "574:13:160"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 42707,
+                  "src": "574:13:160"
+                },
+                "referencedDeclaration": 42707,
+                "src": "574:13:160",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                  "typeString": "enum DisputeResolution.DisputeStatus"
+                }
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": false,
+            "id": 42715,
+            "mutability": "mutable",
+            "name": "arbitrationContract",
+            "nameLocation": "630:19:160",
+            "nodeType": "VariableDeclaration",
+            "scope": 42896,
+            "src": "617:32:160",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IArbitration_$42690",
+              "typeString": "contract IArbitration"
+            },
+            "typeName": {
+              "id": 42714,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 42713,
+                "name": "IArbitration",
+                "nameLocations": [
+                  "617:12:160"
+                ],
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 42690,
+                "src": "617:12:160"
+              },
+              "referencedDeclaration": 42690,
+              "src": "617:12:160",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IArbitration_$42690",
+                "typeString": "contract IArbitration"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 42726,
+              "nodeType": "Block",
+              "src": "696:217:160",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 42724,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 42720,
+                      "name": "arbitrationContract",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 42715,
+                      "src": "706:19:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IArbitration_$42690",
+                        "typeString": "contract IArbitration"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 42722,
+                          "name": "arbitrationAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 42717,
+                          "src": "741:18:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 42721,
+                        "name": "IArbitration",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 42690,
+                        "src": "728:12:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_IArbitration_$42690_$",
+                          "typeString": "type(contract IArbitration)"
+                        }
+                      },
+                      "id": 42723,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "728:32:160",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IArbitration_$42690",
+                        "typeString": "contract IArbitration"
+                      }
+                    },
+                    "src": "706:54:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitration_$42690",
+                      "typeString": "contract IArbitration"
+                    }
+                  },
+                  "id": 42725,
+                  "nodeType": "ExpressionStatement",
+                  "src": "706:54:160"
+                }
+              ]
+            },
+            "id": 42727,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42718,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42717,
+                  "mutability": "mutable",
+                  "name": "arbitrationAddress",
+                  "nameLocation": "676:18:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42727,
+                  "src": "668:26:160",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 42716,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "668:7:160",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "667:28:160"
+            },
+            "returnParameters": {
+              "id": 42719,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "696:0:160"
+            },
+            "scope": 42896,
+            "src": "656:257:160",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 42743,
+              "nodeType": "Block",
+              "src": "942:121:160",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 42738,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "baseExpression": {
+                            "id": 42730,
+                            "name": "partiesA",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 42694,
+                            "src": "960:8:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                              "typeString": "mapping(address => bool)"
+                            }
+                          },
+                          "id": 42733,
+                          "indexExpression": {
+                            "expression": {
+                              "id": 42731,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "969:3:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 42732,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "973:6:160",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "969:10:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "960:20:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "||",
+                        "rightExpression": {
+                          "baseExpression": {
+                            "id": 42734,
+                            "name": "partiesB",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 42698,
+                            "src": "984:8:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                              "typeString": "mapping(address => bool)"
+                            }
+                          },
+                          "id": 42737,
+                          "indexExpression": {
+                            "expression": {
+                              "id": 42735,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "993:3:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 42736,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "997:6:160",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "993:10:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "984:20:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "960:44:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "596f7520617265206e6f74206120706172747920746f2074686520636f6e74726163742e",
+                        "id": 42739,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1006:38:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_d617bf225a8c49134b33bac187422b6cbdcd547fc5ee2678f0c74d0d91394361",
+                          "typeString": "literal_string \"You are not a party to the contract.\""
+                        },
+                        "value": "You are not a party to the contract."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_d617bf225a8c49134b33bac187422b6cbdcd547fc5ee2678f0c74d0d91394361",
+                          "typeString": "literal_string \"You are not a party to the contract.\""
+                        }
+                      ],
+                      "id": 42729,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "952:7:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 42740,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "952:93:160",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 42741,
+                  "nodeType": "ExpressionStatement",
+                  "src": "952:93:160"
+                },
+                {
+                  "id": 42742,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1055:1:160"
+                }
+              ]
+            },
+            "id": 42744,
+            "name": "onlyParties",
+            "nameLocation": "928:11:160",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 42728,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "939:2:160"
+            },
+            "src": "919:144:160",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 42755,
+              "nodeType": "Block",
+              "src": "1095:108:160",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "baseExpression": {
+                          "id": 42747,
+                          "name": "arbitrators",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 42702,
+                          "src": "1113:11:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                            "typeString": "mapping(address => bool)"
+                          }
+                        },
+                        "id": 42750,
+                        "indexExpression": {
+                          "expression": {
+                            "id": 42748,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "1125:3:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 42749,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1129:6:160",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "1125:10:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1113:23:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c79207468652061726269747261746f722063616e20706572666f726d207468697320616374696f6e2e",
+                        "id": 42751,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1138:46:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_d786a1d49d0128888c74c94e32a1f61a5a4b1fcb321f05f64a05bb13bbb188b1",
+                          "typeString": "literal_string \"Only the arbitrator can perform this action.\""
+                        },
+                        "value": "Only the arbitrator can perform this action."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_d786a1d49d0128888c74c94e32a1f61a5a4b1fcb321f05f64a05bb13bbb188b1",
+                          "typeString": "literal_string \"Only the arbitrator can perform this action.\""
+                        }
+                      ],
+                      "id": 42746,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1105:7:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 42752,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1105:80:160",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 42753,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1105:80:160"
+                },
+                {
+                  "id": 42754,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1195:1:160"
+                }
+              ]
+            },
+            "id": 42756,
+            "name": "onlyArbitrator",
+            "nameLocation": "1078:14:160",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 42745,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1092:2:160"
+            },
+            "src": "1069:134:160",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 42781,
+              "nodeType": "Block",
+              "src": "1280:130:160",
+              "statements": [
+                {
+                  "condition": {
+                    "id": 42765,
+                    "name": "asPartyA",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 42760,
+                    "src": "1294:8:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "id": 42779,
+                    "nodeType": "Block",
+                    "src": "1357:47:160",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 42777,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "baseExpression": {
+                              "id": 42773,
+                              "name": "partiesB",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42698,
+                              "src": "1371:8:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                "typeString": "mapping(address => bool)"
+                              }
+                            },
+                            "id": 42775,
+                            "indexExpression": {
+                              "id": 42774,
+                              "name": "party",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42758,
+                              "src": "1380:5:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1371:15:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "hexValue": "74727565",
+                            "id": 42776,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "bool",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "1389:4:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "value": "true"
+                          },
+                          "src": "1371:22:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 42778,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1371:22:160"
+                      }
+                    ]
+                  },
+                  "id": 42780,
+                  "nodeType": "IfStatement",
+                  "src": "1290:114:160",
+                  "trueBody": {
+                    "id": 42772,
+                    "nodeType": "Block",
+                    "src": "1304:47:160",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 42770,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "baseExpression": {
+                              "id": 42766,
+                              "name": "partiesA",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42694,
+                              "src": "1318:8:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                "typeString": "mapping(address => bool)"
+                              }
+                            },
+                            "id": 42768,
+                            "indexExpression": {
+                              "id": 42767,
+                              "name": "party",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42758,
+                              "src": "1327:5:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1318:15:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "hexValue": "74727565",
+                            "id": 42769,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "bool",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "1336:4:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "value": "true"
+                          },
+                          "src": "1318:22:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 42771,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1318:22:160"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "functionSelector": "57c1d4ff",
+            "id": 42782,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 42763,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 42762,
+                  "name": "onlyArbitrator",
+                  "nameLocations": [
+                    "1265:14:160"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 42756,
+                  "src": "1265:14:160"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1265:14:160"
+              }
+            ],
+            "name": "addParty",
+            "nameLocation": "1218:8:160",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42761,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42758,
+                  "mutability": "mutable",
+                  "name": "party",
+                  "nameLocation": "1235:5:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42782,
+                  "src": "1227:13:160",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 42757,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1227:7:160",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42760,
+                  "mutability": "mutable",
+                  "name": "asPartyA",
+                  "nameLocation": "1246:8:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42782,
+                  "src": "1241:13:160",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 42759,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1241:4:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1226:29:160"
+            },
+            "returnParameters": {
+              "id": 42764,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1280:0:160"
+            },
+            "scope": 42896,
+            "src": "1209:201:160",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 42834,
+              "nodeType": "Block",
+              "src": "1500:433:160",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                          "typeString": "enum DisputeResolution.DisputeStatus"
+                        },
+                        "id": 42797,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "baseExpression": {
+                            "id": 42792,
+                            "name": "disputeStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 42712,
+                            "src": "1518:13:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_enum$_DisputeStatus_$42707_$",
+                              "typeString": "mapping(address => enum DisputeResolution.DisputeStatus)"
+                            }
+                          },
+                          "id": 42794,
+                          "indexExpression": {
+                            "id": 42793,
+                            "name": "dispute",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 42784,
+                            "src": "1532:7:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1518:22:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                            "typeString": "enum DisputeResolution.DisputeStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 42795,
+                            "name": "DisputeStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 42707,
+                            "src": "1544:13:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_DisputeStatus_$42707_$",
+                              "typeString": "type(enum DisputeResolution.DisputeStatus)"
+                            }
+                          },
+                          "id": 42796,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1558:9:160",
+                          "memberName": "NoDispute",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 42703,
+                          "src": "1544:23:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                            "typeString": "enum DisputeResolution.DisputeStatus"
+                          }
+                        },
+                        "src": "1518:49:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "546865726520697320616c7265616479206120646973707574652e",
+                        "id": 42798,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1569:29:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_8cc9397048ec5a2ec9c3686905c84c018a6acefca7d85059203dc478a5ba1a28",
+                          "typeString": "literal_string \"There is already a dispute.\""
+                        },
+                        "value": "There is already a dispute."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_8cc9397048ec5a2ec9c3686905c84c018a6acefca7d85059203dc478a5ba1a28",
+                          "typeString": "literal_string \"There is already a dispute.\""
+                        }
+                      ],
+                      "id": 42791,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1510:7:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 42799,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1510:89:160",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 42800,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1510:89:160"
+                },
+                {
+                  "condition": {
+                    "baseExpression": {
+                      "id": 42801,
+                      "name": "partiesA",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 42694,
+                      "src": "1613:8:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                        "typeString": "mapping(address => bool)"
+                      }
+                    },
+                    "id": 42804,
+                    "indexExpression": {
+                      "expression": {
+                        "id": 42802,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967281,
+                        "src": "1622:3:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 42803,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1626:6:160",
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "1622:10:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1613:20:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "id": 42832,
+                    "nodeType": "Block",
+                    "src": "1784:143:160",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 42824,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "baseExpression": {
+                              "id": 42819,
+                              "name": "disputeStatus",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42712,
+                              "src": "1798:13:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_enum$_DisputeStatus_$42707_$",
+                                "typeString": "mapping(address => enum DisputeResolution.DisputeStatus)"
+                              }
+                            },
+                            "id": 42821,
+                            "indexExpression": {
+                              "id": 42820,
+                              "name": "dispute",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42784,
+                              "src": "1812:7:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1798:22:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                              "typeString": "enum DisputeResolution.DisputeStatus"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "expression": {
+                              "id": 42822,
+                              "name": "DisputeStatus",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42707,
+                              "src": "1823:13:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_DisputeStatus_$42707_$",
+                                "typeString": "type(enum DisputeResolution.DisputeStatus)"
+                              }
+                            },
+                            "id": 42823,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberLocation": "1837:13:160",
+                            "memberName": "PartyBDispute",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 42705,
+                            "src": "1823:27:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                              "typeString": "enum DisputeResolution.DisputeStatus"
+                            }
+                          },
+                          "src": "1798:52:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                            "typeString": "enum DisputeResolution.DisputeStatus"
+                          }
+                        },
+                        "id": 42825,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1798:52:160"
+                      },
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "id": 42829,
+                              "name": "reason",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42786,
+                              "src": "1909:6:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_calldata_ptr",
+                                "typeString": "string calldata"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_string_calldata_ptr",
+                                "typeString": "string calldata"
+                              }
+                            ],
+                            "expression": {
+                              "id": 42826,
+                              "name": "arbitrationContract",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42715,
+                              "src": "1864:19:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_IArbitration_$42690",
+                                "typeString": "contract IArbitration"
+                              }
+                            },
+                            "id": 42828,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "1884:24:160",
+                            "memberName": "addSideBViewpointComment",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 42689,
+                            "src": "1864:44:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_external_nonpayable$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) external"
+                            }
+                          },
+                          "id": 42830,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1864:52:160",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 42831,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1864:52:160"
+                      }
+                    ]
+                  },
+                  "id": 42833,
+                  "nodeType": "IfStatement",
+                  "src": "1609:318:160",
+                  "trueBody": {
+                    "id": 42818,
+                    "nodeType": "Block",
+                    "src": "1635:143:160",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 42810,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "baseExpression": {
+                              "id": 42805,
+                              "name": "disputeStatus",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42712,
+                              "src": "1649:13:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_enum$_DisputeStatus_$42707_$",
+                                "typeString": "mapping(address => enum DisputeResolution.DisputeStatus)"
+                              }
+                            },
+                            "id": 42807,
+                            "indexExpression": {
+                              "id": 42806,
+                              "name": "dispute",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42784,
+                              "src": "1663:7:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1649:22:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                              "typeString": "enum DisputeResolution.DisputeStatus"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "expression": {
+                              "id": 42808,
+                              "name": "DisputeStatus",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42707,
+                              "src": "1674:13:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_DisputeStatus_$42707_$",
+                                "typeString": "type(enum DisputeResolution.DisputeStatus)"
+                              }
+                            },
+                            "id": 42809,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberLocation": "1688:13:160",
+                            "memberName": "PartyADispute",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 42704,
+                            "src": "1674:27:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                              "typeString": "enum DisputeResolution.DisputeStatus"
+                            }
+                          },
+                          "src": "1649:52:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                            "typeString": "enum DisputeResolution.DisputeStatus"
+                          }
+                        },
+                        "id": 42811,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1649:52:160"
+                      },
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "id": 42815,
+                              "name": "reason",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42786,
+                              "src": "1760:6:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_calldata_ptr",
+                                "typeString": "string calldata"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_string_calldata_ptr",
+                                "typeString": "string calldata"
+                              }
+                            ],
+                            "expression": {
+                              "id": 42812,
+                              "name": "arbitrationContract",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42715,
+                              "src": "1715:19:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_IArbitration_$42690",
+                                "typeString": "contract IArbitration"
+                              }
+                            },
+                            "id": 42814,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "1735:24:160",
+                            "memberName": "addSideAViewpointComment",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 42684,
+                            "src": "1715:44:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_external_nonpayable$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory) external"
+                            }
+                          },
+                          "id": 42816,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1715:52:160",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 42817,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1715:52:160"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "functionSelector": "8d1ff7cc",
+            "id": 42835,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 42789,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 42788,
+                  "name": "onlyParties",
+                  "nameLocations": [
+                    "1488:11:160"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 42744,
+                  "src": "1488:11:160"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1488:11:160"
+              }
+            ],
+            "name": "submitDispute",
+            "nameLocation": "1425:13:160",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42787,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42784,
+                  "mutability": "mutable",
+                  "name": "dispute",
+                  "nameLocation": "1447:7:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42835,
+                  "src": "1439:15:160",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 42783,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1439:7:160",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42786,
+                  "mutability": "mutable",
+                  "name": "reason",
+                  "nameLocation": "1471:6:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42835,
+                  "src": "1455:22:160",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 42785,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1455:6:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1438:40:160"
+            },
+            "returnParameters": {
+              "id": 42790,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1500:0:160"
+            },
+            "scope": 42896,
+            "src": "1416:517:160",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 42879,
+              "nodeType": "Block",
+              "src": "2033:399:160",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                          "typeString": "enum DisputeResolution.DisputeStatus"
+                        },
+                        "id": 42850,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "baseExpression": {
+                            "id": 42845,
+                            "name": "disputeStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 42712,
+                            "src": "2051:13:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_enum$_DisputeStatus_$42707_$",
+                              "typeString": "mapping(address => enum DisputeResolution.DisputeStatus)"
+                            }
+                          },
+                          "id": 42847,
+                          "indexExpression": {
+                            "id": 42846,
+                            "name": "dispute",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 42837,
+                            "src": "2065:7:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "2051:22:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                            "typeString": "enum DisputeResolution.DisputeStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 42848,
+                            "name": "DisputeStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 42707,
+                            "src": "2077:13:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_DisputeStatus_$42707_$",
+                              "typeString": "type(enum DisputeResolution.DisputeStatus)"
+                            }
+                          },
+                          "id": 42849,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "2091:9:160",
+                          "memberName": "NoDispute",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 42703,
+                          "src": "2077:23:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                            "typeString": "enum DisputeResolution.DisputeStatus"
+                          }
+                        },
+                        "src": "2051:49:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "5468657265206973206e6f20616374697665206469737075746520746f207265736f6c76652e",
+                        "id": 42851,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2102:40:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_68890c23bff95f8d142d42899cc9d85496f99eca7868c2fe006680acf72dd6ed",
+                          "typeString": "literal_string \"There is no active dispute to resolve.\""
+                        },
+                        "value": "There is no active dispute to resolve."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_68890c23bff95f8d142d42899cc9d85496f99eca7868c2fe006680acf72dd6ed",
+                          "typeString": "literal_string \"There is no active dispute to resolve.\""
+                        }
+                      ],
+                      "id": 42844,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2043:7:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 42852,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2043:100:160",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 42853,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2043:100:160"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "id": 42855,
+                            "name": "arbitrationContract",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 42715,
+                            "src": "2161:19:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_IArbitration_$42690",
+                              "typeString": "contract IArbitration"
+                            }
+                          },
+                          "id": 42856,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2181:18:160",
+                          "memberName": "hasVoteTimeExpired",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 42679,
+                          "src": "2161:38:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_nonpayable$__$returns$_t_bool_$",
+                            "typeString": "function () external returns (bool)"
+                          }
+                        },
+                        "id": 42857,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2161:40:160",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "766f74696e6720686173206e6f742065787069726564",
+                        "id": 42858,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2202:24:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_0ec6819cbe4b75da2d44be1fd436ebf8523837a4b0ffe30e5e0a41cb7df2d738",
+                          "typeString": "literal_string \"voting has not expired\""
+                        },
+                        "value": "voting has not expired"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_0ec6819cbe4b75da2d44be1fd436ebf8523837a4b0ffe30e5e0a41cb7df2d738",
+                          "typeString": "literal_string \"voting has not expired\""
+                        }
+                      ],
+                      "id": 42854,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2153:7:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 42859,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2153:74:160",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 42860,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2153:74:160"
+                },
+                {
+                  "condition": {
+                    "id": 42861,
+                    "name": "resolvedInFavorOfPartyA",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 42839,
+                    "src": "2250:23:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "id": 42877,
+                    "nodeType": "Block",
+                    "src": "2353:73:160",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 42875,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "baseExpression": {
+                              "id": 42870,
+                              "name": "disputeStatus",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42712,
+                              "src": "2367:13:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_enum$_DisputeStatus_$42707_$",
+                                "typeString": "mapping(address => enum DisputeResolution.DisputeStatus)"
+                              }
+                            },
+                            "id": 42872,
+                            "indexExpression": {
+                              "id": 42871,
+                              "name": "dispute",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42837,
+                              "src": "2381:7:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "2367:22:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                              "typeString": "enum DisputeResolution.DisputeStatus"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "expression": {
+                              "id": 42873,
+                              "name": "DisputeStatus",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42707,
+                              "src": "2392:13:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_DisputeStatus_$42707_$",
+                                "typeString": "type(enum DisputeResolution.DisputeStatus)"
+                              }
+                            },
+                            "id": 42874,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberLocation": "2406:9:160",
+                            "memberName": "NoDispute",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 42703,
+                            "src": "2392:23:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                              "typeString": "enum DisputeResolution.DisputeStatus"
+                            }
+                          },
+                          "src": "2367:48:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                            "typeString": "enum DisputeResolution.DisputeStatus"
+                          }
+                        },
+                        "id": 42876,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2367:48:160"
+                      }
+                    ]
+                  },
+                  "id": 42878,
+                  "nodeType": "IfStatement",
+                  "src": "2246:180:160",
+                  "trueBody": {
+                    "id": 42869,
+                    "nodeType": "Block",
+                    "src": "2275:72:160",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 42867,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "baseExpression": {
+                              "id": 42862,
+                              "name": "disputeStatus",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42712,
+                              "src": "2289:13:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_enum$_DisputeStatus_$42707_$",
+                                "typeString": "mapping(address => enum DisputeResolution.DisputeStatus)"
+                              }
+                            },
+                            "id": 42864,
+                            "indexExpression": {
+                              "id": 42863,
+                              "name": "dispute",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42837,
+                              "src": "2303:7:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "2289:22:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                              "typeString": "enum DisputeResolution.DisputeStatus"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "expression": {
+                              "id": 42865,
+                              "name": "DisputeStatus",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 42707,
+                              "src": "2314:13:160",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_DisputeStatus_$42707_$",
+                                "typeString": "type(enum DisputeResolution.DisputeStatus)"
+                              }
+                            },
+                            "id": 42866,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberLocation": "2328:8:160",
+                            "memberName": "Resolved",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 42706,
+                            "src": "2314:22:160",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                              "typeString": "enum DisputeResolution.DisputeStatus"
+                            }
+                          },
+                          "src": "2289:47:160",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                            "typeString": "enum DisputeResolution.DisputeStatus"
+                          }
+                        },
+                        "id": 42868,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2289:47:160"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "functionSelector": "3738de3f",
+            "id": 42880,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 42842,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 42841,
+                  "name": "onlyArbitrator",
+                  "nameLocations": [
+                    "2018:14:160"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 42756,
+                  "src": "2018:14:160"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2018:14:160"
+              }
+            ],
+            "name": "resolveDispute",
+            "nameLocation": "1948:14:160",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42840,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42837,
+                  "mutability": "mutable",
+                  "name": "dispute",
+                  "nameLocation": "1971:7:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42880,
+                  "src": "1963:15:160",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 42836,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1963:7:160",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42839,
+                  "mutability": "mutable",
+                  "name": "resolvedInFavorOfPartyA",
+                  "nameLocation": "1984:23:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42880,
+                  "src": "1979:28:160",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 42838,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1979:4:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1962:46:160"
+            },
+            "returnParameters": {
+              "id": 42843,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2033:0:160"
+            },
+            "scope": 42896,
+            "src": "1939:493:160",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 42894,
+              "nodeType": "Block",
+              "src": "2501:65:160",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 42892,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 42887,
+                        "name": "disputeStatus",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 42712,
+                        "src": "2511:13:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_enum$_DisputeStatus_$42707_$",
+                          "typeString": "mapping(address => enum DisputeResolution.DisputeStatus)"
+                        }
+                      },
+                      "id": 42889,
+                      "indexExpression": {
+                        "id": 42888,
+                        "name": "dispute",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 42882,
+                        "src": "2525:7:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2511:22:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                        "typeString": "enum DisputeResolution.DisputeStatus"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 42890,
+                        "name": "DisputeStatus",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 42707,
+                        "src": "2536:13:160",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_DisputeStatus_$42707_$",
+                          "typeString": "type(enum DisputeResolution.DisputeStatus)"
+                        }
+                      },
+                      "id": 42891,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberLocation": "2550:9:160",
+                      "memberName": "NoDispute",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 42703,
+                      "src": "2536:23:160",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                        "typeString": "enum DisputeResolution.DisputeStatus"
+                      }
+                    },
+                    "src": "2511:48:160",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_DisputeStatus_$42707",
+                      "typeString": "enum DisputeResolution.DisputeStatus"
+                    }
+                  },
+                  "id": 42893,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2511:48:160"
+                }
+              ]
+            },
+            "functionSelector": "fb833b33",
+            "id": 42895,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 42885,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 42884,
+                  "name": "onlyArbitrator",
+                  "nameLocations": [
+                    "2486:14:160"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 42756,
+                  "src": "2486:14:160"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2486:14:160"
+              }
+            ],
+            "name": "resetDispute",
+            "nameLocation": "2447:12:160",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42883,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42882,
+                  "mutability": "mutable",
+                  "name": "dispute",
+                  "nameLocation": "2468:7:160",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42895,
+                  "src": "2460:15:160",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 42881,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2460:7:160",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2459:17:160"
+            },
+            "returnParameters": {
+              "id": 42886,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2501:0:160"
+            },
+            "scope": 42896,
+            "src": "2438:128:160",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 42897,
+        "src": "295:2273:160",
+        "usedErrors": []
+      }
+    ],
+    "src": "38:2531:160"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:26.767Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

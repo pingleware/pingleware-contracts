@@ -1,0 +1,2473 @@
+{
+  "contractName": "TaxExemptBond",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_issuerName",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_issuerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_principalAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_couponRate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_maturityDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_issuanceDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_bondHolder",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "issuerName",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "issuerAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "principalAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "couponRate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "maturityDate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "issuanceDate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "bondHolder",
+          "type": "address"
+        }
+      ],
+      "name": "BondIssued",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "bondHolder",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "redemptionDate",
+          "type": "uint256"
+        }
+      ],
+      "name": "BondRedeemed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "Destroyed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "FallbackEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "ReceiveEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "reason",
+          "type": "bytes"
+        }
+      ],
+      "name": "Started",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "reason",
+          "type": "bytes"
+        }
+      ],
+      "name": "Stopped",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "Termination",
+      "type": "event"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "inputs": [],
+      "name": "VERSION",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "WAIT",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "bondHolder",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "couponRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "destroy",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_recipient",
+          "type": "address"
+        }
+      ],
+      "name": "destroyAndSend",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isRedeemed",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "issuanceDate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "issuerAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "issuerName",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "maturityDate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "principalAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "redemptionDate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    },
+    {
+      "inputs": [],
+      "name": "redeemBond",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_issuerName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_issuerAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_principalAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_couponRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_maturityDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_issuanceDate\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_bondHolder\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"issuerName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"issuerAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"principalAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"couponRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"maturityDate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"issuanceDate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"bondHolder\",\"type\":\"address\"}],\"name\":\"BondIssued\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"bondHolder\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"redemptionDate\",\"type\":\"uint256\"}],\"name\":\"BondRedeemed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"}],\"name\":\"Destroyed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FallbackEvent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"ReceiveEvent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"reason\",\"type\":\"bytes\"}],\"name\":\"Started\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"reason\",\"type\":\"bytes\"}],\"name\":\"Stopped\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"}],\"name\":\"Termination\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"VERSION\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WAIT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"bondHolder\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"couponRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"destroy\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_recipient\",\"type\":\"address\"}],\"name\":\"destroyAndSend\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isRedeemed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"issuanceDate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"issuerAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"issuerName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"maturityDate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"principalAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"redeemBond\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"redemptionDate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/non-profit/TaxExemptBond.sol\":\"TaxExemptBond\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/common/Destructible.sol\":{\"keccak256\":\"0xb45b42ac103b81f401b1a1a2271336d4672be7f2cebb1c53a36b97cc4fcc21e4\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://29dd6190744792dc81cd78b53f55581047a10f785c040995b084fb9fcf5fc81f\",\"dweb:/ipfs/QmeAp1kr7D9rB7dxxSWxEmyiUqxagUcuW77ZzW5KLgePQY\"]},\"project:/contracts/common/Frozen.sol\":{\"keccak256\":\"0x213e022147889e959c7745d86f7d4ad73b2938472156f989ba2b18be8f46a07d\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://2438589f997234e1d3724952892278717faba109879be9bbbcab85fdb7ea52e6\",\"dweb:/ipfs/QmVmeFhcYRCHyrtVsAtYBas2JxBbzLwUxjoFU2P4HsHdZm\"]},\"project:/contracts/common/Owned.sol\":{\"keccak256\":\"0x70b5d810421ce2fb7f4ca6e84429a3363ce70149179e26cfc08d3dfaa58ec9cf\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://d47b6af54361f7c634897d3c11f3e34c4a086ce771ffcb9105fd4490471e3523\",\"dweb:/ipfs/QmZiTEchqHUvPGrYDKVd5tbarTFYxsjWsiB7D9R6ecmL6n\"]},\"project:/contracts/common/ReentrancyGuard.sol\":{\"keccak256\":\"0x53b711e6d31b96e71abf2252156ae0d06d145ad0fcdcb19d01ef026cac9686e7\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://a74125750675bde70e958756c24892d8e930764b506e72cb586ec9663e65e269\",\"dweb:/ipfs/QmdXpkNZ9cBALh3zZd8jYWcwTH2XYvLvp19pJWEXAQ5hAm\"]},\"project:/contracts/common/Version.sol\":{\"keccak256\":\"0x90d05a30d71e57db083bbff1b497e29e287d5e7110731e226b619b137baf9d72\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://57ec20c8ecc4481268b0902169e2954dd407ef3cde738a5e0dc856c5ad59f2b6\",\"dweb:/ipfs/QmNniGpizWnGbmHDpNEc4ru17MJnxsg7R3FReZjqThBL9b\"]},\"project:/contracts/libs/ecverify.sol\":{\"keccak256\":\"0x7a9d362ccc49715a3c3cc1de529df39f723b5b70f2eefd17f2f14d8139af381b\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://a48e0036fc134b9eb423f2c228097d780d122fa2f06210be1f252e52a5466493\",\"dweb:/ipfs/Qmb9yVvUziQpVDFWUMcvbhpTpK9ZKtuDbLUoS2bcjzKcZG\"]},\"project:/contracts/non-profit/TaxExemptBond.sol\":{\"keccak256\":\"0x5b3b6f173340dee5e1ef18ae63033ba224edfb329cedb116ea3f983ad9a72d06\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://fcded6b43b0870d6b1f7b84f09f7dcd5324bd89a5d62b65f7d6d3448c250da7e\",\"dweb:/ipfs/Qmbgw1HXT9NPNyQennDT7Qh4PXw4Agwcnk9z4KGKu6a8Ue\"]}},\"version\":1}",
+  "bytecode": "0x608060405234620003705762000d9e803803806200001d8162000375565b92833981019060e08183031262000370578051916001604060020a03928381116200037057820181601f820112156200037057805184811162000341576200006f601f8201601f191660200162000375565b928184526020828401011162000370576200009191602080850191016200039b565b6200009f60208301620003c0565b604083015190606084015193608081015190620000c460c060a08301519201620003c0565b60008054600160a060020a03191633908117825542600155919491907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08180a360ff1960035416600355855197881162000341576004546001600282049116801562000336575b60208210146200030757601f8111620002b8575b50602097601f811160011462000238578060008051602062000d7e833981519152996000916200022c575b50816002029160080260020a600019041916176004555b600160a060020a038091169384600160a060020a0319600554161760055585600655876007558360085582600955169182600160a860020a0319600a541617600a556000600b5560405196879560e087528751958660e0890152620001f1876101009a60208c8c0191016200039b565b602088015260408701526060860152608085015260a084015260c0830152601f01601f19168101030190a16040516109a89081620003d68239f35b9050870151386200016a565b6004600052602060002060005b601f19831681106200029f57508160029160008051602062000d7e8339815191529b600194601f1981161062000283575b5050020160045562000181565b8a01516008601f841602840a6000190419169055388062000276565b888b0151825560209a8b019a6001909201910162000245565b600460005260206000206020601f8b010481019160208b10620002fc575b601f602091010401905b818110620002ef57506200013f565b60008155600101620002e0565b9091508190620002d6565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602260045260246000fd5b90607f16906200012b565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b600080fd5b6040519190601f01601f191682016001604060020a038111838210176200034157604052565b60005b838110620003af5750506000910152565b81810151838201526020016200039e565b5190600160a060020a0382168203620003705756fe6080604090808252600490813610156100c8575b50361561009957333203610055577f26875833861a2b006512a11f1b86edf95df96131040f3caeed72989ee98580838251806100503433836108cb565b0390a1005b6020606492519160e560020a62461bcd02835282015260196024820152603860020a787068697368696e672061747461636b2064657465637465643f026044820152fd5b7fcc85d09d309785db93d6df19917f2e6cc07fe27cd01c08c8279145deb5cf45268251806100503433836108cb565b60009060e060020a8235049063034f6b21821461075d57508063196e74a71461073e57806322ed80e8146107155780632e9868f8146106295780635049b278146104a65780636666e49c14610487578063715018a61461043f57806383197ef0146103f1578063893d20e8146103c8578063a63234e01461039f578063a766bc9814610380578063b8fb3a5114610364578063c0bcb26f14610345578063d59624b414610326578063f2fde38b14610264578063f5074f41146102035763ffa1ad74036100135782346101ff57816003193601126101ff57805191828201906001604060020a038211848310176101e957506101e593508152600a825260b060020a69312e362e342d626574610260208301525191829182610785565b0390f35b60e060020a634e487b7102815260418552602490fd5b5080fd5b5091903461026057602036600319011261026057600160a060020a039035818116810361025c576000805160206109338339815191529261024b6102569386541633146107ce565b51918291338361081d565b0390a180f35b8380fd5b8280fd5b509190602036600319011261026057600160a060020a038135818116939192908490036103225784549283169161029c8333146108e6565b84156102c857505082906000805160206109538339815191528580a3600160a060020a03191617815580f35b5160e560020a62461bcd028152602091810191909152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061604482015260d060020a65646472657373026064820152608490fd5b8480fd5b5082346101ff57816003193601126101ff576020906008549051908152f35b5082346101ff57816003193601126101ff576020906007549051908152f35b5082346101ff57816003193601126101ff5760209051601e8152f35b5082346101ff57816003193601126101ff576020906009549051908152f35b5082346101ff57816003193601126101ff576005549051600160a060020a039091168152602090f35b5082816003193601126101ff576020906103e061087c565b9051600160a060020a039091168152f35b5082346101ff57816003193601126101ff576102566000805160206109338339815191529161042b600160a060020a0385541633146107ce565b61043361087c565b9051918291338361081d565b508060031936011261048457805481600160a060020a0382166104633382146108e6565b6000805160206109538339815191528280a3600160a060020a031916815580f35b80fd5b5082346101ff57816003193601126101ff57602090600b549051908152f35b509134610260578260031936011261026057600a54600160a060020a0381169290338490036105ce5760085442106105885760a060020a9182820460ff16610530575060a060020a60ff02191617600a5542600b81905590517fbbb59c50b3cd05fe4982a9bc1fbab45bd421ac707f4fba6b080522e3a9cc03b392909182916102569190836108cb565b835160e560020a62461bcd028152602091810191909152602360248201527f54686520626f6e642068617320616c7265616479206265656e2072656465656d604482015260e960020a6232b217026064820152608490fd5b506020606492519160e560020a62461bcd028352820152601d60248201527f54686520626f6e6420686173206e6f74206d617475726564207965742e0000006044820152fd5b506020608492519160e560020a62461bcd028352820152602960248201527f4f6e6c792074686520626f6e6420686f6c6465722063616e2072656465656d20604482015260b960020a683a3432903137b73217026064820152fd5b5082346101ff57816003193601126101ff5780519082845460028104600180831692831561070b575b60209384841081146106f5578388529081156106da57506001146106a2575b505050829003601f01601f19168201926001604060020a038411838510176101e957508291826101e5925282610785565b919250868652828620918387935b8385106106c65750505050830101858080610671565b8054888601830152930192849082016106b0565b60ff1916878501525050151581028401019050858080610671565b60e060020a634e487b7102895260228a52602489fd5b91607f1691610652565b5082346101ff57816003193601126101ff57600a549051600160a060020a039091168152602090f35b5082346101ff57816003193601126101ff576020906006549051908152f35b9050346101ff57816003193601126101ff57600a5460a060020a900460ff1615158152602090f35b6020808252825181830181905290939260005b8281106107ba57505060409293506000838284010152601f8019910116010190565b818101860151848201604001528501610798565b156107d557565b60405160e560020a62461bcd02815260206004820152601b60248201527f756e617574686f72697a65642c206e6f7420746865206f776e657200000000006044820152606490fd5b600160a060020a0391821681529116602082015260400190565b1561083e57565b60405160e560020a62461bcd0281526020600482015260106024820152608160020a6f3930ba32903634b6b4ba1032b93937b9026044820152606490fd5b600154601e81018091116108b15761089e90421161089981610837565b610837565b42600155600054600160a060020a031690565b60e060020a634e487b710260009081526011600452602490fd5b600160a060020a039091168152602081019190915260400190565b156108ed57565b60405160e560020a62461bcd0281526020600482015260176024820152604960020a7630b1b1b2b9b9903232b734b2b2103337b91037bbb732b9026044820152606490fdfe91ca00fdf29069527d658f8dfc6d1c0bf9861780bb45ff36436f938d3595a8d68be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0a264697066735822122014339d651fc4fc9617a71b5049bbf9d29cd5ac0ee53f3b07f8c1a5bfd16cff5464736f6c63430008120033b60d1e2d3e1525536072c43472c6decfd962c98b596ccbf7b866013ec208d849",
+  "deployedBytecode": "0x6080604090808252600490813610156100c8575b50361561009957333203610055577f26875833861a2b006512a11f1b86edf95df96131040f3caeed72989ee98580838251806100503433836108cb565b0390a1005b6020606492519160e560020a62461bcd02835282015260196024820152603860020a787068697368696e672061747461636b2064657465637465643f026044820152fd5b7fcc85d09d309785db93d6df19917f2e6cc07fe27cd01c08c8279145deb5cf45268251806100503433836108cb565b60009060e060020a8235049063034f6b21821461075d57508063196e74a71461073e57806322ed80e8146107155780632e9868f8146106295780635049b278146104a65780636666e49c14610487578063715018a61461043f57806383197ef0146103f1578063893d20e8146103c8578063a63234e01461039f578063a766bc9814610380578063b8fb3a5114610364578063c0bcb26f14610345578063d59624b414610326578063f2fde38b14610264578063f5074f41146102035763ffa1ad74036100135782346101ff57816003193601126101ff57805191828201906001604060020a038211848310176101e957506101e593508152600a825260b060020a69312e362e342d626574610260208301525191829182610785565b0390f35b60e060020a634e487b7102815260418552602490fd5b5080fd5b5091903461026057602036600319011261026057600160a060020a039035818116810361025c576000805160206109338339815191529261024b6102569386541633146107ce565b51918291338361081d565b0390a180f35b8380fd5b8280fd5b509190602036600319011261026057600160a060020a038135818116939192908490036103225784549283169161029c8333146108e6565b84156102c857505082906000805160206109538339815191528580a3600160a060020a03191617815580f35b5160e560020a62461bcd028152602091810191909152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061604482015260d060020a65646472657373026064820152608490fd5b8480fd5b5082346101ff57816003193601126101ff576020906008549051908152f35b5082346101ff57816003193601126101ff576020906007549051908152f35b5082346101ff57816003193601126101ff5760209051601e8152f35b5082346101ff57816003193601126101ff576020906009549051908152f35b5082346101ff57816003193601126101ff576005549051600160a060020a039091168152602090f35b5082816003193601126101ff576020906103e061087c565b9051600160a060020a039091168152f35b5082346101ff57816003193601126101ff576102566000805160206109338339815191529161042b600160a060020a0385541633146107ce565b61043361087c565b9051918291338361081d565b508060031936011261048457805481600160a060020a0382166104633382146108e6565b6000805160206109538339815191528280a3600160a060020a031916815580f35b80fd5b5082346101ff57816003193601126101ff57602090600b549051908152f35b509134610260578260031936011261026057600a54600160a060020a0381169290338490036105ce5760085442106105885760a060020a9182820460ff16610530575060a060020a60ff02191617600a5542600b81905590517fbbb59c50b3cd05fe4982a9bc1fbab45bd421ac707f4fba6b080522e3a9cc03b392909182916102569190836108cb565b835160e560020a62461bcd028152602091810191909152602360248201527f54686520626f6e642068617320616c7265616479206265656e2072656465656d604482015260e960020a6232b217026064820152608490fd5b506020606492519160e560020a62461bcd028352820152601d60248201527f54686520626f6e6420686173206e6f74206d617475726564207965742e0000006044820152fd5b506020608492519160e560020a62461bcd028352820152602960248201527f4f6e6c792074686520626f6e6420686f6c6465722063616e2072656465656d20604482015260b960020a683a3432903137b73217026064820152fd5b5082346101ff57816003193601126101ff5780519082845460028104600180831692831561070b575b60209384841081146106f5578388529081156106da57506001146106a2575b505050829003601f01601f19168201926001604060020a038411838510176101e957508291826101e5925282610785565b919250868652828620918387935b8385106106c65750505050830101858080610671565b8054888601830152930192849082016106b0565b60ff1916878501525050151581028401019050858080610671565b60e060020a634e487b7102895260228a52602489fd5b91607f1691610652565b5082346101ff57816003193601126101ff57600a549051600160a060020a039091168152602090f35b5082346101ff57816003193601126101ff576020906006549051908152f35b9050346101ff57816003193601126101ff57600a5460a060020a900460ff1615158152602090f35b6020808252825181830181905290939260005b8281106107ba57505060409293506000838284010152601f8019910116010190565b818101860151848201604001528501610798565b156107d557565b60405160e560020a62461bcd02815260206004820152601b60248201527f756e617574686f72697a65642c206e6f7420746865206f776e657200000000006044820152606490fd5b600160a060020a0391821681529116602082015260400190565b1561083e57565b60405160e560020a62461bcd0281526020600482015260106024820152608160020a6f3930ba32903634b6b4ba1032b93937b9026044820152606490fd5b600154601e81018091116108b15761089e90421161089981610837565b610837565b42600155600054600160a060020a031690565b60e060020a634e487b710260009081526011600452602490fd5b600160a060020a039091168152602081019190915260400190565b156108ed57565b60405160e560020a62461bcd0281526020600482015260176024820152604960020a7630b1b1b2b9b9903232b734b2b2103337b91037bbb732b9026044820152606490fdfe91ca00fdf29069527d658f8dfc6d1c0bf9861780bb45ff36436f938d3595a8d68be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0a264697066735822122014339d651fc4fc9617a71b5049bbf9d29cd5ac0ee53f3b07f8c1a5bfd16cff5464736f6c63430008120033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "136:1839:177:-:0;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;136:1839:177;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;-1:-1:-1;136:1839:177;;-1:-1:-1;;;;;;136:1839:177;589:10:19;136:1839:177;;;;;637:15:19;136:1839:177;;589:10:19;;;;668:44;-1:-1:-1;;668:44:19;136:1839:177;;237:5:17;136:1839:177;;237:5:17;136:1839:177;;;;;;;;1027:24;136:1839;;;;;;;;;;;-1:-1:-1;136:1839:177;;;;;;;;;;;-1:-1:-1;136:1839:177;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;136:1839:177;-1:-1:-1;136:1839:177;;;;;;;;;;;;;;;;;;;1027:24;136:1839;;;;;;;;;;;;;;;;;;1061:30;136:1839;;;1061:30;136:1839;;1101:34;136:1839;;1145:24;136:1839;;1179:28;136:1839;;1217:28;136:1839;;;;;;;;;;1255:24;136:1839;;;1255:24;136:1839;-1:-1:-1;1317:18:177;136:1839;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;136:1839:177;;;1351:207;;;;136:1839;;;;;;;;;;;;;;;;;;;1027:24;-1:-1:-1;136:1839:177;;-1:-1:-1;136:1839:177;-1:-1:-1;136:1839:177;-1:-1:-1;;136:1839:177;;;;;;;;;;-1:-1:-1;;;;;;;;;;;136:1839:177;;;;;;;;;;;;;;;1027:24;136:1839;;;;;;;;;;;;;;-1:-1:-1;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1027:24;-1:-1:-1;136:1839:177;;-1:-1:-1;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;136:1839:177;;;;;;;;;-1:-1:-1;136:1839:177;;;;;;-1:-1:-1;136:1839:177;;1027:24;136:1839;;-1:-1:-1;136:1839:177;;;;;;;;;;-1:-1:-1;136:1839:177;;1027:24;136:1839;;-1:-1:-1;136:1839:177;;-1:-1:-1;136:1839:177;;;;;;;;;-1:-1:-1;;136:1839:177;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;:::o;:::-;;;;;;;;-1:-1:-1;;136:1839:177;;;;:::o;:::-;;;;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;:::o",
+  "deployedSourceMap": "136:1839:177:-:0;;;;;;;;;;;;;;-1:-1:-1;136:1839:177;;;;;2290:10:19;2277:9;:23;136:1839:177;;2346:35:19;136:1839:177;;2371:9:19;2346:35;2371:9;2290:10;2346:35;;:::i;:::-;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;2463:34:19;136:1839:177;;2487:9:19;2463:34;2487:9;2476:10;2463:34;;:::i;136:1839:177:-;;;-1:-1:-1;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;:::i;:::-;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;136:1839:177;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;-1:-1:-1;;;;;;;;;;;136:1839:177;1402:58:19;456:32:12;136:1839:177;;;;1410:10:19;:19;1402:58;:::i;:::-;136:1839:177;1410:10:19;;;;456:32:12;;:::i;:::-;;;;136:1839:177;;;;;;;;;;;-1:-1:-1;136:1839:177;;;;-1:-1:-1;;136:1839:177;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;1106:10:19;1097:56;1106:10;;:19;1097:56;:::i;:::-;3262:22;;136:1839:177;;3343:37:19;;;;-1:-1:-1;;;;;;;;;;;3343:37:19;;;-1:-1:-1;;;;;;136:1839:177;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;312:27;136:1839;;;;;;;;;;;;;;;;;;;;;;;281:25;136:1839;;;;;;;;;;;;;;;;;;;;;;;;195:10:19;136:1839:177;;;;;;;;;;;;;;;;;;;345:27;136:1839;;;;;;;;;;;;;;;;;;;;;211:28;136:1839;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;1583:7:19;;;:::i;:::-;136:1839:177;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;333:32:12;-1:-1:-1;;;;;;;;;;;136:1839:177;1402:58:19;136:1839:177;;;;;;;;1410:10:19;:19;1402:58;:::i;:::-;1583:7;;:::i;:::-;136:1839:177;;1410:10:19;;;;333:32:12;;:::i;136:1839:177:-;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;1097:56:19;1106:10;:19;;1097:56;:::i;:::-;-1:-1:-1;;;;;;;;;;;2934:39:19;;;-1:-1:-1;;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;437:29;136:1839;;;;;;;;;;;;;;;;;;;;;1632:10;136:1839;-1:-1:-1;;;;;136:1839:177;;;;1618:10;:24;;;136:1839;;1725:12;136:1839;1706:15;:31;136:1839;;-1:-1:-1;;;136:1839:177;;;;;;;;-1:-1:-1;;;;;;;136:1839:177;;1632:10;136:1839;1706:15;1878:32;136:1839;;;;;1926:40;;136:1839;;;;1926:40;;1706:15;136:1839;1926:40;:::i;136:1839::-;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;136:1839:177;;;;;-1:-1:-1;;136:1839:177;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;136:1839:177;;;;;-1:-1:-1;;136:1839:177;;;;;;;;-1:-1:-1;136:1839:177;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;;;378:25;136:1839;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;245:30;136:1839;;;;;;;;;;;;;;;;;;;;;409:22;136:1839;-1:-1:-1;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;136:1839:177;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;:::o;:::-;;;;:::o;:::-;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;728:136:19;792:24;136:1839:177;195:10:19;136:1839:177;;;;;;;1608:79:19;774:15;;:49;765:79;;;:::i;:::-;1608;:::i;:::-;774:15;792:24;136:1839:177;-1:-1:-1;136:1839:177;-1:-1:-1;;;;;136:1839:177;;728:136:19:o;136:1839:177:-;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;;;;:::o;:::-;;;;:::o;:::-;;;-1:-1:-1;;;;;136:1839:177;;;;;;;;;;;;-1:-1:-1;;;;;136:1839:177;;;;;;",
+  "source": "// SPDX-License-Identifier: CC-BY-4.0\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"../common/Version.sol\";\nimport \"../common/Frozen.sol\";\n\ncontract TaxExemptBond is Version, Frozen {\n\nstring public issuerName;\n    address public issuerAddress;\n    uint256 public principalAmount;\n    uint256 public couponRate;\n    uint256 public maturityDate;\n    uint256 public issuanceDate;\n    address public bondHolder;\n    bool public isRedeemed;\n    uint256 public redemptionDate;\n\n    event BondIssued(\n        string issuerName,\n        address issuerAddress,\n        uint256 principalAmount,\n        uint256 couponRate,\n        uint256 maturityDate,\n        uint256 issuanceDate,\n        address bondHolder\n    );\n\n    event BondRedeemed(address bondHolder, uint256 redemptionDate);\n\n    constructor(\n        string memory _issuerName,\n        address _issuerAddress,\n        uint256 _principalAmount,\n        uint256 _couponRate,\n        uint256 _maturityDate,\n        uint256 _issuanceDate,\n        address _bondHolder\n    ) {\n        issuerName = _issuerName;\n        issuerAddress = _issuerAddress;\n        principalAmount = _principalAmount;\n        couponRate = _couponRate;\n        maturityDate = _maturityDate;\n        issuanceDate = _issuanceDate;\n        bondHolder = _bondHolder;\n        isRedeemed = false;\n        redemptionDate = 0;\n\n        emit BondIssued(\n            _issuerName,\n            _issuerAddress,\n            _principalAmount,\n            _couponRate,\n            _maturityDate,\n            _issuanceDate,\n            _bondHolder\n        );\n    }\n\n    function redeemBond() public {\n        require(msg.sender == bondHolder, \"Only the bond holder can redeem the bond.\");\n        require(block.timestamp >= maturityDate, \"The bond has not matured yet.\");\n        require(!isRedeemed, \"The bond has already been redeemed.\");\n\n        isRedeemed = true;\n        redemptionDate = block.timestamp;\n\n        emit BondRedeemed(bondHolder, redemptionDate);\n    }\n}",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/non-profit/TaxExemptBond.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/non-profit/TaxExemptBond.sol",
+    "exportedSymbols": {
+      "Destructible": [
+        3475
+      ],
+      "ECVerify": [
+        47567
+      ],
+      "Frozen": [
+        5153
+      ],
+      "Owned": [
+        5490
+      ],
+      "ReentrancyGuard": [
+        5530
+      ],
+      "TaxExemptBond": [
+        48822
+      ],
+      "Version": [
+        6122
+      ]
+    },
+    "id": 48823,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 48671,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:32:177"
+      },
+      {
+        "absolutePath": "project:/contracts/common/Version.sol",
+        "file": "../common/Version.sol",
+        "id": 48672,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 48823,
+        "sourceUnit": 6123,
+        "src": "72:31:177",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/common/Frozen.sol",
+        "file": "../common/Frozen.sol",
+        "id": 48673,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 48823,
+        "sourceUnit": 5154,
+        "src": "104:30:177",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 48674,
+              "name": "Version",
+              "nameLocations": [
+                "162:7:177"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 6122,
+              "src": "162:7:177"
+            },
+            "id": 48675,
+            "nodeType": "InheritanceSpecifier",
+            "src": "162:7:177"
+          },
+          {
+            "baseName": {
+              "id": 48676,
+              "name": "Frozen",
+              "nameLocations": [
+                "171:6:177"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 5153,
+              "src": "171:6:177"
+            },
+            "id": 48677,
+            "nodeType": "InheritanceSpecifier",
+            "src": "171:6:177"
+          }
+        ],
+        "canonicalName": "TaxExemptBond",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 48822,
+        "linearizedBaseContracts": [
+          48822,
+          5153,
+          3475,
+          5490,
+          6122
+        ],
+        "name": "TaxExemptBond",
+        "nameLocation": "145:13:177",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "2e9868f8",
+            "id": 48679,
+            "mutability": "mutable",
+            "name": "issuerName",
+            "nameLocation": "195:10:177",
+            "nodeType": "VariableDeclaration",
+            "scope": 48822,
+            "src": "181:24:177",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 48678,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "181:6:177",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "a63234e0",
+            "id": 48681,
+            "mutability": "mutable",
+            "name": "issuerAddress",
+            "nameLocation": "226:13:177",
+            "nodeType": "VariableDeclaration",
+            "scope": 48822,
+            "src": "211:28:177",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 48680,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "211:7:177",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "196e74a7",
+            "id": 48683,
+            "mutability": "mutable",
+            "name": "principalAmount",
+            "nameLocation": "260:15:177",
+            "nodeType": "VariableDeclaration",
+            "scope": 48822,
+            "src": "245:30:177",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 48682,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "245:7:177",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "c0bcb26f",
+            "id": 48685,
+            "mutability": "mutable",
+            "name": "couponRate",
+            "nameLocation": "296:10:177",
+            "nodeType": "VariableDeclaration",
+            "scope": 48822,
+            "src": "281:25:177",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 48684,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "281:7:177",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "d59624b4",
+            "id": 48687,
+            "mutability": "mutable",
+            "name": "maturityDate",
+            "nameLocation": "327:12:177",
+            "nodeType": "VariableDeclaration",
+            "scope": 48822,
+            "src": "312:27:177",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 48686,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "312:7:177",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "a766bc98",
+            "id": 48689,
+            "mutability": "mutable",
+            "name": "issuanceDate",
+            "nameLocation": "360:12:177",
+            "nodeType": "VariableDeclaration",
+            "scope": 48822,
+            "src": "345:27:177",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 48688,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "345:7:177",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "22ed80e8",
+            "id": 48691,
+            "mutability": "mutable",
+            "name": "bondHolder",
+            "nameLocation": "393:10:177",
+            "nodeType": "VariableDeclaration",
+            "scope": 48822,
+            "src": "378:25:177",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 48690,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "378:7:177",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "034f6b21",
+            "id": 48693,
+            "mutability": "mutable",
+            "name": "isRedeemed",
+            "nameLocation": "421:10:177",
+            "nodeType": "VariableDeclaration",
+            "scope": 48822,
+            "src": "409:22:177",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 48692,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "409:4:177",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "6666e49c",
+            "id": 48695,
+            "mutability": "mutable",
+            "name": "redemptionDate",
+            "nameLocation": "452:14:177",
+            "nodeType": "VariableDeclaration",
+            "scope": 48822,
+            "src": "437:29:177",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 48694,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "437:7:177",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "b60d1e2d3e1525536072c43472c6decfd962c98b596ccbf7b866013ec208d849",
+            "id": 48711,
+            "name": "BondIssued",
+            "nameLocation": "479:10:177",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 48710,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 48697,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "issuerName",
+                  "nameLocation": "506:10:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48711,
+                  "src": "499:17:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 48696,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "499:6:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48699,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "issuerAddress",
+                  "nameLocation": "534:13:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48711,
+                  "src": "526:21:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 48698,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "526:7:177",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48701,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "principalAmount",
+                  "nameLocation": "565:15:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48711,
+                  "src": "557:23:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 48700,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "557:7:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48703,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "couponRate",
+                  "nameLocation": "598:10:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48711,
+                  "src": "590:18:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 48702,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "590:7:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48705,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "maturityDate",
+                  "nameLocation": "626:12:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48711,
+                  "src": "618:20:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 48704,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "618:7:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48707,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "issuanceDate",
+                  "nameLocation": "656:12:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48711,
+                  "src": "648:20:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 48706,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "648:7:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48709,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "bondHolder",
+                  "nameLocation": "686:10:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48711,
+                  "src": "678:18:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 48708,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "678:7:177",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "489:213:177"
+            },
+            "src": "473:230:177"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "bbb59c50b3cd05fe4982a9bc1fbab45bd421ac707f4fba6b080522e3a9cc03b3",
+            "id": 48717,
+            "name": "BondRedeemed",
+            "nameLocation": "715:12:177",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 48716,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 48713,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "bondHolder",
+                  "nameLocation": "736:10:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48717,
+                  "src": "728:18:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 48712,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "728:7:177",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48715,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "redemptionDate",
+                  "nameLocation": "756:14:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48717,
+                  "src": "748:22:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 48714,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "748:7:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "727:44:177"
+            },
+            "src": "709:63:177"
+          },
+          {
+            "body": {
+              "id": 48780,
+              "nodeType": "Block",
+              "src": "1017:548:177",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 48736,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48734,
+                      "name": "issuerName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48679,
+                      "src": "1027:10:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 48735,
+                      "name": "_issuerName",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48719,
+                      "src": "1040:11:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1027:24:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 48737,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1027:24:177"
+                },
+                {
+                  "expression": {
+                    "id": 48740,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48738,
+                      "name": "issuerAddress",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48681,
+                      "src": "1061:13:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 48739,
+                      "name": "_issuerAddress",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48721,
+                      "src": "1077:14:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1061:30:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 48741,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1061:30:177"
+                },
+                {
+                  "expression": {
+                    "id": 48744,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48742,
+                      "name": "principalAmount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48683,
+                      "src": "1101:15:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 48743,
+                      "name": "_principalAmount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48723,
+                      "src": "1119:16:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1101:34:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 48745,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1101:34:177"
+                },
+                {
+                  "expression": {
+                    "id": 48748,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48746,
+                      "name": "couponRate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48685,
+                      "src": "1145:10:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 48747,
+                      "name": "_couponRate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48725,
+                      "src": "1158:11:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1145:24:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 48749,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1145:24:177"
+                },
+                {
+                  "expression": {
+                    "id": 48752,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48750,
+                      "name": "maturityDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48687,
+                      "src": "1179:12:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 48751,
+                      "name": "_maturityDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48727,
+                      "src": "1194:13:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1179:28:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 48753,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1179:28:177"
+                },
+                {
+                  "expression": {
+                    "id": 48756,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48754,
+                      "name": "issuanceDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48689,
+                      "src": "1217:12:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 48755,
+                      "name": "_issuanceDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48729,
+                      "src": "1232:13:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1217:28:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 48757,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1217:28:177"
+                },
+                {
+                  "expression": {
+                    "id": 48760,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48758,
+                      "name": "bondHolder",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48691,
+                      "src": "1255:10:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 48759,
+                      "name": "_bondHolder",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48731,
+                      "src": "1268:11:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1255:24:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 48761,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1255:24:177"
+                },
+                {
+                  "expression": {
+                    "id": 48764,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48762,
+                      "name": "isRedeemed",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48693,
+                      "src": "1289:10:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "66616c7365",
+                      "id": 48763,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1302:5:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "false"
+                    },
+                    "src": "1289:18:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 48765,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1289:18:177"
+                },
+                {
+                  "expression": {
+                    "id": 48768,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48766,
+                      "name": "redemptionDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48695,
+                      "src": "1317:14:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "30",
+                      "id": 48767,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1334:1:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "1317:18:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 48769,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1317:18:177"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 48771,
+                        "name": "_issuerName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48719,
+                        "src": "1375:11:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 48772,
+                        "name": "_issuerAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48721,
+                        "src": "1400:14:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 48773,
+                        "name": "_principalAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48723,
+                        "src": "1428:16:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 48774,
+                        "name": "_couponRate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48725,
+                        "src": "1458:11:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 48775,
+                        "name": "_maturityDate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48727,
+                        "src": "1483:13:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 48776,
+                        "name": "_issuanceDate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48729,
+                        "src": "1510:13:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 48777,
+                        "name": "_bondHolder",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48731,
+                        "src": "1537:11:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 48770,
+                      "name": "BondIssued",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48711,
+                      "src": "1351:10:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$_t_uint256_$_t_address_$returns$__$",
+                        "typeString": "function (string memory,address,uint256,uint256,uint256,uint256,address)"
+                      }
+                    },
+                    "id": 48778,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1351:207:177",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 48779,
+                  "nodeType": "EmitStatement",
+                  "src": "1346:212:177"
+                }
+              ]
+            },
+            "id": 48781,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 48732,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 48719,
+                  "mutability": "mutable",
+                  "name": "_issuerName",
+                  "nameLocation": "813:11:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48781,
+                  "src": "799:25:177",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 48718,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "799:6:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48721,
+                  "mutability": "mutable",
+                  "name": "_issuerAddress",
+                  "nameLocation": "842:14:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48781,
+                  "src": "834:22:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 48720,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "834:7:177",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48723,
+                  "mutability": "mutable",
+                  "name": "_principalAmount",
+                  "nameLocation": "874:16:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48781,
+                  "src": "866:24:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 48722,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "866:7:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48725,
+                  "mutability": "mutable",
+                  "name": "_couponRate",
+                  "nameLocation": "908:11:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48781,
+                  "src": "900:19:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 48724,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "900:7:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48727,
+                  "mutability": "mutable",
+                  "name": "_maturityDate",
+                  "nameLocation": "937:13:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48781,
+                  "src": "929:21:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 48726,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "929:7:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48729,
+                  "mutability": "mutable",
+                  "name": "_issuanceDate",
+                  "nameLocation": "968:13:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48781,
+                  "src": "960:21:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 48728,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "960:7:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 48731,
+                  "mutability": "mutable",
+                  "name": "_bondHolder",
+                  "nameLocation": "999:11:177",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 48781,
+                  "src": "991:19:177",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 48730,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "991:7:177",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "789:227:177"
+            },
+            "returnParameters": {
+              "id": 48733,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1017:0:177"
+            },
+            "scope": 48822,
+            "src": "778:787:177",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 48820,
+              "nodeType": "Block",
+              "src": "1600:373:177",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 48788,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 48785,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "1618:3:177",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 48786,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1622:6:177",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "1618:10:177",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 48787,
+                          "name": "bondHolder",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 48691,
+                          "src": "1632:10:177",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1618:24:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c792074686520626f6e6420686f6c6465722063616e2072656465656d2074686520626f6e642e",
+                        "id": 48789,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1644:43:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_398954d02bb9da0ef514e68c6af7fb4aaafce8f7e590ba02aee6936533f26250",
+                          "typeString": "literal_string \"Only the bond holder can redeem the bond.\""
+                        },
+                        "value": "Only the bond holder can redeem the bond."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_398954d02bb9da0ef514e68c6af7fb4aaafce8f7e590ba02aee6936533f26250",
+                          "typeString": "literal_string \"Only the bond holder can redeem the bond.\""
+                        }
+                      ],
+                      "id": 48784,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1610:7:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 48790,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1610:78:177",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 48791,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1610:78:177"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 48796,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 48793,
+                            "name": "block",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967292,
+                            "src": "1706:5:177",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_block",
+                              "typeString": "block"
+                            }
+                          },
+                          "id": 48794,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1712:9:177",
+                          "memberName": "timestamp",
+                          "nodeType": "MemberAccess",
+                          "src": "1706:15:177",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">=",
+                        "rightExpression": {
+                          "id": 48795,
+                          "name": "maturityDate",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 48687,
+                          "src": "1725:12:177",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "src": "1706:31:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "54686520626f6e6420686173206e6f74206d617475726564207965742e",
+                        "id": 48797,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1739:31:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_912dde539497ebf5686928a53fc3143d673f9bbce01a8ce8a89546bf2c1b6a20",
+                          "typeString": "literal_string \"The bond has not matured yet.\""
+                        },
+                        "value": "The bond has not matured yet."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_912dde539497ebf5686928a53fc3143d673f9bbce01a8ce8a89546bf2c1b6a20",
+                          "typeString": "literal_string \"The bond has not matured yet.\""
+                        }
+                      ],
+                      "id": 48792,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1698:7:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 48798,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1698:73:177",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 48799,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1698:73:177"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 48802,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "1789:11:177",
+                        "subExpression": {
+                          "id": 48801,
+                          "name": "isRedeemed",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 48693,
+                          "src": "1790:10:177",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "54686520626f6e642068617320616c7265616479206265656e2072656465656d65642e",
+                        "id": 48803,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1802:37:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_b0c7483116decbcab52fcbef638dde1f48c86776ecf1dcf08d93c6f34900cd5b",
+                          "typeString": "literal_string \"The bond has already been redeemed.\""
+                        },
+                        "value": "The bond has already been redeemed."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_b0c7483116decbcab52fcbef638dde1f48c86776ecf1dcf08d93c6f34900cd5b",
+                          "typeString": "literal_string \"The bond has already been redeemed.\""
+                        }
+                      ],
+                      "id": 48800,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1781:7:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 48804,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1781:59:177",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 48805,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1781:59:177"
+                },
+                {
+                  "expression": {
+                    "id": 48808,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48806,
+                      "name": "isRedeemed",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48693,
+                      "src": "1851:10:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "74727565",
+                      "id": 48807,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1864:4:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "1851:17:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 48809,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1851:17:177"
+                },
+                {
+                  "expression": {
+                    "id": 48813,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 48810,
+                      "name": "redemptionDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48695,
+                      "src": "1878:14:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 48811,
+                        "name": "block",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967292,
+                        "src": "1895:5:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_block",
+                          "typeString": "block"
+                        }
+                      },
+                      "id": 48812,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1901:9:177",
+                      "memberName": "timestamp",
+                      "nodeType": "MemberAccess",
+                      "src": "1895:15:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1878:32:177",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 48814,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1878:32:177"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 48816,
+                        "name": "bondHolder",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48691,
+                        "src": "1939:10:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 48817,
+                        "name": "redemptionDate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 48695,
+                        "src": "1951:14:177",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 48815,
+                      "name": "BondRedeemed",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 48717,
+                      "src": "1926:12:177",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256)"
+                      }
+                    },
+                    "id": 48818,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1926:40:177",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 48819,
+                  "nodeType": "EmitStatement",
+                  "src": "1921:45:177"
+                }
+              ]
+            },
+            "functionSelector": "5049b278",
+            "id": 48821,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "redeemBond",
+            "nameLocation": "1580:10:177",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 48782,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1590:2:177"
+            },
+            "returnParameters": {
+              "id": 48783,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1600:0:177"
+            },
+            "scope": 48822,
+            "src": "1571:402:177",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 48823,
+        "src": "136:1839:177",
+        "usedErrors": []
+      }
+    ],
+    "src": "38:1937:177"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:27.020Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

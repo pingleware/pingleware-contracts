@@ -1,0 +1,2145 @@
+{
+  "contractName": "CreditInquiry",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/finance/credit/CreditInquiry.sol\":\"CreditInquiry\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/finance/credit/CreditInquiry.sol\":{\"keccak256\":\"0x9893d71ebe0bd65795b7411a880484d4f88938b0fc1bb5d14deb825e60cb5f9e\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://97e9f1d89ac603fc82750ffd10ee191b641d4de287c3ed412e3f5cc7b7bc23ee\",\"dweb:/ipfs/QmVGA2SDvGsw7wJVSSfo6ZKJGWatPpY9xGit5Ucc5TBZFD\"]}},\"version\":1}",
+  "bytecode": "0x6080806040523461001c57610183908161002282393081602b0152f35b600080fdfe6080600436101561000f57600080fd5b600063551f8e2a60e060020a8235041461002857600080fd5b307f00000000000000000000000000000000000000000000000000000000000000001461014a57606036600319011261014a57600435600160a060020a03818116939184900361014657602435938185168095036101425783527fc9bd89c8aa20bb12e3e84ed83a939d0b94623f7d7460b60dcb76099d9fe92b726020526040808420949083016001604060020a0381118482101761012b576040528252602082019060443582528454604060020a81101561012b576001810180875581101561011457849560019495526002602087209102019351168260a060020a03198454161783555191015580f35b60e060020a634e487b710285526032600452602485fd5b60e060020a634e487b710285526041600452602485fd5b8380fd5b8280fd5b80fdfea26469706673582212202066e60adb0ea0475eb8a88913da1a6de7513889d9f3f8dd838f16063bfc132d64736f6c63430008120033",
+  "deployedBytecode": "0x6080600436101561000f57600080fd5b600063551f8e2a60e060020a8235041461002857600080fd5b307f00000000000000000000000000000000000000000000000000000000000000001461014a57606036600319011261014a57600435600160a060020a03818116939184900361014657602435938185168095036101425783527fc9bd89c8aa20bb12e3e84ed83a939d0b94623f7d7460b60dcb76099d9fe92b726020526040808420949083016001604060020a0381118482101761012b576040528252602082019060443582528454604060020a81101561012b576001810180875581101561011457849560019495526002602087209102019351168260a060020a03198454161783555191015580f35b60e060020a634e487b710285526032600452602485fd5b60e060020a634e487b710285526041600452602485fd5b8380fd5b8280fd5b80fdfea26469706673582212202066e60adb0ea0475eb8a88913da1a6de7513889d9f3f8dd838f16063bfc132d64736f6c63430008120033",
+  "immutableReferences": {
+    "library_deploy_address": [
+      {
+        "length": 32,
+        "start": 43
+      }
+    ]
+  },
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "75:1761:44:-:0;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "75:1761:44:-:0;;;;;;;;;;;;;-1:-1:-1;;;75:1761:44;;;;;;;;;;;;;;;;;-1:-1:-1;;75:1761:44;;;;;;-1:-1:-1;;;;;75:1761:44;;;;;;;;;;;;;;;;;;;;;;;434:28;75:1761;;;;;;;;;;-1:-1:-1;;;;;75:1761:44;;;;;;;;;;;;;672:32;;75:1761;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;75:1761:44;;;;;;;;;-1:-1:-1;;;;;75:1761:44;;;;;;;;;;;;;;;;;;",
+  "source": "// SPDX-License-Identifier: CC-BY-4.0\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\nlibrary CreditInquiry {\r\n    struct InquiryItem {\r\n        address subscriber;\r\n        uint256 reqdate; // epoch timestamp\r\n    }\r\n\r\n    struct CreditInquiryStorage {\r\n        mapping(address => InquiryItem[]) inquiries;\r\n    }\r\n\r\n    function creditInquiryStorage() internal pure returns (CreditInquiryStorage storage ds)\r\n    {\r\n        bytes32 position = keccak256(\"inquiry.storage\");\r\n        assembly { ds.slot := position }\r\n    }\r\n\r\n    function add(address _consumer, address subscriber, uint256 reqtime)\r\n        external\r\n    {\r\n        creditInquiryStorage().inquiries[_consumer].push(InquiryItem(subscriber, reqtime));\r\n    }\r\n\r\n    function getAll(address _consumer)\r\n        internal\r\n        view\r\n        returns (string memory)\r\n    {\r\n      string memory output = \"\";\r\n      for (uint i = 0; i < creditInquiryStorage().inquiries[_consumer].length; i++) {\r\n        output = string(\r\n          abi.encodePacked(\r\n            output,\r\n            creditInquiryStorage().inquiries[_consumer][i].subscriber,\r\n            creditInquiryStorage().inquiries[_consumer][i].reqdate\r\n          )\r\n        );\r\n      }\r\n      return output;\r\n    }\r\n\r\n    function getInquiryofSubscriber(address _consumer,uint index)\r\n      internal\r\n      view\r\n      returns (address)\r\n    {\r\n      return creditInquiryStorage().inquiries[_consumer][index].subscriber;\r\n    }\r\n\r\n    function getInquiryofReqDate(address _consumer,uint index)\r\n      internal\r\n      view\r\n      returns (uint256)\r\n    {\r\n      return creditInquiryStorage().inquiries[_consumer][index].reqdate;\r\n    }\r\n\r\n\r\n    function getTotalInquiry(address _consumer)\r\n      internal\r\n      view\r\n      returns (uint256)\r\n    {\r\n      return creditInquiryStorage().inquiries[_consumer].length;\r\n    }\r\n}",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/finance/credit/CreditInquiry.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/finance/credit/CreditInquiry.sol",
+    "exportedSymbols": {
+      "CreditInquiry": [
+        15445
+      ]
+    },
+    "id": 15446,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 15286,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:32:44"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "CreditInquiry",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 15445,
+        "linearizedBaseContracts": [
+          15445
+        ],
+        "name": "CreditInquiry",
+        "nameLocation": "83:13:44",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "CreditInquiry.InquiryItem",
+            "id": 15291,
+            "members": [
+              {
+                "constant": false,
+                "id": 15288,
+                "mutability": "mutable",
+                "name": "subscriber",
+                "nameLocation": "142:10:44",
+                "nodeType": "VariableDeclaration",
+                "scope": 15291,
+                "src": "134:18:44",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 15287,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "134:7:44",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 15290,
+                "mutability": "mutable",
+                "name": "reqdate",
+                "nameLocation": "171:7:44",
+                "nodeType": "VariableDeclaration",
+                "scope": 15291,
+                "src": "163:15:44",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 15289,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "163:7:44",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "InquiryItem",
+            "nameLocation": "111:11:44",
+            "nodeType": "StructDefinition",
+            "scope": 15445,
+            "src": "104:101:44",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "CreditInquiry.CreditInquiryStorage",
+            "id": 15298,
+            "members": [
+              {
+                "constant": false,
+                "id": 15297,
+                "mutability": "mutable",
+                "name": "inquiries",
+                "nameLocation": "286:9:44",
+                "nodeType": "VariableDeclaration",
+                "scope": 15298,
+                "src": "252:43:44",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_$",
+                  "typeString": "mapping(address => struct CreditInquiry.InquiryItem[])"
+                },
+                "typeName": {
+                  "id": 15296,
+                  "keyName": "",
+                  "keyNameLocation": "-1:-1:-1",
+                  "keyType": {
+                    "id": 15292,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "260:7:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "252:33:44",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_$",
+                    "typeString": "mapping(address => struct CreditInquiry.InquiryItem[])"
+                  },
+                  "valueName": "",
+                  "valueNameLocation": "-1:-1:-1",
+                  "valueType": {
+                    "baseType": {
+                      "id": 15294,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 15293,
+                        "name": "InquiryItem",
+                        "nameLocations": [
+                          "271:11:44"
+                        ],
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 15291,
+                        "src": "271:11:44"
+                      },
+                      "referencedDeclaration": 15291,
+                      "src": "271:11:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_InquiryItem_$15291_storage_ptr",
+                        "typeString": "struct CreditInquiry.InquiryItem"
+                      }
+                    },
+                    "id": 15295,
+                    "nodeType": "ArrayTypeName",
+                    "src": "271:13:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_ptr",
+                      "typeString": "struct CreditInquiry.InquiryItem[]"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "CreditInquiryStorage",
+            "nameLocation": "220:20:44",
+            "nodeType": "StructDefinition",
+            "scope": 15445,
+            "src": "213:90:44",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 15311,
+              "nodeType": "Block",
+              "src": "404:108:44",
+              "statements": [
+                {
+                  "assignments": [
+                    15305
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 15305,
+                      "mutability": "mutable",
+                      "name": "position",
+                      "nameLocation": "423:8:44",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 15311,
+                      "src": "415:16:44",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 15304,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "415:7:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 15309,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "hexValue": "696e71756972792e73746f72616765",
+                        "id": 15307,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "444:17:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_c9bd89c8aa20bb12e3e84ed83a939d0b94623f7d7460b60dcb76099d9fe92b72",
+                          "typeString": "literal_string \"inquiry.storage\""
+                        },
+                        "value": "inquiry.storage"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_c9bd89c8aa20bb12e3e84ed83a939d0b94623f7d7460b60dcb76099d9fe92b72",
+                          "typeString": "literal_string \"inquiry.storage\""
+                        }
+                      ],
+                      "id": 15306,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967288,
+                      "src": "434:9:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 15308,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "434:28:44",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "415:47:44"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "482:23:44",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "484:19:44",
+                        "value": {
+                          "name": "position",
+                          "nodeType": "YulIdentifier",
+                          "src": "495:8:44"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "ds.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "484:7:44"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "byzantium",
+                  "externalReferences": [
+                    {
+                      "declaration": 15302,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "484:7:44",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 15305,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "495:8:44",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 15310,
+                  "nodeType": "InlineAssembly",
+                  "src": "473:32:44"
+                }
+              ]
+            },
+            "id": 15312,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "creditInquiryStorage",
+            "nameLocation": "320:20:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15299,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "340:2:44"
+            },
+            "returnParameters": {
+              "id": 15303,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15302,
+                  "mutability": "mutable",
+                  "name": "ds",
+                  "nameLocation": "395:2:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15312,
+                  "src": "366:31:44",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_CreditInquiryStorage_$15298_storage_ptr",
+                    "typeString": "struct CreditInquiry.CreditInquiryStorage"
+                  },
+                  "typeName": {
+                    "id": 15301,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 15300,
+                      "name": "CreditInquiryStorage",
+                      "nameLocations": [
+                        "366:20:44"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 15298,
+                      "src": "366:20:44"
+                    },
+                    "referencedDeclaration": 15298,
+                    "src": "366:20:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_CreditInquiryStorage_$15298_storage_ptr",
+                      "typeString": "struct CreditInquiry.CreditInquiryStorage"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "365:33:44"
+            },
+            "scope": 15445,
+            "src": "311:201:44",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 15333,
+              "nodeType": "Block",
+              "src": "612:101:44",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 15328,
+                            "name": "subscriber",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 15316,
+                            "src": "684:10:44",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "id": 15329,
+                            "name": "reqtime",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 15318,
+                            "src": "696:7:44",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          ],
+                          "id": 15327,
+                          "name": "InquiryItem",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 15291,
+                          "src": "672:11:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_struct$_InquiryItem_$15291_storage_ptr_$",
+                            "typeString": "type(struct CreditInquiry.InquiryItem storage pointer)"
+                          }
+                        },
+                        "id": 15330,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "structConstructorCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "672:32:44",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_InquiryItem_$15291_memory_ptr",
+                          "typeString": "struct CreditInquiry.InquiryItem memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_InquiryItem_$15291_memory_ptr",
+                          "typeString": "struct CreditInquiry.InquiryItem memory"
+                        }
+                      ],
+                      "expression": {
+                        "baseExpression": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 15321,
+                              "name": "creditInquiryStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 15312,
+                              "src": "623:20:44",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_CreditInquiryStorage_$15298_storage_ptr_$",
+                                "typeString": "function () pure returns (struct CreditInquiry.CreditInquiryStorage storage pointer)"
+                              }
+                            },
+                            "id": 15322,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "nameLocations": [],
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "623:22:44",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_CreditInquiryStorage_$15298_storage_ptr",
+                              "typeString": "struct CreditInquiry.CreditInquiryStorage storage pointer"
+                            }
+                          },
+                          "id": 15323,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "646:9:44",
+                          "memberName": "inquiries",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 15297,
+                          "src": "623:32:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_$",
+                            "typeString": "mapping(address => struct CreditInquiry.InquiryItem storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 15325,
+                        "indexExpression": {
+                          "id": 15324,
+                          "name": "_consumer",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 15314,
+                          "src": "656:9:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "623:43:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage",
+                          "typeString": "struct CreditInquiry.InquiryItem storage ref[] storage ref"
+                        }
+                      },
+                      "id": 15326,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "667:4:44",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "623:48:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_ptr_$_t_struct$_InquiryItem_$15291_storage_$returns$__$attached_to$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_ptr_$",
+                        "typeString": "function (struct CreditInquiry.InquiryItem storage ref[] storage pointer,struct CreditInquiry.InquiryItem storage ref)"
+                      }
+                    },
+                    "id": 15331,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "623:82:44",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 15332,
+                  "nodeType": "ExpressionStatement",
+                  "src": "623:82:44"
+                }
+              ]
+            },
+            "functionSelector": "551f8e2a",
+            "id": 15334,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "add",
+            "nameLocation": "529:3:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15319,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15314,
+                  "mutability": "mutable",
+                  "name": "_consumer",
+                  "nameLocation": "541:9:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15334,
+                  "src": "533:17:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15313,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "533:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15316,
+                  "mutability": "mutable",
+                  "name": "subscriber",
+                  "nameLocation": "560:10:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15334,
+                  "src": "552:18:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15315,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "552:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15318,
+                  "mutability": "mutable",
+                  "name": "reqtime",
+                  "nameLocation": "580:7:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15334,
+                  "src": "572:15:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15317,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "572:7:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "532:56:44"
+            },
+            "returnParameters": {
+              "id": 15320,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "612:0:44"
+            },
+            "scope": 15445,
+            "src": "520:193:44",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 15390,
+              "nodeType": "Block",
+              "src": "826:401:44",
+              "statements": [
+                {
+                  "assignments": [
+                    15342
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 15342,
+                      "mutability": "mutable",
+                      "name": "output",
+                      "nameLocation": "849:6:44",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 15390,
+                      "src": "835:20:44",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string"
+                      },
+                      "typeName": {
+                        "id": 15341,
+                        "name": "string",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "835:6:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage_ptr",
+                          "typeString": "string"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 15344,
+                  "initialValue": {
+                    "hexValue": "",
+                    "id": 15343,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "string",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "858:2:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                      "typeString": "literal_string \"\""
+                    },
+                    "value": ""
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "835:25:44"
+                },
+                {
+                  "body": {
+                    "id": 15386,
+                    "nodeType": "Block",
+                    "src": "947:251:44",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 15384,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "id": 15360,
+                            "name": "output",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 15342,
+                            "src": "958:6:44",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "arguments": [
+                              {
+                                "arguments": [
+                                  {
+                                    "id": 15365,
+                                    "name": "output",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 15342,
+                                    "src": "1017:6:44",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    }
+                                  },
+                                  {
+                                    "expression": {
+                                      "baseExpression": {
+                                        "baseExpression": {
+                                          "expression": {
+                                            "arguments": [],
+                                            "expression": {
+                                              "argumentTypes": [],
+                                              "id": 15366,
+                                              "name": "creditInquiryStorage",
+                                              "nodeType": "Identifier",
+                                              "overloadedDeclarations": [],
+                                              "referencedDeclaration": 15312,
+                                              "src": "1038:20:44",
+                                              "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_CreditInquiryStorage_$15298_storage_ptr_$",
+                                                "typeString": "function () pure returns (struct CreditInquiry.CreditInquiryStorage storage pointer)"
+                                              }
+                                            },
+                                            "id": 15367,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "kind": "functionCall",
+                                            "lValueRequested": false,
+                                            "nameLocations": [],
+                                            "names": [],
+                                            "nodeType": "FunctionCall",
+                                            "src": "1038:22:44",
+                                            "tryCall": false,
+                                            "typeDescriptions": {
+                                              "typeIdentifier": "t_struct$_CreditInquiryStorage_$15298_storage_ptr",
+                                              "typeString": "struct CreditInquiry.CreditInquiryStorage storage pointer"
+                                            }
+                                          },
+                                          "id": 15368,
+                                          "isConstant": false,
+                                          "isLValue": true,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "memberLocation": "1061:9:44",
+                                          "memberName": "inquiries",
+                                          "nodeType": "MemberAccess",
+                                          "referencedDeclaration": 15297,
+                                          "src": "1038:32:44",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_$",
+                                            "typeString": "mapping(address => struct CreditInquiry.InquiryItem storage ref[] storage ref)"
+                                          }
+                                        },
+                                        "id": 15370,
+                                        "indexExpression": {
+                                          "id": 15369,
+                                          "name": "_consumer",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 15336,
+                                          "src": "1071:9:44",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                          }
+                                        },
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "nodeType": "IndexAccess",
+                                        "src": "1038:43:44",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage",
+                                          "typeString": "struct CreditInquiry.InquiryItem storage ref[] storage ref"
+                                        }
+                                      },
+                                      "id": 15372,
+                                      "indexExpression": {
+                                        "id": 15371,
+                                        "name": "i",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 15346,
+                                        "src": "1082:1:44",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "nodeType": "IndexAccess",
+                                      "src": "1038:46:44",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_InquiryItem_$15291_storage",
+                                        "typeString": "struct CreditInquiry.InquiryItem storage ref"
+                                      }
+                                    },
+                                    "id": 15373,
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberLocation": "1085:10:44",
+                                    "memberName": "subscriber",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 15288,
+                                    "src": "1038:57:44",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    }
+                                  },
+                                  {
+                                    "expression": {
+                                      "baseExpression": {
+                                        "baseExpression": {
+                                          "expression": {
+                                            "arguments": [],
+                                            "expression": {
+                                              "argumentTypes": [],
+                                              "id": 15374,
+                                              "name": "creditInquiryStorage",
+                                              "nodeType": "Identifier",
+                                              "overloadedDeclarations": [],
+                                              "referencedDeclaration": 15312,
+                                              "src": "1110:20:44",
+                                              "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_CreditInquiryStorage_$15298_storage_ptr_$",
+                                                "typeString": "function () pure returns (struct CreditInquiry.CreditInquiryStorage storage pointer)"
+                                              }
+                                            },
+                                            "id": 15375,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "kind": "functionCall",
+                                            "lValueRequested": false,
+                                            "nameLocations": [],
+                                            "names": [],
+                                            "nodeType": "FunctionCall",
+                                            "src": "1110:22:44",
+                                            "tryCall": false,
+                                            "typeDescriptions": {
+                                              "typeIdentifier": "t_struct$_CreditInquiryStorage_$15298_storage_ptr",
+                                              "typeString": "struct CreditInquiry.CreditInquiryStorage storage pointer"
+                                            }
+                                          },
+                                          "id": 15376,
+                                          "isConstant": false,
+                                          "isLValue": true,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "memberLocation": "1133:9:44",
+                                          "memberName": "inquiries",
+                                          "nodeType": "MemberAccess",
+                                          "referencedDeclaration": 15297,
+                                          "src": "1110:32:44",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_$",
+                                            "typeString": "mapping(address => struct CreditInquiry.InquiryItem storage ref[] storage ref)"
+                                          }
+                                        },
+                                        "id": 15378,
+                                        "indexExpression": {
+                                          "id": 15377,
+                                          "name": "_consumer",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 15336,
+                                          "src": "1143:9:44",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                          }
+                                        },
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "nodeType": "IndexAccess",
+                                        "src": "1110:43:44",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage",
+                                          "typeString": "struct CreditInquiry.InquiryItem storage ref[] storage ref"
+                                        }
+                                      },
+                                      "id": 15380,
+                                      "indexExpression": {
+                                        "id": 15379,
+                                        "name": "i",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 15346,
+                                        "src": "1154:1:44",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "nodeType": "IndexAccess",
+                                      "src": "1110:46:44",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_InquiryItem_$15291_storage",
+                                        "typeString": "struct CreditInquiry.InquiryItem storage ref"
+                                      }
+                                    },
+                                    "id": 15381,
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberLocation": "1157:7:44",
+                                    "memberName": "reqdate",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 15290,
+                                    "src": "1110:54:44",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  }
+                                ],
+                                "expression": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_string_memory_ptr",
+                                      "typeString": "string memory"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  ],
+                                  "expression": {
+                                    "id": 15363,
+                                    "name": "abi",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 4294967295,
+                                    "src": "986:3:44",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_magic_abi",
+                                      "typeString": "abi"
+                                    }
+                                  },
+                                  "id": 15364,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "memberLocation": "990:12:44",
+                                  "memberName": "encodePacked",
+                                  "nodeType": "MemberAccess",
+                                  "src": "986:16:44",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                                    "typeString": "function () pure returns (bytes memory)"
+                                  }
+                                },
+                                "id": 15382,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "kind": "functionCall",
+                                "lValueRequested": false,
+                                "nameLocations": [],
+                                "names": [],
+                                "nodeType": "FunctionCall",
+                                "src": "986:191:44",
+                                "tryCall": false,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "id": 15362,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "nodeType": "ElementaryTypeNameExpression",
+                              "src": "967:6:44",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_string_storage_ptr_$",
+                                "typeString": "type(string storage pointer)"
+                              },
+                              "typeName": {
+                                "id": 15361,
+                                "name": "string",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "967:6:44",
+                                "typeDescriptions": {}
+                              }
+                            },
+                            "id": 15383,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "nameLocations": [],
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "967:221:44",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          "src": "958:230:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        "id": 15385,
+                        "nodeType": "ExpressionStatement",
+                        "src": "958:230:44"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 15356,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 15349,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 15346,
+                      "src": "886:1:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "expression": {
+                        "baseExpression": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 15350,
+                              "name": "creditInquiryStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 15312,
+                              "src": "890:20:44",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_CreditInquiryStorage_$15298_storage_ptr_$",
+                                "typeString": "function () pure returns (struct CreditInquiry.CreditInquiryStorage storage pointer)"
+                              }
+                            },
+                            "id": 15351,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "nameLocations": [],
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "890:22:44",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_CreditInquiryStorage_$15298_storage_ptr",
+                              "typeString": "struct CreditInquiry.CreditInquiryStorage storage pointer"
+                            }
+                          },
+                          "id": 15352,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "913:9:44",
+                          "memberName": "inquiries",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 15297,
+                          "src": "890:32:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_$",
+                            "typeString": "mapping(address => struct CreditInquiry.InquiryItem storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 15354,
+                        "indexExpression": {
+                          "id": 15353,
+                          "name": "_consumer",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 15336,
+                          "src": "923:9:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "890:43:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage",
+                          "typeString": "struct CreditInquiry.InquiryItem storage ref[] storage ref"
+                        }
+                      },
+                      "id": 15355,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "934:6:44",
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "src": "890:50:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "886:54:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 15387,
+                  "initializationExpression": {
+                    "assignments": [
+                      15346
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 15346,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "879:1:44",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 15387,
+                        "src": "874:6:44",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 15345,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "874:4:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 15348,
+                    "initialValue": {
+                      "hexValue": "30",
+                      "id": 15347,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "883:1:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "874:10:44"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 15358,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "942:3:44",
+                      "subExpression": {
+                        "id": 15357,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 15346,
+                        "src": "942:1:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 15359,
+                    "nodeType": "ExpressionStatement",
+                    "src": "942:3:44"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "869:329:44"
+                },
+                {
+                  "expression": {
+                    "id": 15388,
+                    "name": "output",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 15342,
+                    "src": "1213:6:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "functionReturnParameters": 15340,
+                  "id": 15389,
+                  "nodeType": "Return",
+                  "src": "1206:13:44"
+                }
+              ]
+            },
+            "id": 15391,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAll",
+            "nameLocation": "730:6:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15337,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15336,
+                  "mutability": "mutable",
+                  "name": "_consumer",
+                  "nameLocation": "745:9:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15391,
+                  "src": "737:17:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15335,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "737:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "736:19:44"
+            },
+            "returnParameters": {
+              "id": 15340,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15339,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15391,
+                  "src": "806:13:44",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 15338,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "806:6:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "805:15:44"
+            },
+            "scope": 15445,
+            "src": "721:506:44",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 15409,
+              "nodeType": "Block",
+              "src": "1355:85:44",
+              "statements": [
+                {
+                  "expression": {
+                    "expression": {
+                      "baseExpression": {
+                        "baseExpression": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 15400,
+                              "name": "creditInquiryStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 15312,
+                              "src": "1371:20:44",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_CreditInquiryStorage_$15298_storage_ptr_$",
+                                "typeString": "function () pure returns (struct CreditInquiry.CreditInquiryStorage storage pointer)"
+                              }
+                            },
+                            "id": 15401,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "nameLocations": [],
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1371:22:44",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_CreditInquiryStorage_$15298_storage_ptr",
+                              "typeString": "struct CreditInquiry.CreditInquiryStorage storage pointer"
+                            }
+                          },
+                          "id": 15402,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1394:9:44",
+                          "memberName": "inquiries",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 15297,
+                          "src": "1371:32:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_$",
+                            "typeString": "mapping(address => struct CreditInquiry.InquiryItem storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 15404,
+                        "indexExpression": {
+                          "id": 15403,
+                          "name": "_consumer",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 15393,
+                          "src": "1404:9:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1371:43:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage",
+                          "typeString": "struct CreditInquiry.InquiryItem storage ref[] storage ref"
+                        }
+                      },
+                      "id": 15406,
+                      "indexExpression": {
+                        "id": 15405,
+                        "name": "index",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 15395,
+                        "src": "1415:5:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1371:50:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_InquiryItem_$15291_storage",
+                        "typeString": "struct CreditInquiry.InquiryItem storage ref"
+                      }
+                    },
+                    "id": 15407,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "1422:10:44",
+                    "memberName": "subscriber",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 15288,
+                    "src": "1371:61:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 15399,
+                  "id": 15408,
+                  "nodeType": "Return",
+                  "src": "1364:68:44"
+                }
+              ]
+            },
+            "id": 15410,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getInquiryofSubscriber",
+            "nameLocation": "1244:22:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15396,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15393,
+                  "mutability": "mutable",
+                  "name": "_consumer",
+                  "nameLocation": "1275:9:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15410,
+                  "src": "1267:17:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15392,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1267:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15395,
+                  "mutability": "mutable",
+                  "name": "index",
+                  "nameLocation": "1290:5:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15410,
+                  "src": "1285:10:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15394,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1285:4:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1266:30:44"
+            },
+            "returnParameters": {
+              "id": 15399,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15398,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15410,
+                  "src": "1341:7:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15397,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1341:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1340:9:44"
+            },
+            "scope": 15445,
+            "src": "1235:205:44",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 15428,
+              "nodeType": "Block",
+              "src": "1565:82:44",
+              "statements": [
+                {
+                  "expression": {
+                    "expression": {
+                      "baseExpression": {
+                        "baseExpression": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 15419,
+                              "name": "creditInquiryStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 15312,
+                              "src": "1581:20:44",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_CreditInquiryStorage_$15298_storage_ptr_$",
+                                "typeString": "function () pure returns (struct CreditInquiry.CreditInquiryStorage storage pointer)"
+                              }
+                            },
+                            "id": 15420,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "nameLocations": [],
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1581:22:44",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_CreditInquiryStorage_$15298_storage_ptr",
+                              "typeString": "struct CreditInquiry.CreditInquiryStorage storage pointer"
+                            }
+                          },
+                          "id": 15421,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1604:9:44",
+                          "memberName": "inquiries",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 15297,
+                          "src": "1581:32:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_$",
+                            "typeString": "mapping(address => struct CreditInquiry.InquiryItem storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 15423,
+                        "indexExpression": {
+                          "id": 15422,
+                          "name": "_consumer",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 15412,
+                          "src": "1614:9:44",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1581:43:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage",
+                          "typeString": "struct CreditInquiry.InquiryItem storage ref[] storage ref"
+                        }
+                      },
+                      "id": 15425,
+                      "indexExpression": {
+                        "id": 15424,
+                        "name": "index",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 15414,
+                        "src": "1625:5:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1581:50:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_InquiryItem_$15291_storage",
+                        "typeString": "struct CreditInquiry.InquiryItem storage ref"
+                      }
+                    },
+                    "id": 15426,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "1632:7:44",
+                    "memberName": "reqdate",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 15290,
+                    "src": "1581:58:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 15418,
+                  "id": 15427,
+                  "nodeType": "Return",
+                  "src": "1574:65:44"
+                }
+              ]
+            },
+            "id": 15429,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getInquiryofReqDate",
+            "nameLocation": "1457:19:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15415,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15412,
+                  "mutability": "mutable",
+                  "name": "_consumer",
+                  "nameLocation": "1485:9:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15429,
+                  "src": "1477:17:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15411,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1477:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15414,
+                  "mutability": "mutable",
+                  "name": "index",
+                  "nameLocation": "1500:5:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15429,
+                  "src": "1495:10:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15413,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1495:4:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1476:30:44"
+            },
+            "returnParameters": {
+              "id": 15418,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15417,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15429,
+                  "src": "1551:7:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15416,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1551:7:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1550:9:44"
+            },
+            "scope": 15445,
+            "src": "1448:199:44",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 15443,
+              "nodeType": "Block",
+              "src": "1759:74:44",
+              "statements": [
+                {
+                  "expression": {
+                    "expression": {
+                      "baseExpression": {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 15436,
+                            "name": "creditInquiryStorage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 15312,
+                            "src": "1775:20:44",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_CreditInquiryStorage_$15298_storage_ptr_$",
+                              "typeString": "function () pure returns (struct CreditInquiry.CreditInquiryStorage storage pointer)"
+                            }
+                          },
+                          "id": 15437,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1775:22:44",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_CreditInquiryStorage_$15298_storage_ptr",
+                            "typeString": "struct CreditInquiry.CreditInquiryStorage storage pointer"
+                          }
+                        },
+                        "id": 15438,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1798:9:44",
+                        "memberName": "inquiries",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 15297,
+                        "src": "1775:32:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage_$",
+                          "typeString": "mapping(address => struct CreditInquiry.InquiryItem storage ref[] storage ref)"
+                        }
+                      },
+                      "id": 15440,
+                      "indexExpression": {
+                        "id": 15439,
+                        "name": "_consumer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 15431,
+                        "src": "1808:9:44",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1775:43:44",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_InquiryItem_$15291_storage_$dyn_storage",
+                        "typeString": "struct CreditInquiry.InquiryItem storage ref[] storage ref"
+                      }
+                    },
+                    "id": 15441,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "1819:6:44",
+                    "memberName": "length",
+                    "nodeType": "MemberAccess",
+                    "src": "1775:50:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 15435,
+                  "id": 15442,
+                  "nodeType": "Return",
+                  "src": "1768:57:44"
+                }
+              ]
+            },
+            "id": 15444,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTotalInquiry",
+            "nameLocation": "1666:15:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15432,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15431,
+                  "mutability": "mutable",
+                  "name": "_consumer",
+                  "nameLocation": "1690:9:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15444,
+                  "src": "1682:17:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15430,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1682:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1681:19:44"
+            },
+            "returnParameters": {
+              "id": 15435,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15434,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15444,
+                  "src": "1745:7:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15433,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1745:7:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1744:9:44"
+            },
+            "scope": 15445,
+            "src": "1657:176:44",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 15446,
+        "src": "75:1761:44",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:1797:44"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:25.442Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

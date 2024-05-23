@@ -1,0 +1,3191 @@
+{
+  "contractName": "Licensing",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "LicenseApproved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "LicenseExpired",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "licensee",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "licenseType",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "issueDate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "expirationDate",
+          "type": "uint256"
+        }
+      ],
+      "name": "LicenseIssued",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "LicenseRejected",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "LicenseRevoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_sender",
+          "type": "address"
+        }
+      ],
+      "name": "Sender",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "licenseCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "licenses",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "licensee",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "licenseType",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "issueDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expirationDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum Licensing.LicenseStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "licenseType",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expirationDate",
+          "type": "uint256"
+        }
+      ],
+      "name": "applyForLicense",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "approveLicense",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "rejectLicense",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "expireLicense",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "licenseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "revokeLicense",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"}],\"name\":\"LicenseApproved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"}],\"name\":\"LicenseExpired\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"licensee\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"licenseType\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"issueDate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"expirationDate\",\"type\":\"uint256\"}],\"name\":\"LicenseIssued\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"}],\"name\":\"LicenseRejected\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"}],\"name\":\"LicenseRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_sender\",\"type\":\"address\"}],\"name\":\"Sender\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"licenseType\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"expirationDate\",\"type\":\"uint256\"}],\"name\":\"applyForLicense\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"}],\"name\":\"approveLicense\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"}],\"name\":\"expireLicense\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"licenseCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"licenses\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"licensee\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"licenseType\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"issueDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expirationDate\",\"type\":\"uint256\"},{\"internalType\":\"enum Licensing.LicenseStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"}],\"name\":\"rejectLicense\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"licenseId\",\"type\":\"uint256\"}],\"name\":\"revokeLicense\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/government/Licensing.sol\":\"Licensing\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/abstract/AAccessControl.sol\":{\"keccak256\":\"0xf50183e6a5c7e9ac28049163dd05945225c5bf69d8c219f21273c5670c8c7eca\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://864427ebf215c293c48703f772978b368a6214322122dbc0298adec0006879b9\",\"dweb:/ipfs/QmcdWrMe3caP1a8FeoshpPytbHc291BoEM3JdUwakXK5bK\"]},\"project:/contracts/government/Licensing.sol\":{\"keccak256\":\"0x8bd12e4a0ba46cbc245ec5dc8efc56dddf330d26636799344e45355ce0869e2e\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://8a5329105177b2b0995fe20da469a27b8535eb3c5f31dd7fb1ac50a619e2a571\",\"dweb:/ipfs/QmVYXweRUX39fFsn9515vnAViXDJe9uAq97xeHfvhZey5Y\"]},\"project:/contracts/interfaces/IAccessControl.sol\":{\"keccak256\":\"0x05e0f278602904b7892c29559952a7e6fa7d1f66af70dbf4d349ea6bd413a1c2\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://89dc767c39fdaa3a152d8ed48509be2af66836f28ec8490d717888928a0f50d5\",\"dweb:/ipfs/QmP9RmVNpyVFt7M1gXAHALLiJo4pRYnH524Xt5sMjYJqCc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: BSL-1.1\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"../abstract/AAccessControl.sol\";\n\nabstract contract Licensing is AAccessControl {\n    enum LicenseStatus { Pending, Approved, Rejected, Expired, Revoked }\n    \n    struct License {\n        uint256 licenseId;\n        address licensee;\n        string licenseType;\n        uint256 issueDate;\n        uint256 expirationDate;\n        LicenseStatus status;\n    }\n    \n    mapping(uint256 => License) public licenses;\n    uint256 public licenseCounter;\n\n    event LicenseIssued(uint256 licenseId, address licensee, string licenseType, uint256 issueDate, uint256 expirationDate);\n    event LicenseApproved(uint256 licenseId);\n    event LicenseRejected(uint256 licenseId);\n    event LicenseExpired(uint256 licenseId);\n    event LicenseRevoked(uint256 licenseId);\n\n    function applyForLicense(string memory licenseType, uint256 expirationDate) external {\n        licenseCounter++;\n        licenses[licenseCounter] = License(licenseCounter, msg.sender, licenseType, block.timestamp, expirationDate, LicenseStatus.Pending);\n        emit LicenseIssued(licenseCounter, msg.sender, licenseType, block.timestamp, expirationDate);\n    }\n    \n    function approveLicense(uint256 licenseId) public isOwner {\n        require(licenses[licenseId].status == LicenseStatus.Pending, \"License is not pending approval.\");\n        licenses[licenseId].status = LicenseStatus.Approved;\n        emit LicenseApproved(licenseId);\n    }\n    \n    function rejectLicense(uint256 licenseId) public isOwner {\n        require(licenses[licenseId].status == LicenseStatus.Pending, \"License is not pending approval.\");\n        licenses[licenseId].status = LicenseStatus.Rejected;\n        emit LicenseRejected(licenseId);\n    }\n    \n    function expireLicense(uint256 licenseId) external {\n        require(licenses[licenseId].status == LicenseStatus.Approved, \"License is not approved.\");\n        if (block.timestamp >= licenses[licenseId].expirationDate) {\n            licenses[licenseId].status = LicenseStatus.Expired;\n            emit LicenseExpired(licenseId);\n        }\n    }\n    \n    function revokeLicense(uint256 licenseId) public isOwner {\n        require(licenses[licenseId].status == LicenseStatus.Approved, \"License is not approved.\");\n        licenses[licenseId].status = LicenseStatus.Revoked;\n        emit LicenseRevoked(licenseId);\n    }\n}",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/government/Licensing.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/government/Licensing.sol",
+    "exportedSymbols": {
+      "AAccessControl": [
+        100
+      ],
+      "IAccessControl": [
+        38847
+      ],
+      "Licensing": [
+        30658
+      ]
+    },
+    "id": 30659,
+    "license": "BSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 30431,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:32:74"
+      },
+      {
+        "absolutePath": "project:/contracts/abstract/AAccessControl.sol",
+        "file": "../abstract/AAccessControl.sol",
+        "id": 30432,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 30659,
+        "sourceUnit": 101,
+        "src": "70:40:74",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 30433,
+              "name": "AAccessControl",
+              "nameLocations": [
+                "143:14:74"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 100,
+              "src": "143:14:74"
+            },
+            "id": 30434,
+            "nodeType": "InheritanceSpecifier",
+            "src": "143:14:74"
+          }
+        ],
+        "canonicalName": "Licensing",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 30658,
+        "linearizedBaseContracts": [
+          30658,
+          100,
+          38847
+        ],
+        "name": "Licensing",
+        "nameLocation": "130:9:74",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Licensing.LicenseStatus",
+            "id": 30440,
+            "members": [
+              {
+                "id": 30435,
+                "name": "Pending",
+                "nameLocation": "185:7:74",
+                "nodeType": "EnumValue",
+                "src": "185:7:74"
+              },
+              {
+                "id": 30436,
+                "name": "Approved",
+                "nameLocation": "194:8:74",
+                "nodeType": "EnumValue",
+                "src": "194:8:74"
+              },
+              {
+                "id": 30437,
+                "name": "Rejected",
+                "nameLocation": "204:8:74",
+                "nodeType": "EnumValue",
+                "src": "204:8:74"
+              },
+              {
+                "id": 30438,
+                "name": "Expired",
+                "nameLocation": "214:7:74",
+                "nodeType": "EnumValue",
+                "src": "214:7:74"
+              },
+              {
+                "id": 30439,
+                "name": "Revoked",
+                "nameLocation": "223:7:74",
+                "nodeType": "EnumValue",
+                "src": "223:7:74"
+              }
+            ],
+            "name": "LicenseStatus",
+            "nameLocation": "169:13:74",
+            "nodeType": "EnumDefinition",
+            "src": "164:68:74"
+          },
+          {
+            "canonicalName": "Licensing.License",
+            "id": 30454,
+            "members": [
+              {
+                "constant": false,
+                "id": 30442,
+                "mutability": "mutable",
+                "name": "licenseId",
+                "nameLocation": "275:9:74",
+                "nodeType": "VariableDeclaration",
+                "scope": 30454,
+                "src": "267:17:74",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 30441,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "267:7:74",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30444,
+                "mutability": "mutable",
+                "name": "licensee",
+                "nameLocation": "302:8:74",
+                "nodeType": "VariableDeclaration",
+                "scope": 30454,
+                "src": "294:16:74",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 30443,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "294:7:74",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30446,
+                "mutability": "mutable",
+                "name": "licenseType",
+                "nameLocation": "327:11:74",
+                "nodeType": "VariableDeclaration",
+                "scope": 30454,
+                "src": "320:18:74",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 30445,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "320:6:74",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30448,
+                "mutability": "mutable",
+                "name": "issueDate",
+                "nameLocation": "356:9:74",
+                "nodeType": "VariableDeclaration",
+                "scope": 30454,
+                "src": "348:17:74",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 30447,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "348:7:74",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30450,
+                "mutability": "mutable",
+                "name": "expirationDate",
+                "nameLocation": "383:14:74",
+                "nodeType": "VariableDeclaration",
+                "scope": 30454,
+                "src": "375:22:74",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 30449,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "375:7:74",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30453,
+                "mutability": "mutable",
+                "name": "status",
+                "nameLocation": "421:6:74",
+                "nodeType": "VariableDeclaration",
+                "scope": 30454,
+                "src": "407:20:74",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                  "typeString": "enum Licensing.LicenseStatus"
+                },
+                "typeName": {
+                  "id": 30452,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 30451,
+                    "name": "LicenseStatus",
+                    "nameLocations": [
+                      "407:13:74"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 30440,
+                    "src": "407:13:74"
+                  },
+                  "referencedDeclaration": 30440,
+                  "src": "407:13:74",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                    "typeString": "enum Licensing.LicenseStatus"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "License",
+            "nameLocation": "249:7:74",
+            "nodeType": "StructDefinition",
+            "scope": 30658,
+            "src": "242:192:74",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "33790845",
+            "id": 30459,
+            "mutability": "mutable",
+            "name": "licenses",
+            "nameLocation": "479:8:74",
+            "nodeType": "VariableDeclaration",
+            "scope": 30658,
+            "src": "444:43:74",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+              "typeString": "mapping(uint256 => struct Licensing.License)"
+            },
+            "typeName": {
+              "id": 30458,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 30455,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "452:7:74",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "444:27:74",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                "typeString": "mapping(uint256 => struct Licensing.License)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 30457,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 30456,
+                  "name": "License",
+                  "nameLocations": [
+                    "463:7:74"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 30454,
+                  "src": "463:7:74"
+                },
+                "referencedDeclaration": 30454,
+                "src": "463:7:74",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_License_$30454_storage_ptr",
+                  "typeString": "struct Licensing.License"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "e529110e",
+            "id": 30461,
+            "mutability": "mutable",
+            "name": "licenseCounter",
+            "nameLocation": "508:14:74",
+            "nodeType": "VariableDeclaration",
+            "scope": 30658,
+            "src": "493:29:74",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 30460,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "493:7:74",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "bafea27d0b25d3e8210f5f99639bbadb314bdf99b117b7140e3e0940200967b4",
+            "id": 30473,
+            "name": "LicenseIssued",
+            "nameLocation": "535:13:74",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 30472,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30463,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "licenseId",
+                  "nameLocation": "557:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30473,
+                  "src": "549:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30462,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "549:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30465,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "licensee",
+                  "nameLocation": "576:8:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30473,
+                  "src": "568:16:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30464,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "568:7:74",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30467,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "licenseType",
+                  "nameLocation": "593:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30473,
+                  "src": "586:18:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 30466,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "586:6:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30469,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "issueDate",
+                  "nameLocation": "614:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30473,
+                  "src": "606:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30468,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "606:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30471,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "expirationDate",
+                  "nameLocation": "633:14:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30473,
+                  "src": "625:22:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30470,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "625:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "548:100:74"
+            },
+            "src": "529:120:74"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "85223bd695313cf40f2491ad8c80a2440c73a594a21974cbddc7d55ee71d830a",
+            "id": 30477,
+            "name": "LicenseApproved",
+            "nameLocation": "660:15:74",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 30476,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30475,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "licenseId",
+                  "nameLocation": "684:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30477,
+                  "src": "676:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30474,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "676:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "675:19:74"
+            },
+            "src": "654:41:74"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "1e13e2ab72f61f43c5f105270fd96855e7819ecc392748b4ad1639e5357f1308",
+            "id": 30481,
+            "name": "LicenseRejected",
+            "nameLocation": "706:15:74",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 30480,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30479,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "licenseId",
+                  "nameLocation": "730:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30481,
+                  "src": "722:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30478,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "722:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "721:19:74"
+            },
+            "src": "700:41:74"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "8fb429262a7395f08be629e4f3ac83c0423c46baf44f6b3b69b0fd9e3e25e358",
+            "id": 30485,
+            "name": "LicenseExpired",
+            "nameLocation": "752:14:74",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 30484,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30483,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "licenseId",
+                  "nameLocation": "775:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30485,
+                  "src": "767:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30482,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "767:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "766:19:74"
+            },
+            "src": "746:40:74"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "f8ecc300d4504a2b49692052f138b7e697df679cf0580522720ce405bd01be55",
+            "id": 30489,
+            "name": "LicenseRevoked",
+            "nameLocation": "797:14:74",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 30488,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30487,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "licenseId",
+                  "nameLocation": "820:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30489,
+                  "src": "812:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30486,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "812:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "811:19:74"
+            },
+            "src": "791:40:74"
+          },
+          {
+            "body": {
+              "id": 30525,
+              "nodeType": "Block",
+              "src": "922:276:74",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 30497,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "932:16:74",
+                    "subExpression": {
+                      "id": 30496,
+                      "name": "licenseCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30461,
+                      "src": "932:14:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 30498,
+                  "nodeType": "ExpressionStatement",
+                  "src": "932:16:74"
+                },
+                {
+                  "expression": {
+                    "id": 30513,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 30499,
+                        "name": "licenses",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30459,
+                        "src": "958:8:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                          "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                        }
+                      },
+                      "id": 30501,
+                      "indexExpression": {
+                        "id": 30500,
+                        "name": "licenseCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30461,
+                        "src": "967:14:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "958:24:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_License_$30454_storage",
+                        "typeString": "struct Licensing.License storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 30503,
+                          "name": "licenseCounter",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30461,
+                          "src": "993:14:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 30504,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "1009:3:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 30505,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1013:6:74",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "1009:10:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "id": 30506,
+                          "name": "licenseType",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30491,
+                          "src": "1021:11:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 30507,
+                            "name": "block",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967292,
+                            "src": "1034:5:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_block",
+                              "typeString": "block"
+                            }
+                          },
+                          "id": 30508,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1040:9:74",
+                          "memberName": "timestamp",
+                          "nodeType": "MemberAccess",
+                          "src": "1034:15:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 30509,
+                          "name": "expirationDate",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30493,
+                          "src": "1051:14:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 30510,
+                            "name": "LicenseStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30440,
+                            "src": "1067:13:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_LicenseStatus_$30440_$",
+                              "typeString": "type(enum Licensing.LicenseStatus)"
+                            }
+                          },
+                          "id": 30511,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1081:7:74",
+                          "memberName": "Pending",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30435,
+                          "src": "1067:21:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        ],
+                        "id": 30502,
+                        "name": "License",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30454,
+                        "src": "985:7:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_License_$30454_storage_ptr_$",
+                          "typeString": "type(struct Licensing.License storage pointer)"
+                        }
+                      },
+                      "id": 30512,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "985:104:74",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_License_$30454_memory_ptr",
+                        "typeString": "struct Licensing.License memory"
+                      }
+                    },
+                    "src": "958:131:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_License_$30454_storage",
+                      "typeString": "struct Licensing.License storage ref"
+                    }
+                  },
+                  "id": 30514,
+                  "nodeType": "ExpressionStatement",
+                  "src": "958:131:74"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 30516,
+                        "name": "licenseCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30461,
+                        "src": "1118:14:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 30517,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1134:3:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 30518,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1138:6:74",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1134:10:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 30519,
+                        "name": "licenseType",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30491,
+                        "src": "1146:11:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 30520,
+                          "name": "block",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967292,
+                          "src": "1159:5:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_block",
+                            "typeString": "block"
+                          }
+                        },
+                        "id": 30521,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1165:9:74",
+                        "memberName": "timestamp",
+                        "nodeType": "MemberAccess",
+                        "src": "1159:15:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 30522,
+                        "name": "expirationDate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30493,
+                        "src": "1176:14:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 30515,
+                      "name": "LicenseIssued",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30473,
+                      "src": "1104:13:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$_t_string_memory_ptr_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,address,string memory,uint256,uint256)"
+                      }
+                    },
+                    "id": 30523,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1104:87:74",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30524,
+                  "nodeType": "EmitStatement",
+                  "src": "1099:92:74"
+                }
+              ]
+            },
+            "functionSelector": "738505c9",
+            "id": 30526,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "applyForLicense",
+            "nameLocation": "846:15:74",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30494,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30491,
+                  "mutability": "mutable",
+                  "name": "licenseType",
+                  "nameLocation": "876:11:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30526,
+                  "src": "862:25:74",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 30490,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "862:6:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30493,
+                  "mutability": "mutable",
+                  "name": "expirationDate",
+                  "nameLocation": "897:14:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30526,
+                  "src": "889:22:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30492,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "889:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "861:51:74"
+            },
+            "returnParameters": {
+              "id": 30495,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "922:0:74"
+            },
+            "scope": 30658,
+            "src": "837:361:74",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 30556,
+              "nodeType": "Block",
+              "src": "1266:215:74",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                          "typeString": "enum Licensing.LicenseStatus"
+                        },
+                        "id": 30540,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 30534,
+                              "name": "licenses",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30459,
+                              "src": "1284:8:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                                "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                              }
+                            },
+                            "id": 30536,
+                            "indexExpression": {
+                              "id": 30535,
+                              "name": "licenseId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30528,
+                              "src": "1293:9:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1284:19:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_License_$30454_storage",
+                              "typeString": "struct Licensing.License storage ref"
+                            }
+                          },
+                          "id": 30537,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1304:6:74",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30453,
+                          "src": "1284:26:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 30538,
+                            "name": "LicenseStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30440,
+                            "src": "1314:13:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_LicenseStatus_$30440_$",
+                              "typeString": "type(enum Licensing.LicenseStatus)"
+                            }
+                          },
+                          "id": 30539,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1328:7:74",
+                          "memberName": "Pending",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30435,
+                          "src": "1314:21:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        },
+                        "src": "1284:51:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4c6963656e7365206973206e6f742070656e64696e6720617070726f76616c2e",
+                        "id": 30541,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1337:34:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_fd84650bf6375f32d90bd511e1fcfe3b7026f04684f93544a46e29a13ec546e1",
+                          "typeString": "literal_string \"License is not pending approval.\""
+                        },
+                        "value": "License is not pending approval."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_fd84650bf6375f32d90bd511e1fcfe3b7026f04684f93544a46e29a13ec546e1",
+                          "typeString": "literal_string \"License is not pending approval.\""
+                        }
+                      ],
+                      "id": 30533,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1276:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30542,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1276:96:74",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30543,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1276:96:74"
+                },
+                {
+                  "expression": {
+                    "id": 30550,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 30544,
+                          "name": "licenses",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30459,
+                          "src": "1382:8:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                            "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                          }
+                        },
+                        "id": 30546,
+                        "indexExpression": {
+                          "id": 30545,
+                          "name": "licenseId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30528,
+                          "src": "1391:9:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1382:19:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_License_$30454_storage",
+                          "typeString": "struct Licensing.License storage ref"
+                        }
+                      },
+                      "id": 30547,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1402:6:74",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30453,
+                      "src": "1382:26:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                        "typeString": "enum Licensing.LicenseStatus"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 30548,
+                        "name": "LicenseStatus",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30440,
+                        "src": "1411:13:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_LicenseStatus_$30440_$",
+                          "typeString": "type(enum Licensing.LicenseStatus)"
+                        }
+                      },
+                      "id": 30549,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberLocation": "1425:8:74",
+                      "memberName": "Approved",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30436,
+                      "src": "1411:22:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                        "typeString": "enum Licensing.LicenseStatus"
+                      }
+                    },
+                    "src": "1382:51:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                      "typeString": "enum Licensing.LicenseStatus"
+                    }
+                  },
+                  "id": 30551,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1382:51:74"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 30553,
+                        "name": "licenseId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30528,
+                        "src": "1464:9:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 30552,
+                      "name": "LicenseApproved",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30477,
+                      "src": "1448:15:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 30554,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1448:26:74",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30555,
+                  "nodeType": "EmitStatement",
+                  "src": "1443:31:74"
+                }
+              ]
+            },
+            "functionSelector": "c283fdd5",
+            "id": 30557,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 30531,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 30530,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "1258:7:74"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "1258:7:74"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1258:7:74"
+              }
+            ],
+            "name": "approveLicense",
+            "nameLocation": "1217:14:74",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30529,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30528,
+                  "mutability": "mutable",
+                  "name": "licenseId",
+                  "nameLocation": "1240:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30557,
+                  "src": "1232:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30527,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1232:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1231:19:74"
+            },
+            "returnParameters": {
+              "id": 30532,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1266:0:74"
+            },
+            "scope": 30658,
+            "src": "1208:273:74",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 30587,
+              "nodeType": "Block",
+              "src": "1548:215:74",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                          "typeString": "enum Licensing.LicenseStatus"
+                        },
+                        "id": 30571,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 30565,
+                              "name": "licenses",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30459,
+                              "src": "1566:8:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                                "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                              }
+                            },
+                            "id": 30567,
+                            "indexExpression": {
+                              "id": 30566,
+                              "name": "licenseId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30559,
+                              "src": "1575:9:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1566:19:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_License_$30454_storage",
+                              "typeString": "struct Licensing.License storage ref"
+                            }
+                          },
+                          "id": 30568,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1586:6:74",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30453,
+                          "src": "1566:26:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 30569,
+                            "name": "LicenseStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30440,
+                            "src": "1596:13:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_LicenseStatus_$30440_$",
+                              "typeString": "type(enum Licensing.LicenseStatus)"
+                            }
+                          },
+                          "id": 30570,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1610:7:74",
+                          "memberName": "Pending",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30435,
+                          "src": "1596:21:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        },
+                        "src": "1566:51:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4c6963656e7365206973206e6f742070656e64696e6720617070726f76616c2e",
+                        "id": 30572,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1619:34:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_fd84650bf6375f32d90bd511e1fcfe3b7026f04684f93544a46e29a13ec546e1",
+                          "typeString": "literal_string \"License is not pending approval.\""
+                        },
+                        "value": "License is not pending approval."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_fd84650bf6375f32d90bd511e1fcfe3b7026f04684f93544a46e29a13ec546e1",
+                          "typeString": "literal_string \"License is not pending approval.\""
+                        }
+                      ],
+                      "id": 30564,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1558:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30573,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1558:96:74",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30574,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1558:96:74"
+                },
+                {
+                  "expression": {
+                    "id": 30581,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 30575,
+                          "name": "licenses",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30459,
+                          "src": "1664:8:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                            "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                          }
+                        },
+                        "id": 30577,
+                        "indexExpression": {
+                          "id": 30576,
+                          "name": "licenseId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30559,
+                          "src": "1673:9:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1664:19:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_License_$30454_storage",
+                          "typeString": "struct Licensing.License storage ref"
+                        }
+                      },
+                      "id": 30578,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1684:6:74",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30453,
+                      "src": "1664:26:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                        "typeString": "enum Licensing.LicenseStatus"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 30579,
+                        "name": "LicenseStatus",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30440,
+                        "src": "1693:13:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_LicenseStatus_$30440_$",
+                          "typeString": "type(enum Licensing.LicenseStatus)"
+                        }
+                      },
+                      "id": 30580,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberLocation": "1707:8:74",
+                      "memberName": "Rejected",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30437,
+                      "src": "1693:22:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                        "typeString": "enum Licensing.LicenseStatus"
+                      }
+                    },
+                    "src": "1664:51:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                      "typeString": "enum Licensing.LicenseStatus"
+                    }
+                  },
+                  "id": 30582,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1664:51:74"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 30584,
+                        "name": "licenseId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30559,
+                        "src": "1746:9:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 30583,
+                      "name": "LicenseRejected",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30481,
+                      "src": "1730:15:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 30585,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1730:26:74",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30586,
+                  "nodeType": "EmitStatement",
+                  "src": "1725:31:74"
+                }
+              ]
+            },
+            "functionSelector": "12330825",
+            "id": 30588,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 30562,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 30561,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "1540:7:74"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "1540:7:74"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1540:7:74"
+              }
+            ],
+            "name": "rejectLicense",
+            "nameLocation": "1500:13:74",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30560,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30559,
+                  "mutability": "mutable",
+                  "name": "licenseId",
+                  "nameLocation": "1522:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30588,
+                  "src": "1514:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30558,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1514:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1513:19:74"
+            },
+            "returnParameters": {
+              "id": 30563,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1548:0:74"
+            },
+            "scope": 30658,
+            "src": "1491:272:74",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 30625,
+              "nodeType": "Block",
+              "src": "1824:293:74",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                          "typeString": "enum Licensing.LicenseStatus"
+                        },
+                        "id": 30600,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 30594,
+                              "name": "licenses",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30459,
+                              "src": "1842:8:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                                "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                              }
+                            },
+                            "id": 30596,
+                            "indexExpression": {
+                              "id": 30595,
+                              "name": "licenseId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30590,
+                              "src": "1851:9:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1842:19:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_License_$30454_storage",
+                              "typeString": "struct Licensing.License storage ref"
+                            }
+                          },
+                          "id": 30597,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1862:6:74",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30453,
+                          "src": "1842:26:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 30598,
+                            "name": "LicenseStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30440,
+                            "src": "1872:13:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_LicenseStatus_$30440_$",
+                              "typeString": "type(enum Licensing.LicenseStatus)"
+                            }
+                          },
+                          "id": 30599,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1886:8:74",
+                          "memberName": "Approved",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30436,
+                          "src": "1872:22:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        },
+                        "src": "1842:52:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4c6963656e7365206973206e6f7420617070726f7665642e",
+                        "id": 30601,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1896:26:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a643dbf51d5e51a98d73067d1d797c233a8a6508b16911ff862b6d0c161dd8d8",
+                          "typeString": "literal_string \"License is not approved.\""
+                        },
+                        "value": "License is not approved."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_a643dbf51d5e51a98d73067d1d797c233a8a6508b16911ff862b6d0c161dd8d8",
+                          "typeString": "literal_string \"License is not approved.\""
+                        }
+                      ],
+                      "id": 30593,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1834:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30602,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1834:89:74",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30603,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1834:89:74"
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 30610,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "expression": {
+                        "id": 30604,
+                        "name": "block",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967292,
+                        "src": "1937:5:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_block",
+                          "typeString": "block"
+                        }
+                      },
+                      "id": 30605,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1943:9:74",
+                      "memberName": "timestamp",
+                      "nodeType": "MemberAccess",
+                      "src": "1937:15:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">=",
+                    "rightExpression": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 30606,
+                          "name": "licenses",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30459,
+                          "src": "1956:8:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                            "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                          }
+                        },
+                        "id": 30608,
+                        "indexExpression": {
+                          "id": 30607,
+                          "name": "licenseId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30590,
+                          "src": "1965:9:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1956:19:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_License_$30454_storage",
+                          "typeString": "struct Licensing.License storage ref"
+                        }
+                      },
+                      "id": 30609,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1976:14:74",
+                      "memberName": "expirationDate",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30450,
+                      "src": "1956:34:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1937:53:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 30624,
+                  "nodeType": "IfStatement",
+                  "src": "1933:178:74",
+                  "trueBody": {
+                    "id": 30623,
+                    "nodeType": "Block",
+                    "src": "1992:119:74",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 30617,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "baseExpression": {
+                                "id": 30611,
+                                "name": "licenses",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 30459,
+                                "src": "2006:8:74",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                                  "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                                }
+                              },
+                              "id": 30613,
+                              "indexExpression": {
+                                "id": 30612,
+                                "name": "licenseId",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 30590,
+                                "src": "2015:9:74",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "nodeType": "IndexAccess",
+                              "src": "2006:19:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_License_$30454_storage",
+                                "typeString": "struct Licensing.License storage ref"
+                              }
+                            },
+                            "id": 30614,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberLocation": "2026:6:74",
+                            "memberName": "status",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 30453,
+                            "src": "2006:26:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                              "typeString": "enum Licensing.LicenseStatus"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "expression": {
+                              "id": 30615,
+                              "name": "LicenseStatus",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30440,
+                              "src": "2035:13:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_LicenseStatus_$30440_$",
+                                "typeString": "type(enum Licensing.LicenseStatus)"
+                              }
+                            },
+                            "id": 30616,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberLocation": "2049:7:74",
+                            "memberName": "Expired",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 30438,
+                            "src": "2035:21:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                              "typeString": "enum Licensing.LicenseStatus"
+                            }
+                          },
+                          "src": "2006:50:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        },
+                        "id": 30618,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2006:50:74"
+                      },
+                      {
+                        "eventCall": {
+                          "arguments": [
+                            {
+                              "id": 30620,
+                              "name": "licenseId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30590,
+                              "src": "2090:9:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            ],
+                            "id": 30619,
+                            "name": "LicenseExpired",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30485,
+                            "src": "2075:14:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                              "typeString": "function (uint256)"
+                            }
+                          },
+                          "id": 30621,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "2075:25:74",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 30622,
+                        "nodeType": "EmitStatement",
+                        "src": "2070:30:74"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "functionSelector": "cbfe4d10",
+            "id": 30626,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "expireLicense",
+            "nameLocation": "1782:13:74",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30591,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30590,
+                  "mutability": "mutable",
+                  "name": "licenseId",
+                  "nameLocation": "1804:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30626,
+                  "src": "1796:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30589,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1796:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1795:19:74"
+            },
+            "returnParameters": {
+              "id": 30592,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1824:0:74"
+            },
+            "scope": 30658,
+            "src": "1773:344:74",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 30656,
+              "nodeType": "Block",
+              "src": "2184:206:74",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                          "typeString": "enum Licensing.LicenseStatus"
+                        },
+                        "id": 30640,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 30634,
+                              "name": "licenses",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30459,
+                              "src": "2202:8:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                                "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                              }
+                            },
+                            "id": 30636,
+                            "indexExpression": {
+                              "id": 30635,
+                              "name": "licenseId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30628,
+                              "src": "2211:9:74",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "2202:19:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_License_$30454_storage",
+                              "typeString": "struct Licensing.License storage ref"
+                            }
+                          },
+                          "id": 30637,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2222:6:74",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30453,
+                          "src": "2202:26:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 30638,
+                            "name": "LicenseStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30440,
+                            "src": "2232:13:74",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_LicenseStatus_$30440_$",
+                              "typeString": "type(enum Licensing.LicenseStatus)"
+                            }
+                          },
+                          "id": 30639,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "2246:8:74",
+                          "memberName": "Approved",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30436,
+                          "src": "2232:22:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                            "typeString": "enum Licensing.LicenseStatus"
+                          }
+                        },
+                        "src": "2202:52:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4c6963656e7365206973206e6f7420617070726f7665642e",
+                        "id": 30641,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2256:26:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a643dbf51d5e51a98d73067d1d797c233a8a6508b16911ff862b6d0c161dd8d8",
+                          "typeString": "literal_string \"License is not approved.\""
+                        },
+                        "value": "License is not approved."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_a643dbf51d5e51a98d73067d1d797c233a8a6508b16911ff862b6d0c161dd8d8",
+                          "typeString": "literal_string \"License is not approved.\""
+                        }
+                      ],
+                      "id": 30633,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2194:7:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30642,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2194:89:74",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30643,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2194:89:74"
+                },
+                {
+                  "expression": {
+                    "id": 30650,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 30644,
+                          "name": "licenses",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30459,
+                          "src": "2293:8:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_License_$30454_storage_$",
+                            "typeString": "mapping(uint256 => struct Licensing.License storage ref)"
+                          }
+                        },
+                        "id": 30646,
+                        "indexExpression": {
+                          "id": 30645,
+                          "name": "licenseId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30628,
+                          "src": "2302:9:74",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "2293:19:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_License_$30454_storage",
+                          "typeString": "struct Licensing.License storage ref"
+                        }
+                      },
+                      "id": 30647,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "2313:6:74",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30453,
+                      "src": "2293:26:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                        "typeString": "enum Licensing.LicenseStatus"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 30648,
+                        "name": "LicenseStatus",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30440,
+                        "src": "2322:13:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_LicenseStatus_$30440_$",
+                          "typeString": "type(enum Licensing.LicenseStatus)"
+                        }
+                      },
+                      "id": 30649,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberLocation": "2336:7:74",
+                      "memberName": "Revoked",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30439,
+                      "src": "2322:21:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                        "typeString": "enum Licensing.LicenseStatus"
+                      }
+                    },
+                    "src": "2293:50:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_LicenseStatus_$30440",
+                      "typeString": "enum Licensing.LicenseStatus"
+                    }
+                  },
+                  "id": 30651,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2293:50:74"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 30653,
+                        "name": "licenseId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30628,
+                        "src": "2373:9:74",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 30652,
+                      "name": "LicenseRevoked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30489,
+                      "src": "2358:14:74",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 30654,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2358:25:74",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30655,
+                  "nodeType": "EmitStatement",
+                  "src": "2353:30:74"
+                }
+              ]
+            },
+            "functionSelector": "439d4b5c",
+            "id": 30657,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 30631,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 30630,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "2176:7:74"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "2176:7:74"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2176:7:74"
+              }
+            ],
+            "name": "revokeLicense",
+            "nameLocation": "2136:13:74",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30629,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30628,
+                  "mutability": "mutable",
+                  "name": "licenseId",
+                  "nameLocation": "2158:9:74",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30657,
+                  "src": "2150:17:74",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30627,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2150:7:74",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2149:19:74"
+            },
+            "returnParameters": {
+              "id": 30632,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2184:0:74"
+            },
+            "scope": 30658,
+            "src": "2127:263:74",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 30659,
+        "src": "112:2280:74",
+        "usedErrors": []
+      }
+    ],
+    "src": "36:2356:74"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:26.070Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,0 +1,3034 @@
+{
+  "contractName": "Police",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseIndex",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "judge",
+          "type": "address"
+        }
+      ],
+      "name": "CaseAssignedJudge",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseIndex",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "representative",
+          "type": "address"
+        }
+      ],
+      "name": "LegalRepresentativeAssigned",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseIndex",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "plaintiff",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        }
+      ],
+      "name": "NewCaseCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "officerAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum Police.OfficerRole",
+          "name": "role",
+          "type": "uint8"
+        }
+      ],
+      "name": "OfficerAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "officerAddress",
+          "type": "address"
+        }
+      ],
+      "name": "OfficerRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "officerAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum Police.OfficerRole",
+          "name": "newRole",
+          "type": "uint8"
+        }
+      ],
+      "name": "OfficerUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_sender",
+          "type": "address"
+        }
+      ],
+      "name": "Sender",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_judge",
+          "type": "address"
+        }
+      ],
+      "name": "assignJudge",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_representative",
+          "type": "address"
+        }
+      ],
+      "name": "assignLegalRepresentative",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "assignedJudge",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "caseCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "cases",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "index",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "plaintiff",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "filingDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum Case.CaseStatus",
+          "name": "status",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "decision",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "checkAssignedAttorney",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "decision",
+          "type": "string"
+        }
+      ],
+      "name": "closeCase",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_plaintiff",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_defendant",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        }
+      ],
+      "name": "createCase",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        }
+      ],
+      "name": "getCaseIndexByDefendant",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "getCaseInfo",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "index",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "plaintiff",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "defendant",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "filingDate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum Case.CaseStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "decision",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct Case.CaseRecord",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "getCaseStatus",
+      "outputs": [
+        {
+          "internalType": "enum Case.CaseStatus",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "isCaseResolved",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "legalRepresentatives",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "officers",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "enum Police.OfficerRole",
+          "name": "role",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bool",
+          "name": "active",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "jurisdiction",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "offender",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "violation",
+          "type": "string"
+        }
+      ],
+      "name": "issueViolation",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "officerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "enum Police.OfficerRole",
+          "name": "role",
+          "type": "uint8"
+        }
+      ],
+      "name": "addOfficer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "officerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "enum Police.OfficerRole",
+          "name": "newRole",
+          "type": "uint8"
+        }
+      ],
+      "name": "updateOfficerRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "officerAddress",
+          "type": "address"
+        }
+      ],
+      "name": "removeOfficer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseIndex\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"judge\",\"type\":\"address\"}],\"name\":\"CaseAssignedJudge\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseIndex\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"representative\",\"type\":\"address\"}],\"name\":\"LegalRepresentativeAssigned\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseIndex\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"name\":\"NewCaseCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"officerAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"enum Police.OfficerRole\",\"name\":\"role\",\"type\":\"uint8\"}],\"name\":\"OfficerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"officerAddress\",\"type\":\"address\"}],\"name\":\"OfficerRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"officerAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"enum Police.OfficerRole\",\"name\":\"newRole\",\"type\":\"uint8\"}],\"name\":\"OfficerUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_sender\",\"type\":\"address\"}],\"name\":\"Sender\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"officerAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"enum Police.OfficerRole\",\"name\":\"role\",\"type\":\"uint8\"}],\"name\":\"addOfficer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_judge\",\"type\":\"address\"}],\"name\":\"assignJudge\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_representative\",\"type\":\"address\"}],\"name\":\"assignLegalRepresentative\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"assignedJudge\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"caseCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"cases\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"index\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"filingDate\",\"type\":\"uint256\"},{\"internalType\":\"enum Case.CaseStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"checkAssignedAttorney\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"name\":\"closeCase\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"}],\"name\":\"createCase\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"}],\"name\":\"getCaseIndexByDefendant\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"getCaseInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"index\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"filingDate\",\"type\":\"uint256\"},{\"internalType\":\"enum Case.CaseStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"internalType\":\"struct Case.CaseRecord\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"getCaseStatus\",\"outputs\":[{\"internalType\":\"enum Case.CaseStatus\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"isCaseResolved\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"jurisdiction\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"offender\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"violation\",\"type\":\"string\"}],\"name\":\"issueViolation\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"legalRepresentatives\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"officers\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"enum Police.OfficerRole\",\"name\":\"role\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"active\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"officerAddress\",\"type\":\"address\"}],\"name\":\"removeOfficer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"officerAddress\",\"type\":\"address\"},{\"internalType\":\"enum Police.OfficerRole\",\"name\":\"newRole\",\"type\":\"uint8\"}],\"name\":\"updateOfficerRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/government/Police.sol\":\"Police\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/abstract/AAccessControl.sol\":{\"keccak256\":\"0xf50183e6a5c7e9ac28049163dd05945225c5bf69d8c219f21273c5670c8c7eca\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://864427ebf215c293c48703f772978b368a6214322122dbc0298adec0006879b9\",\"dweb:/ipfs/QmcdWrMe3caP1a8FeoshpPytbHc291BoEM3JdUwakXK5bK\"]},\"project:/contracts/government/Case.sol\":{\"keccak256\":\"0xafd82f9abdbc922d6eb3f3f3351fb371a2aad3de22cd207d7b14f6a17d22720f\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://7b0fea16592cba93bbd2dc8e6944941e309b54baef3a0b320159d1f431fa1112\",\"dweb:/ipfs/QmSUNCBAjGy9ik7ELHgEs4q9Bt9vV4cAhoYrbPbdcHdVax\"]},\"project:/contracts/government/Police.sol\":{\"keccak256\":\"0x371eaf613ac0afe6f7f5db1c18c415648f797f602c36dc6ce74b725eeda8a57a\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://24a77c2e655c08a942eeaa06f577489a2c8c12ba9159a08746d1d39aa78a04d4\",\"dweb:/ipfs/QmcQC4WXpwyCAUfCfFD2vEcTUdg7U8EWAwRFwL3sPMsWhX\"]},\"project:/contracts/interfaces/IAccessControl.sol\":{\"keccak256\":\"0x05e0f278602904b7892c29559952a7e6fa7d1f66af70dbf4d349ea6bd413a1c2\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://89dc767c39fdaa3a152d8ed48509be2af66836f28ec8490d717888928a0f50d5\",\"dweb:/ipfs/QmP9RmVNpyVFt7M1gXAHALLiJo4pRYnH524Xt5sMjYJqCc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: BSL-1.1\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"../abstract/AAccessControl.sol\";\nimport \"./Case.sol\";\n\n\nabstract contract Police is AAccessControl, Case {\n    enum OfficerRole { Patrol, Detective, SWAT, K9, Forensics, Technician, Corrections }\n    \n    struct PoliceOfficer {\n        string name;\n        OfficerRole role;\n        bool active;\n    }\n    \n    mapping(address => PoliceOfficer) public officers;\n\n    event OfficerAdded(address officerAddress, string name, OfficerRole role);\n    event OfficerUpdated(address officerAddress, OfficerRole newRole);\n    event OfficerRemoved(address officerAddress);   \n\n    modifier isOfficer() {\n        require(officers[msg.sender].active,\"not a valid officer\");\n        _;\n    }\n\n    function issueViolation(address jurisdiction, address offender,string memory violation) external isOfficer returns(string memory) {\n        return createCase(jurisdiction, offender, violation);\n    }\n\n    function addOfficer(address officerAddress, string memory name, OfficerRole role) public isOwner {\n        require(officers[officerAddress].role == OfficerRole(0), \"Officer already exists.\");\n        officers[officerAddress] = PoliceOfficer(name, role, true);\n        emit OfficerAdded(officerAddress, name, role);\n    }\n    \n    function updateOfficerRole(address officerAddress, OfficerRole newRole) public isOwner {\n        require(officers[officerAddress].role != OfficerRole(0), \"Officer does not exist.\");\n        officers[officerAddress].role = newRole;\n        emit OfficerUpdated(officerAddress, newRole);\n    }\n    \n    function removeOfficer(address officerAddress) public isOwner {\n        require(officers[officerAddress].role != OfficerRole(0), \"Officer does not exist.\");\n        officers[officerAddress].active = false;\n        emit OfficerRemoved(officerAddress);\n    }     \n}",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/government/Police.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/government/Police.sol",
+    "exportedSymbols": {
+      "AAccessControl": [
+        100
+      ],
+      "Case": [
+        29937
+      ],
+      "IAccessControl": [
+        38847
+      ],
+      "Police": [
+        30848
+      ]
+    },
+    "id": 30849,
+    "license": "BSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 30660,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:32:75"
+      },
+      {
+        "absolutePath": "project:/contracts/abstract/AAccessControl.sol",
+        "file": "../abstract/AAccessControl.sol",
+        "id": 30661,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 30849,
+        "sourceUnit": 101,
+        "src": "70:40:75",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/government/Case.sol",
+        "file": "./Case.sol",
+        "id": 30662,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 30849,
+        "sourceUnit": 29938,
+        "src": "111:20:75",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 30663,
+              "name": "AAccessControl",
+              "nameLocations": [
+                "162:14:75"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 100,
+              "src": "162:14:75"
+            },
+            "id": 30664,
+            "nodeType": "InheritanceSpecifier",
+            "src": "162:14:75"
+          },
+          {
+            "baseName": {
+              "id": 30665,
+              "name": "Case",
+              "nameLocations": [
+                "178:4:75"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 29937,
+              "src": "178:4:75"
+            },
+            "id": 30666,
+            "nodeType": "InheritanceSpecifier",
+            "src": "178:4:75"
+          }
+        ],
+        "canonicalName": "Police",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 30848,
+        "linearizedBaseContracts": [
+          30848,
+          29937,
+          100,
+          38847
+        ],
+        "name": "Police",
+        "nameLocation": "152:6:75",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Police.OfficerRole",
+            "id": 30674,
+            "members": [
+              {
+                "id": 30667,
+                "name": "Patrol",
+                "nameLocation": "208:6:75",
+                "nodeType": "EnumValue",
+                "src": "208:6:75"
+              },
+              {
+                "id": 30668,
+                "name": "Detective",
+                "nameLocation": "216:9:75",
+                "nodeType": "EnumValue",
+                "src": "216:9:75"
+              },
+              {
+                "id": 30669,
+                "name": "SWAT",
+                "nameLocation": "227:4:75",
+                "nodeType": "EnumValue",
+                "src": "227:4:75"
+              },
+              {
+                "id": 30670,
+                "name": "K9",
+                "nameLocation": "233:2:75",
+                "nodeType": "EnumValue",
+                "src": "233:2:75"
+              },
+              {
+                "id": 30671,
+                "name": "Forensics",
+                "nameLocation": "237:9:75",
+                "nodeType": "EnumValue",
+                "src": "237:9:75"
+              },
+              {
+                "id": 30672,
+                "name": "Technician",
+                "nameLocation": "248:10:75",
+                "nodeType": "EnumValue",
+                "src": "248:10:75"
+              },
+              {
+                "id": 30673,
+                "name": "Corrections",
+                "nameLocation": "260:11:75",
+                "nodeType": "EnumValue",
+                "src": "260:11:75"
+              }
+            ],
+            "name": "OfficerRole",
+            "nameLocation": "194:11:75",
+            "nodeType": "EnumDefinition",
+            "src": "189:84:75"
+          },
+          {
+            "canonicalName": "Police.PoliceOfficer",
+            "id": 30682,
+            "members": [
+              {
+                "constant": false,
+                "id": 30676,
+                "mutability": "mutable",
+                "name": "name",
+                "nameLocation": "321:4:75",
+                "nodeType": "VariableDeclaration",
+                "scope": 30682,
+                "src": "314:11:75",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 30675,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "314:6:75",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30679,
+                "mutability": "mutable",
+                "name": "role",
+                "nameLocation": "347:4:75",
+                "nodeType": "VariableDeclaration",
+                "scope": 30682,
+                "src": "335:16:75",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                  "typeString": "enum Police.OfficerRole"
+                },
+                "typeName": {
+                  "id": 30678,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 30677,
+                    "name": "OfficerRole",
+                    "nameLocations": [
+                      "335:11:75"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 30674,
+                    "src": "335:11:75"
+                  },
+                  "referencedDeclaration": 30674,
+                  "src": "335:11:75",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                    "typeString": "enum Police.OfficerRole"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30681,
+                "mutability": "mutable",
+                "name": "active",
+                "nameLocation": "366:6:75",
+                "nodeType": "VariableDeclaration",
+                "scope": 30682,
+                "src": "361:11:75",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 30680,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "361:4:75",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "PoliceOfficer",
+            "nameLocation": "290:13:75",
+            "nodeType": "StructDefinition",
+            "scope": 30848,
+            "src": "283:96:75",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "084866dd",
+            "id": 30687,
+            "mutability": "mutable",
+            "name": "officers",
+            "nameLocation": "430:8:75",
+            "nodeType": "VariableDeclaration",
+            "scope": 30848,
+            "src": "389:49:75",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_PoliceOfficer_$30682_storage_$",
+              "typeString": "mapping(address => struct Police.PoliceOfficer)"
+            },
+            "typeName": {
+              "id": 30686,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 30683,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "397:7:75",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "389:33:75",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_PoliceOfficer_$30682_storage_$",
+                "typeString": "mapping(address => struct Police.PoliceOfficer)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 30685,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 30684,
+                  "name": "PoliceOfficer",
+                  "nameLocations": [
+                    "408:13:75"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 30682,
+                  "src": "408:13:75"
+                },
+                "referencedDeclaration": 30682,
+                "src": "408:13:75",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_PoliceOfficer_$30682_storage_ptr",
+                  "typeString": "struct Police.PoliceOfficer"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "aafac290503fd4ba16f8415687696056e9310669746aeacfcbfbc616d5a01fee",
+            "id": 30696,
+            "name": "OfficerAdded",
+            "nameLocation": "451:12:75",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 30695,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30689,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "officerAddress",
+                  "nameLocation": "472:14:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30696,
+                  "src": "464:22:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30688,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "464:7:75",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30691,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "495:4:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30696,
+                  "src": "488:11:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 30690,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "488:6:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30694,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "role",
+                  "nameLocation": "513:4:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30696,
+                  "src": "501:16:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                    "typeString": "enum Police.OfficerRole"
+                  },
+                  "typeName": {
+                    "id": 30693,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 30692,
+                      "name": "OfficerRole",
+                      "nameLocations": [
+                        "501:11:75"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 30674,
+                      "src": "501:11:75"
+                    },
+                    "referencedDeclaration": 30674,
+                    "src": "501:11:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                      "typeString": "enum Police.OfficerRole"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "463:55:75"
+            },
+            "src": "445:74:75"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "e11fafdb046755da5c54f680f937767059dde16815741b2bebbdcdc0382da83a",
+            "id": 30703,
+            "name": "OfficerUpdated",
+            "nameLocation": "530:14:75",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 30702,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30698,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "officerAddress",
+                  "nameLocation": "553:14:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30703,
+                  "src": "545:22:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30697,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "545:7:75",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30701,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "newRole",
+                  "nameLocation": "581:7:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30703,
+                  "src": "569:19:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                    "typeString": "enum Police.OfficerRole"
+                  },
+                  "typeName": {
+                    "id": 30700,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 30699,
+                      "name": "OfficerRole",
+                      "nameLocations": [
+                        "569:11:75"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 30674,
+                      "src": "569:11:75"
+                    },
+                    "referencedDeclaration": 30674,
+                    "src": "569:11:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                      "typeString": "enum Police.OfficerRole"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "544:45:75"
+            },
+            "src": "524:66:75"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "c71ac73682f965d639a2f97202d5b162f5ea75f1ef0e933bad7f1db870a4c254",
+            "id": 30707,
+            "name": "OfficerRemoved",
+            "nameLocation": "601:14:75",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 30706,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30705,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "officerAddress",
+                  "nameLocation": "624:14:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30707,
+                  "src": "616:22:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30704,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "616:7:75",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "615:24:75"
+            },
+            "src": "595:45:75"
+          },
+          {
+            "body": {
+              "id": 30719,
+              "nodeType": "Block",
+              "src": "670:86:75",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "baseExpression": {
+                            "id": 30710,
+                            "name": "officers",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30687,
+                            "src": "688:8:75",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_PoliceOfficer_$30682_storage_$",
+                              "typeString": "mapping(address => struct Police.PoliceOfficer storage ref)"
+                            }
+                          },
+                          "id": 30713,
+                          "indexExpression": {
+                            "expression": {
+                              "id": 30711,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "697:3:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 30712,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "701:6:75",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "697:10:75",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "688:20:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_PoliceOfficer_$30682_storage",
+                            "typeString": "struct Police.PoliceOfficer storage ref"
+                          }
+                        },
+                        "id": 30714,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "709:6:75",
+                        "memberName": "active",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 30681,
+                        "src": "688:27:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "6e6f7420612076616c6964206f666669636572",
+                        "id": 30715,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "716:21:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a550d9b3022c2ce552f234012ceff734635cc681a5b6ceadee389e9176c10111",
+                          "typeString": "literal_string \"not a valid officer\""
+                        },
+                        "value": "not a valid officer"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_a550d9b3022c2ce552f234012ceff734635cc681a5b6ceadee389e9176c10111",
+                          "typeString": "literal_string \"not a valid officer\""
+                        }
+                      ],
+                      "id": 30709,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "680:7:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30716,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "680:58:75",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30717,
+                  "nodeType": "ExpressionStatement",
+                  "src": "680:58:75"
+                },
+                {
+                  "id": 30718,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "748:1:75"
+                }
+              ]
+            },
+            "id": 30720,
+            "name": "isOfficer",
+            "nameLocation": "658:9:75",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 30708,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "667:2:75"
+            },
+            "src": "649:107:75",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 30739,
+              "nodeType": "Block",
+              "src": "892:69:75",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 30734,
+                        "name": "jurisdiction",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30722,
+                        "src": "920:12:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 30735,
+                        "name": "offender",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30724,
+                        "src": "934:8:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 30736,
+                        "name": "violation",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30726,
+                        "src": "944:9:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 30733,
+                      "name": "createCase",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29614,
+                      "src": "909:10:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_string_memory_ptr_$returns$_t_string_memory_ptr_$",
+                        "typeString": "function (address,address,string memory) returns (string memory)"
+                      }
+                    },
+                    "id": 30737,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "909:45:75",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "functionReturnParameters": 30732,
+                  "id": 30738,
+                  "nodeType": "Return",
+                  "src": "902:52:75"
+                }
+              ]
+            },
+            "functionSelector": "699e8064",
+            "id": 30740,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 30729,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 30728,
+                  "name": "isOfficer",
+                  "nameLocations": [
+                    "859:9:75"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 30720,
+                  "src": "859:9:75"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "859:9:75"
+              }
+            ],
+            "name": "issueViolation",
+            "nameLocation": "771:14:75",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30727,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30722,
+                  "mutability": "mutable",
+                  "name": "jurisdiction",
+                  "nameLocation": "794:12:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30740,
+                  "src": "786:20:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30721,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "786:7:75",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30724,
+                  "mutability": "mutable",
+                  "name": "offender",
+                  "nameLocation": "816:8:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30740,
+                  "src": "808:16:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30723,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "808:7:75",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30726,
+                  "mutability": "mutable",
+                  "name": "violation",
+                  "nameLocation": "839:9:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30740,
+                  "src": "825:23:75",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 30725,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "825:6:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "785:64:75"
+            },
+            "returnParameters": {
+              "id": 30732,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30731,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30740,
+                  "src": "877:13:75",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 30730,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "877:6:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "876:15:75"
+            },
+            "scope": 30848,
+            "src": "762:199:75",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 30780,
+              "nodeType": "Block",
+              "src": "1064:223:75",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                          "typeString": "enum Police.OfficerRole"
+                        },
+                        "id": 30760,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 30753,
+                              "name": "officers",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30687,
+                              "src": "1082:8:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_PoliceOfficer_$30682_storage_$",
+                                "typeString": "mapping(address => struct Police.PoliceOfficer storage ref)"
+                              }
+                            },
+                            "id": 30755,
+                            "indexExpression": {
+                              "id": 30754,
+                              "name": "officerAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30742,
+                              "src": "1091:14:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1082:24:75",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_PoliceOfficer_$30682_storage",
+                              "typeString": "struct Police.PoliceOfficer storage ref"
+                            }
+                          },
+                          "id": 30756,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1107:4:75",
+                          "memberName": "role",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30679,
+                          "src": "1082:29:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                            "typeString": "enum Police.OfficerRole"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 30758,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1127:1:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 30757,
+                            "name": "OfficerRole",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30674,
+                            "src": "1115:11:75",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_OfficerRole_$30674_$",
+                              "typeString": "type(enum Police.OfficerRole)"
+                            }
+                          },
+                          "id": 30759,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1115:14:75",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                            "typeString": "enum Police.OfficerRole"
+                          }
+                        },
+                        "src": "1082:47:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f66666963657220616c7265616479206578697374732e",
+                        "id": 30761,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1131:25:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_51c0e6f4001c1b2a8674dcd18fa1942ea08fddfefb8d70ee83cc4c496f580639",
+                          "typeString": "literal_string \"Officer already exists.\""
+                        },
+                        "value": "Officer already exists."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_51c0e6f4001c1b2a8674dcd18fa1942ea08fddfefb8d70ee83cc4c496f580639",
+                          "typeString": "literal_string \"Officer already exists.\""
+                        }
+                      ],
+                      "id": 30752,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1074:7:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30762,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1074:83:75",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30763,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1074:83:75"
+                },
+                {
+                  "expression": {
+                    "id": 30772,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 30764,
+                        "name": "officers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30687,
+                        "src": "1167:8:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_PoliceOfficer_$30682_storage_$",
+                          "typeString": "mapping(address => struct Police.PoliceOfficer storage ref)"
+                        }
+                      },
+                      "id": 30766,
+                      "indexExpression": {
+                        "id": 30765,
+                        "name": "officerAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30742,
+                        "src": "1176:14:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1167:24:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_PoliceOfficer_$30682_storage",
+                        "typeString": "struct Police.PoliceOfficer storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 30768,
+                          "name": "name",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30744,
+                          "src": "1208:4:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "id": 30769,
+                          "name": "role",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30747,
+                          "src": "1214:4:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                            "typeString": "enum Police.OfficerRole"
+                          }
+                        },
+                        {
+                          "hexValue": "74727565",
+                          "id": 30770,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "bool",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1220:4:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          "value": "true"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                            "typeString": "enum Police.OfficerRole"
+                          },
+                          {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        ],
+                        "id": 30767,
+                        "name": "PoliceOfficer",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30682,
+                        "src": "1194:13:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_PoliceOfficer_$30682_storage_ptr_$",
+                          "typeString": "type(struct Police.PoliceOfficer storage pointer)"
+                        }
+                      },
+                      "id": 30771,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1194:31:75",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_PoliceOfficer_$30682_memory_ptr",
+                        "typeString": "struct Police.PoliceOfficer memory"
+                      }
+                    },
+                    "src": "1167:58:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PoliceOfficer_$30682_storage",
+                      "typeString": "struct Police.PoliceOfficer storage ref"
+                    }
+                  },
+                  "id": 30773,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1167:58:75"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 30775,
+                        "name": "officerAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30742,
+                        "src": "1253:14:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 30776,
+                        "name": "name",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30744,
+                        "src": "1269:4:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 30777,
+                        "name": "role",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30747,
+                        "src": "1275:4:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                          "typeString": "enum Police.OfficerRole"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                          "typeString": "enum Police.OfficerRole"
+                        }
+                      ],
+                      "id": 30774,
+                      "name": "OfficerAdded",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30696,
+                      "src": "1240:12:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_string_memory_ptr_$_t_enum$_OfficerRole_$30674_$returns$__$",
+                        "typeString": "function (address,string memory,enum Police.OfficerRole)"
+                      }
+                    },
+                    "id": 30778,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1240:40:75",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30779,
+                  "nodeType": "EmitStatement",
+                  "src": "1235:45:75"
+                }
+              ]
+            },
+            "functionSelector": "45b1a735",
+            "id": 30781,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 30750,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 30749,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "1056:7:75"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "1056:7:75"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1056:7:75"
+              }
+            ],
+            "name": "addOfficer",
+            "nameLocation": "976:10:75",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30748,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30742,
+                  "mutability": "mutable",
+                  "name": "officerAddress",
+                  "nameLocation": "995:14:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30781,
+                  "src": "987:22:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30741,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "987:7:75",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30744,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "1025:4:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30781,
+                  "src": "1011:18:75",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 30743,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1011:6:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30747,
+                  "mutability": "mutable",
+                  "name": "role",
+                  "nameLocation": "1043:4:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30781,
+                  "src": "1031:16:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                    "typeString": "enum Police.OfficerRole"
+                  },
+                  "typeName": {
+                    "id": 30746,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 30745,
+                      "name": "OfficerRole",
+                      "nameLocations": [
+                        "1031:11:75"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 30674,
+                      "src": "1031:11:75"
+                    },
+                    "referencedDeclaration": 30674,
+                    "src": "1031:11:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                      "typeString": "enum Police.OfficerRole"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "986:62:75"
+            },
+            "returnParameters": {
+              "id": 30751,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1064:0:75"
+            },
+            "scope": 30848,
+            "src": "967:320:75",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 30815,
+              "nodeType": "Block",
+              "src": "1384:203:75",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                          "typeString": "enum Police.OfficerRole"
+                        },
+                        "id": 30799,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 30792,
+                              "name": "officers",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30687,
+                              "src": "1402:8:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_PoliceOfficer_$30682_storage_$",
+                                "typeString": "mapping(address => struct Police.PoliceOfficer storage ref)"
+                              }
+                            },
+                            "id": 30794,
+                            "indexExpression": {
+                              "id": 30793,
+                              "name": "officerAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30783,
+                              "src": "1411:14:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1402:24:75",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_PoliceOfficer_$30682_storage",
+                              "typeString": "struct Police.PoliceOfficer storage ref"
+                            }
+                          },
+                          "id": 30795,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1427:4:75",
+                          "memberName": "role",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30679,
+                          "src": "1402:29:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                            "typeString": "enum Police.OfficerRole"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 30797,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1447:1:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 30796,
+                            "name": "OfficerRole",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30674,
+                            "src": "1435:11:75",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_OfficerRole_$30674_$",
+                              "typeString": "type(enum Police.OfficerRole)"
+                            }
+                          },
+                          "id": 30798,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1435:14:75",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                            "typeString": "enum Police.OfficerRole"
+                          }
+                        },
+                        "src": "1402:47:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f66666963657220646f6573206e6f742065786973742e",
+                        "id": 30800,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1451:25:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_b4903a27343699601e59bf618445fbe003988b5d58825aff03bb0ac01a4d6f49",
+                          "typeString": "literal_string \"Officer does not exist.\""
+                        },
+                        "value": "Officer does not exist."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_b4903a27343699601e59bf618445fbe003988b5d58825aff03bb0ac01a4d6f49",
+                          "typeString": "literal_string \"Officer does not exist.\""
+                        }
+                      ],
+                      "id": 30791,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1394:7:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30801,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1394:83:75",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30802,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1394:83:75"
+                },
+                {
+                  "expression": {
+                    "id": 30808,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 30803,
+                          "name": "officers",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30687,
+                          "src": "1487:8:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_struct$_PoliceOfficer_$30682_storage_$",
+                            "typeString": "mapping(address => struct Police.PoliceOfficer storage ref)"
+                          }
+                        },
+                        "id": 30805,
+                        "indexExpression": {
+                          "id": 30804,
+                          "name": "officerAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30783,
+                          "src": "1496:14:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1487:24:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_PoliceOfficer_$30682_storage",
+                          "typeString": "struct Police.PoliceOfficer storage ref"
+                        }
+                      },
+                      "id": 30806,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1512:4:75",
+                      "memberName": "role",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30679,
+                      "src": "1487:29:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                        "typeString": "enum Police.OfficerRole"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 30807,
+                      "name": "newRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30786,
+                      "src": "1519:7:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                        "typeString": "enum Police.OfficerRole"
+                      }
+                    },
+                    "src": "1487:39:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                      "typeString": "enum Police.OfficerRole"
+                    }
+                  },
+                  "id": 30809,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1487:39:75"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 30811,
+                        "name": "officerAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30783,
+                        "src": "1556:14:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 30812,
+                        "name": "newRole",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30786,
+                        "src": "1572:7:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                          "typeString": "enum Police.OfficerRole"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                          "typeString": "enum Police.OfficerRole"
+                        }
+                      ],
+                      "id": 30810,
+                      "name": "OfficerUpdated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30703,
+                      "src": "1541:14:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_enum$_OfficerRole_$30674_$returns$__$",
+                        "typeString": "function (address,enum Police.OfficerRole)"
+                      }
+                    },
+                    "id": 30813,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1541:39:75",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30814,
+                  "nodeType": "EmitStatement",
+                  "src": "1536:44:75"
+                }
+              ]
+            },
+            "functionSelector": "cf89bb52",
+            "id": 30816,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 30789,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 30788,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "1376:7:75"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "1376:7:75"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1376:7:75"
+              }
+            ],
+            "name": "updateOfficerRole",
+            "nameLocation": "1306:17:75",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30787,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30783,
+                  "mutability": "mutable",
+                  "name": "officerAddress",
+                  "nameLocation": "1332:14:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30816,
+                  "src": "1324:22:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30782,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1324:7:75",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30786,
+                  "mutability": "mutable",
+                  "name": "newRole",
+                  "nameLocation": "1360:7:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30816,
+                  "src": "1348:19:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                    "typeString": "enum Police.OfficerRole"
+                  },
+                  "typeName": {
+                    "id": 30785,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 30784,
+                      "name": "OfficerRole",
+                      "nameLocations": [
+                        "1348:11:75"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 30674,
+                      "src": "1348:11:75"
+                    },
+                    "referencedDeclaration": 30674,
+                    "src": "1348:11:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                      "typeString": "enum Police.OfficerRole"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1323:45:75"
+            },
+            "returnParameters": {
+              "id": 30790,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1384:0:75"
+            },
+            "scope": 30848,
+            "src": "1297:290:75",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 30846,
+              "nodeType": "Block",
+              "src": "1659:194:75",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                          "typeString": "enum Police.OfficerRole"
+                        },
+                        "id": 30831,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 30824,
+                              "name": "officers",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30687,
+                              "src": "1677:8:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_PoliceOfficer_$30682_storage_$",
+                                "typeString": "mapping(address => struct Police.PoliceOfficer storage ref)"
+                              }
+                            },
+                            "id": 30826,
+                            "indexExpression": {
+                              "id": 30825,
+                              "name": "officerAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 30818,
+                              "src": "1686:14:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1677:24:75",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_PoliceOfficer_$30682_storage",
+                              "typeString": "struct Police.PoliceOfficer storage ref"
+                            }
+                          },
+                          "id": 30827,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1702:4:75",
+                          "memberName": "role",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 30679,
+                          "src": "1677:29:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                            "typeString": "enum Police.OfficerRole"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 30829,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1722:1:75",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 30828,
+                            "name": "OfficerRole",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30674,
+                            "src": "1710:11:75",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_OfficerRole_$30674_$",
+                              "typeString": "type(enum Police.OfficerRole)"
+                            }
+                          },
+                          "id": 30830,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1710:14:75",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_OfficerRole_$30674",
+                            "typeString": "enum Police.OfficerRole"
+                          }
+                        },
+                        "src": "1677:47:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f66666963657220646f6573206e6f742065786973742e",
+                        "id": 30832,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1726:25:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_b4903a27343699601e59bf618445fbe003988b5d58825aff03bb0ac01a4d6f49",
+                          "typeString": "literal_string \"Officer does not exist.\""
+                        },
+                        "value": "Officer does not exist."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_b4903a27343699601e59bf618445fbe003988b5d58825aff03bb0ac01a4d6f49",
+                          "typeString": "literal_string \"Officer does not exist.\""
+                        }
+                      ],
+                      "id": 30823,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1669:7:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30833,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1669:83:75",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30834,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1669:83:75"
+                },
+                {
+                  "expression": {
+                    "id": 30840,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 30835,
+                          "name": "officers",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30687,
+                          "src": "1762:8:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_struct$_PoliceOfficer_$30682_storage_$",
+                            "typeString": "mapping(address => struct Police.PoliceOfficer storage ref)"
+                          }
+                        },
+                        "id": 30837,
+                        "indexExpression": {
+                          "id": 30836,
+                          "name": "officerAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30818,
+                          "src": "1771:14:75",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1762:24:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_PoliceOfficer_$30682_storage",
+                          "typeString": "struct Police.PoliceOfficer storage ref"
+                        }
+                      },
+                      "id": 30838,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1787:6:75",
+                      "memberName": "active",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30681,
+                      "src": "1762:31:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "66616c7365",
+                      "id": 30839,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1796:5:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "false"
+                    },
+                    "src": "1762:39:75",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 30841,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1762:39:75"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 30843,
+                        "name": "officerAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30818,
+                        "src": "1831:14:75",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 30842,
+                      "name": "OfficerRemoved",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30707,
+                      "src": "1816:14:75",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 30844,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1816:30:75",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30845,
+                  "nodeType": "EmitStatement",
+                  "src": "1811:35:75"
+                }
+              ]
+            },
+            "functionSelector": "719a0f8c",
+            "id": 30847,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 30821,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 30820,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "1651:7:75"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "1651:7:75"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1651:7:75"
+              }
+            ],
+            "name": "removeOfficer",
+            "nameLocation": "1606:13:75",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30819,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30818,
+                  "mutability": "mutable",
+                  "name": "officerAddress",
+                  "nameLocation": "1628:14:75",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30847,
+                  "src": "1620:22:75",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30817,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1620:7:75",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1619:24:75"
+            },
+            "returnParameters": {
+              "id": 30822,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1659:0:75"
+            },
+            "scope": 30848,
+            "src": "1597:256:75",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 30849,
+        "src": "134:1726:75",
+        "usedErrors": []
+      }
+    ],
+    "src": "36:1824:75"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:26.078Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

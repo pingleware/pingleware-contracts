@@ -1,0 +1,841 @@
+{
+  "contractName": "CountyBusStops",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "BusStopAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "BusStopUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "Destroyed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "FallbackEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "ReceiveEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "reason",
+          "type": "bytes"
+        }
+      ],
+      "name": "Started",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "reason",
+          "type": "bytes"
+        }
+      ],
+      "name": "Stopped",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "Termination",
+      "type": "event"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "inputs": [],
+      "name": "VERSION",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "WAIT",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_latitude",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_longitude",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "_status",
+          "type": "bool"
+        }
+      ],
+      "name": "add",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "busStops",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "last_updated",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "stop_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "latitude",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "longitude",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "street",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "crossroad",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "position",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "direction",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "status",
+          "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "location",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "destroy",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_recipient",
+          "type": "address"
+        }
+      ],
+      "name": "destroyAndSend",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getActiveBusStops",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "last_updated",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "stop_name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "latitude",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "longitude",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "street",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "crossroad",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "position",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "direction",
+              "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "status",
+              "type": "bool"
+            },
+            {
+              "internalType": "string",
+              "name": "location",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct BusStops.BusStop[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBusStop",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "last_updated",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "stop_name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "latitude",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "longitude",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "street",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "crossroad",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "position",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "direction",
+              "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "status",
+              "type": "bool"
+            },
+            {
+              "internalType": "string",
+              "name": "location",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct BusStops.BusStop",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBusStops",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "last_updated",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "stop_name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "latitude",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "longitude",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "street",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "crossroad",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "position",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "direction",
+              "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "status",
+              "type": "bool"
+            },
+            {
+              "internalType": "string",
+              "name": "location",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct BusStops.BusStop[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"BusStopAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"BusStopUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"}],\"name\":\"Destroyed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FallbackEvent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"ReceiveEvent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"reason\",\"type\":\"bytes\"}],\"name\":\"Started\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"reason\",\"type\":\"bytes\"}],\"name\":\"Stopped\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"}],\"name\":\"Termination\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"VERSION\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WAIT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_latitude\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_longitude\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_status\",\"type\":\"bool\"}],\"name\":\"add\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"busStops\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"last_updated\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"stop_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"latitude\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"longitude\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"street\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"crossroad\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"position\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"direction\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"status\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"destroy\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_recipient\",\"type\":\"address\"}],\"name\":\"destroyAndSend\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getActiveBusStops\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"last_updated\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"stop_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"latitude\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"longitude\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"street\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"crossroad\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"position\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"direction\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"status\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"}],\"internalType\":\"struct BusStops.BusStop[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getBusStop\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"last_updated\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"stop_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"latitude\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"longitude\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"street\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"crossroad\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"position\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"direction\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"status\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"}],\"internalType\":\"struct BusStops.BusStop\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBusStops\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"last_updated\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"stop_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"latitude\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"longitude\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"street\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"crossroad\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"position\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"direction\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"status\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"}],\"internalType\":\"struct BusStops.BusStop[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/government/county/CountyBusStops.sol\":\"CountyBusStops\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/common/Destructible.sol\":{\"keccak256\":\"0xb45b42ac103b81f401b1a1a2271336d4672be7f2cebb1c53a36b97cc4fcc21e4\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://29dd6190744792dc81cd78b53f55581047a10f785c040995b084fb9fcf5fc81f\",\"dweb:/ipfs/QmeAp1kr7D9rB7dxxSWxEmyiUqxagUcuW77ZzW5KLgePQY\"]},\"project:/contracts/common/Frozen.sol\":{\"keccak256\":\"0x213e022147889e959c7745d86f7d4ad73b2938472156f989ba2b18be8f46a07d\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://2438589f997234e1d3724952892278717faba109879be9bbbcab85fdb7ea52e6\",\"dweb:/ipfs/QmVmeFhcYRCHyrtVsAtYBas2JxBbzLwUxjoFU2P4HsHdZm\"]},\"project:/contracts/common/Owned.sol\":{\"keccak256\":\"0x70b5d810421ce2fb7f4ca6e84429a3363ce70149179e26cfc08d3dfaa58ec9cf\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://d47b6af54361f7c634897d3c11f3e34c4a086ce771ffcb9105fd4490471e3523\",\"dweb:/ipfs/QmZiTEchqHUvPGrYDKVd5tbarTFYxsjWsiB7D9R6ecmL6n\"]},\"project:/contracts/common/ReentrancyGuard.sol\":{\"keccak256\":\"0x53b711e6d31b96e71abf2252156ae0d06d145ad0fcdcb19d01ef026cac9686e7\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://a74125750675bde70e958756c24892d8e930764b506e72cb586ec9663e65e269\",\"dweb:/ipfs/QmdXpkNZ9cBALh3zZd8jYWcwTH2XYvLvp19pJWEXAQ5hAm\"]},\"project:/contracts/common/Version.sol\":{\"keccak256\":\"0x90d05a30d71e57db083bbff1b497e29e287d5e7110731e226b619b137baf9d72\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://57ec20c8ecc4481268b0902169e2954dd407ef3cde738a5e0dc856c5ad59f2b6\",\"dweb:/ipfs/QmNniGpizWnGbmHDpNEc4ru17MJnxsg7R3FReZjqThBL9b\"]},\"project:/contracts/government/BusStops.sol\":{\"keccak256\":\"0x48b83b2165ff668357b80841e81ec335a75e07d684dcf1f92f7796a74e683728\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://58dd02950ddb983f690dba2ab49c9804364a358c96541ed3bca64c188492c89e\",\"dweb:/ipfs/QmaL6ZrLwPFVTzj3Q7eZoC5iKwkM5ygbBt84ShC79QZFs2\"]},\"project:/contracts/government/county/CountyBusStops.sol\":{\"keccak256\":\"0x9468fd7d9a15dafb244cd5d98a059e11f4ab0360d5580bcc673f974a36903922\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://374895d9fbe4d87aee752d6d087491b7230698beae521e902eacdb1b6bc7d678\",\"dweb:/ipfs/QmTrkWHM5zE5bbxcETGSKFreD73djeamwV6cLvbnj6o3vs\"]},\"project:/contracts/libs/ecverify.sol\":{\"keccak256\":\"0x7a9d362ccc49715a3c3cc1de529df39f723b5b70f2eefd17f2f14d8139af381b\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://a48e0036fc134b9eb423f2c228097d780d122fa2f06210be1f252e52a5466493\",\"dweb:/ipfs/Qmb9yVvUziQpVDFWUMcvbhpTpK9ZKtuDbLUoS2bcjzKcZG\"]}},\"version\":1}",
+  "bytecode": "0x6080806040523461005d5760008054600160a060020a03191633908117825542600155907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08180a360ff196003541660035561191490816100638239f35b600080fdfe60808060405260043610156100c9575b50361561009957333203610052577f26875833861a2b006512a11f1b86edf95df96131040f3caeed72989ee98580836040518061004d3433836116e5565b0390a1005b60405160e560020a62461bcd0281526020600482015260196024820152603860020a787068697368696e672061747461636b2064657465637465643f026044820152606490fd5b7fcc85d09d309785db93d6df19917f2e6cc07fe27cd01c08c8279145deb5cf45266040518061004d3433836116e5565b60e060020a6000350490631e3367888214611295575080635b4d257c146111ab578063656eb06a14610599578063715018a61461055257806383197ef014610511578063893d20e8146104e9578063b8fb3a51146104cd578063e4cf06621461038c578063f2fde38b146102d4578063f5074f411461026d578063fb108144146101e05763ffa1ad741461015d573861000f565b346101db5760003660031901126101db5760408051908101906001604060020a038211818310176101c1576101bd91604052600a815260b060020a69312e362e342d62657461026020820152604051918291602083526020830190611368565b0390f35b60e060020a634e487b710260009081526041600452602490fd5b600080fd5b346101db5760203660031901126101db576040516101fd8161151d565b600081526000602082015261014060609182604082015282808201528260808201528260a08201528260c08201528260e082015282610100820152600061012082015201526101bd6102596102536004356114a5565b5061174c565b6040519182916020835260208301906113a8565b346101db5760203660031901126101db57600435600160a060020a0380821682036101db5760008051602061187f833981519152916102b461004d9260005416331461161c565b60408051338152600160a060020a03909216602083015290918291820190565b60203660031901126101db57600435600160a060020a03818116918290036101db57600054908116610307813314611700565b821561033257829060008051602061189f833981519152600080a3600160a060020a03191617600055005b60405160e560020a62461bcd02815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061604482015260d060020a65646472657373026064820152608490fd5b346101db5760203660031901126101db576004356004548110156101db576103b3906114a5565b5080546001820154916103c860028201611577565b906103d560038201611577565b6103e160048301611577565b6103ed60058401611577565b6103f960068501611577565b9061040660078601611577565b9261041360088701611577565b94600987015460ff1696600a0161042990611577565b976040519a8b9a8b5260208b01526101608060408c01528a0161044b91611368565b89810360608b015261045c91611368565b88810360808a015261046d91611368565b87810360a089015261047e91611368565b86810360c088015261048f91611368565b85810360e08701526104a091611368565b8481036101008601526104b291611368565b9015156101208401528281036101408401526101bd91611368565b346101db5760003660031901126101db576020604051601e8152f35b60003660031901126101db5760206104ff6116b0565b604051600160a060020a039091168152f35b346101db5760003660031901126101db57610538600160a060020a0360005416331461161c565b60008051602061187f83398151915261004d6102b46116b0565b60003660031901126101db576000805490600160a060020a038216610578338214611700565b60008051602061189f8339815191528280a3600160a060020a031916600055005b346101db5760c03660031901126101db576044356001604060020a0381116101db576105c9903690600401611478565b6064356001604060020a0381116101db576105e8903690600401611478565b92906084356001604060020a0381116101db57610609903690600401611478565b91909460a4359384151585036101db5761062f600160a060020a0360005416331461161c565b60405161063b8161151d565b60043581526024356020820152610653368884611817565b6040820152610663368486611817565b606082015261067336868a611817565b608082015260405161068481611539565b6000815260a082015260405161069981611539565b6000815260c08201526040516106ae81611539565b6000815260e08201526040516106c381611539565b600081526101008201528515156101208201526040516106e281611539565b60008152610140820152600454604060020a8110156101c15780600161070b92016004556114a5565b91909161119157805182556020810151600183015560408101518051906001604060020a0382116101c157819061074560028601546114de565b601f811161113e575b50602090601f83116001146110ca576000926110bf575b5050816002029160080260020a6000190419161760028301555b60608101518051906001604060020a0382116101c15781906107a460038601546114de565b601f811161106c575b50602090601f8311600114610ff857600092610fed575b5050816002029160080260020a6000190419161760038301555b60808101518051906001604060020a0382116101c157819061080360048601546114de565b601f8111610f9a575b50602090601f8311600114610f2657600092610f1b575b5050816002029160080260020a6000190419161760048301555b60a08101518051906001604060020a0382116101c157819061086260058601546114de565b601f8111610ec8575b50602090601f8311600114610e5457600092610e49575b5050816002029160080260020a6000190419161760058301555b60c08101518051906001604060020a0382116101c15781906108c160068601546114de565b601f8111610df6575b50602090601f8311600114610d8257600092610d77575b5050816002029160080260020a6000190419161760068301555b60e08101518051906001604060020a0382116101c157819061092060078601546114de565b601f8111610d24575b50602090601f8311600114610cb057600092610ca5575b5050816002029160080260020a6000190419161760078301555b6101008101518051906001604060020a0382116101c15761097e60088501546114de565b601f8111610c5e575b50602090601f8311600114610be75761014093929160009183610bdc575b5050816002029160080260020a6000190419161760088401555b60098301610120820151151560ff8019835416911617905501518051906001604060020a0382116101c1576109f7600a8401546114de565b601f8111610b95575b50602090601f8311600114610afd5795608095610a84610a9e966000805160206118bf8339815191529d96600a8760a09e9d98610a919860009e8f92610af2575b5050816002029160080260020a8e19041916179101555b6040519c8d3390528d60206004359101528d60406024359101528d61018090816060820152019161185d565b918b8303888d015261185d565b91888303888a015261185d565b858103938460c08801528382526020850160e08801528360208301526040850161010088015283604083015260608501610120880152836060830152151561014087015281840161016087015201520190a1005b015190503880610a41565b90600a840160005260206000209160005b601f1985168110610b7d575095610a84610a9e966000805160206118bf8339815191529d96600a6001600260a09f9e99610a919960009f9960809f83601f19811610610b62575b5050500201910155610a58565b01516008601f841602840a6000190419169055388080610b55565b91926020600181928685015181550194019201610b0e565b600a840160005260206000206020601f850104810160208510610bd5575b6020601f84010482018110610bc9575050610a00565b60008155600101610bb3565b5080610bb3565b015190508c806109a5565b906008850160005260206000209160005b601f1985168110610c46575092600192600292610140969583601f19811610610c2b575b505050020160088401556109bf565b01516008601f841602840a60001904191690558d8080610c1c565b91926020600181928685015181550194019201610bf8565b6008850160005260206000206020601f850104810160208510610c9e575b6020601f84010482018110610c92575050610987565b60008155600101610c7c565b5080610c7c565b015190508b80610940565b91506007850160005260206000209160005b601f1985168110610d0c5750918391600293600195601f19811610610cf1575b5050500201600783015561095a565b01516008601f841602840a60001904191690558c8080610ce2565b91926020600181928685015181550194019201610cc2565b9091506007850160005260206000206020601f850104810160208510610d70575b90849392915b6020601f84010482018110610d61575050610929565b60008155859450600101610d4b565b5080610d45565b015190508b806108e1565b91506006850160005260206000209160005b601f1985168110610dde5750918391600293600195601f19811610610dc3575b505050020160068301556108fb565b01516008601f841602840a60001904191690558c8080610db4565b91926020600181928685015181550194019201610d94565b9091506006850160005260206000206020601f850104810160208510610e42575b90849392915b6020601f84010482018110610e335750506108ca565b60008155859450600101610e1d565b5080610e17565b015190508b80610882565b91506005850160005260206000209160005b601f1985168110610eb05750918391600293600195601f19811610610e95575b5050500201600583015561089c565b01516008601f841602840a60001904191690558c8080610e86565b91926020600181928685015181550194019201610e66565b9091506005850160005260206000206020601f850104810160208510610f14575b90849392915b6020601f84010482018110610f0557505061086b565b60008155859450600101610eef565b5080610ee9565b015190508b80610823565b91506004850160005260206000209160005b601f1985168110610f825750918391600293600195601f19811610610f67575b5050500201600483015561083d565b01516008601f841602840a60001904191690558c8080610f58565b91926020600181928685015181550194019201610f38565b9091506004850160005260206000206020601f850104810160208510610fe6575b90849392915b6020601f84010482018110610fd757505061080c565b60008155859450600101610fc1565b5080610fbb565b015190508b806107c4565b91506003850160005260206000209160005b601f19851681106110545750918391600293600195601f19811610611039575b505050020160038301556107de565b01516008601f841602840a60001904191690558c808061102a565b9192602060018192868501518155019401920161100a565b9091506003850160005260206000206020601f8501048101602085106110b8575b90849392915b6020601f840104820181106110a95750506107ad565b60008155859450600101611093565b508061108d565b015190508b80610765565b91506002850160005260206000209160005b601f19851681106111265750918391600293600195601f1981161061110b575b5050500201600283015561077f565b01516008601f841602840a60001904191690558c80806110fc565b919260206001819286850151815501940192016110dc565b9091506002850160005260206000206020601f85010481016020851061118a575b90849392915b6020601f8401048201811061117b57505061074e565b60008155859450600101611165565b508061115f565b60e060020a634e487b710260009081526004819052602490fd5b346101db5760003660031901126101db5760045460005b8181106112265760408051602080825260605181830181905260009381830284018101926080929185015b8287106111fa5785850386f35b909192938280611216600193603f198a820301865288516113a8565b96019201960195929190926111ed565b60ff6009611233836114a5565b50015416611267575b600019811461124d576001016111c2565b60e060020a634e487b710260009081526011600452602490fd5b61128f611273826114a5565b506112806060519161174c565b61128982611804565b52611804565b5061123c565b346101db5760003660031901126101db57600454906001604060020a0382116101c157906020906112ca828083020184611554565b80835281830190816004600052836000206000915b83831061134557505050506040519180830193818452518094526040830193604082820285010192916000955b8287106113195785850386f35b909192938280611335600193603f198a820301865288516113a8565b960192019601959291909261130c565b600b86600192611357859a999a61174c565b8152019201920191909594956112df565b919082519283825260005b848110611394575050826000602080949584010152601f8019910116010190565b602081830181015184830182015201611373565b9061147591805182526020810151602083015261145461144061142e61141c61140a6113f86113e660408801516101608060408c01528a0190611368565b606088015189820360608b0152611368565b608087015188820360808a0152611368565b60a086015187820360a0890152611368565b60c085015186820360c0880152611368565b60e084015185820360e0870152611368565b610100808401519085830390860152611368565b91610120808301511515908201526101408092015191818403910152611368565b90565b9181601f840112156101db578235916001604060020a0383116101db57602083818601950101116101db57565b6004548110156114c4576004600052600b602060002091020190600090565b60e060020a634e487b710260009081526032600452602490fd5b9060016002830492168015611513575b60208310146114f957565b60e060020a634e487b710260009081526022600452602490fd5b91607f16916114ee565b61016081019081106001604060020a038211176101c157604052565b602081019081106001604060020a038211176101c157604052565b601f909101601f19168101906001604060020a038211908210176101c157604052565b906040519182600082549261158b846114de565b9081845260019485811690816000146115fa57506001146115b7575b50506115b592500383611554565b565b9093915060005260209081600020936000915b8183106115e25750506115b5935082010138806115a7565b855488840185015294850194879450918301916115ca565b9150506115b594506020925060ff1916828401521515810282010138806115a7565b1561162357565b60405160e560020a62461bcd02815260206004820152601b60248201527f756e617574686f72697a65642c206e6f7420746865206f776e657200000000006044820152606490fd5b1561167257565b60405160e560020a62461bcd0281526020600482015260106024820152608160020a6f3930ba32903634b6b4ba1032b93937b9026044820152606490fd5b600154601e810180911161124d576116d29042116116cd8161166b565b61166b565b42600155600054600160a060020a031690565b600160a060020a039091168152602081019190915260400190565b1561170757565b60405160e560020a62461bcd0281526020600482015260176024820152604960020a7630b1b1b2b9b9903232b734b2b2103337b91037bbb732b9026044820152606490fd5b906040516117598161151d565b6101406117ff600a8395805485526001810154602086015261177d60028201611577565b604086015261178e60038201611577565b606086015261179f60048201611577565b60808601526117b060058201611577565b60a08601526117c160068201611577565b60c08601526117d260078201611577565b60e08601526117e360088201611577565b61010086015260ff600982015416151561012086015201611577565b910152565b6060518110156114c45760200260800190565b9192916001604060020a0382116101c15760405191611840601f8201601f191660200184611554565b8294818452818301116101db578281602093846000960137010152565b908060209392818452848401376000828201840152601f01601f191601019056fe91ca00fdf29069527d658f8dfc6d1c0bf9861780bb45ff36436f938d3595a8d68be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e071cbb45018c6d90f3e21c6e9ed59134c7f55ec3cab2cdc3bb95255d7d9c80313a264697066735822122012d4528ce98d8e0314d9a89e46fafabea081bb4e3c479efb9ad2e7306736edcf64736f6c63430008120033",
+  "deployedBytecode": "0x60808060405260043610156100c9575b50361561009957333203610052577f26875833861a2b006512a11f1b86edf95df96131040f3caeed72989ee98580836040518061004d3433836116e5565b0390a1005b60405160e560020a62461bcd0281526020600482015260196024820152603860020a787068697368696e672061747461636b2064657465637465643f026044820152606490fd5b7fcc85d09d309785db93d6df19917f2e6cc07fe27cd01c08c8279145deb5cf45266040518061004d3433836116e5565b60e060020a6000350490631e3367888214611295575080635b4d257c146111ab578063656eb06a14610599578063715018a61461055257806383197ef014610511578063893d20e8146104e9578063b8fb3a51146104cd578063e4cf06621461038c578063f2fde38b146102d4578063f5074f411461026d578063fb108144146101e05763ffa1ad741461015d573861000f565b346101db5760003660031901126101db5760408051908101906001604060020a038211818310176101c1576101bd91604052600a815260b060020a69312e362e342d62657461026020820152604051918291602083526020830190611368565b0390f35b60e060020a634e487b710260009081526041600452602490fd5b600080fd5b346101db5760203660031901126101db576040516101fd8161151d565b600081526000602082015261014060609182604082015282808201528260808201528260a08201528260c08201528260e082015282610100820152600061012082015201526101bd6102596102536004356114a5565b5061174c565b6040519182916020835260208301906113a8565b346101db5760203660031901126101db57600435600160a060020a0380821682036101db5760008051602061187f833981519152916102b461004d9260005416331461161c565b60408051338152600160a060020a03909216602083015290918291820190565b60203660031901126101db57600435600160a060020a03818116918290036101db57600054908116610307813314611700565b821561033257829060008051602061189f833981519152600080a3600160a060020a03191617600055005b60405160e560020a62461bcd02815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061604482015260d060020a65646472657373026064820152608490fd5b346101db5760203660031901126101db576004356004548110156101db576103b3906114a5565b5080546001820154916103c860028201611577565b906103d560038201611577565b6103e160048301611577565b6103ed60058401611577565b6103f960068501611577565b9061040660078601611577565b9261041360088701611577565b94600987015460ff1696600a0161042990611577565b976040519a8b9a8b5260208b01526101608060408c01528a0161044b91611368565b89810360608b015261045c91611368565b88810360808a015261046d91611368565b87810360a089015261047e91611368565b86810360c088015261048f91611368565b85810360e08701526104a091611368565b8481036101008601526104b291611368565b9015156101208401528281036101408401526101bd91611368565b346101db5760003660031901126101db576020604051601e8152f35b60003660031901126101db5760206104ff6116b0565b604051600160a060020a039091168152f35b346101db5760003660031901126101db57610538600160a060020a0360005416331461161c565b60008051602061187f83398151915261004d6102b46116b0565b60003660031901126101db576000805490600160a060020a038216610578338214611700565b60008051602061189f8339815191528280a3600160a060020a031916600055005b346101db5760c03660031901126101db576044356001604060020a0381116101db576105c9903690600401611478565b6064356001604060020a0381116101db576105e8903690600401611478565b92906084356001604060020a0381116101db57610609903690600401611478565b91909460a4359384151585036101db5761062f600160a060020a0360005416331461161c565b60405161063b8161151d565b60043581526024356020820152610653368884611817565b6040820152610663368486611817565b606082015261067336868a611817565b608082015260405161068481611539565b6000815260a082015260405161069981611539565b6000815260c08201526040516106ae81611539565b6000815260e08201526040516106c381611539565b600081526101008201528515156101208201526040516106e281611539565b60008152610140820152600454604060020a8110156101c15780600161070b92016004556114a5565b91909161119157805182556020810151600183015560408101518051906001604060020a0382116101c157819061074560028601546114de565b601f811161113e575b50602090601f83116001146110ca576000926110bf575b5050816002029160080260020a6000190419161760028301555b60608101518051906001604060020a0382116101c15781906107a460038601546114de565b601f811161106c575b50602090601f8311600114610ff857600092610fed575b5050816002029160080260020a6000190419161760038301555b60808101518051906001604060020a0382116101c157819061080360048601546114de565b601f8111610f9a575b50602090601f8311600114610f2657600092610f1b575b5050816002029160080260020a6000190419161760048301555b60a08101518051906001604060020a0382116101c157819061086260058601546114de565b601f8111610ec8575b50602090601f8311600114610e5457600092610e49575b5050816002029160080260020a6000190419161760058301555b60c08101518051906001604060020a0382116101c15781906108c160068601546114de565b601f8111610df6575b50602090601f8311600114610d8257600092610d77575b5050816002029160080260020a6000190419161760068301555b60e08101518051906001604060020a0382116101c157819061092060078601546114de565b601f8111610d24575b50602090601f8311600114610cb057600092610ca5575b5050816002029160080260020a6000190419161760078301555b6101008101518051906001604060020a0382116101c15761097e60088501546114de565b601f8111610c5e575b50602090601f8311600114610be75761014093929160009183610bdc575b5050816002029160080260020a6000190419161760088401555b60098301610120820151151560ff8019835416911617905501518051906001604060020a0382116101c1576109f7600a8401546114de565b601f8111610b95575b50602090601f8311600114610afd5795608095610a84610a9e966000805160206118bf8339815191529d96600a8760a09e9d98610a919860009e8f92610af2575b5050816002029160080260020a8e19041916179101555b6040519c8d3390528d60206004359101528d60406024359101528d61018090816060820152019161185d565b918b8303888d015261185d565b91888303888a015261185d565b858103938460c08801528382526020850160e08801528360208301526040850161010088015283604083015260608501610120880152836060830152151561014087015281840161016087015201520190a1005b015190503880610a41565b90600a840160005260206000209160005b601f1985168110610b7d575095610a84610a9e966000805160206118bf8339815191529d96600a6001600260a09f9e99610a919960009f9960809f83601f19811610610b62575b5050500201910155610a58565b01516008601f841602840a6000190419169055388080610b55565b91926020600181928685015181550194019201610b0e565b600a840160005260206000206020601f850104810160208510610bd5575b6020601f84010482018110610bc9575050610a00565b60008155600101610bb3565b5080610bb3565b015190508c806109a5565b906008850160005260206000209160005b601f1985168110610c46575092600192600292610140969583601f19811610610c2b575b505050020160088401556109bf565b01516008601f841602840a60001904191690558d8080610c1c565b91926020600181928685015181550194019201610bf8565b6008850160005260206000206020601f850104810160208510610c9e575b6020601f84010482018110610c92575050610987565b60008155600101610c7c565b5080610c7c565b015190508b80610940565b91506007850160005260206000209160005b601f1985168110610d0c5750918391600293600195601f19811610610cf1575b5050500201600783015561095a565b01516008601f841602840a60001904191690558c8080610ce2565b91926020600181928685015181550194019201610cc2565b9091506007850160005260206000206020601f850104810160208510610d70575b90849392915b6020601f84010482018110610d61575050610929565b60008155859450600101610d4b565b5080610d45565b015190508b806108e1565b91506006850160005260206000209160005b601f1985168110610dde5750918391600293600195601f19811610610dc3575b505050020160068301556108fb565b01516008601f841602840a60001904191690558c8080610db4565b91926020600181928685015181550194019201610d94565b9091506006850160005260206000206020601f850104810160208510610e42575b90849392915b6020601f84010482018110610e335750506108ca565b60008155859450600101610e1d565b5080610e17565b015190508b80610882565b91506005850160005260206000209160005b601f1985168110610eb05750918391600293600195601f19811610610e95575b5050500201600583015561089c565b01516008601f841602840a60001904191690558c8080610e86565b91926020600181928685015181550194019201610e66565b9091506005850160005260206000206020601f850104810160208510610f14575b90849392915b6020601f84010482018110610f0557505061086b565b60008155859450600101610eef565b5080610ee9565b015190508b80610823565b91506004850160005260206000209160005b601f1985168110610f825750918391600293600195601f19811610610f67575b5050500201600483015561083d565b01516008601f841602840a60001904191690558c8080610f58565b91926020600181928685015181550194019201610f38565b9091506004850160005260206000206020601f850104810160208510610fe6575b90849392915b6020601f84010482018110610fd757505061080c565b60008155859450600101610fc1565b5080610fbb565b015190508b806107c4565b91506003850160005260206000209160005b601f19851681106110545750918391600293600195601f19811610611039575b505050020160038301556107de565b01516008601f841602840a60001904191690558c808061102a565b9192602060018192868501518155019401920161100a565b9091506003850160005260206000206020601f8501048101602085106110b8575b90849392915b6020601f840104820181106110a95750506107ad565b60008155859450600101611093565b508061108d565b015190508b80610765565b91506002850160005260206000209160005b601f19851681106111265750918391600293600195601f1981161061110b575b5050500201600283015561077f565b01516008601f841602840a60001904191690558c80806110fc565b919260206001819286850151815501940192016110dc565b9091506002850160005260206000206020601f85010481016020851061118a575b90849392915b6020601f8401048201811061117b57505061074e565b60008155859450600101611165565b508061115f565b60e060020a634e487b710260009081526004819052602490fd5b346101db5760003660031901126101db5760045460005b8181106112265760408051602080825260605181830181905260009381830284018101926080929185015b8287106111fa5785850386f35b909192938280611216600193603f198a820301865288516113a8565b96019201960195929190926111ed565b60ff6009611233836114a5565b50015416611267575b600019811461124d576001016111c2565b60e060020a634e487b710260009081526011600452602490fd5b61128f611273826114a5565b506112806060519161174c565b61128982611804565b52611804565b5061123c565b346101db5760003660031901126101db57600454906001604060020a0382116101c157906020906112ca828083020184611554565b80835281830190816004600052836000206000915b83831061134557505050506040519180830193818452518094526040830193604082820285010192916000955b8287106113195785850386f35b909192938280611335600193603f198a820301865288516113a8565b960192019601959291909261130c565b600b86600192611357859a999a61174c565b8152019201920191909594956112df565b919082519283825260005b848110611394575050826000602080949584010152601f8019910116010190565b602081830181015184830182015201611373565b9061147591805182526020810151602083015261145461144061142e61141c61140a6113f86113e660408801516101608060408c01528a0190611368565b606088015189820360608b0152611368565b608087015188820360808a0152611368565b60a086015187820360a0890152611368565b60c085015186820360c0880152611368565b60e084015185820360e0870152611368565b610100808401519085830390860152611368565b91610120808301511515908201526101408092015191818403910152611368565b90565b9181601f840112156101db578235916001604060020a0383116101db57602083818601950101116101db57565b6004548110156114c4576004600052600b602060002091020190600090565b60e060020a634e487b710260009081526032600452602490fd5b9060016002830492168015611513575b60208310146114f957565b60e060020a634e487b710260009081526022600452602490fd5b91607f16916114ee565b61016081019081106001604060020a038211176101c157604052565b602081019081106001604060020a038211176101c157604052565b601f909101601f19168101906001604060020a038211908210176101c157604052565b906040519182600082549261158b846114de565b9081845260019485811690816000146115fa57506001146115b7575b50506115b592500383611554565b565b9093915060005260209081600020936000915b8183106115e25750506115b5935082010138806115a7565b855488840185015294850194879450918301916115ca565b9150506115b594506020925060ff1916828401521515810282010138806115a7565b1561162357565b60405160e560020a62461bcd02815260206004820152601b60248201527f756e617574686f72697a65642c206e6f7420746865206f776e657200000000006044820152606490fd5b1561167257565b60405160e560020a62461bcd0281526020600482015260106024820152608160020a6f3930ba32903634b6b4ba1032b93937b9026044820152606490fd5b600154601e810180911161124d576116d29042116116cd8161166b565b61166b565b42600155600054600160a060020a031690565b600160a060020a039091168152602081019190915260400190565b1561170757565b60405160e560020a62461bcd0281526020600482015260176024820152604960020a7630b1b1b2b9b9903232b734b2b2103337b91037bbb732b9026044820152606490fd5b906040516117598161151d565b6101406117ff600a8395805485526001810154602086015261177d60028201611577565b604086015261178e60038201611577565b606086015261179f60048201611577565b60808601526117b060058201611577565b60a08601526117c160068201611577565b60c08601526117d260078201611577565b60e08601526117e360088201611577565b61010086015260ff600982015416151561012086015201611577565b910152565b6060518110156114c45760200260800190565b9192916001604060020a0382116101c15760405191611840601f8201601f191660200184611554565b8294818452818301116101db578281602093846000960137010152565b908060209392818452848401376000828201840152601f01601f191601019056fe91ca00fdf29069527d658f8dfc6d1c0bf9861780bb45ff36436f938d3595a8d68be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e071cbb45018c6d90f3e21c6e9ed59134c7f55ec3cab2cdc3bb95255d7d9c80313a264697066735822122012d4528ce98d8e0314d9a89e46fafabea081bb4e3c479efb9ad2e7306736edcf64736f6c63430008120033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "99:44:79:-:0;;;;;;;287:1:19;99:44:79;;-1:-1:-1;;;;;;99:44:79;589:10:19;99:44:79;;;;;637:15:19;99:44:79;;589:10:19;668:44;287:1;;668:44;99::79;;237:5:17;99:44:79;;237:5:17;99:44:79;;;;;;;;;;;",
+  "deployedSourceMap": "99:44:79:-:0;;;;;;;;;;-1:-1:-1;99:44:79;;;;;2290:10:19;2277:9;:23;99:44:79;;2346:35:19;99:44:79;;2371:9:19;2346:35;2371:9;2290:10;2346:35;;:::i;:::-;;;;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;2463:34:19;99:44:79;;2487:9:19;2463:34;2487:9;2476:10;2463:34;;:::i;99:44:79:-;-1:-1:-1;;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;;;:::i;:::-;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1166:15:69;99:44:79;;1166:15:69;:::i;:::-;99:44:79;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;;;;;-1:-1:-1;;99:44:79;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;-1:-1:-1;;;;;;;;;;;99:44:79;1402:58:19;456:32:12;99:44:79;;;;1410:10:19;:19;1402:58;:::i;:::-;99:44:79;;;1410:10:19;99:44:79;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;1097:56:19;1106:10;;:19;1097:56;:::i;:::-;3262:22;;99:44:79;;3343:37:19;;-1:-1:-1;;;;;;;;;;;99:44:79;3343:37:19;;-1:-1:-1;;;;;;99:44:79;;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;782:25:69;;;;;;;;:::i;:::-;-1:-1:-1;99:44:79;;;782:25:69;;99:44:79;;782:25:69;99:44:79;782:25:69;;;:::i;:::-;;;99:44:79;782:25:69;;;:::i;:::-;;99:44:79;782:25:69;;;:::i;:::-;;;;;;:::i;:::-;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;99:44:79;;;782:25:69;;;;;;:::i;:::-;99:44:79;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;:::i;:::-;;;;;;;;;;;:::i;:::-;;;;;;;;;;;:::i;:::-;;;;;;;;;;;:::i;:::-;;;;;;;;;;;:::i;:::-;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;-1:-1:-1;;99:44:79;;;;;;;195:10:19;99:44:79;;;;;;-1:-1:-1;;99:44:79;;;;;1583:7:19;;:::i;:::-;99:44:79;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;1402:58:19;99:44:79;;;;;;;;1410:10:19;:19;1402:58;:::i;:::-;-1:-1:-1;;;;;;;;;;;333:32:12;1583:7:19;;:::i;99:44:79:-;;;-1:-1:-1;;99:44:79;;;;;;;;-1:-1:-1;;;;;99:44:79;;1097:56:19;1106:10;:19;;1097:56;:::i;:::-;-1:-1:-1;;;;;;;;;;;2934:39:19;;;-1:-1:-1;;;;;;99:44:79;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;:::i;:::-;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;:::i;:::-;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;1402:58:19;99:44:79;;;;;;;;1410:10:19;:19;1402:58;:::i;:::-;99:44:79;;;;;:::i;:::-;;;;;;;;1909:68:69;;99:44:79;;;;;;:::i;:::-;;1909:68:69;;99:44:79;;;;;;:::i;:::-;;1909:68:69;;99:44:79;;;;;;:::i;:::-;;1909:68:69;;99:44:79;;;;;;:::i;:::-;;;;;1909:68:69;;99:44:79;;;;;;:::i;:::-;;;;;1909:68:69;;99:44:79;;;;;;:::i;:::-;;;;;1909:68:69;;99:44:79;;;;;;:::i;:::-;;;;1909:68:69;;;99:44:79;;;;1909:68:69;;;99:44:79;;;;;;:::i;:::-;;;;1909:68:69;;;99:44:79;;;-1:-1:-1;;;99:44:79;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;1909:68:69;;99:44:79;;;;;;1909:68:69;;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1909:68:69;;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1909:68:69;;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1909:68:69;;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1909:68:69;;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1909:68:69;;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1909:68:69;;;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;1909:68:69;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1909:68:69;;;99:44:79;;;;;;;;;;;;;;1909:68:69;99:44:79;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1410:10:19;;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;1909:68:69;99:44:79;;;;;;;;;;;1909:68:69;99:44:79;;;;;;;;;;1909:68:69;99:44:79;;;;;;;;;;;;2026:84:69;;;99:44:79;;;;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;1909:68:69;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;-1:-1:-1;99:44:79;;;;;;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;-1:-1:-1;99:44:79;;;;;;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;-1:-1:-1;99:44:79;;;;;;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;-1:-1:-1;99:44:79;;;;;;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;-1:-1:-1;99:44:79;;;;;;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;-1:-1:-1;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;1430:19:69;;;;;;99:44:79;;;;;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;1451:3:69;99:44:79;1475:18:69;:11;;;:::i;:::-;:18;;99:44:79;;1471:94:69;;1451:3;-1:-1:-1;;99:44:79;;;;;;1418:10:69;;99:44:79;-1:-1:-1;;;;;99:44:79;;;;;;;;;;1471:94:69;1514:35;1538:11;;;:::i;:::-;99:44:79;;;;;;:::i;:::-;1514:35:69;;;:::i;:::-;;;:::i;:::-;;1471:94;;99:44:79;;;;;;-1:-1:-1;;99:44:79;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::o;:::-;;;;;;;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;-1:-1:-1;99:44:79;;;-1:-1:-1;99:44:79;;;;;-1:-1:-1;99:44:79;:::o;:::-;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;:::o;:::-;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;:::o;:::-;;;;;-1:-1:-1;;99:44:79;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;:::o;:::-;;;;;;-1:-1:-1;99:44:79;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;:::o;:::-;;;;;-1:-1:-1;99:44:79;;;;-1:-1:-1;99:44:79;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;728:136:19;792:24;99:44:79;195:10:19;99:44:79;;;;;;;1608:79:19;774:15;;:49;765:79;;;:::i;:::-;1608;:::i;:::-;774:15;792:24;99:44:79;-1:-1:-1;99:44:79;-1:-1:-1;;;;;99:44:79;;728:136:19:o;99:44:79:-;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;;:::o;:::-;;;;:::o;:::-;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;:::o;:::-;;;;;;;;;;;;;:::o;:::-;;;;-1:-1:-1;;;;;99:44:79;;;;;;;;;;;-1:-1:-1;;99:44:79;;;;;:::i;:::-;;;;;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;;:::o;:::-;;;;;;;;;;;;;-1:-1:-1;99:44:79;;;;;;;;-1:-1:-1;;99:44:79;;;;:::o",
+  "source": "// SPDX-License-Identifier: CC-BY-4.0\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"../BusStops.sol\";\n\ncontract CountyBusStops is BusStops {\n    \n}",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/government/county/CountyBusStops.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/government/county/CountyBusStops.sol",
+    "exportedSymbols": {
+      "BusStops": [
+        29463
+      ],
+      "CountyBusStops": [
+        31231
+      ],
+      "Destructible": [
+        3475
+      ],
+      "ECVerify": [
+        47567
+      ],
+      "Frozen": [
+        5153
+      ],
+      "Owned": [
+        5490
+      ],
+      "ReentrancyGuard": [
+        5530
+      ],
+      "Version": [
+        6122
+      ]
+    },
+    "id": 31232,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 31227,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:32:79"
+      },
+      {
+        "absolutePath": "project:/contracts/government/BusStops.sol",
+        "file": "../BusStops.sol",
+        "id": 31228,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 31232,
+        "sourceUnit": 29464,
+        "src": "72:25:79",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 31229,
+              "name": "BusStops",
+              "nameLocations": [
+                "126:8:79"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 29463,
+              "src": "126:8:79"
+            },
+            "id": 31230,
+            "nodeType": "InheritanceSpecifier",
+            "src": "126:8:79"
+          }
+        ],
+        "canonicalName": "CountyBusStops",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 31231,
+        "linearizedBaseContracts": [
+          31231,
+          29463,
+          5153,
+          3475,
+          5490,
+          6122
+        ],
+        "name": "CountyBusStops",
+        "nameLocation": "108:14:79",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 31232,
+        "src": "99:44:79",
+        "usedErrors": []
+      }
+    ],
+    "src": "38:105:79"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:26.107Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

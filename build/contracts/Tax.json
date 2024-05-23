@@ -1,0 +1,1634 @@
+{
+  "contractName": "Tax",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_sender",
+          "type": "address"
+        }
+      ],
+      "name": "Sender",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "recordId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "taxpayer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum Tax.TaxType",
+          "name": "taxType",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "paymentDate",
+          "type": "uint256"
+        }
+      ],
+      "name": "TaxPaid",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "recordCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "taxRecords",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "recordId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "taxpayer",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum Tax.TaxType",
+          "name": "taxType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "paymentDate",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "enum Tax.TaxType",
+          "name": "taxType",
+          "type": "uint8"
+        }
+      ],
+      "name": "payTax",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getContractBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "withdrawBalance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_sender\",\"type\":\"address\"}],\"name\":\"Sender\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"recordId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"taxpayer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"enum Tax.TaxType\",\"name\":\"taxType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"paymentDate\",\"type\":\"uint256\"}],\"name\":\"TaxPaid\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"getContractBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"enum Tax.TaxType\",\"name\":\"taxType\",\"type\":\"uint8\"}],\"name\":\"payTax\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"recordCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"taxRecords\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"recordId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"taxpayer\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"enum Tax.TaxType\",\"name\":\"taxType\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"paymentDate\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"}],\"name\":\"withdrawBalance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/government/Tax.sol\":\"Tax\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/abstract/AAccessControl.sol\":{\"keccak256\":\"0xf50183e6a5c7e9ac28049163dd05945225c5bf69d8c219f21273c5670c8c7eca\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://864427ebf215c293c48703f772978b368a6214322122dbc0298adec0006879b9\",\"dweb:/ipfs/QmcdWrMe3caP1a8FeoshpPytbHc291BoEM3JdUwakXK5bK\"]},\"project:/contracts/government/Tax.sol\":{\"keccak256\":\"0x054bee82bf77549e185b05b4fcdec806c60c87f95c8c3c8862ec32091ba8eb11\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://c5d4a15ce6d7066df7ff001202352af375621d70b2fc68169d34035eda0284e8\",\"dweb:/ipfs/QmbH2v2KnfyW6bSPqXdeEyqp85DVjC78T1SxniqVcwToUB\"]},\"project:/contracts/interfaces/IAccessControl.sol\":{\"keccak256\":\"0x05e0f278602904b7892c29559952a7e6fa7d1f66af70dbf4d349ea6bd413a1c2\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://89dc767c39fdaa3a152d8ed48509be2af66836f28ec8490d717888928a0f50d5\",\"dweb:/ipfs/QmP9RmVNpyVFt7M1gXAHALLiJo4pRYnH524Xt5sMjYJqCc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: BSL-1.1\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"../abstract/AAccessControl.sol\";\n\nabstract contract Tax is AAccessControl {\n    enum TaxType { IncomeTax, SalesTax, PropertyTax, CorporateTax }\n    \n    struct TaxRecord {\n        uint256 recordId;\n        address taxpayer;\n        uint256 amount;\n        TaxType taxType;\n        uint256 paymentDate;\n    }\n    \n    mapping(uint256 => TaxRecord) public taxRecords;\n    uint256 public recordCounter;\n\n    event TaxPaid(uint256 recordId, address taxpayer, uint256 amount, TaxType taxType, uint256 paymentDate);\n\n    receive() external payable {\n\n    }\n    \n    function payTax(TaxType taxType) public payable {\n        recordCounter++;\n        taxRecords[recordCounter] = TaxRecord(recordCounter, msg.sender, msg.value, taxType, block.timestamp);\n        emit TaxPaid(recordCounter, msg.sender, msg.value, taxType, block.timestamp);\n    }\n    \n    function getContractBalance() public view returns (uint256) {\n        return address(this).balance;\n    }\n    \n    function withdrawBalance(address recipient) public isOwner {\n        payable(recipient).transfer(address(this).balance);\n    }\n}",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/government/Tax.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/government/Tax.sol",
+    "exportedSymbols": {
+      "AAccessControl": [
+        100
+      ],
+      "IAccessControl": [
+        38847
+      ],
+      "Tax": [
+        31225
+      ]
+    },
+    "id": 31226,
+    "license": "BSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 31112,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:32:78"
+      },
+      {
+        "absolutePath": "project:/contracts/abstract/AAccessControl.sol",
+        "file": "../abstract/AAccessControl.sol",
+        "id": 31113,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 31226,
+        "sourceUnit": 101,
+        "src": "70:40:78",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 31114,
+              "name": "AAccessControl",
+              "nameLocations": [
+                "137:14:78"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 100,
+              "src": "137:14:78"
+            },
+            "id": 31115,
+            "nodeType": "InheritanceSpecifier",
+            "src": "137:14:78"
+          }
+        ],
+        "canonicalName": "Tax",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 31225,
+        "linearizedBaseContracts": [
+          31225,
+          100,
+          38847
+        ],
+        "name": "Tax",
+        "nameLocation": "130:3:78",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Tax.TaxType",
+            "id": 31120,
+            "members": [
+              {
+                "id": 31116,
+                "name": "IncomeTax",
+                "nameLocation": "173:9:78",
+                "nodeType": "EnumValue",
+                "src": "173:9:78"
+              },
+              {
+                "id": 31117,
+                "name": "SalesTax",
+                "nameLocation": "184:8:78",
+                "nodeType": "EnumValue",
+                "src": "184:8:78"
+              },
+              {
+                "id": 31118,
+                "name": "PropertyTax",
+                "nameLocation": "194:11:78",
+                "nodeType": "EnumValue",
+                "src": "194:11:78"
+              },
+              {
+                "id": 31119,
+                "name": "CorporateTax",
+                "nameLocation": "207:12:78",
+                "nodeType": "EnumValue",
+                "src": "207:12:78"
+              }
+            ],
+            "name": "TaxType",
+            "nameLocation": "163:7:78",
+            "nodeType": "EnumDefinition",
+            "src": "158:63:78"
+          },
+          {
+            "canonicalName": "Tax.TaxRecord",
+            "id": 31132,
+            "members": [
+              {
+                "constant": false,
+                "id": 31122,
+                "mutability": "mutable",
+                "name": "recordId",
+                "nameLocation": "266:8:78",
+                "nodeType": "VariableDeclaration",
+                "scope": 31132,
+                "src": "258:16:78",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 31121,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "258:7:78",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 31124,
+                "mutability": "mutable",
+                "name": "taxpayer",
+                "nameLocation": "292:8:78",
+                "nodeType": "VariableDeclaration",
+                "scope": 31132,
+                "src": "284:16:78",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 31123,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "284:7:78",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 31126,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "318:6:78",
+                "nodeType": "VariableDeclaration",
+                "scope": 31132,
+                "src": "310:14:78",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 31125,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "310:7:78",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 31129,
+                "mutability": "mutable",
+                "name": "taxType",
+                "nameLocation": "342:7:78",
+                "nodeType": "VariableDeclaration",
+                "scope": 31132,
+                "src": "334:15:78",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_TaxType_$31120",
+                  "typeString": "enum Tax.TaxType"
+                },
+                "typeName": {
+                  "id": 31128,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 31127,
+                    "name": "TaxType",
+                    "nameLocations": [
+                      "334:7:78"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 31120,
+                    "src": "334:7:78"
+                  },
+                  "referencedDeclaration": 31120,
+                  "src": "334:7:78",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TaxType_$31120",
+                    "typeString": "enum Tax.TaxType"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 31131,
+                "mutability": "mutable",
+                "name": "paymentDate",
+                "nameLocation": "367:11:78",
+                "nodeType": "VariableDeclaration",
+                "scope": 31132,
+                "src": "359:19:78",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 31130,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "359:7:78",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "TaxRecord",
+            "nameLocation": "238:9:78",
+            "nodeType": "StructDefinition",
+            "scope": 31225,
+            "src": "231:154:78",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "e30ee7a3",
+            "id": 31137,
+            "mutability": "mutable",
+            "name": "taxRecords",
+            "nameLocation": "432:10:78",
+            "nodeType": "VariableDeclaration",
+            "scope": 31225,
+            "src": "395:47:78",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_TaxRecord_$31132_storage_$",
+              "typeString": "mapping(uint256 => struct Tax.TaxRecord)"
+            },
+            "typeName": {
+              "id": 31136,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 31133,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "403:7:78",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "395:29:78",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_TaxRecord_$31132_storage_$",
+                "typeString": "mapping(uint256 => struct Tax.TaxRecord)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 31135,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 31134,
+                  "name": "TaxRecord",
+                  "nameLocations": [
+                    "414:9:78"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 31132,
+                  "src": "414:9:78"
+                },
+                "referencedDeclaration": 31132,
+                "src": "414:9:78",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_TaxRecord_$31132_storage_ptr",
+                  "typeString": "struct Tax.TaxRecord"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "7599be5d",
+            "id": 31139,
+            "mutability": "mutable",
+            "name": "recordCounter",
+            "nameLocation": "463:13:78",
+            "nodeType": "VariableDeclaration",
+            "scope": 31225,
+            "src": "448:28:78",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 31138,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "448:7:78",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "8217d988070e545fed0dcae63aeb894a6488005c38ee68da32b8d176485a829d",
+            "id": 31152,
+            "name": "TaxPaid",
+            "nameLocation": "489:7:78",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 31151,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 31141,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "recordId",
+                  "nameLocation": "505:8:78",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31152,
+                  "src": "497:16:78",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 31140,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "497:7:78",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 31143,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "taxpayer",
+                  "nameLocation": "523:8:78",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31152,
+                  "src": "515:16:78",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 31142,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "515:7:78",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 31145,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "541:6:78",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31152,
+                  "src": "533:14:78",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 31144,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "533:7:78",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 31148,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "taxType",
+                  "nameLocation": "557:7:78",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31152,
+                  "src": "549:15:78",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TaxType_$31120",
+                    "typeString": "enum Tax.TaxType"
+                  },
+                  "typeName": {
+                    "id": 31147,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 31146,
+                      "name": "TaxType",
+                      "nameLocations": [
+                        "549:7:78"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 31120,
+                      "src": "549:7:78"
+                    },
+                    "referencedDeclaration": 31120,
+                    "src": "549:7:78",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TaxType_$31120",
+                      "typeString": "enum Tax.TaxType"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 31150,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "paymentDate",
+                  "nameLocation": "574:11:78",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31152,
+                  "src": "566:19:78",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 31149,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "566:7:78",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "496:90:78"
+            },
+            "src": "483:104:78"
+          },
+          {
+            "body": {
+              "id": 31155,
+              "nodeType": "Block",
+              "src": "620:8:78",
+              "statements": []
+            },
+            "id": 31156,
+            "implemented": true,
+            "kind": "receive",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 31153,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "600:2:78"
+            },
+            "returnParameters": {
+              "id": 31154,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "620:0:78"
+            },
+            "scope": 31225,
+            "src": "593:35:78",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 31191,
+              "nodeType": "Block",
+              "src": "686:229:78",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 31163,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "696:15:78",
+                    "subExpression": {
+                      "id": 31162,
+                      "name": "recordCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 31139,
+                      "src": "696:13:78",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 31164,
+                  "nodeType": "ExpressionStatement",
+                  "src": "696:15:78"
+                },
+                {
+                  "expression": {
+                    "id": 31178,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 31165,
+                        "name": "taxRecords",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31137,
+                        "src": "721:10:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_TaxRecord_$31132_storage_$",
+                          "typeString": "mapping(uint256 => struct Tax.TaxRecord storage ref)"
+                        }
+                      },
+                      "id": 31167,
+                      "indexExpression": {
+                        "id": 31166,
+                        "name": "recordCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31139,
+                        "src": "732:13:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "721:25:78",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_TaxRecord_$31132_storage",
+                        "typeString": "struct Tax.TaxRecord storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 31169,
+                          "name": "recordCounter",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31139,
+                          "src": "759:13:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 31170,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "774:3:78",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 31171,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "778:6:78",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "774:10:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 31172,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "786:3:78",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 31173,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "790:5:78",
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "src": "786:9:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 31174,
+                          "name": "taxType",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31159,
+                          "src": "797:7:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_TaxType_$31120",
+                            "typeString": "enum Tax.TaxType"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 31175,
+                            "name": "block",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967292,
+                            "src": "806:5:78",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_block",
+                              "typeString": "block"
+                            }
+                          },
+                          "id": 31176,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "812:9:78",
+                          "memberName": "timestamp",
+                          "nodeType": "MemberAccess",
+                          "src": "806:15:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_enum$_TaxType_$31120",
+                            "typeString": "enum Tax.TaxType"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "id": 31168,
+                        "name": "TaxRecord",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31132,
+                        "src": "749:9:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_TaxRecord_$31132_storage_ptr_$",
+                          "typeString": "type(struct Tax.TaxRecord storage pointer)"
+                        }
+                      },
+                      "id": 31177,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "749:73:78",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_TaxRecord_$31132_memory_ptr",
+                        "typeString": "struct Tax.TaxRecord memory"
+                      }
+                    },
+                    "src": "721:101:78",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_TaxRecord_$31132_storage",
+                      "typeString": "struct Tax.TaxRecord storage ref"
+                    }
+                  },
+                  "id": 31179,
+                  "nodeType": "ExpressionStatement",
+                  "src": "721:101:78"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 31181,
+                        "name": "recordCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31139,
+                        "src": "845:13:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31182,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "860:3:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 31183,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "864:6:78",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "860:10:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31184,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "872:3:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 31185,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "876:5:78",
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "src": "872:9:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 31186,
+                        "name": "taxType",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31159,
+                        "src": "883:7:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_TaxType_$31120",
+                          "typeString": "enum Tax.TaxType"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31187,
+                          "name": "block",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967292,
+                          "src": "892:5:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_block",
+                            "typeString": "block"
+                          }
+                        },
+                        "id": 31188,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "898:9:78",
+                        "memberName": "timestamp",
+                        "nodeType": "MemberAccess",
+                        "src": "892:15:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_enum$_TaxType_$31120",
+                          "typeString": "enum Tax.TaxType"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 31180,
+                      "name": "TaxPaid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 31152,
+                      "src": "837:7:78",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$_t_uint256_$_t_enum$_TaxType_$31120_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,address,uint256,enum Tax.TaxType,uint256)"
+                      }
+                    },
+                    "id": 31189,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "837:71:78",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 31190,
+                  "nodeType": "EmitStatement",
+                  "src": "832:76:78"
+                }
+              ]
+            },
+            "functionSelector": "e301adee",
+            "id": 31192,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "payTax",
+            "nameLocation": "647:6:78",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 31160,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 31159,
+                  "mutability": "mutable",
+                  "name": "taxType",
+                  "nameLocation": "662:7:78",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31192,
+                  "src": "654:15:78",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TaxType_$31120",
+                    "typeString": "enum Tax.TaxType"
+                  },
+                  "typeName": {
+                    "id": 31158,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 31157,
+                      "name": "TaxType",
+                      "nameLocations": [
+                        "654:7:78"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 31120,
+                      "src": "654:7:78"
+                    },
+                    "referencedDeclaration": 31120,
+                    "src": "654:7:78",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TaxType_$31120",
+                      "typeString": "enum Tax.TaxType"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "653:17:78"
+            },
+            "returnParameters": {
+              "id": 31161,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "686:0:78"
+            },
+            "scope": 31225,
+            "src": "638:277:78",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 31203,
+              "nodeType": "Block",
+              "src": "985:45:78",
+              "statements": [
+                {
+                  "expression": {
+                    "expression": {
+                      "arguments": [
+                        {
+                          "id": 31199,
+                          "name": "this",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967268,
+                          "src": "1010:4:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_Tax_$31225",
+                            "typeString": "contract Tax"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_contract$_Tax_$31225",
+                            "typeString": "contract Tax"
+                          }
+                        ],
+                        "id": 31198,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "1002:7:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        },
+                        "typeName": {
+                          "id": 31197,
+                          "name": "address",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "1002:7:78",
+                          "typeDescriptions": {}
+                        }
+                      },
+                      "id": 31200,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1002:13:78",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 31201,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "1016:7:78",
+                    "memberName": "balance",
+                    "nodeType": "MemberAccess",
+                    "src": "1002:21:78",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 31196,
+                  "id": 31202,
+                  "nodeType": "Return",
+                  "src": "995:28:78"
+                }
+              ]
+            },
+            "functionSelector": "6f9fb98a",
+            "id": 31204,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getContractBalance",
+            "nameLocation": "934:18:78",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 31193,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "952:2:78"
+            },
+            "returnParameters": {
+              "id": 31196,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 31195,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31204,
+                  "src": "976:7:78",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 31194,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "976:7:78",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "975:9:78"
+            },
+            "scope": 31225,
+            "src": "925:105:78",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 31223,
+              "nodeType": "Block",
+              "src": "1099:67:78",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "id": 31218,
+                              "name": "this",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967268,
+                              "src": "1145:4:78",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_Tax_$31225",
+                                "typeString": "contract Tax"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_contract$_Tax_$31225",
+                                "typeString": "contract Tax"
+                              }
+                            ],
+                            "id": 31217,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "1137:7:78",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 31216,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "1137:7:78",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 31219,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1137:13:78",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 31220,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1151:7:78",
+                        "memberName": "balance",
+                        "nodeType": "MemberAccess",
+                        "src": "1137:21:78",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "arguments": [
+                          {
+                            "id": 31213,
+                            "name": "recipient",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 31206,
+                            "src": "1117:9:78",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 31212,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1109:8:78",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_payable_$",
+                            "typeString": "type(address payable)"
+                          },
+                          "typeName": {
+                            "id": 31211,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1109:8:78",
+                            "stateMutability": "payable",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 31214,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1109:18:78",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 31215,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1128:8:78",
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "src": "1109:27:78",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 31221,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1109:50:78",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 31222,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1109:50:78"
+                }
+              ]
+            },
+            "functionSelector": "756af45f",
+            "id": 31224,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 31209,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 31208,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "1091:7:78"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "1091:7:78"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1091:7:78"
+              }
+            ],
+            "name": "withdrawBalance",
+            "nameLocation": "1049:15:78",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 31207,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 31206,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "1073:9:78",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31224,
+                  "src": "1065:17:78",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 31205,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1065:7:78",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1064:19:78"
+            },
+            "returnParameters": {
+              "id": 31210,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1099:0:78"
+            },
+            "scope": 31225,
+            "src": "1040:126:78",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 31226,
+        "src": "112:1056:78",
+        "usedErrors": []
+      }
+    ],
+    "src": "36:1132:78"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:26.102Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

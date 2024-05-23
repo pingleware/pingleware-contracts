@@ -1,0 +1,1619 @@
+{
+  "contractName": "Courts",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseIndex",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "judge",
+          "type": "address"
+        }
+      ],
+      "name": "CaseAssignedJudge",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "plaintiff",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "filingDate",
+          "type": "uint256"
+        }
+      ],
+      "name": "CaseFiled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        }
+      ],
+      "name": "CaseResolved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseIndex",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "representative",
+          "type": "address"
+        }
+      ],
+      "name": "LegalRepresentativeAssigned",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "caseIndex",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "plaintiff",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        }
+      ],
+      "name": "NewCaseCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_sender",
+          "type": "address"
+        }
+      ],
+      "name": "Sender",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_judge",
+          "type": "address"
+        }
+      ],
+      "name": "assignJudge",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_representative",
+          "type": "address"
+        }
+      ],
+      "name": "assignLegalRepresentative",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "assignedJudge",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "caseCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "cases",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "index",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "plaintiff",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "filingDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum Case.CaseStatus",
+          "name": "status",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "decision",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "checkAssignedAttorney",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "decision",
+          "type": "string"
+        }
+      ],
+      "name": "closeCase",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_plaintiff",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_defendant",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        }
+      ],
+      "name": "createCase",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        }
+      ],
+      "name": "getCaseIndexByDefendant",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "getCaseInfo",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "index",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "plaintiff",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "defendant",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "filingDate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum Case.CaseStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "decision",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct Case.CaseRecord",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "getCaseStatus",
+      "outputs": [
+        {
+          "internalType": "enum Case.CaseStatus",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_caseIndex",
+          "type": "string"
+        }
+      ],
+      "name": "isCaseResolved",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "legalRepresentatives",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "plaintiff",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "defendant",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        }
+      ],
+      "name": "fileCase",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "caseId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "decision",
+          "type": "string"
+        }
+      ],
+      "name": "resolveCase",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseIndex\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"judge\",\"type\":\"address\"}],\"name\":\"CaseAssignedJudge\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseId\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"filingDate\",\"type\":\"uint256\"}],\"name\":\"CaseFiled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseId\",\"type\":\"string\"}],\"name\":\"CaseResolved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseIndex\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"representative\",\"type\":\"address\"}],\"name\":\"LegalRepresentativeAssigned\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"caseIndex\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"name\":\"NewCaseCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_sender\",\"type\":\"address\"}],\"name\":\"Sender\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_judge\",\"type\":\"address\"}],\"name\":\"assignJudge\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_representative\",\"type\":\"address\"}],\"name\":\"assignLegalRepresentative\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"assignedJudge\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"caseCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"cases\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"index\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"filingDate\",\"type\":\"uint256\"},{\"internalType\":\"enum Case.CaseStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"checkAssignedAttorney\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"name\":\"closeCase\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"}],\"name\":\"createCase\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"name\":\"fileCase\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"}],\"name\":\"getCaseIndexByDefendant\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"getCaseInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"index\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"plaintiff\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"defendant\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"filingDate\",\"type\":\"uint256\"},{\"internalType\":\"enum Case.CaseStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"internalType\":\"struct Case.CaseRecord\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"getCaseStatus\",\"outputs\":[{\"internalType\":\"enum Case.CaseStatus\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_caseIndex\",\"type\":\"string\"}],\"name\":\"isCaseResolved\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"legalRepresentatives\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"caseId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"decision\",\"type\":\"string\"}],\"name\":\"resolveCase\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/government/Courts.sol\":\"Courts\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/abstract/AAccessControl.sol\":{\"keccak256\":\"0xf50183e6a5c7e9ac28049163dd05945225c5bf69d8c219f21273c5670c8c7eca\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://864427ebf215c293c48703f772978b368a6214322122dbc0298adec0006879b9\",\"dweb:/ipfs/QmcdWrMe3caP1a8FeoshpPytbHc291BoEM3JdUwakXK5bK\"]},\"project:/contracts/government/Case.sol\":{\"keccak256\":\"0xafd82f9abdbc922d6eb3f3f3351fb371a2aad3de22cd207d7b14f6a17d22720f\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://7b0fea16592cba93bbd2dc8e6944941e309b54baef3a0b320159d1f431fa1112\",\"dweb:/ipfs/QmSUNCBAjGy9ik7ELHgEs4q9Bt9vV4cAhoYrbPbdcHdVax\"]},\"project:/contracts/government/Courts.sol\":{\"keccak256\":\"0x675938652e9299cd88d436ed0446669f79cfb36e4bc0af0c3e903a1be169740b\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://8df12438e7742b9818522d544159e91b74506d452e927149b1b13e65e787f7e6\",\"dweb:/ipfs/QmUuwMTvuQmMegTbFBp6uousbDh49yGWetTBDzLp8sbebC\"]},\"project:/contracts/interfaces/IAccessControl.sol\":{\"keccak256\":\"0x05e0f278602904b7892c29559952a7e6fa7d1f66af70dbf4d349ea6bd413a1c2\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://89dc767c39fdaa3a152d8ed48509be2af66836f28ec8490d717888928a0f50d5\",\"dweb:/ipfs/QmP9RmVNpyVFt7M1gXAHALLiJo4pRYnH524Xt5sMjYJqCc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: BSL-1.1\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"../abstract/AAccessControl.sol\";\nimport \"./Case.sol\";\n\nabstract contract Courts is AAccessControl, Case {\n\n    event CaseFiled(string caseId, address plaintiff, address defendant, string description, uint256 filingDate);\n    event CaseResolved(string caseId);\n\n    function fileCase(address plaintiff, address defendant, string memory description) public isOwner {\n        string memory caseIndex = createCase(plaintiff, defendant, description);\n        emit CaseFiled(caseIndex, plaintiff, defendant, description, block.timestamp);\n    }\n    \n    function resolveCase(string memory caseId,string memory decision) public isOwner {\n        require(isCaseResolved(caseId) == false, \"Case is already resolved.\");\n        closeCase(caseId,decision);\n        emit CaseResolved(caseId);\n    }\n}",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/government/Courts.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/government/Courts.sol",
+    "exportedSymbols": {
+      "AAccessControl": [
+        100
+      ],
+      "Case": [
+        29937
+      ],
+      "Courts": [
+        30019
+      ],
+      "IAccessControl": [
+        38847
+      ]
+    },
+    "id": 30020,
+    "license": "BSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 29939,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:32:71"
+      },
+      {
+        "absolutePath": "project:/contracts/abstract/AAccessControl.sol",
+        "file": "../abstract/AAccessControl.sol",
+        "id": 29940,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 30020,
+        "sourceUnit": 101,
+        "src": "70:40:71",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/government/Case.sol",
+        "file": "./Case.sol",
+        "id": 29941,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 30020,
+        "sourceUnit": 29938,
+        "src": "111:20:71",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 29942,
+              "name": "AAccessControl",
+              "nameLocations": [
+                "161:14:71"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 100,
+              "src": "161:14:71"
+            },
+            "id": 29943,
+            "nodeType": "InheritanceSpecifier",
+            "src": "161:14:71"
+          },
+          {
+            "baseName": {
+              "id": 29944,
+              "name": "Case",
+              "nameLocations": [
+                "177:4:71"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 29937,
+              "src": "177:4:71"
+            },
+            "id": 29945,
+            "nodeType": "InheritanceSpecifier",
+            "src": "177:4:71"
+          }
+        ],
+        "canonicalName": "Courts",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 30019,
+        "linearizedBaseContracts": [
+          30019,
+          29937,
+          100,
+          38847
+        ],
+        "name": "Courts",
+        "nameLocation": "151:6:71",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "eventSelector": "6a3389042968a9333053e63f6d91915475a356bfd366d7df133e76df2a6ba8d8",
+            "id": 29957,
+            "name": "CaseFiled",
+            "nameLocation": "195:9:71",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 29956,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 29947,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "caseId",
+                  "nameLocation": "212:6:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29957,
+                  "src": "205:13:71",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 29946,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "205:6:71",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 29949,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "plaintiff",
+                  "nameLocation": "228:9:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29957,
+                  "src": "220:17:71",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 29948,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "220:7:71",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 29951,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "defendant",
+                  "nameLocation": "247:9:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29957,
+                  "src": "239:17:71",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 29950,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "239:7:71",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 29953,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "description",
+                  "nameLocation": "265:11:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29957,
+                  "src": "258:18:71",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 29952,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "258:6:71",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 29955,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "filingDate",
+                  "nameLocation": "286:10:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29957,
+                  "src": "278:18:71",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 29954,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "278:7:71",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "204:93:71"
+            },
+            "src": "189:109:71"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "e0b7488c2195435d3da45a2074568a4ef84ef27da7f2775ec5cee7a347f41f41",
+            "id": 29961,
+            "name": "CaseResolved",
+            "nameLocation": "309:12:71",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 29960,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 29959,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "caseId",
+                  "nameLocation": "329:6:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29961,
+                  "src": "322:13:71",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 29958,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "322:6:71",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "321:15:71"
+            },
+            "src": "303:34:71"
+          },
+          {
+            "body": {
+              "id": 29989,
+              "nodeType": "Block",
+              "src": "441:175:71",
+              "statements": [
+                {
+                  "assignments": [
+                    29973
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 29973,
+                      "mutability": "mutable",
+                      "name": "caseIndex",
+                      "nameLocation": "465:9:71",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 29989,
+                      "src": "451:23:71",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string"
+                      },
+                      "typeName": {
+                        "id": 29972,
+                        "name": "string",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "451:6:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage_ptr",
+                          "typeString": "string"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 29979,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 29975,
+                        "name": "plaintiff",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29963,
+                        "src": "488:9:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 29976,
+                        "name": "defendant",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29965,
+                        "src": "499:9:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 29977,
+                        "name": "description",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29967,
+                        "src": "510:11:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 29974,
+                      "name": "createCase",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29614,
+                      "src": "477:10:71",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_string_memory_ptr_$returns$_t_string_memory_ptr_$",
+                        "typeString": "function (address,address,string memory) returns (string memory)"
+                      }
+                    },
+                    "id": 29978,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "477:45:71",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "451:71:71"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 29981,
+                        "name": "caseIndex",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29973,
+                        "src": "547:9:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 29982,
+                        "name": "plaintiff",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29963,
+                        "src": "558:9:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 29983,
+                        "name": "defendant",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29965,
+                        "src": "569:9:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 29984,
+                        "name": "description",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29967,
+                        "src": "580:11:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 29985,
+                          "name": "block",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967292,
+                          "src": "593:5:71",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_block",
+                            "typeString": "block"
+                          }
+                        },
+                        "id": 29986,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "599:9:71",
+                        "memberName": "timestamp",
+                        "nodeType": "MemberAccess",
+                        "src": "593:15:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 29980,
+                      "name": "CaseFiled",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29957,
+                      "src": "537:9:71",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_address_$_t_address_$_t_string_memory_ptr_$_t_uint256_$returns$__$",
+                        "typeString": "function (string memory,address,address,string memory,uint256)"
+                      }
+                    },
+                    "id": 29987,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "537:72:71",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 29988,
+                  "nodeType": "EmitStatement",
+                  "src": "532:77:71"
+                }
+              ]
+            },
+            "functionSelector": "deb47ea4",
+            "id": 29990,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 29970,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 29969,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "433:7:71"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "433:7:71"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "433:7:71"
+              }
+            ],
+            "name": "fileCase",
+            "nameLocation": "352:8:71",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 29968,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 29963,
+                  "mutability": "mutable",
+                  "name": "plaintiff",
+                  "nameLocation": "369:9:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29990,
+                  "src": "361:17:71",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 29962,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "361:7:71",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 29965,
+                  "mutability": "mutable",
+                  "name": "defendant",
+                  "nameLocation": "388:9:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29990,
+                  "src": "380:17:71",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 29964,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "380:7:71",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 29967,
+                  "mutability": "mutable",
+                  "name": "description",
+                  "nameLocation": "413:11:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29990,
+                  "src": "399:25:71",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 29966,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "399:6:71",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "360:65:71"
+            },
+            "returnParameters": {
+              "id": 29971,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "441:0:71"
+            },
+            "scope": 30019,
+            "src": "343:273:71",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 30017,
+              "nodeType": "Block",
+              "src": "707:157:71",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 30004,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "arguments": [
+                            {
+                              "id": 30001,
+                              "name": "caseId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 29992,
+                              "src": "740:6:71",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_memory_ptr",
+                                "typeString": "string memory"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_string_memory_ptr",
+                                "typeString": "string memory"
+                              }
+                            ],
+                            "id": 30000,
+                            "name": "isCaseResolved",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 29766,
+                            "src": "725:14:71",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_view$_t_string_memory_ptr_$returns$_t_bool_$",
+                              "typeString": "function (string memory) view returns (bool)"
+                            }
+                          },
+                          "id": 30002,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "725:22:71",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "hexValue": "66616c7365",
+                          "id": 30003,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "bool",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "751:5:71",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          "value": "false"
+                        },
+                        "src": "725:31:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4361736520697320616c7265616479207265736f6c7665642e",
+                        "id": 30005,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "758:27:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_459edeb4fc68d018d10bd4ae566560e220ef4131c2f899a8420119f823bbbcea",
+                          "typeString": "literal_string \"Case is already resolved.\""
+                        },
+                        "value": "Case is already resolved."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_459edeb4fc68d018d10bd4ae566560e220ef4131c2f899a8420119f823bbbcea",
+                          "typeString": "literal_string \"Case is already resolved.\""
+                        }
+                      ],
+                      "id": 29999,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "717:7:71",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30006,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "717:69:71",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30007,
+                  "nodeType": "ExpressionStatement",
+                  "src": "717:69:71"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 30009,
+                        "name": "caseId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29992,
+                        "src": "806:6:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 30010,
+                        "name": "decision",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29994,
+                        "src": "813:8:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 30008,
+                      "name": "closeCase",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29735,
+                      "src": "796:9:71",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory,string memory)"
+                      }
+                    },
+                    "id": 30011,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "796:26:71",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30012,
+                  "nodeType": "ExpressionStatement",
+                  "src": "796:26:71"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 30014,
+                        "name": "caseId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29992,
+                        "src": "850:6:71",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 30013,
+                      "name": "CaseResolved",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29961,
+                      "src": "837:12:71",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory)"
+                      }
+                    },
+                    "id": 30015,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "837:20:71",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 30016,
+                  "nodeType": "EmitStatement",
+                  "src": "832:25:71"
+                }
+              ]
+            },
+            "functionSelector": "895224dc",
+            "id": 30018,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 29997,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 29996,
+                  "name": "isOwner",
+                  "nameLocations": [
+                    "699:7:71"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 33,
+                  "src": "699:7:71"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "699:7:71"
+              }
+            ],
+            "name": "resolveCase",
+            "nameLocation": "635:11:71",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 29995,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 29992,
+                  "mutability": "mutable",
+                  "name": "caseId",
+                  "nameLocation": "661:6:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30018,
+                  "src": "647:20:71",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 29991,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "647:6:71",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 29994,
+                  "mutability": "mutable",
+                  "name": "decision",
+                  "nameLocation": "682:8:71",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30018,
+                  "src": "668:22:71",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 29993,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "668:6:71",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "646:45:71"
+            },
+            "returnParameters": {
+              "id": 29998,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "707:0:71"
+            },
+            "scope": 30019,
+            "src": "626:238:71",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 30020,
+        "src": "133:733:71",
+        "usedErrors": []
+      }
+    ],
+    "src": "36:830:71"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:26.034Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

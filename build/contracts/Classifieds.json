@@ -1,0 +1,3283 @@
+{
+  "contractName": "Classifieds",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ad",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "status",
+          "type": "bytes32"
+        }
+      ],
+      "name": "TradeStatusChange",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "trades",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "poster",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "item",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "status",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_trade",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTrade",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_item",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_price",
+          "type": "uint256"
+        }
+      ],
+      "name": "openTrade",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_trade",
+          "type": "uint256"
+        }
+      ],
+      "name": "executeTrade",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_trade",
+          "type": "uint256"
+        }
+      ],
+      "name": "cancelTrade",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"ad\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"status\",\"type\":\"bytes32\"}],\"name\":\"TradeStatusChange\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_trade\",\"type\":\"uint256\"}],\"name\":\"cancelTrade\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_trade\",\"type\":\"uint256\"}],\"name\":\"executeTrade\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_trade\",\"type\":\"uint256\"}],\"name\":\"getTrade\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_item\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"openTrade\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"trades\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"poster\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"item\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"status\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"cancelTrade(uint256)\":{\"details\":\"Cancels a trade by the poster.\",\"params\":{\"_trade\":\"The trade to be cancelled.\"}},\"executeTrade(uint256)\":{\"details\":\"Executes a trade. Must have approved this contract to transfer the amount of currency specified to the poster. Transfers ownership of the item to the filler.\",\"params\":{\"_trade\":\"The id of an existing trade\"}},\"getTrade(uint256)\":{\"details\":\"Returns the details for a trade.\",\"params\":{\"_trade\":\"The id for the trade.\"}},\"openTrade(uint256,string,uint256)\":{\"details\":\"Opens a new trade. Puts _item in escrow.\",\"params\":{\"_item\":\"The id for the item to trade.\",\"_price\":\"The amount of currency for which to trade the item.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/retail/Classifieds.sol\":\"Classifieds\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0xf8daa3ffe4e249c311bf05a300a56682c0470a5f0aa2402cd72ee7624476c3da\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://d777dc785170daa1f5dbcd2446f01579e02ca85d6cd51dbd150cecf09f119e64\",\"dweb:/ipfs/QmYHX6F5pery5K3JAuAnGjDAXF59Run52CckV6fjmXpMbc\"]},\"project:/contracts/interfaces/IERC20.sol\":{\"keccak256\":\"0x70eac3f38328fc8f28fc5708094310938404933756dadcec90b7880f10334042\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://368149db0a25e5ed102eabfa938d2751cfdb65b15b57b515c7315b721e447a22\",\"dweb:/ipfs/QmeHbVr59Zcnu4pTV611oicFQJD8jEs3R5S9FVsgAH66ix\"]},\"project:/contracts/interfaces/IERC721.sol\":{\"keccak256\":\"0xa54368d218445f5c9be1869695c8d941682da51433eba183fb5b2bb3b1fe7805\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://4d2b8c4ff01819ca0da61ec086efa784d4a2e80522c5fddc5af3356690e10882\",\"dweb:/ipfs/QmbNbt5SLCYySAqhZyp2fYqiqVUeNRamHtve5hiDQ3wVfG\"]},\"project:/contracts/retail/Classifieds.sol\":{\"keccak256\":\"0x4bb81addb6cfb6ae224030633fc2e5e5cb0f01e6b42eca82e262ce7ca9c9f5ef\",\"license\":\"CC-BY-4.0\",\"urls\":[\"bzz-raw://c981987f5523632b586d1a039b757ac6e1146543b18983b75570d6fd6a419dc9\",\"dweb:/ipfs/QmUXN1M63yEwLNLjcGeSsMg697M8PkbjzK5m8QJykemf7w\"]}},\"version\":1}",
+  "bytecode": "0x6080806040523461001657610a2f908161001c8239f35b600080fdfe60806040908082526004908136101561001757600080fd5b60009060e060020a823504906302d2838b82146105ed5750806309ec6cc7146104495780631e6c598e146103f35780632db25e051461036f5763ad550b371461005f57600080fd5b3461036c57606036600319011261036c578135926001604060020a0392602480359190858311610368573660238401121561036857828201359686881161035357845196602097601f19998a966100be8b601f9d8e850116018461083c565b8183523686838301011161034157818a92878d93018386013783010152600180549096600160a060020a0393918416803b1561034f578a8661011c928a838e5180968195829460e060020a6323b872dd028452309033908501610970565b03925af1801561034557918c918c96959493610322575b508a5196610140886107f4565b3388528288019081528b8801948552606088019560443587528c60808a019860e160020a6327b832b7028a526003548152600280965220985116600160a060020a0319895416178855518a8801558187019351805193841161030d578e6101a786546107b5565b9081116102ce575b508c8e9f819f8c9d9e9f9c9a9b9c50809482881160011461025257505050908493929193610247575b505082810292600802900a6000190419161790555b51600384015551910155600354928301918284116102335750506000805160206109da833981519152939460e160020a6327b832b702916003558351928352820152a180f35b60e060020a634e487b710286526011905284fd5b0151915038806101d8565b908f97959293949186169089865280862095905b82821061029e5750508511610283575b50505050020190556101ed565b0151908316600802840a600019041916905538808080610276565b9294969884989a9b9c9d508392949683929787015181550197019401918f97959391928f9c9b9a99979593610266565b8f8f8f808983925220918181890104830193828910610304575b010401905b8181106102fa57506101af565b8e81558c016102ed565b935082936102e8565b60e060020a634e487b71028d5260418a52888dfd5b61033191939495969250610829565b61034157908a8a94939238610133565b8980fd5b8a513d8d823e3d90fd5b8a80fd5b5060e060020a634e487b710285526041825284fd5b8480fd5b80fd5b503461036c57602036600319011261036c57826103ef918335815260026020522083519061039c826107f4565b8054600160a060020a03908116835260018201546020840190815294906103c56002840161085f565b91828886015260038401549384606087015201549384608082015251169451955195869586610904565b0390f35b5082903461036c57602036600319011261036c57816103ef918435815260026020522091600160a060020a03835416926001810154946104356002830161085f565b906003830154920154925195869586610904565b5091346105e9576020918260031936011261058d5780359081855260028452828520835190610477826107f4565b8054600160a060020a03908116835260018201548784019081529184906104a06002820161085f565b8886015260038101546060860152015460808401908152818451163303610591575188939291906104dc9060e160020a6327b832b70214610992565b80600154169251169051823b1561058d57865160e060020a6323b872dd02815292849284928391859183916105159190308c8501610970565b03925af180156105835761056f575b509360ba60020a6810d85b98d95b1b19590291836000805160206109da83398151915296526002825260ba60020a6810d85b98d95b1b1959029085882001558351928352820152a180f35b61057890610829565b610368578438610524565b85513d84823e3d90fd5b8380fd5b865160e560020a62461bcd028152808601899052602660248201527f54726164652063616e2062652063616e63656c6c6564206f6e6c792062792070604482015260d160020a6537b9ba32b917026064820152608490fd5b8280fd5b849150346105e95760208060031936011261058d578480359283865260028352848620610619826107f4565b6106a084600160a060020a03928381541685526001810154948281019586526106446002830161085f565b818b015260038201546060820190815291870154608082018190526106749060e160020a6327b832b70214610992565b84808c54169151169151918b8b5180968195829460e060020a6323b872dd029c8d855233908501610970565b03925af180156107ab57610774575b5060015416905191813b15610770579186916106dc9383885180968195829483528d339030908501610970565b03925af1801561076657610735575b5060c260020a67115e1958dd5d195902908495836000805160206109da83398151915296526002825260c260020a67115e1958dd5d1959029085882001558351928352820152a180f35b906000805160206109da8339815191529461075e60c260020a67115e1958dd5d19590293610829565b9450906106eb565b84513d87823e3d90fd5b8680fd5b8481813d83116107a4575b610789818361083c565b810103126107a057518015150361077057886106af565b8780fd5b503d61077f565b87513d8a823e3d90fd5b90600160028304921680156107ea575b60208310146107d057565b60e060020a634e487b710260009081526022600452602490fd5b91607f16916107c5565b60a081019081106001604060020a0382111761080f57604052565b60e060020a634e487b710260009081526041600452602490fd5b6001604060020a03811161080f57604052565b601f909101601f19168101906001604060020a0382119082101761080f57604052565b9060405191826000825492610873846107b5565b9081845260019485811690816000146108e2575060011461089f575b505061089d9250038361083c565b565b9093915060005260209081600020936000915b8183106108ca57505061089d9350820101388061088f565b855488840185015294850194879450918301916108b2565b91505061089d94506020925060ff19168284015215158102820101388061088f565b92919095949395600160a060020a031683526020908184015260a060408401528151918260a085015260005b83811061095c575050509060c08260008260809585010152601f80199101168201019460608201520152565b81810183015185820160c001528201610930565b600160a060020a03918216815291166020820152604081019190915260600190565b1561099957565b60405160e560020a62461bcd0281526020600482015260126024820152607160020a712a3930b2329034b9903737ba1027b832b717026044820152606490fdfe4d38ed2c5ea671a5ccddc331f0ebebd94a60aaf6e572543497485d4d148f9edfa26469706673582212202d1bf41ddf897906aec980486e896f84d24fcec61eee1075fbbe592b69db754964736f6c63430008120033",
+  "deployedBytecode": "0x60806040908082526004908136101561001757600080fd5b60009060e060020a823504906302d2838b82146105ed5750806309ec6cc7146104495780631e6c598e146103f35780632db25e051461036f5763ad550b371461005f57600080fd5b3461036c57606036600319011261036c578135926001604060020a0392602480359190858311610368573660238401121561036857828201359686881161035357845196602097601f19998a966100be8b601f9d8e850116018461083c565b8183523686838301011161034157818a92878d93018386013783010152600180549096600160a060020a0393918416803b1561034f578a8661011c928a838e5180968195829460e060020a6323b872dd028452309033908501610970565b03925af1801561034557918c918c96959493610322575b508a5196610140886107f4565b3388528288019081528b8801948552606088019560443587528c60808a019860e160020a6327b832b7028a526003548152600280965220985116600160a060020a0319895416178855518a8801558187019351805193841161030d578e6101a786546107b5565b9081116102ce575b508c8e9f819f8c9d9e9f9c9a9b9c50809482881160011461025257505050908493929193610247575b505082810292600802900a6000190419161790555b51600384015551910155600354928301918284116102335750506000805160206109da833981519152939460e160020a6327b832b702916003558351928352820152a180f35b60e060020a634e487b710286526011905284fd5b0151915038806101d8565b908f97959293949186169089865280862095905b82821061029e5750508511610283575b50505050020190556101ed565b0151908316600802840a600019041916905538808080610276565b9294969884989a9b9c9d508392949683929787015181550197019401918f97959391928f9c9b9a99979593610266565b8f8f8f808983925220918181890104830193828910610304575b010401905b8181106102fa57506101af565b8e81558c016102ed565b935082936102e8565b60e060020a634e487b71028d5260418a52888dfd5b61033191939495969250610829565b61034157908a8a94939238610133565b8980fd5b8a513d8d823e3d90fd5b8a80fd5b5060e060020a634e487b710285526041825284fd5b8480fd5b80fd5b503461036c57602036600319011261036c57826103ef918335815260026020522083519061039c826107f4565b8054600160a060020a03908116835260018201546020840190815294906103c56002840161085f565b91828886015260038401549384606087015201549384608082015251169451955195869586610904565b0390f35b5082903461036c57602036600319011261036c57816103ef918435815260026020522091600160a060020a03835416926001810154946104356002830161085f565b906003830154920154925195869586610904565b5091346105e9576020918260031936011261058d5780359081855260028452828520835190610477826107f4565b8054600160a060020a03908116835260018201548784019081529184906104a06002820161085f565b8886015260038101546060860152015460808401908152818451163303610591575188939291906104dc9060e160020a6327b832b70214610992565b80600154169251169051823b1561058d57865160e060020a6323b872dd02815292849284928391859183916105159190308c8501610970565b03925af180156105835761056f575b509360ba60020a6810d85b98d95b1b19590291836000805160206109da83398151915296526002825260ba60020a6810d85b98d95b1b1959029085882001558351928352820152a180f35b61057890610829565b610368578438610524565b85513d84823e3d90fd5b8380fd5b865160e560020a62461bcd028152808601899052602660248201527f54726164652063616e2062652063616e63656c6c6564206f6e6c792062792070604482015260d160020a6537b9ba32b917026064820152608490fd5b8280fd5b849150346105e95760208060031936011261058d578480359283865260028352848620610619826107f4565b6106a084600160a060020a03928381541685526001810154948281019586526106446002830161085f565b818b015260038201546060820190815291870154608082018190526106749060e160020a6327b832b70214610992565b84808c54169151169151918b8b5180968195829460e060020a6323b872dd029c8d855233908501610970565b03925af180156107ab57610774575b5060015416905191813b15610770579186916106dc9383885180968195829483528d339030908501610970565b03925af1801561076657610735575b5060c260020a67115e1958dd5d195902908495836000805160206109da83398151915296526002825260c260020a67115e1958dd5d1959029085882001558351928352820152a180f35b906000805160206109da8339815191529461075e60c260020a67115e1958dd5d19590293610829565b9450906106eb565b84513d87823e3d90fd5b8680fd5b8481813d83116107a4575b610789818361083c565b810103126107a057518015150361077057886106af565b8780fd5b503d61077f565b87513d8a823e3d90fd5b90600160028304921680156107ea575b60208310146107d057565b60e060020a634e487b710260009081526022600452602490fd5b91607f16916107c5565b60a081019081106001604060020a0382111761080f57604052565b60e060020a634e487b710260009081526041600452602490fd5b6001604060020a03811161080f57604052565b601f909101601f19168101906001604060020a0382119082101761080f57604052565b9060405191826000825492610873846107b5565b9081845260019485811690816000146108e2575060011461089f575b505061089d9250038361083c565b565b9093915060005260209081600020936000915b8183106108ca57505061089d9350820101388061088f565b855488840185015294850194879450918301916108b2565b91505061089d94506020925060ff19168284015215158102820101388061088f565b92919095949395600160a060020a031683526020908184015260a060408401528151918260a085015260005b83811061095c575050509060c08260008260809585010152601f80199101168201019460608201520152565b81810183015185820160c001528201610930565b600160a060020a03918216815291166020820152604081019190915260600190565b1561099957565b60405160e560020a62461bcd0281526020600482015260126024820152607160020a712a3930b2329034b9903737ba1027b832b717026044820152606490fdfe4d38ed2c5ea671a5ccddc331f0ebebd94a60aaf6e572543497485d4d148f9edfa26469706673582212202d1bf41ddf897906aec980486e896f84d24fcec61eee1075fbbe592b69db754964736f6c63430008120033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "256:2817:180:-:0;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "256:2817:180:-:0;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;256:2817:180;;;;;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;256:2817:180;;;;1397:56;;;;;256:2817;;1397:56;256:2817;;;;;;;;;;;;;;;;1397:56;;1440:4;1420:10;;1397:56;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;256:2817;;;;;;;;:::i;:::-;1420:10;256:2817;;1487:174;;;256:2817;;;1487:174;;;256:2817;;;;1487:174;;256:2817;;;;;1487:174;;;;256:2817;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;256:2817:180;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;1705:43;256:2817;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;-1:-1:-1;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;1397:56;;;;;;;;;;:::i;:::-;256:2817;;1397:56;;;;;;;;;256:2817;;;;1397:56;256:2817;;;;;;;;;1397:56;256:2817;;;;-1:-1:-1;;;;;;256:2817:180;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;256:2817:180;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;-1:-1:-1;;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;;522:39;256:2817;522:39;;256:2817;522:39;;256:2817;522:39;;;:::i;:::-;;256:2817;522:39;;256:2817;522:39;;256:2817;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;2732:10;:26;256:2817;;;;;;;;2835:53;;-1:-1:-1;;;;;2843:22:180;2835:53;:::i;:::-;256:2817;;;;;;;;;2899:63;;;;;256:2817;;-1:-1:-1;;;;;2899:63:180;;256:2817;;;;;;;;;;;2899:63;;256:2817;2930:4;2899:63;;;;:::i;:::-;;;;;;;;;;;256:2817;;;-1:-1:-1;;;;;256:2817:180;;-1:-1:-1;;;;;;;;;;;256:2817:180;;;;;;;;;;;;;;2973:21;256:2817;;;;;;;;;3024:38;256:2817;;2899:63;;;;:::i;:::-;256:2817;;2899:63;;;;;256:2817;;;;;;;;;2899:63;256:2817;;;;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;2216:65;256:2817;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;2152:53;;-1:-1:-1;;;;;2160:22:180;2152:53;:::i;:::-;256:2817;;;;;;;;;;;;;;;;;;;;;;;;;2216:65;;;;2243:10;2216:65;;;;:::i;:::-;;;;;;;;;;;256:2817;;;;;;;2292:61;;;;;;256:2817;;;2292:61;256:2817;;;;2292:61;;;;;;;;2243:10;;2323:4;;2292:61;;;;:::i;:::-;;;;;;;;;;;256:2817;;-1:-1:-1;;;;;256:2817:180;;;;-1:-1:-1;;;;;;;;;;;256:2817:180;;;;;;;;;;;;;;2364:21;256:2817;;;;;;;;;2414:37;256:2817;;2292:61;;-1:-1:-1;;;;;;;;;;;2292:61:180;;-1:-1:-1;;;;;2292:61:180;;:::i;:::-;;;;;;;256:2817;;;;;;;;;2292:61;256:2817;;;2216:65;;;;;;;;;;;;;;:::i;:::-;;;256:2817;;;;;;;;;;;2216:65;;;256:2817;;;;2216:65;;;;;;256:2817;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;256:2817:180;;;;;;;:::o;:::-;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;-1:-1:-1;;;;;256:2817:180;;;;;;:::o;:::-;;;;;-1:-1:-1;;256:2817:180;;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;:::o;:::-;;;;;;-1:-1:-1;256:2817:180;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;:::o;:::-;;;;;-1:-1:-1;256:2817:180;;;;-1:-1:-1;256:2817:180;;-1:-1:-1;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;256:2817:180;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;:::o;:::-;;;-1:-1:-1;;;;;256:2817:180;;;;;;;;;;;;-1:-1:-1;;;;;256:2817:180;;;;;;",
+  "source": "// SPDX-License-Identifier: CC-BY-4.0\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\n// redesigned from https://github.com/HQ20/contracts/blob/master/contracts/classifieds/Classifieds.sol\r\n\r\nimport \"../interfaces/IERC20.sol\";\r\nimport \"../interfaces/IERC721.sol\";\r\n\r\ncontract Classifieds {\r\n    struct Trade {\r\n        address poster;\r\n        uint256 item;\r\n        string  description;\r\n        uint256 price;\r\n        bytes32 status; // Open, Executed, Cancelled\r\n    }\r\n\r\n    IERC20 currencyToken;\r\n    IERC721 itemToken;\r\n\r\n    mapping(uint256 => Trade) public trades;\r\n\r\n    uint256 tradeCounter;\r\n\r\n    event TradeStatusChange(uint256 ad, bytes32 status);\r\n\r\n    /**\r\n     * @dev Returns the details for a trade.\r\n     * @param _trade The id for the trade.\r\n     */\r\n    function getTrade(uint256 _trade)\r\n        public\r\n        virtual\r\n        view\r\n        returns(address, uint256, string memory, uint256, bytes32)\r\n    {\r\n        Trade memory trade = trades[_trade];\r\n        return (trade.poster, trade.item, trade.description, trade.price, trade.status);\r\n    }\r\n\r\n    /**\r\n     * @dev Opens a new trade. Puts _item in escrow.\r\n     * @param _item The id for the item to trade.\r\n     * @param _price The amount of currency for which to trade the item.\r\n     */\r\n    function openTrade(uint256 _item, string memory _description, uint256 _price)\r\n        public\r\n        virtual\r\n    {\r\n        itemToken.transferFrom(msg.sender, address(this), _item);\r\n        trades[tradeCounter] = Trade({\r\n            poster: msg.sender,\r\n            item: _item,\r\n            description: _description,\r\n            price: _price,\r\n            status: \"Open\"\r\n        });\r\n        tradeCounter += 1;\r\n        emit TradeStatusChange(tradeCounter - 1, \"Open\");\r\n    }\r\n\r\n    /**\r\n     * @dev Executes a trade. Must have approved this contract to transfer the\r\n     * amount of currency specified to the poster. Transfers ownership of the\r\n     * item to the filler.\r\n     * @param _trade The id of an existing trade\r\n     */\r\n    function executeTrade(uint256 _trade)\r\n        public\r\n        virtual\r\n    {\r\n        Trade memory trade = trades[_trade];\r\n        require(trade.status == \"Open\", \"Trade is not Open.\");\r\n        currencyToken.transferFrom(msg.sender, trade.poster, trade.price);\r\n        itemToken.transferFrom(address(this), msg.sender, trade.item);\r\n        trades[_trade].status = \"Executed\";\r\n        emit TradeStatusChange(_trade, \"Executed\");\r\n    }\r\n\r\n    /**\r\n     * @dev Cancels a trade by the poster.\r\n     * @param _trade The trade to be cancelled.\r\n     */\r\n    function cancelTrade(uint256 _trade)\r\n        public\r\n        virtual\r\n    {\r\n        Trade memory trade = trades[_trade];\r\n        require(\r\n            msg.sender == trade.poster,\r\n            \"Trade can be cancelled only by poster.\"\r\n        );\r\n        require(trade.status == \"Open\", \"Trade is not Open.\");\r\n        itemToken.transferFrom(address(this), trade.poster, trade.item);\r\n        trades[_trade].status = \"Cancelled\";\r\n        emit TradeStatusChange(_trade, \"Cancelled\");\r\n    }\r\n}",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/retail/Classifieds.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/retail/Classifieds.sol",
+    "exportedSymbols": {
+      "Classifieds": [
+        50264
+      ],
+      "IERC165": [
+        39297
+      ],
+      "IERC20": [
+        39396
+      ],
+      "IERC721": [
+        39661
+      ]
+    },
+    "id": 50265,
+    "license": "CC-BY-4.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 50034,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:32:180"
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IERC20.sol",
+        "file": "../interfaces/IERC20.sol",
+        "id": 50035,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 50265,
+        "sourceUnit": 39397,
+        "src": "181:34:180",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IERC721.sol",
+        "file": "../interfaces/IERC721.sol",
+        "id": 50036,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 50265,
+        "sourceUnit": 39662,
+        "src": "217:35:180",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Classifieds",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 50264,
+        "linearizedBaseContracts": [
+          50264
+        ],
+        "name": "Classifieds",
+        "nameLocation": "265:11:180",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Classifieds.Trade",
+            "id": 50047,
+            "members": [
+              {
+                "constant": false,
+                "id": 50038,
+                "mutability": "mutable",
+                "name": "poster",
+                "nameLocation": "316:6:180",
+                "nodeType": "VariableDeclaration",
+                "scope": 50047,
+                "src": "308:14:180",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 50037,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "308:7:180",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 50040,
+                "mutability": "mutable",
+                "name": "item",
+                "nameLocation": "341:4:180",
+                "nodeType": "VariableDeclaration",
+                "scope": 50047,
+                "src": "333:12:180",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 50039,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "333:7:180",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 50042,
+                "mutability": "mutable",
+                "name": "description",
+                "nameLocation": "364:11:180",
+                "nodeType": "VariableDeclaration",
+                "scope": 50047,
+                "src": "356:19:180",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 50041,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "356:6:180",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 50044,
+                "mutability": "mutable",
+                "name": "price",
+                "nameLocation": "394:5:180",
+                "nodeType": "VariableDeclaration",
+                "scope": 50047,
+                "src": "386:13:180",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 50043,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "386:7:180",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 50046,
+                "mutability": "mutable",
+                "name": "status",
+                "nameLocation": "418:6:180",
+                "nodeType": "VariableDeclaration",
+                "scope": 50047,
+                "src": "410:14:180",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 50045,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "410:7:180",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Trade",
+            "nameLocation": "291:5:180",
+            "nodeType": "StructDefinition",
+            "scope": 50264,
+            "src": "284:177:180",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 50050,
+            "mutability": "mutable",
+            "name": "currencyToken",
+            "nameLocation": "476:13:180",
+            "nodeType": "VariableDeclaration",
+            "scope": 50264,
+            "src": "469:20:180",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IERC20_$39396",
+              "typeString": "contract IERC20"
+            },
+            "typeName": {
+              "id": 50049,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 50048,
+                "name": "IERC20",
+                "nameLocations": [
+                  "469:6:180"
+                ],
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 39396,
+                "src": "469:6:180"
+              },
+              "referencedDeclaration": 39396,
+              "src": "469:6:180",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC20_$39396",
+                "typeString": "contract IERC20"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 50053,
+            "mutability": "mutable",
+            "name": "itemToken",
+            "nameLocation": "504:9:180",
+            "nodeType": "VariableDeclaration",
+            "scope": 50264,
+            "src": "496:17:180",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IERC721_$39661",
+              "typeString": "contract IERC721"
+            },
+            "typeName": {
+              "id": 50052,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 50051,
+                "name": "IERC721",
+                "nameLocations": [
+                  "496:7:180"
+                ],
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 39661,
+                "src": "496:7:180"
+              },
+              "referencedDeclaration": 39661,
+              "src": "496:7:180",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC721_$39661",
+                "typeString": "contract IERC721"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "functionSelector": "1e6c598e",
+            "id": 50058,
+            "mutability": "mutable",
+            "name": "trades",
+            "nameLocation": "555:6:180",
+            "nodeType": "VariableDeclaration",
+            "scope": 50264,
+            "src": "522:39:180",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Trade_$50047_storage_$",
+              "typeString": "mapping(uint256 => struct Classifieds.Trade)"
+            },
+            "typeName": {
+              "id": 50057,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 50054,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "530:7:180",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "522:25:180",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Trade_$50047_storage_$",
+                "typeString": "mapping(uint256 => struct Classifieds.Trade)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 50056,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 50055,
+                  "name": "Trade",
+                  "nameLocations": [
+                    "541:5:180"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 50047,
+                  "src": "541:5:180"
+                },
+                "referencedDeclaration": 50047,
+                "src": "541:5:180",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Trade_$50047_storage_ptr",
+                  "typeString": "struct Classifieds.Trade"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 50060,
+            "mutability": "mutable",
+            "name": "tradeCounter",
+            "nameLocation": "578:12:180",
+            "nodeType": "VariableDeclaration",
+            "scope": 50264,
+            "src": "570:20:180",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 50059,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "570:7:180",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "4d38ed2c5ea671a5ccddc331f0ebebd94a60aaf6e572543497485d4d148f9edf",
+            "id": 50066,
+            "name": "TradeStatusChange",
+            "nameLocation": "605:17:180",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 50065,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 50062,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "ad",
+                  "nameLocation": "631:2:180",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50066,
+                  "src": "623:10:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 50061,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "623:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 50064,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "status",
+                  "nameLocation": "643:6:180",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50066,
+                  "src": "635:14:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 50063,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "635:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "622:28:180"
+            },
+            "src": "599:52:180"
+          },
+          {
+            "body": {
+              "id": 50101,
+              "nodeType": "Block",
+              "src": "921:144:180",
+              "statements": [
+                {
+                  "assignments": [
+                    50084
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 50084,
+                      "mutability": "mutable",
+                      "name": "trade",
+                      "nameLocation": "945:5:180",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 50101,
+                      "src": "932:18:180",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                        "typeString": "struct Classifieds.Trade"
+                      },
+                      "typeName": {
+                        "id": 50083,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 50082,
+                          "name": "Trade",
+                          "nameLocations": [
+                            "932:5:180"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 50047,
+                          "src": "932:5:180"
+                        },
+                        "referencedDeclaration": 50047,
+                        "src": "932:5:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Trade_$50047_storage_ptr",
+                          "typeString": "struct Classifieds.Trade"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 50088,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 50085,
+                      "name": "trades",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50058,
+                      "src": "953:6:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Trade_$50047_storage_$",
+                        "typeString": "mapping(uint256 => struct Classifieds.Trade storage ref)"
+                      }
+                    },
+                    "id": 50087,
+                    "indexExpression": {
+                      "id": 50086,
+                      "name": "_trade",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50069,
+                      "src": "960:6:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "953:14:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Trade_$50047_storage",
+                      "typeString": "struct Classifieds.Trade storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "932:35:180"
+                },
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "expression": {
+                          "id": 50089,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50084,
+                          "src": "986:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50090,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "992:6:180",
+                        "memberName": "poster",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50038,
+                        "src": "986:12:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50091,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50084,
+                          "src": "1000:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50092,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1006:4:180",
+                        "memberName": "item",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50040,
+                        "src": "1000:10:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50093,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50084,
+                          "src": "1012:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50094,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1018:11:180",
+                        "memberName": "description",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50042,
+                        "src": "1012:17:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50095,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50084,
+                          "src": "1031:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50096,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1037:5:180",
+                        "memberName": "price",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50044,
+                        "src": "1031:11:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50097,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50084,
+                          "src": "1044:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50098,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1050:6:180",
+                        "memberName": "status",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50046,
+                        "src": "1044:12:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "id": 50099,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "985:72:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_address_$_t_uint256_$_t_string_memory_ptr_$_t_uint256_$_t_bytes32_$",
+                      "typeString": "tuple(address,uint256,string memory,uint256,bytes32)"
+                    }
+                  },
+                  "functionReturnParameters": 50081,
+                  "id": 50100,
+                  "nodeType": "Return",
+                  "src": "978:79:180"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 50067,
+              "nodeType": "StructuredDocumentation",
+              "src": "659:102:180",
+              "text": " @dev Returns the details for a trade.\n @param _trade The id for the trade."
+            },
+            "functionSelector": "2db25e05",
+            "id": 50102,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTrade",
+            "nameLocation": "776:8:180",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 50070,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 50069,
+                  "mutability": "mutable",
+                  "name": "_trade",
+                  "nameLocation": "793:6:180",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50102,
+                  "src": "785:14:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 50068,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "785:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "784:16:180"
+            },
+            "returnParameters": {
+              "id": 50081,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 50072,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50102,
+                  "src": "865:7:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 50071,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "865:7:180",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 50074,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50102,
+                  "src": "874:7:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 50073,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "874:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 50076,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50102,
+                  "src": "883:13:180",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 50075,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "883:6:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 50078,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50102,
+                  "src": "898:7:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 50077,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "898:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 50080,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50102,
+                  "src": "907:7:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 50079,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "907:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "864:51:180"
+            },
+            "scope": 50264,
+            "src": "767:298:180",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 50148,
+              "nodeType": "Block",
+              "src": "1386:370:180",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 50115,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1420:3:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 50116,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1424:6:180",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1420:10:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "id": 50119,
+                            "name": "this",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967268,
+                            "src": "1440:4:180",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_Classifieds_$50264",
+                              "typeString": "contract Classifieds"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_Classifieds_$50264",
+                              "typeString": "contract Classifieds"
+                            }
+                          ],
+                          "id": 50118,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1432:7:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 50117,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1432:7:180",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 50120,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1432:13:180",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 50121,
+                        "name": "_item",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50105,
+                        "src": "1447:5:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 50112,
+                        "name": "itemToken",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50053,
+                        "src": "1397:9:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IERC721_$39661",
+                          "typeString": "contract IERC721"
+                        }
+                      },
+                      "id": 50114,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1407:12:180",
+                      "memberName": "transferFrom",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 39619,
+                      "src": "1397:22:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,address,uint256) external"
+                      }
+                    },
+                    "id": 50122,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1397:56:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 50123,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1397:56:180"
+                },
+                {
+                  "expression": {
+                    "id": 50135,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 50124,
+                        "name": "trades",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50058,
+                        "src": "1464:6:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Trade_$50047_storage_$",
+                          "typeString": "mapping(uint256 => struct Classifieds.Trade storage ref)"
+                        }
+                      },
+                      "id": 50126,
+                      "indexExpression": {
+                        "id": 50125,
+                        "name": "tradeCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50060,
+                        "src": "1471:12:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1464:20:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Trade_$50047_storage",
+                        "typeString": "struct Classifieds.Trade storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "expression": {
+                            "id": 50128,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "1516:3:180",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 50129,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1520:6:180",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "1516:10:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "id": 50130,
+                          "name": "_item",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50105,
+                          "src": "1547:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 50131,
+                          "name": "_description",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50107,
+                          "src": "1580:12:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "id": 50132,
+                          "name": "_price",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50109,
+                          "src": "1614:6:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "hexValue": "4f70656e",
+                          "id": 50133,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1643:6:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_8f5d8ba7f4bf26b6e2e2060e5bd28107042be35460fbd828c9d29a2d8af14445",
+                            "typeString": "literal_string \"Open\""
+                          },
+                          "value": "Open"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_stringliteral_8f5d8ba7f4bf26b6e2e2060e5bd28107042be35460fbd828c9d29a2d8af14445",
+                            "typeString": "literal_string \"Open\""
+                          }
+                        ],
+                        "id": 50127,
+                        "name": "Trade",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50047,
+                        "src": "1487:5:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Trade_$50047_storage_ptr_$",
+                          "typeString": "type(struct Classifieds.Trade storage pointer)"
+                        }
+                      },
+                      "id": 50134,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "nameLocations": [
+                        "1508:6:180",
+                        "1541:4:180",
+                        "1567:11:180",
+                        "1607:5:180",
+                        "1635:6:180"
+                      ],
+                      "names": [
+                        "poster",
+                        "item",
+                        "description",
+                        "price",
+                        "status"
+                      ],
+                      "nodeType": "FunctionCall",
+                      "src": "1487:174:180",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                        "typeString": "struct Classifieds.Trade memory"
+                      }
+                    },
+                    "src": "1464:197:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Trade_$50047_storage",
+                      "typeString": "struct Classifieds.Trade storage ref"
+                    }
+                  },
+                  "id": 50136,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1464:197:180"
+                },
+                {
+                  "expression": {
+                    "id": 50139,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 50137,
+                      "name": "tradeCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50060,
+                      "src": "1672:12:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "+=",
+                    "rightHandSide": {
+                      "hexValue": "31",
+                      "id": 50138,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1688:1:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "1672:17:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 50140,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1672:17:180"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 50144,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 50142,
+                          "name": "tradeCounter",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50060,
+                          "src": "1723:12:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "-",
+                        "rightExpression": {
+                          "hexValue": "31",
+                          "id": 50143,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1738:1:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_1_by_1",
+                            "typeString": "int_const 1"
+                          },
+                          "value": "1"
+                        },
+                        "src": "1723:16:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "hexValue": "4f70656e",
+                        "id": 50145,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1741:6:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_8f5d8ba7f4bf26b6e2e2060e5bd28107042be35460fbd828c9d29a2d8af14445",
+                          "typeString": "literal_string \"Open\""
+                        },
+                        "value": "Open"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_8f5d8ba7f4bf26b6e2e2060e5bd28107042be35460fbd828c9d29a2d8af14445",
+                          "typeString": "literal_string \"Open\""
+                        }
+                      ],
+                      "id": 50141,
+                      "name": "TradeStatusChange",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50066,
+                      "src": "1705:17:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_bytes32_$returns$__$",
+                        "typeString": "function (uint256,bytes32)"
+                      }
+                    },
+                    "id": 50146,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1705:43:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 50147,
+                  "nodeType": "EmitStatement",
+                  "src": "1700:48:180"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 50103,
+              "nodeType": "StructuredDocumentation",
+              "src": "1073:191:180",
+              "text": " @dev Opens a new trade. Puts _item in escrow.\n @param _item The id for the item to trade.\n @param _price The amount of currency for which to trade the item."
+            },
+            "functionSelector": "ad550b37",
+            "id": 50149,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "openTrade",
+            "nameLocation": "1279:9:180",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 50110,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 50105,
+                  "mutability": "mutable",
+                  "name": "_item",
+                  "nameLocation": "1297:5:180",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50149,
+                  "src": "1289:13:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 50104,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1289:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 50107,
+                  "mutability": "mutable",
+                  "name": "_description",
+                  "nameLocation": "1318:12:180",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50149,
+                  "src": "1304:26:180",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 50106,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1304:6:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 50109,
+                  "mutability": "mutable",
+                  "name": "_price",
+                  "nameLocation": "1340:6:180",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50149,
+                  "src": "1332:14:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 50108,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1332:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1288:59:180"
+            },
+            "returnParameters": {
+              "id": 50111,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1386:0:180"
+            },
+            "scope": 50264,
+            "src": "1270:486:180",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 50206,
+              "nodeType": "Block",
+              "src": "2095:364:180",
+              "statements": [
+                {
+                  "assignments": [
+                    50157
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 50157,
+                      "mutability": "mutable",
+                      "name": "trade",
+                      "nameLocation": "2119:5:180",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 50206,
+                      "src": "2106:18:180",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                        "typeString": "struct Classifieds.Trade"
+                      },
+                      "typeName": {
+                        "id": 50156,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 50155,
+                          "name": "Trade",
+                          "nameLocations": [
+                            "2106:5:180"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 50047,
+                          "src": "2106:5:180"
+                        },
+                        "referencedDeclaration": 50047,
+                        "src": "2106:5:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Trade_$50047_storage_ptr",
+                          "typeString": "struct Classifieds.Trade"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 50161,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 50158,
+                      "name": "trades",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50058,
+                      "src": "2127:6:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Trade_$50047_storage_$",
+                        "typeString": "mapping(uint256 => struct Classifieds.Trade storage ref)"
+                      }
+                    },
+                    "id": 50160,
+                    "indexExpression": {
+                      "id": 50159,
+                      "name": "_trade",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50152,
+                      "src": "2134:6:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2127:14:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Trade_$50047_storage",
+                      "typeString": "struct Classifieds.Trade storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2106:35:180"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        "id": 50166,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 50163,
+                            "name": "trade",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 50157,
+                            "src": "2160:5:180",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                              "typeString": "struct Classifieds.Trade memory"
+                            }
+                          },
+                          "id": 50164,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2166:6:180",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 50046,
+                          "src": "2160:12:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "hexValue": "4f70656e",
+                          "id": 50165,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "2176:6:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_8f5d8ba7f4bf26b6e2e2060e5bd28107042be35460fbd828c9d29a2d8af14445",
+                            "typeString": "literal_string \"Open\""
+                          },
+                          "value": "Open"
+                        },
+                        "src": "2160:22:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "5472616465206973206e6f74204f70656e2e",
+                        "id": 50167,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2184:20:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_2911decf7be1dd9e4e03f78d29e68432f60f623c391d87eb01441f5ab4f7e1cc",
+                          "typeString": "literal_string \"Trade is not Open.\""
+                        },
+                        "value": "Trade is not Open."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_2911decf7be1dd9e4e03f78d29e68432f60f623c391d87eb01441f5ab4f7e1cc",
+                          "typeString": "literal_string \"Trade is not Open.\""
+                        }
+                      ],
+                      "id": 50162,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2152:7:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 50168,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2152:53:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 50169,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2152:53:180"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 50173,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2243:3:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 50174,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2247:6:180",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2243:10:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50175,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50157,
+                          "src": "2255:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50176,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2261:6:180",
+                        "memberName": "poster",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50038,
+                        "src": "2255:12:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50177,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50157,
+                          "src": "2269:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50178,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2275:5:180",
+                        "memberName": "price",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50044,
+                        "src": "2269:11:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 50170,
+                        "name": "currencyToken",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50050,
+                        "src": "2216:13:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IERC20_$39396",
+                          "typeString": "contract IERC20"
+                        }
+                      },
+                      "id": 50172,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "2230:12:180",
+                      "memberName": "transferFrom",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 39349,
+                      "src": "2216:26:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
+                        "typeString": "function (address,address,uint256) external returns (bool)"
+                      }
+                    },
+                    "id": 50179,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2216:65:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 50180,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2216:65:180"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 50186,
+                            "name": "this",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967268,
+                            "src": "2323:4:180",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_Classifieds_$50264",
+                              "typeString": "contract Classifieds"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_Classifieds_$50264",
+                              "typeString": "contract Classifieds"
+                            }
+                          ],
+                          "id": 50185,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "2315:7:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 50184,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2315:7:180",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 50187,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2315:13:180",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50188,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2330:3:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 50189,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2334:6:180",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2330:10:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50190,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50157,
+                          "src": "2342:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50191,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2348:4:180",
+                        "memberName": "item",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50040,
+                        "src": "2342:10:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 50181,
+                        "name": "itemToken",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50053,
+                        "src": "2292:9:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IERC721_$39661",
+                          "typeString": "contract IERC721"
+                        }
+                      },
+                      "id": 50183,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "2302:12:180",
+                      "memberName": "transferFrom",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 39619,
+                      "src": "2292:22:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,address,uint256) external"
+                      }
+                    },
+                    "id": 50192,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2292:61:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 50193,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2292:61:180"
+                },
+                {
+                  "expression": {
+                    "id": 50199,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 50194,
+                          "name": "trades",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50058,
+                          "src": "2364:6:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Trade_$50047_storage_$",
+                            "typeString": "mapping(uint256 => struct Classifieds.Trade storage ref)"
+                          }
+                        },
+                        "id": 50196,
+                        "indexExpression": {
+                          "id": 50195,
+                          "name": "_trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50152,
+                          "src": "2371:6:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "2364:14:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Trade_$50047_storage",
+                          "typeString": "struct Classifieds.Trade storage ref"
+                        }
+                      },
+                      "id": 50197,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "2379:6:180",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 50046,
+                      "src": "2364:21:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "4578656375746564",
+                      "id": 50198,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "string",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "2388:10:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_stringliteral_05f4317aae43f6c24b2b85c6d8b21d5fa0a28cee0476cd52ca5d60d4787aab78",
+                        "typeString": "literal_string \"Executed\""
+                      },
+                      "value": "Executed"
+                    },
+                    "src": "2364:34:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "id": 50200,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2364:34:180"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 50202,
+                        "name": "_trade",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50152,
+                        "src": "2432:6:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "hexValue": "4578656375746564",
+                        "id": 50203,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2440:10:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_05f4317aae43f6c24b2b85c6d8b21d5fa0a28cee0476cd52ca5d60d4787aab78",
+                          "typeString": "literal_string \"Executed\""
+                        },
+                        "value": "Executed"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_05f4317aae43f6c24b2b85c6d8b21d5fa0a28cee0476cd52ca5d60d4787aab78",
+                          "typeString": "literal_string \"Executed\""
+                        }
+                      ],
+                      "id": 50201,
+                      "name": "TradeStatusChange",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50066,
+                      "src": "2414:17:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_bytes32_$returns$__$",
+                        "typeString": "function (uint256,bytes32)"
+                      }
+                    },
+                    "id": 50204,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2414:37:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 50205,
+                  "nodeType": "EmitStatement",
+                  "src": "2409:42:180"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 50150,
+              "nodeType": "StructuredDocumentation",
+              "src": "1764:249:180",
+              "text": " @dev Executes a trade. Must have approved this contract to transfer the\n amount of currency specified to the poster. Transfers ownership of the\n item to the filler.\n @param _trade The id of an existing trade"
+            },
+            "functionSelector": "02d2838b",
+            "id": 50207,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "executeTrade",
+            "nameLocation": "2028:12:180",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 50153,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 50152,
+                  "mutability": "mutable",
+                  "name": "_trade",
+                  "nameLocation": "2049:6:180",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50207,
+                  "src": "2041:14:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 50151,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2041:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2040:16:180"
+            },
+            "returnParameters": {
+              "id": 50154,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2095:0:180"
+            },
+            "scope": 50264,
+            "src": "2019:440:180",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 50262,
+              "nodeType": "Block",
+              "src": "2653:417:180",
+              "statements": [
+                {
+                  "assignments": [
+                    50215
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 50215,
+                      "mutability": "mutable",
+                      "name": "trade",
+                      "nameLocation": "2677:5:180",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 50262,
+                      "src": "2664:18:180",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                        "typeString": "struct Classifieds.Trade"
+                      },
+                      "typeName": {
+                        "id": 50214,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 50213,
+                          "name": "Trade",
+                          "nameLocations": [
+                            "2664:5:180"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 50047,
+                          "src": "2664:5:180"
+                        },
+                        "referencedDeclaration": 50047,
+                        "src": "2664:5:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Trade_$50047_storage_ptr",
+                          "typeString": "struct Classifieds.Trade"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 50219,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 50216,
+                      "name": "trades",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50058,
+                      "src": "2685:6:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Trade_$50047_storage_$",
+                        "typeString": "mapping(uint256 => struct Classifieds.Trade storage ref)"
+                      }
+                    },
+                    "id": 50218,
+                    "indexExpression": {
+                      "id": 50217,
+                      "name": "_trade",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50210,
+                      "src": "2692:6:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2685:14:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Trade_$50047_storage",
+                      "typeString": "struct Classifieds.Trade storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2664:35:180"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 50225,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 50221,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "2732:3:180",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 50222,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2736:6:180",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "2732:10:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 50223,
+                            "name": "trade",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 50215,
+                            "src": "2746:5:180",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                              "typeString": "struct Classifieds.Trade memory"
+                            }
+                          },
+                          "id": 50224,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2752:6:180",
+                          "memberName": "poster",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 50038,
+                          "src": "2746:12:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "2732:26:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "54726164652063616e2062652063616e63656c6c6564206f6e6c7920627920706f737465722e",
+                        "id": 50226,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2773:40:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_331e703da25b47ea750fcf81b37ecab70d142ca7619f495187e544ba2c064415",
+                          "typeString": "literal_string \"Trade can be cancelled only by poster.\""
+                        },
+                        "value": "Trade can be cancelled only by poster."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_331e703da25b47ea750fcf81b37ecab70d142ca7619f495187e544ba2c064415",
+                          "typeString": "literal_string \"Trade can be cancelled only by poster.\""
+                        }
+                      ],
+                      "id": 50220,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2710:7:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 50227,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2710:114:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 50228,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2710:114:180"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        "id": 50233,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 50230,
+                            "name": "trade",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 50215,
+                            "src": "2843:5:180",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                              "typeString": "struct Classifieds.Trade memory"
+                            }
+                          },
+                          "id": 50231,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2849:6:180",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 50046,
+                          "src": "2843:12:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "hexValue": "4f70656e",
+                          "id": 50232,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "2859:6:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_8f5d8ba7f4bf26b6e2e2060e5bd28107042be35460fbd828c9d29a2d8af14445",
+                            "typeString": "literal_string \"Open\""
+                          },
+                          "value": "Open"
+                        },
+                        "src": "2843:22:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "5472616465206973206e6f74204f70656e2e",
+                        "id": 50234,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2867:20:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_2911decf7be1dd9e4e03f78d29e68432f60f623c391d87eb01441f5ab4f7e1cc",
+                          "typeString": "literal_string \"Trade is not Open.\""
+                        },
+                        "value": "Trade is not Open."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_2911decf7be1dd9e4e03f78d29e68432f60f623c391d87eb01441f5ab4f7e1cc",
+                          "typeString": "literal_string \"Trade is not Open.\""
+                        }
+                      ],
+                      "id": 50229,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2835:7:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 50235,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2835:53:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 50236,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2835:53:180"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 50242,
+                            "name": "this",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967268,
+                            "src": "2930:4:180",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_Classifieds_$50264",
+                              "typeString": "contract Classifieds"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_Classifieds_$50264",
+                              "typeString": "contract Classifieds"
+                            }
+                          ],
+                          "id": 50241,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "2922:7:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 50240,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2922:7:180",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 50243,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2922:13:180",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50244,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50215,
+                          "src": "2937:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50245,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2943:6:180",
+                        "memberName": "poster",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50038,
+                        "src": "2937:12:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 50246,
+                          "name": "trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50215,
+                          "src": "2951:5:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Trade_$50047_memory_ptr",
+                            "typeString": "struct Classifieds.Trade memory"
+                          }
+                        },
+                        "id": 50247,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2957:4:180",
+                        "memberName": "item",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 50040,
+                        "src": "2951:10:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 50237,
+                        "name": "itemToken",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50053,
+                        "src": "2899:9:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IERC721_$39661",
+                          "typeString": "contract IERC721"
+                        }
+                      },
+                      "id": 50239,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "2909:12:180",
+                      "memberName": "transferFrom",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 39619,
+                      "src": "2899:22:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,address,uint256) external"
+                      }
+                    },
+                    "id": 50248,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2899:63:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 50249,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2899:63:180"
+                },
+                {
+                  "expression": {
+                    "id": 50255,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 50250,
+                          "name": "trades",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50058,
+                          "src": "2973:6:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Trade_$50047_storage_$",
+                            "typeString": "mapping(uint256 => struct Classifieds.Trade storage ref)"
+                          }
+                        },
+                        "id": 50252,
+                        "indexExpression": {
+                          "id": 50251,
+                          "name": "_trade",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 50210,
+                          "src": "2980:6:180",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "2973:14:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Trade_$50047_storage",
+                          "typeString": "struct Classifieds.Trade storage ref"
+                        }
+                      },
+                      "id": 50253,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "2988:6:180",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 50046,
+                      "src": "2973:21:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "43616e63656c6c6564",
+                      "id": 50254,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "string",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "2997:11:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_stringliteral_737a39c9fa82f68622f45ae205e399b0f0a7252140d9357a90220c542bb4ef4b",
+                        "typeString": "literal_string \"Cancelled\""
+                      },
+                      "value": "Cancelled"
+                    },
+                    "src": "2973:35:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "id": 50256,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2973:35:180"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 50258,
+                        "name": "_trade",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 50210,
+                        "src": "3042:6:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "hexValue": "43616e63656c6c6564",
+                        "id": 50259,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "3050:11:180",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_737a39c9fa82f68622f45ae205e399b0f0a7252140d9357a90220c542bb4ef4b",
+                          "typeString": "literal_string \"Cancelled\""
+                        },
+                        "value": "Cancelled"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_737a39c9fa82f68622f45ae205e399b0f0a7252140d9357a90220c542bb4ef4b",
+                          "typeString": "literal_string \"Cancelled\""
+                        }
+                      ],
+                      "id": 50257,
+                      "name": "TradeStatusChange",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 50066,
+                      "src": "3024:17:180",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_bytes32_$returns$__$",
+                        "typeString": "function (uint256,bytes32)"
+                      }
+                    },
+                    "id": 50260,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3024:38:180",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 50261,
+                  "nodeType": "EmitStatement",
+                  "src": "3019:43:180"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 50208,
+              "nodeType": "StructuredDocumentation",
+              "src": "2467:105:180",
+              "text": " @dev Cancels a trade by the poster.\n @param _trade The trade to be cancelled."
+            },
+            "functionSelector": "09ec6cc7",
+            "id": 50263,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cancelTrade",
+            "nameLocation": "2587:11:180",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 50211,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 50210,
+                  "mutability": "mutable",
+                  "name": "_trade",
+                  "nameLocation": "2607:6:180",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 50263,
+                  "src": "2599:14:180",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 50209,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2599:7:180",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2598:16:180"
+            },
+            "returnParameters": {
+              "id": 50212,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2653:0:180"
+            },
+            "scope": 50264,
+            "src": "2578:492:180",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          }
+        ],
+        "scope": 50265,
+        "src": "256:2817:180",
+        "usedErrors": []
+      }
+    ],
+    "src": "39:3034:180"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:27.066Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "cancelTrade(uint256)": {
+        "details": "Cancels a trade by the poster.",
+        "params": {
+          "_trade": "The trade to be cancelled."
+        }
+      },
+      "executeTrade(uint256)": {
+        "details": "Executes a trade. Must have approved this contract to transfer the amount of currency specified to the poster. Transfers ownership of the item to the filler.",
+        "params": {
+          "_trade": "The id of an existing trade"
+        }
+      },
+      "getTrade(uint256)": {
+        "details": "Returns the details for a trade.",
+        "params": {
+          "_trade": "The id for the trade."
+        }
+      },
+      "openTrade(uint256,string,uint256)": {
+        "details": "Opens a new trade. Puts _item in escrow.",
+        "params": {
+          "_item": "The id for the item to trade.",
+          "_price": "The amount of currency for which to trade the item."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

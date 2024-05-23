@@ -1,0 +1,3854 @@
+{
+  "contractName": "HouseOfRepresentatives",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "billId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sponsor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "name": "BillIntroduced",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "billId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum HouseOfRepresentatives.BillStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "name": "BillStatusChange",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "certificate",
+          "type": "string"
+        }
+      ],
+      "name": "HouseCertificateSet",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "houseCertificate",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "members",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "presidentElect",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "speaker",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isMember",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newMember",
+          "type": "address"
+        }
+      ],
+      "name": "addMember",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newRepresentative",
+          "type": "address"
+        }
+      ],
+      "name": "addRepresentative",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "name": "introduceBill",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "billId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum HouseOfRepresentatives.BillStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "name": "passBill",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "electionYear",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "name": "setPresidentElect",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "electionYear",
+          "type": "string"
+        }
+      ],
+      "name": "getPresidentElect",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "electionYear",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "certificate",
+          "type": "string"
+        }
+      ],
+      "name": "setHouseCertificate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "electionYear",
+          "type": "string"
+        }
+      ],
+      "name": "getHouseCertificate",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"billId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sponsor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"}],\"name\":\"BillIntroduced\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"billId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"enum HouseOfRepresentatives.BillStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"name\":\"BillStatusChange\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"certificate\",\"type\":\"string\"}],\"name\":\"HouseCertificateSet\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newMember\",\"type\":\"address\"}],\"name\":\"addMember\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newRepresentative\",\"type\":\"address\"}],\"name\":\"addRepresentative\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"electionYear\",\"type\":\"string\"}],\"name\":\"getHouseCertificate\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"electionYear\",\"type\":\"string\"}],\"name\":\"getPresidentElect\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"houseCertificate\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"}],\"name\":\"introduceBill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isMember\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"members\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"billId\",\"type\":\"uint256\"},{\"internalType\":\"enum HouseOfRepresentatives.BillStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"name\":\"passBill\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"presidentElect\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"electionYear\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"certificate\",\"type\":\"string\"}],\"name\":\"setHouseCertificate\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"electionYear\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"name\":\"setPresidentElect\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"speaker\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/government/federal/HouseOfRepresentatives.sol\":\"HouseOfRepresentatives\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/government/federal/HouseOfRepresentatives.sol\":{\"keccak256\":\"0xa7024b80defa76c2c92e6a6d81907612208d2173aa0bc4e53c0f44e609ebfbff\",\"license\":\"BSL-1.1\",\"urls\":[\"bzz-raw://caeedfee02b402078afc0a8b056a637f20798d3e6e740a5b26ec5f34d61ca32f\",\"dweb:/ipfs/QmaBnGskmNKK7hCefPa3SpJF2E6DVLMt5SFBAsry3MG5zc\"]}},\"version\":1}",
+  "bytecode": "0x608080604052346100d95760008054600160a060020a031990811633178255600154680100000000000000008110156100ac57600181018060015581101561007f57600183527fb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf601805490911633179055600355610d7b90816100df8239f35b6024837f4e487b710000000000000000000000000000000000000000000000000000000081526032600452fd5b6024837f4e487b710000000000000000000000000000000000000000000000000000000081526041600452fd5b600080fdfe6040608081526004908136101561001557600080fd5b600060e060020a813504630c1d11a781146107d857806346c28a08146105195780635daf08ca146104d257806372e2ed03146102a1578063840931c6146104aa5780638ae9fd19146102ff578063a230c5241461046c578063b347dd8114610430578063ba3addc91461032f578063ca6d56dc146102ff578063df215db2146102a1578063e7b96ce5146101285763f2d8afb0146100b257600080fd5b34610125576020366003190112610125578235906001604060020a03821161012557506100ff60206100ed6101219561010e943691016109af565b81855193828580945193849201610a85565b81016005815203019020610ae7565b9051918291602083526020830190610b8c565b0390f35b80fd5b50903461029d5761013836610a0a565b909161014f600160a060020a038554163314610c2e565b5182818094516101658160209788809601610a85565b81016005815203019020918151916001604060020a0383116102875790829161018e8554610aa8565b601f8111610237575b5081601f84116001146101d0575085926101c5575b5050816002029160080260020a60001904191617905580f35b0151905084806101ac565b8587528087209350601f1985169087905b82821061021f5750509160029391856001969410610204575b5050500201905580f35b01516008601f841602840a60001904191690558580806101fa565b806001869782949787015181550196019401906101e1565b909192508486528286208380601f87010482019281871061027d575b94601f87969594939295010401905b81811061026f5750610197565b878155859450600101610262565b9192508291610253565b60e060020a634e487b7102855260418652602485fd5b5080fd5b5034610125576020366003190112610125578235906001604060020a03821161012557506102f16020610121946102de61010e94369083016109af565b9082865194838680955193849201610a85565b820190815203019020610ae7565b50823461029d57602036600319011261029d5735600160a060020a038116810361029d5761032c90610c9f565b80f35b50903461029d578060031936011261029d57823560243593600385101561042c57610365600160a060020a038554163314610c2e565b818452600260205260ff60038486200154166003811015610416576103cd57508293817fcb2f5d9b75374e2f47d0fb8fb90447b80c7e9a633b7272375579232228b1e6a4945260026020526103bf81600385882001610cf3565b82519182526020820152a180f35b825160e560020a62461bcd028152602091810191909152601c60248201527f546869732062696c6c2063616e6e6f74206265206368616e6765642e000000006044820152606490fd5b60e060020a634e487b7102855260218252602485fd5b8380fd5b5034610125576020366003190112610125578235906001604060020a03821161012557506100ff60206100ed6101219561010e943691016109af565b5091346104a65760203660031901126104a6573591600160a060020a0383168303610125575061049d602092610bda565b90519015158152f35b8280fd5b50903461029d578160031936011261029d5790549051600160a060020a039091168152602090f35b5091346104a65760203660031901126104a657359160015483101561012557506104fd602092610a50565b90549151600890910260020a909104600160a060020a03168152f35b50903461029d57602090816003193601126104a6576001604060020a0384358181116107d45761054c90369087016109af565b9061055633610bda565b1561077757610566600354610bb1565b80600355835191608083018381108282111761076157855281835233868401908152838601858152606085018981529389526002808952878a2095518655915160018087018054600160a060020a031916600160a060020a03939093169290921790915590518051868401949093929190841161074b576105e78554610aa8565b601f8111610707575b508991601f85116001146106a357508a92919084610698575b505082810292600802900a6000190419161790555b51906003821015610682579161065d61067c9260037f37857be678fc43a22c7cce89173b9ca3e4d048fd6c0fca4854aeec4a3a0e2f6997969501610cf3565b6060600354938051958695865233908601528401526060830190610b8c565b0390a180f35b60e060020a634e487b7102865260218752602486fd5b015191503880610609565b858c528a8c20909492909183601f1981168e8e5b898383106106ef57505050106106d4575b5050500201905561061e565b01516008601f841602840a60001904191690553880806106c8565b8686015188559096019594850194879350018e6106b7565b858c528a8c208b80601f880104820192818810610741575b601f0104019083905b8281106107365750506105f0565b8d8155018390610728565b919250829161071f565b60e060020a634e487b71028b5260418c5260248bfd5b60e060020a634e487b7102885260418952602488fd5b825160e560020a62461bcd028152808701859052602b60248201527f4f6e6c7920486f757365206d656d626572732063616e20706572666f726d2074604482015260a960020a6a3434b99030b1ba34b7b717026064820152608490fd5b8480fd5b50903461029d576107e836610a0a565b919093610800600160a060020a038554163314610c2e565b815185818097516108178160209a8b809601610a85565b810184815203019020835190916001604060020a03821161095c575061083d8254610aa8565b601f811161091b575b5085601f82116001146108a35791818697949261067c94600080516020610d268339815191529891610898575b50816002029160080260020a6000190419161790555b51928284938452830190610b8c565b905086015138610873565b82865286862090601f198316875b81811061090457508361067c9593600193600080516020610d268339815191529a9b9896600294106108e9575b505002019055610889565b8901516008601f841602840a600019041916905538806108de565b91928960018192868b0151815501940192016108b1565b8286528686208780601f850104820192818510610952575b601f010401905b8181106109475750610846565b86815560010161093a565b9192508291610933565b60e060020a634e487b7102865260419052602485fd5b601f909101601f19168101906001604060020a0382119082101761099557604052565b60e060020a634e487b710260009081526041600452602490fd5b81601f82011215610a05578035906001604060020a03821161099557604051926109e3601f8401601f191660200185610972565b82845260208383010111610a0557816000926020809301838601378301015290565b600080fd5b906040600319830112610a05576001604060020a03600435818111610a055783610a36916004016109af565b92602435918211610a0557610a4d916004016109af565b90565b600154811015610a6b57600160005260206000200190600090565b60e060020a634e487b710260009081526032600452602490fd5b60005b838110610a985750506000910152565b8181015183820152602001610a88565b9060016002830492168015610add575b6020831014610ac357565b60e060020a634e487b710260009081526022600452602490fd5b91607f1691610ab8565b9060405191826000825492610afb84610aa8565b908184526001948581169081600014610b6a5750600114610b27575b5050610b2592500383610972565b565b9093915060005260209081600020936000915b818310610b52575050610b2593508201013880610b17565b85548884018501529485019487945091830191610b3a565b915050610b2594506020925060ff191682840152151581028201013880610b17565b90602091610ba581518092818552858086019101610a85565b601f01601f1916010190565b6000198114610bc05760010190565b60e060020a634e487b710260009081526011600452602490fd5b600180549160005b838110610bf25750505050600090565b610bfb81610a50565b9054600160a060020a03848116600890930260020a9091041614610c2757610c2290610bb1565b610be2565b5050905090565b15610c3557565b60405160e560020a62461bcd02815260206004820152603660248201527f4f6e6c792074686520537065616b6572206f662074686520486f7573652063616044820152605160020a7537103832b93337b936903a3434b99030b1ba34b7b717026064820152608490fd5b600054600160a060020a0390610cb89082163314610c2e565b600154604060020a81101561099557806001610cd79201600155610a50565b909260088454920260020a808402938492160216911916179055565b906003811015610d0b5760ff80198354169116179055565b60e060020a634e487b710260009081526021600452602490fdfe8a8fdae6edf0f67263b53723a3a049eefdcf24f42e39a4ab231bee57a798f70ea2646970667358221220a1f6fb33f432c5e19d6ee83fef0f1c0c6abb46125f2c08a1b045f48ee97f755164736f6c63430008120033",
+  "deployedBytecode": "0x6040608081526004908136101561001557600080fd5b600060e060020a813504630c1d11a781146107d857806346c28a08146105195780635daf08ca146104d257806372e2ed03146102a1578063840931c6146104aa5780638ae9fd19146102ff578063a230c5241461046c578063b347dd8114610430578063ba3addc91461032f578063ca6d56dc146102ff578063df215db2146102a1578063e7b96ce5146101285763f2d8afb0146100b257600080fd5b34610125576020366003190112610125578235906001604060020a03821161012557506100ff60206100ed6101219561010e943691016109af565b81855193828580945193849201610a85565b81016005815203019020610ae7565b9051918291602083526020830190610b8c565b0390f35b80fd5b50903461029d5761013836610a0a565b909161014f600160a060020a038554163314610c2e565b5182818094516101658160209788809601610a85565b81016005815203019020918151916001604060020a0383116102875790829161018e8554610aa8565b601f8111610237575b5081601f84116001146101d0575085926101c5575b5050816002029160080260020a60001904191617905580f35b0151905084806101ac565b8587528087209350601f1985169087905b82821061021f5750509160029391856001969410610204575b5050500201905580f35b01516008601f841602840a60001904191690558580806101fa565b806001869782949787015181550196019401906101e1565b909192508486528286208380601f87010482019281871061027d575b94601f87969594939295010401905b81811061026f5750610197565b878155859450600101610262565b9192508291610253565b60e060020a634e487b7102855260418652602485fd5b5080fd5b5034610125576020366003190112610125578235906001604060020a03821161012557506102f16020610121946102de61010e94369083016109af565b9082865194838680955193849201610a85565b820190815203019020610ae7565b50823461029d57602036600319011261029d5735600160a060020a038116810361029d5761032c90610c9f565b80f35b50903461029d578060031936011261029d57823560243593600385101561042c57610365600160a060020a038554163314610c2e565b818452600260205260ff60038486200154166003811015610416576103cd57508293817fcb2f5d9b75374e2f47d0fb8fb90447b80c7e9a633b7272375579232228b1e6a4945260026020526103bf81600385882001610cf3565b82519182526020820152a180f35b825160e560020a62461bcd028152602091810191909152601c60248201527f546869732062696c6c2063616e6e6f74206265206368616e6765642e000000006044820152606490fd5b60e060020a634e487b7102855260218252602485fd5b8380fd5b5034610125576020366003190112610125578235906001604060020a03821161012557506100ff60206100ed6101219561010e943691016109af565b5091346104a65760203660031901126104a6573591600160a060020a0383168303610125575061049d602092610bda565b90519015158152f35b8280fd5b50903461029d578160031936011261029d5790549051600160a060020a039091168152602090f35b5091346104a65760203660031901126104a657359160015483101561012557506104fd602092610a50565b90549151600890910260020a909104600160a060020a03168152f35b50903461029d57602090816003193601126104a6576001604060020a0384358181116107d45761054c90369087016109af565b9061055633610bda565b1561077757610566600354610bb1565b80600355835191608083018381108282111761076157855281835233868401908152838601858152606085018981529389526002808952878a2095518655915160018087018054600160a060020a031916600160a060020a03939093169290921790915590518051868401949093929190841161074b576105e78554610aa8565b601f8111610707575b508991601f85116001146106a357508a92919084610698575b505082810292600802900a6000190419161790555b51906003821015610682579161065d61067c9260037f37857be678fc43a22c7cce89173b9ca3e4d048fd6c0fca4854aeec4a3a0e2f6997969501610cf3565b6060600354938051958695865233908601528401526060830190610b8c565b0390a180f35b60e060020a634e487b7102865260218752602486fd5b015191503880610609565b858c528a8c20909492909183601f1981168e8e5b898383106106ef57505050106106d4575b5050500201905561061e565b01516008601f841602840a60001904191690553880806106c8565b8686015188559096019594850194879350018e6106b7565b858c528a8c208b80601f880104820192818810610741575b601f0104019083905b8281106107365750506105f0565b8d8155018390610728565b919250829161071f565b60e060020a634e487b71028b5260418c5260248bfd5b60e060020a634e487b7102885260418952602488fd5b825160e560020a62461bcd028152808701859052602b60248201527f4f6e6c7920486f757365206d656d626572732063616e20706572666f726d2074604482015260a960020a6a3434b99030b1ba34b7b717026064820152608490fd5b8480fd5b50903461029d576107e836610a0a565b919093610800600160a060020a038554163314610c2e565b815185818097516108178160209a8b809601610a85565b810184815203019020835190916001604060020a03821161095c575061083d8254610aa8565b601f811161091b575b5085601f82116001146108a35791818697949261067c94600080516020610d268339815191529891610898575b50816002029160080260020a6000190419161790555b51928284938452830190610b8c565b905086015138610873565b82865286862090601f198316875b81811061090457508361067c9593600193600080516020610d268339815191529a9b9896600294106108e9575b505002019055610889565b8901516008601f841602840a600019041916905538806108de565b91928960018192868b0151815501940192016108b1565b8286528686208780601f850104820192818510610952575b601f010401905b8181106109475750610846565b86815560010161093a565b9192508291610933565b60e060020a634e487b7102865260419052602485fd5b601f909101601f19168101906001604060020a0382119082101761099557604052565b60e060020a634e487b710260009081526041600452602490fd5b81601f82011215610a05578035906001604060020a03821161099557604051926109e3601f8401601f191660200185610972565b82845260208383010111610a0557816000926020809301838601378301015290565b600080fd5b906040600319830112610a05576001604060020a03600435818111610a055783610a36916004016109af565b92602435918211610a0557610a4d916004016109af565b90565b600154811015610a6b57600160005260206000200190600090565b60e060020a634e487b710260009081526032600452602490fd5b60005b838110610a985750506000910152565b8181015183820152602001610a88565b9060016002830492168015610add575b6020831014610ac357565b60e060020a634e487b710260009081526022600452602490fd5b91607f1691610ab8565b9060405191826000825492610afb84610aa8565b908184526001948581169081600014610b6a5750600114610b27575b5050610b2592500383610972565b565b9093915060005260209081600020936000915b818310610b52575050610b2593508201013880610b17565b85548884018501529485019487945091830191610b3a565b915050610b2594506020925060ff191682840152151581028201013880610b17565b90602091610ba581518092818552858086019101610a85565b601f01601f1916010190565b6000198114610bc05760010190565b60e060020a634e487b710260009081526011600452602490fd5b600180549160005b838110610bf25750505050600090565b610bfb81610a50565b9054600160a060020a03848116600890930260020a9091041614610c2757610c2290610bb1565b610be2565b5050905090565b15610c3557565b60405160e560020a62461bcd02815260206004820152603660248201527f4f6e6c792074686520537065616b6572206f662074686520486f7573652063616044820152605160020a7537103832b93337b936903a3434b99030b1ba34b7b717026064820152608490fd5b600054600160a060020a0390610cb89082163314610c2e565b600154604060020a81101561099557806001610cd79201600155610a50565b909260088454920260020a808402938492160216911916179055565b906003811015610d0b5760ff80198354169116179055565b60e060020a634e487b710260009081526021600452602490fdfe8a8fdae6edf0f67263b53723a3a049eefdcf24f42e39a4ab231bee57a798f70ea2646970667358221220a1f6fb33f432c5e19d6ee83fef0f1c0c6abb46125f2c08a1b045f48ee97f755164736f6c63430008120033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "71:2932:83:-:0;;;;;;;1160:20;71:2932;;-1:-1:-1;;;;;;71:2932:83;;;1170:10;71:2932;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1170:10;71:2932;;;1224:15;71:2932;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "71:2932:83:-:0;;;;;;;;;;;;;;;;;-1:-1:-1;;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;:::i;:::-;;;475:47;71:2932;;;;;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;:::i;:::-;;;750:88;71:2932;;;;;;;;758:10;:21;750:88;:::i;:::-;71:2932;;;;;;;;;;;;;;;:::i;:::-;;;2355:14;71:2932;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;;;;;;;;-1:-1:-1;;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;;;-1:-1:-1;71:2932:83;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;:::i;:::-;;;;;;;;-1:-1:-1;;71:2932:83;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;1498:97;;;:::i;:::-;71:2932;;;;;;;;;;;;;;;;;;;;;;;;;;;750:88;71:2932;;;;;;;;758:10;:21;750:88;:::i;:::-;71:2932;;;;;;;;;;;2075:20;71:2932;;;;;;;;;;;;;;2207:32;71:2932;;;;;2163:29;71:2932;;;;;2163:20;:29;:::i;:::-;71:2932;;;;;;;;;2207:32;71:2932;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;;;137:24;;;;;;;71:2932;137:24;;:::i;:::-;71:2932;;;;;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;:::i;:::-;911:10;902:20;911:10;902:20;:::i;:::-;71:2932;;;1808:13;71:2932;;1808:13;:::i;:::-;71:2932;;;;;;;;;;;;;;;;;;;;;;;911:10;1852:59;;;71:2932;;;1852:59;;;71:2932;;;1852:59;;;71:2932;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;71:2932:83;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1926:46;71:2932;;;;;:::i;:::-;1852:59;71:2932;;;;;;;;;;911:10;71:2932;;;;;;;1852:59;71:2932;;;;:::i;:::-;1926:46;;;71:2932;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;750:88;71:2932;;;;;;;;758:10;:21;750:88;:::i;:::-;71:2932;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;:::o;:::-;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;;:::i;:::-;;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;71:2932:83;;;;;-1:-1:-1;;71:2932:83;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;:::o;:::-;137:24;71:2932;;;;;;137:24;-1:-1:-1;71:2932:83;;-1:-1:-1;71:2932:83;;;-1:-1:-1;71:2932:83;:::o;:::-;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;-1:-1:-1;;71:2932:83;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;:::o;:::-;;;;;-1:-1:-1;71:2932:83;;;;-1:-1:-1;71:2932:83;;-1:-1:-1;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;71:2932:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;-1:-1:-1;;71:2932:83;;;;:::o;:::-;-1:-1:-1;;71:2932:83;;;;;;;:::o;:::-;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;1252:240;1348:7;71:2932;;;1341:1;1344:18;;;;;;1473:12;;;;1341:1;1252:240;:::o;1364:3::-;1387:10;;;:::i;:::-;71:2932;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;1387:21;1383:71;;1364:3;;;:::i;:::-;1329:13;;1383:71;1428:11;;;;;:::o;71:2932::-;;;;:::o;:::-;;;-1:-1:-1;;;;;71:2932:83;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;71:2932:83;;;;;;;717:139;772:7;71:2932;-1:-1:-1;;;;;71:2932:83;750:88;;71:2932;;758:10;:21;750:88;:::i;:::-;71:2932;;-1:-1:-1;;;71:2932:83;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;717:139::o;71:2932::-;;;;;;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;;;;;;71:2932:83;;;;;;;;",
+  "source": "// SPDX-License-Identifier: BSL-1.1\npragma solidity >=0.4.22 <0.9.0;\n\n\ncontract HouseOfRepresentatives {\n    address public speaker;\n    address[] public members;\n\n    enum BillStatus { Introduced, Passed, Failed }\n\n    struct Bill {\n        uint256 billId;\n        address sponsor;\n        string title;\n        BillStatus status;\n    }\n\n    mapping(uint256 => Bill) private bills;\n    uint256 private billCounter;\n    mapping(string => string) public houseCertificate;\n    mapping(string => string) public presidentElect;\n\n    event BillIntroduced(uint256 billId, address sponsor, string title);\n    event BillStatusChange(uint256 billId, BillStatus status);\n    event HouseCertificateSet(string certificate);\n\n    modifier onlySpeaker() {\n        require(msg.sender == speaker, \"Only the Speaker of the House can perform this action.\");\n        _;\n    }\n\n    modifier onlyMember() {\n        require(isMember(msg.sender), \"Only House members can perform this action.\");\n        _;\n    }\n\n    modifier onlyRepresentative() {\n        require(isMember(msg.sender), \"Only Representatives can perform this action.\");\n        _;\n    }\n\n    constructor() {\n        speaker = msg.sender;\n        members.push(msg.sender);\n        billCounter = 0;\n    }\n\n    function isMember(address account) public view returns (bool) {\n        for (uint256 i = 0; i < members.length; i++) {\n            if (members[i] == account) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    function addMember(address newMember) public onlySpeaker {\n        members.push(newMember);\n    }\n\n    function addRepresentative(address newRepresentative) public onlySpeaker {\n        members.push(newRepresentative);\n    }\n\n    function introduceBill(string memory title) public virtual onlyMember {\n        billCounter++;\n        bills[billCounter] = Bill(billCounter, msg.sender, title, BillStatus.Introduced);\n        emit BillIntroduced(billCounter, msg.sender, title);\n    }\n\n    function passBill(uint256 billId, BillStatus status) public onlySpeaker {\n        require(bills[billId].status == BillStatus.Introduced, \"This bill cannot be changed.\");\n        bills[billId].status = status;\n        emit BillStatusChange(billId, status);\n    }\n\n    function setPresidentElect(string memory electionYear,string memory name) public onlySpeaker {\n        presidentElect[electionYear] = name;\n    }\n\n    function getPresidentElect(string memory electionYear) public view returns (string memory) {\n        return presidentElect[electionYear];\n    }\n\n\n    // Only the owner (presumably a trusted authority) can set the House certificate\n    function setHouseCertificate(string memory electionYear,string memory certificate) public onlySpeaker {\n        houseCertificate[electionYear] = certificate;\n        emit HouseCertificateSet(certificate);\n    }\n\n    function getHouseCertificate(string memory electionYear) public view returns (string memory) {\n        return houseCertificate[electionYear];\n    }\n}\n",
+  "sourcePath": "/Volumes/HOME/pingleware-contracts/contracts/government/federal/HouseOfRepresentatives.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/government/federal/HouseOfRepresentatives.sol",
+    "exportedSymbols": {
+      "HouseOfRepresentatives": [
+        32592
+      ]
+    },
+    "id": 32593,
+    "license": "BSL-1.1",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 32297,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:32:83"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "HouseOfRepresentatives",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 32592,
+        "linearizedBaseContracts": [
+          32592
+        ],
+        "name": "HouseOfRepresentatives",
+        "nameLocation": "80:22:83",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "840931c6",
+            "id": 32299,
+            "mutability": "mutable",
+            "name": "speaker",
+            "nameLocation": "124:7:83",
+            "nodeType": "VariableDeclaration",
+            "scope": 32592,
+            "src": "109:22:83",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 32298,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "109:7:83",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "5daf08ca",
+            "id": 32302,
+            "mutability": "mutable",
+            "name": "members",
+            "nameLocation": "154:7:83",
+            "nodeType": "VariableDeclaration",
+            "scope": 32592,
+            "src": "137:24:83",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_address_$dyn_storage",
+              "typeString": "address[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 32300,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "137:7:83",
+                "stateMutability": "nonpayable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "id": 32301,
+              "nodeType": "ArrayTypeName",
+              "src": "137:9:83",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                "typeString": "address[]"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "HouseOfRepresentatives.BillStatus",
+            "id": 32306,
+            "members": [
+              {
+                "id": 32303,
+                "name": "Introduced",
+                "nameLocation": "186:10:83",
+                "nodeType": "EnumValue",
+                "src": "186:10:83"
+              },
+              {
+                "id": 32304,
+                "name": "Passed",
+                "nameLocation": "198:6:83",
+                "nodeType": "EnumValue",
+                "src": "198:6:83"
+              },
+              {
+                "id": 32305,
+                "name": "Failed",
+                "nameLocation": "206:6:83",
+                "nodeType": "EnumValue",
+                "src": "206:6:83"
+              }
+            ],
+            "name": "BillStatus",
+            "nameLocation": "173:10:83",
+            "nodeType": "EnumDefinition",
+            "src": "168:46:83"
+          },
+          {
+            "canonicalName": "HouseOfRepresentatives.Bill",
+            "id": 32316,
+            "members": [
+              {
+                "constant": false,
+                "id": 32308,
+                "mutability": "mutable",
+                "name": "billId",
+                "nameLocation": "250:6:83",
+                "nodeType": "VariableDeclaration",
+                "scope": 32316,
+                "src": "242:14:83",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 32307,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "242:7:83",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 32310,
+                "mutability": "mutable",
+                "name": "sponsor",
+                "nameLocation": "274:7:83",
+                "nodeType": "VariableDeclaration",
+                "scope": 32316,
+                "src": "266:15:83",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 32309,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "266:7:83",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 32312,
+                "mutability": "mutable",
+                "name": "title",
+                "nameLocation": "298:5:83",
+                "nodeType": "VariableDeclaration",
+                "scope": 32316,
+                "src": "291:12:83",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 32311,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "291:6:83",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 32315,
+                "mutability": "mutable",
+                "name": "status",
+                "nameLocation": "324:6:83",
+                "nodeType": "VariableDeclaration",
+                "scope": 32316,
+                "src": "313:17:83",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_BillStatus_$32306",
+                  "typeString": "enum HouseOfRepresentatives.BillStatus"
+                },
+                "typeName": {
+                  "id": 32314,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 32313,
+                    "name": "BillStatus",
+                    "nameLocations": [
+                      "313:10:83"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 32306,
+                    "src": "313:10:83"
+                  },
+                  "referencedDeclaration": 32306,
+                  "src": "313:10:83",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_BillStatus_$32306",
+                    "typeString": "enum HouseOfRepresentatives.BillStatus"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Bill",
+            "nameLocation": "227:4:83",
+            "nodeType": "StructDefinition",
+            "scope": 32592,
+            "src": "220:117:83",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 32321,
+            "mutability": "mutable",
+            "name": "bills",
+            "nameLocation": "376:5:83",
+            "nodeType": "VariableDeclaration",
+            "scope": 32592,
+            "src": "343:38:83",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$32316_storage_$",
+              "typeString": "mapping(uint256 => struct HouseOfRepresentatives.Bill)"
+            },
+            "typeName": {
+              "id": 32320,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 32317,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "351:7:83",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "343:24:83",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$32316_storage_$",
+                "typeString": "mapping(uint256 => struct HouseOfRepresentatives.Bill)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 32319,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 32318,
+                  "name": "Bill",
+                  "nameLocations": [
+                    "362:4:83"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 32316,
+                  "src": "362:4:83"
+                },
+                "referencedDeclaration": 32316,
+                "src": "362:4:83",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Bill_$32316_storage_ptr",
+                  "typeString": "struct HouseOfRepresentatives.Bill"
+                }
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": false,
+            "id": 32323,
+            "mutability": "mutable",
+            "name": "billCounter",
+            "nameLocation": "403:11:83",
+            "nodeType": "VariableDeclaration",
+            "scope": 32592,
+            "src": "387:27:83",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 32322,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "387:7:83",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": false,
+            "functionSelector": "72e2ed03",
+            "id": 32327,
+            "mutability": "mutable",
+            "name": "houseCertificate",
+            "nameLocation": "453:16:83",
+            "nodeType": "VariableDeclaration",
+            "scope": 32592,
+            "src": "420:49:83",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_string_storage_$",
+              "typeString": "mapping(string => string)"
+            },
+            "typeName": {
+              "id": 32326,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 32324,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "428:6:83",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "420:25:83",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_string_storage_$",
+                "typeString": "mapping(string => string)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 32325,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "438:6:83",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "f2d8afb0",
+            "id": 32331,
+            "mutability": "mutable",
+            "name": "presidentElect",
+            "nameLocation": "508:14:83",
+            "nodeType": "VariableDeclaration",
+            "scope": 32592,
+            "src": "475:47:83",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_string_storage_$",
+              "typeString": "mapping(string => string)"
+            },
+            "typeName": {
+              "id": 32330,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 32328,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "483:6:83",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "475:25:83",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_string_storage_$",
+                "typeString": "mapping(string => string)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 32329,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "493:6:83",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "37857be678fc43a22c7cce89173b9ca3e4d048fd6c0fca4854aeec4a3a0e2f69",
+            "id": 32339,
+            "name": "BillIntroduced",
+            "nameLocation": "535:14:83",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 32338,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32333,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "billId",
+                  "nameLocation": "558:6:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32339,
+                  "src": "550:14:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 32332,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "550:7:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32335,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "sponsor",
+                  "nameLocation": "574:7:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32339,
+                  "src": "566:15:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 32334,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "566:7:83",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32337,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "title",
+                  "nameLocation": "590:5:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32339,
+                  "src": "583:12:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32336,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "583:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "549:47:83"
+            },
+            "src": "529:68:83"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "cb2f5d9b75374e2f47d0fb8fb90447b80c7e9a633b7272375579232228b1e6a4",
+            "id": 32346,
+            "name": "BillStatusChange",
+            "nameLocation": "608:16:83",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 32345,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32341,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "billId",
+                  "nameLocation": "633:6:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32346,
+                  "src": "625:14:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 32340,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "625:7:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32344,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "status",
+                  "nameLocation": "652:6:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32346,
+                  "src": "641:17:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_BillStatus_$32306",
+                    "typeString": "enum HouseOfRepresentatives.BillStatus"
+                  },
+                  "typeName": {
+                    "id": 32343,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 32342,
+                      "name": "BillStatus",
+                      "nameLocations": [
+                        "641:10:83"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 32306,
+                      "src": "641:10:83"
+                    },
+                    "referencedDeclaration": 32306,
+                    "src": "641:10:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BillStatus_$32306",
+                      "typeString": "enum HouseOfRepresentatives.BillStatus"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "624:35:83"
+            },
+            "src": "602:58:83"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "8a8fdae6edf0f67263b53723a3a049eefdcf24f42e39a4ab231bee57a798f70e",
+            "id": 32350,
+            "name": "HouseCertificateSet",
+            "nameLocation": "671:19:83",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 32349,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32348,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "certificate",
+                  "nameLocation": "698:11:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32350,
+                  "src": "691:18:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32347,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "691:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "690:20:83"
+            },
+            "src": "665:46:83"
+          },
+          {
+            "body": {
+              "id": 32361,
+              "nodeType": "Block",
+              "src": "740:116:83",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 32356,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 32353,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "758:3:83",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 32354,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "762:6:83",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "758:10:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 32355,
+                          "name": "speaker",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 32299,
+                          "src": "772:7:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "758:21:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c792074686520537065616b6572206f662074686520486f7573652063616e20706572666f726d207468697320616374696f6e2e",
+                        "id": 32357,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "781:56:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_68e9c1845048430316b154058ed38e6b593a005934f7f69351cdc63d04dc9b54",
+                          "typeString": "literal_string \"Only the Speaker of the House can perform this action.\""
+                        },
+                        "value": "Only the Speaker of the House can perform this action."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_68e9c1845048430316b154058ed38e6b593a005934f7f69351cdc63d04dc9b54",
+                          "typeString": "literal_string \"Only the Speaker of the House can perform this action.\""
+                        }
+                      ],
+                      "id": 32352,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "750:7:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 32358,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "750:88:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32359,
+                  "nodeType": "ExpressionStatement",
+                  "src": "750:88:83"
+                },
+                {
+                  "id": 32360,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "848:1:83"
+                }
+              ]
+            },
+            "id": 32362,
+            "name": "onlySpeaker",
+            "nameLocation": "726:11:83",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 32351,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "737:2:83"
+            },
+            "src": "717:139:83",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 32373,
+              "nodeType": "Block",
+              "src": "884:104:83",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 32366,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "911:3:83",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 32367,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "915:6:83",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "911:10:83",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 32365,
+                          "name": "isMember",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 32438,
+                          "src": "902:8:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) view returns (bool)"
+                          }
+                        },
+                        "id": 32368,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "902:20:83",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c7920486f757365206d656d626572732063616e20706572666f726d207468697320616374696f6e2e",
+                        "id": 32369,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "924:45:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a3037c94d82cdd42a51164c50090617a86c3d700f3a0d282176e4690c463c23f",
+                          "typeString": "literal_string \"Only House members can perform this action.\""
+                        },
+                        "value": "Only House members can perform this action."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_a3037c94d82cdd42a51164c50090617a86c3d700f3a0d282176e4690c463c23f",
+                          "typeString": "literal_string \"Only House members can perform this action.\""
+                        }
+                      ],
+                      "id": 32364,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "894:7:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 32370,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "894:76:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32371,
+                  "nodeType": "ExpressionStatement",
+                  "src": "894:76:83"
+                },
+                {
+                  "id": 32372,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "980:1:83"
+                }
+              ]
+            },
+            "id": 32374,
+            "name": "onlyMember",
+            "nameLocation": "871:10:83",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 32363,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "881:2:83"
+            },
+            "src": "862:126:83",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 32385,
+              "nodeType": "Block",
+              "src": "1024:106:83",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 32378,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "1051:3:83",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 32379,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "1055:6:83",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "1051:10:83",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 32377,
+                          "name": "isMember",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 32438,
+                          "src": "1042:8:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) view returns (bool)"
+                          }
+                        },
+                        "id": 32380,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1042:20:83",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c7920526570726573656e746174697665732063616e20706572666f726d207468697320616374696f6e2e",
+                        "id": 32381,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1064:47:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_cc7e5d5d905f6f8bc213fd4bc8478fc0b036196183ad491416664a08d47c85b9",
+                          "typeString": "literal_string \"Only Representatives can perform this action.\""
+                        },
+                        "value": "Only Representatives can perform this action."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_cc7e5d5d905f6f8bc213fd4bc8478fc0b036196183ad491416664a08d47c85b9",
+                          "typeString": "literal_string \"Only Representatives can perform this action.\""
+                        }
+                      ],
+                      "id": 32376,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1034:7:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 32382,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1034:78:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32383,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1034:78:83"
+                },
+                {
+                  "id": 32384,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1122:1:83"
+                }
+              ]
+            },
+            "id": 32386,
+            "name": "onlyRepresentative",
+            "nameLocation": "1003:18:83",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 32375,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1021:2:83"
+            },
+            "src": "994:136:83",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 32405,
+              "nodeType": "Block",
+              "src": "1150:96:83",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 32392,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 32389,
+                      "name": "speaker",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32299,
+                      "src": "1160:7:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 32390,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967281,
+                        "src": "1170:3:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 32391,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1174:6:83",
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "1170:10:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1160:20:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 32393,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1160:20:83"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 32397,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1203:3:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 32398,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1207:6:83",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1203:10:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "id": 32394,
+                        "name": "members",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32302,
+                        "src": "1190:7:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 32396,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1198:4:83",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "1190:12:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$_t_address_$returns$__$attached_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                        "typeString": "function (address[] storage pointer,address)"
+                      }
+                    },
+                    "id": 32399,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1190:24:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32400,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1190:24:83"
+                },
+                {
+                  "expression": {
+                    "id": 32403,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 32401,
+                      "name": "billCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32323,
+                      "src": "1224:11:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "30",
+                      "id": 32402,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1238:1:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "1224:15:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 32404,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1224:15:83"
+                }
+              ]
+            },
+            "id": 32406,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32387,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1147:2:83"
+            },
+            "returnParameters": {
+              "id": 32388,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1150:0:83"
+            },
+            "scope": 32592,
+            "src": "1136:110:83",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32437,
+              "nodeType": "Block",
+              "src": "1314:178:83",
+              "statements": [
+                {
+                  "body": {
+                    "id": 32433,
+                    "nodeType": "Block",
+                    "src": "1369:95:83",
+                    "statements": [
+                      {
+                        "condition": {
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "id": 32428,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "baseExpression": {
+                              "id": 32424,
+                              "name": "members",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 32302,
+                              "src": "1387:7:83",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                "typeString": "address[] storage ref"
+                              }
+                            },
+                            "id": 32426,
+                            "indexExpression": {
+                              "id": 32425,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 32414,
+                              "src": "1395:1:83",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1387:10:83",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "id": 32427,
+                            "name": "account",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 32408,
+                            "src": "1401:7:83",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1387:21:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 32432,
+                        "nodeType": "IfStatement",
+                        "src": "1383:71:83",
+                        "trueBody": {
+                          "id": 32431,
+                          "nodeType": "Block",
+                          "src": "1410:44:83",
+                          "statements": [
+                            {
+                              "expression": {
+                                "hexValue": "74727565",
+                                "id": 32429,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "bool",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1435:4:83",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                "value": "true"
+                              },
+                              "functionReturnParameters": 32412,
+                              "id": 32430,
+                              "nodeType": "Return",
+                              "src": "1428:11:83"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 32420,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 32417,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32414,
+                      "src": "1344:1:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "expression": {
+                        "id": 32418,
+                        "name": "members",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32302,
+                        "src": "1348:7:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 32419,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1356:6:83",
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "src": "1348:14:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1344:18:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 32434,
+                  "initializationExpression": {
+                    "assignments": [
+                      32414
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 32414,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "1337:1:83",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 32434,
+                        "src": "1329:9:83",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 32413,
+                          "name": "uint256",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "1329:7:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 32416,
+                    "initialValue": {
+                      "hexValue": "30",
+                      "id": 32415,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1341:1:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "1329:13:83"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 32422,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "1364:3:83",
+                      "subExpression": {
+                        "id": 32421,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32414,
+                        "src": "1364:1:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 32423,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1364:3:83"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "1324:140:83"
+                },
+                {
+                  "expression": {
+                    "hexValue": "66616c7365",
+                    "id": 32435,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "1480:5:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "false"
+                  },
+                  "functionReturnParameters": 32412,
+                  "id": 32436,
+                  "nodeType": "Return",
+                  "src": "1473:12:83"
+                }
+              ]
+            },
+            "functionSelector": "a230c524",
+            "id": 32438,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isMember",
+            "nameLocation": "1261:8:83",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32409,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32408,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1278:7:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32438,
+                  "src": "1270:15:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 32407,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1270:7:83",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1269:17:83"
+            },
+            "returnParameters": {
+              "id": 32412,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32411,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32438,
+                  "src": "1308:4:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 32410,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1308:4:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1307:6:83"
+            },
+            "scope": 32592,
+            "src": "1252:240:83",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32451,
+              "nodeType": "Block",
+              "src": "1555:40:83",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 32448,
+                        "name": "newMember",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32440,
+                        "src": "1578:9:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "id": 32445,
+                        "name": "members",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32302,
+                        "src": "1565:7:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 32447,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1573:4:83",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "1565:12:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$_t_address_$returns$__$attached_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                        "typeString": "function (address[] storage pointer,address)"
+                      }
+                    },
+                    "id": 32449,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1565:23:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32450,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1565:23:83"
+                }
+              ]
+            },
+            "functionSelector": "ca6d56dc",
+            "id": 32452,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 32443,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 32442,
+                  "name": "onlySpeaker",
+                  "nameLocations": [
+                    "1543:11:83"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 32362,
+                  "src": "1543:11:83"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1543:11:83"
+              }
+            ],
+            "name": "addMember",
+            "nameLocation": "1507:9:83",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32441,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32440,
+                  "mutability": "mutable",
+                  "name": "newMember",
+                  "nameLocation": "1525:9:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32452,
+                  "src": "1517:17:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 32439,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1517:7:83",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1516:19:83"
+            },
+            "returnParameters": {
+              "id": 32444,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1555:0:83"
+            },
+            "scope": 32592,
+            "src": "1498:97:83",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32465,
+              "nodeType": "Block",
+              "src": "1674:48:83",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 32462,
+                        "name": "newRepresentative",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32454,
+                        "src": "1697:17:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "id": 32459,
+                        "name": "members",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32302,
+                        "src": "1684:7:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 32461,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1692:4:83",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "1684:12:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$_t_address_$returns$__$attached_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                        "typeString": "function (address[] storage pointer,address)"
+                      }
+                    },
+                    "id": 32463,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1684:31:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32464,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1684:31:83"
+                }
+              ]
+            },
+            "functionSelector": "8ae9fd19",
+            "id": 32466,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 32457,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 32456,
+                  "name": "onlySpeaker",
+                  "nameLocations": [
+                    "1662:11:83"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 32362,
+                  "src": "1662:11:83"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1662:11:83"
+              }
+            ],
+            "name": "addRepresentative",
+            "nameLocation": "1610:17:83",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32455,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32454,
+                  "mutability": "mutable",
+                  "name": "newRepresentative",
+                  "nameLocation": "1636:17:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32466,
+                  "src": "1628:25:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 32453,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1628:7:83",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1627:27:83"
+            },
+            "returnParameters": {
+              "id": 32458,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1674:0:83"
+            },
+            "scope": 32592,
+            "src": "1601:121:83",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32496,
+              "nodeType": "Block",
+              "src": "1798:181:83",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 32474,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "1808:13:83",
+                    "subExpression": {
+                      "id": 32473,
+                      "name": "billCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32323,
+                      "src": "1808:11:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 32475,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1808:13:83"
+                },
+                {
+                  "expression": {
+                    "id": 32487,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 32476,
+                        "name": "bills",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32321,
+                        "src": "1831:5:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$32316_storage_$",
+                          "typeString": "mapping(uint256 => struct HouseOfRepresentatives.Bill storage ref)"
+                        }
+                      },
+                      "id": 32478,
+                      "indexExpression": {
+                        "id": 32477,
+                        "name": "billCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32323,
+                        "src": "1837:11:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1831:18:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Bill_$32316_storage",
+                        "typeString": "struct HouseOfRepresentatives.Bill storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 32480,
+                          "name": "billCounter",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 32323,
+                          "src": "1857:11:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 32481,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "1870:3:83",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 32482,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1874:6:83",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "1870:10:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "id": 32483,
+                          "name": "title",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 32468,
+                          "src": "1882:5:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 32484,
+                            "name": "BillStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 32306,
+                            "src": "1889:10:83",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_BillStatus_$32306_$",
+                              "typeString": "type(enum HouseOfRepresentatives.BillStatus)"
+                            }
+                          },
+                          "id": 32485,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1900:10:83",
+                          "memberName": "Introduced",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 32303,
+                          "src": "1889:21:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BillStatus_$32306",
+                            "typeString": "enum HouseOfRepresentatives.BillStatus"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_enum$_BillStatus_$32306",
+                            "typeString": "enum HouseOfRepresentatives.BillStatus"
+                          }
+                        ],
+                        "id": 32479,
+                        "name": "Bill",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32316,
+                        "src": "1852:4:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Bill_$32316_storage_ptr_$",
+                          "typeString": "type(struct HouseOfRepresentatives.Bill storage pointer)"
+                        }
+                      },
+                      "id": 32486,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1852:59:83",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Bill_$32316_memory_ptr",
+                        "typeString": "struct HouseOfRepresentatives.Bill memory"
+                      }
+                    },
+                    "src": "1831:80:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bill_$32316_storage",
+                      "typeString": "struct HouseOfRepresentatives.Bill storage ref"
+                    }
+                  },
+                  "id": 32488,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1831:80:83"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 32490,
+                        "name": "billCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32323,
+                        "src": "1941:11:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 32491,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1954:3:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 32492,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1958:6:83",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1954:10:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 32493,
+                        "name": "title",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32468,
+                        "src": "1966:5:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 32489,
+                      "name": "BillIntroduced",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32339,
+                      "src": "1926:14:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (uint256,address,string memory)"
+                      }
+                    },
+                    "id": 32494,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1926:46:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32495,
+                  "nodeType": "EmitStatement",
+                  "src": "1921:51:83"
+                }
+              ]
+            },
+            "functionSelector": "46c28a08",
+            "id": 32497,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 32471,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 32470,
+                  "name": "onlyMember",
+                  "nameLocations": [
+                    "1787:10:83"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 32374,
+                  "src": "1787:10:83"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1787:10:83"
+              }
+            ],
+            "name": "introduceBill",
+            "nameLocation": "1737:13:83",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32469,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32468,
+                  "mutability": "mutable",
+                  "name": "title",
+                  "nameLocation": "1765:5:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32497,
+                  "src": "1751:19:83",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32467,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1751:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1750:21:83"
+            },
+            "returnParameters": {
+              "id": 32472,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1798:0:83"
+            },
+            "scope": 32592,
+            "src": "1728:251:83",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32530,
+              "nodeType": "Block",
+              "src": "2057:189:83",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_BillStatus_$32306",
+                          "typeString": "enum HouseOfRepresentatives.BillStatus"
+                        },
+                        "id": 32514,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 32508,
+                              "name": "bills",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 32321,
+                              "src": "2075:5:83",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$32316_storage_$",
+                                "typeString": "mapping(uint256 => struct HouseOfRepresentatives.Bill storage ref)"
+                              }
+                            },
+                            "id": 32510,
+                            "indexExpression": {
+                              "id": 32509,
+                              "name": "billId",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 32499,
+                              "src": "2081:6:83",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "2075:13:83",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Bill_$32316_storage",
+                              "typeString": "struct HouseOfRepresentatives.Bill storage ref"
+                            }
+                          },
+                          "id": 32511,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2089:6:83",
+                          "memberName": "status",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 32315,
+                          "src": "2075:20:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BillStatus_$32306",
+                            "typeString": "enum HouseOfRepresentatives.BillStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "id": 32512,
+                            "name": "BillStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 32306,
+                            "src": "2099:10:83",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_BillStatus_$32306_$",
+                              "typeString": "type(enum HouseOfRepresentatives.BillStatus)"
+                            }
+                          },
+                          "id": 32513,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "2110:10:83",
+                          "memberName": "Introduced",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 32303,
+                          "src": "2099:21:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BillStatus_$32306",
+                            "typeString": "enum HouseOfRepresentatives.BillStatus"
+                          }
+                        },
+                        "src": "2075:45:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "546869732062696c6c2063616e6e6f74206265206368616e6765642e",
+                        "id": 32515,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2122:30:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_bb3b6cc5454d57a4c28b4993b0cebb6a595b1dbdde798f22fa061241578df3c5",
+                          "typeString": "literal_string \"This bill cannot be changed.\""
+                        },
+                        "value": "This bill cannot be changed."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_bb3b6cc5454d57a4c28b4993b0cebb6a595b1dbdde798f22fa061241578df3c5",
+                          "typeString": "literal_string \"This bill cannot be changed.\""
+                        }
+                      ],
+                      "id": 32507,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2067:7:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 32516,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2067:86:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32517,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2067:86:83"
+                },
+                {
+                  "expression": {
+                    "id": 32523,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "baseExpression": {
+                          "id": 32518,
+                          "name": "bills",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 32321,
+                          "src": "2163:5:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bill_$32316_storage_$",
+                            "typeString": "mapping(uint256 => struct HouseOfRepresentatives.Bill storage ref)"
+                          }
+                        },
+                        "id": 32520,
+                        "indexExpression": {
+                          "id": 32519,
+                          "name": "billId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 32499,
+                          "src": "2169:6:83",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "2163:13:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Bill_$32316_storage",
+                          "typeString": "struct HouseOfRepresentatives.Bill storage ref"
+                        }
+                      },
+                      "id": 32521,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "2177:6:83",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 32315,
+                      "src": "2163:20:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BillStatus_$32306",
+                        "typeString": "enum HouseOfRepresentatives.BillStatus"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 32522,
+                      "name": "status",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32502,
+                      "src": "2186:6:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BillStatus_$32306",
+                        "typeString": "enum HouseOfRepresentatives.BillStatus"
+                      }
+                    },
+                    "src": "2163:29:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BillStatus_$32306",
+                      "typeString": "enum HouseOfRepresentatives.BillStatus"
+                    }
+                  },
+                  "id": 32524,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2163:29:83"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 32526,
+                        "name": "billId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32499,
+                        "src": "2224:6:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 32527,
+                        "name": "status",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32502,
+                        "src": "2232:6:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_BillStatus_$32306",
+                          "typeString": "enum HouseOfRepresentatives.BillStatus"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_enum$_BillStatus_$32306",
+                          "typeString": "enum HouseOfRepresentatives.BillStatus"
+                        }
+                      ],
+                      "id": 32525,
+                      "name": "BillStatusChange",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32346,
+                      "src": "2207:16:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_enum$_BillStatus_$32306_$returns$__$",
+                        "typeString": "function (uint256,enum HouseOfRepresentatives.BillStatus)"
+                      }
+                    },
+                    "id": 32528,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2207:32:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32529,
+                  "nodeType": "EmitStatement",
+                  "src": "2202:37:83"
+                }
+              ]
+            },
+            "functionSelector": "ba3addc9",
+            "id": 32531,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 32505,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 32504,
+                  "name": "onlySpeaker",
+                  "nameLocations": [
+                    "2045:11:83"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 32362,
+                  "src": "2045:11:83"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2045:11:83"
+              }
+            ],
+            "name": "passBill",
+            "nameLocation": "1994:8:83",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32503,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32499,
+                  "mutability": "mutable",
+                  "name": "billId",
+                  "nameLocation": "2011:6:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32531,
+                  "src": "2003:14:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 32498,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2003:7:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32502,
+                  "mutability": "mutable",
+                  "name": "status",
+                  "nameLocation": "2030:6:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32531,
+                  "src": "2019:17:83",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_BillStatus_$32306",
+                    "typeString": "enum HouseOfRepresentatives.BillStatus"
+                  },
+                  "typeName": {
+                    "id": 32501,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 32500,
+                      "name": "BillStatus",
+                      "nameLocations": [
+                        "2019:10:83"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 32306,
+                      "src": "2019:10:83"
+                    },
+                    "referencedDeclaration": 32306,
+                    "src": "2019:10:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BillStatus_$32306",
+                      "typeString": "enum HouseOfRepresentatives.BillStatus"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2002:35:83"
+            },
+            "returnParameters": {
+              "id": 32506,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2057:0:83"
+            },
+            "scope": 32592,
+            "src": "1985:261:83",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32546,
+              "nodeType": "Block",
+              "src": "2345:52:83",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 32544,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 32540,
+                        "name": "presidentElect",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32331,
+                        "src": "2355:14:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_string_storage_$",
+                          "typeString": "mapping(string memory => string storage ref)"
+                        }
+                      },
+                      "id": 32542,
+                      "indexExpression": {
+                        "id": 32541,
+                        "name": "electionYear",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32533,
+                        "src": "2370:12:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2355:28:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 32543,
+                      "name": "name",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32535,
+                      "src": "2386:4:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "2355:35:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 32545,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2355:35:83"
+                }
+              ]
+            },
+            "functionSelector": "e7b96ce5",
+            "id": 32547,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 32538,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 32537,
+                  "name": "onlySpeaker",
+                  "nameLocations": [
+                    "2333:11:83"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 32362,
+                  "src": "2333:11:83"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2333:11:83"
+              }
+            ],
+            "name": "setPresidentElect",
+            "nameLocation": "2261:17:83",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32536,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32533,
+                  "mutability": "mutable",
+                  "name": "electionYear",
+                  "nameLocation": "2293:12:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32547,
+                  "src": "2279:26:83",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32532,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2279:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32535,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "2320:4:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32547,
+                  "src": "2306:18:83",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32534,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2306:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2278:47:83"
+            },
+            "returnParameters": {
+              "id": 32539,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2345:0:83"
+            },
+            "scope": 32592,
+            "src": "2252:145:83",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32558,
+              "nodeType": "Block",
+              "src": "2494:52:83",
+              "statements": [
+                {
+                  "expression": {
+                    "baseExpression": {
+                      "id": 32554,
+                      "name": "presidentElect",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32331,
+                      "src": "2511:14:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_string_storage_$",
+                        "typeString": "mapping(string memory => string storage ref)"
+                      }
+                    },
+                    "id": 32556,
+                    "indexExpression": {
+                      "id": 32555,
+                      "name": "electionYear",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32549,
+                      "src": "2526:12:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2511:28:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 32553,
+                  "id": 32557,
+                  "nodeType": "Return",
+                  "src": "2504:35:83"
+                }
+              ]
+            },
+            "functionSelector": "b347dd81",
+            "id": 32559,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPresidentElect",
+            "nameLocation": "2412:17:83",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32550,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32549,
+                  "mutability": "mutable",
+                  "name": "electionYear",
+                  "nameLocation": "2444:12:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32559,
+                  "src": "2430:26:83",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32548,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2430:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2429:28:83"
+            },
+            "returnParameters": {
+              "id": 32553,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32552,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32559,
+                  "src": "2479:13:83",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32551,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2479:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2478:15:83"
+            },
+            "scope": 32592,
+            "src": "2403:143:83",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32578,
+              "nodeType": "Block",
+              "src": "2740:108:83",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 32572,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 32568,
+                        "name": "houseCertificate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32327,
+                        "src": "2750:16:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_string_storage_$",
+                          "typeString": "mapping(string memory => string storage ref)"
+                        }
+                      },
+                      "id": 32570,
+                      "indexExpression": {
+                        "id": 32569,
+                        "name": "electionYear",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32561,
+                        "src": "2767:12:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2750:30:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 32571,
+                      "name": "certificate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32563,
+                      "src": "2783:11:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "2750:44:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 32573,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2750:44:83"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 32575,
+                        "name": "certificate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 32563,
+                        "src": "2829:11:83",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 32574,
+                      "name": "HouseCertificateSet",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32350,
+                      "src": "2809:19:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory)"
+                      }
+                    },
+                    "id": 32576,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2809:32:83",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 32577,
+                  "nodeType": "EmitStatement",
+                  "src": "2804:37:83"
+                }
+              ]
+            },
+            "functionSelector": "0c1d11a7",
+            "id": 32579,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 32566,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 32565,
+                  "name": "onlySpeaker",
+                  "nameLocations": [
+                    "2728:11:83"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 32362,
+                  "src": "2728:11:83"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2728:11:83"
+              }
+            ],
+            "name": "setHouseCertificate",
+            "nameLocation": "2647:19:83",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32564,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32561,
+                  "mutability": "mutable",
+                  "name": "electionYear",
+                  "nameLocation": "2681:12:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32579,
+                  "src": "2667:26:83",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32560,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2667:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32563,
+                  "mutability": "mutable",
+                  "name": "certificate",
+                  "nameLocation": "2708:11:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32579,
+                  "src": "2694:25:83",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32562,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2694:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2666:54:83"
+            },
+            "returnParameters": {
+              "id": 32567,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2740:0:83"
+            },
+            "scope": 32592,
+            "src": "2638:210:83",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 32590,
+              "nodeType": "Block",
+              "src": "2947:54:83",
+              "statements": [
+                {
+                  "expression": {
+                    "baseExpression": {
+                      "id": 32586,
+                      "name": "houseCertificate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32327,
+                      "src": "2964:16:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_string_storage_$",
+                        "typeString": "mapping(string memory => string storage ref)"
+                      }
+                    },
+                    "id": 32588,
+                    "indexExpression": {
+                      "id": 32587,
+                      "name": "electionYear",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32581,
+                      "src": "2981:12:83",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2964:30:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 32585,
+                  "id": 32589,
+                  "nodeType": "Return",
+                  "src": "2957:37:83"
+                }
+              ]
+            },
+            "functionSelector": "df215db2",
+            "id": 32591,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getHouseCertificate",
+            "nameLocation": "2863:19:83",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32582,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32581,
+                  "mutability": "mutable",
+                  "name": "electionYear",
+                  "nameLocation": "2897:12:83",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32591,
+                  "src": "2883:26:83",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32580,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2883:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2882:28:83"
+            },
+            "returnParameters": {
+              "id": 32585,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 32584,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 32591,
+                  "src": "2932:13:83",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 32583,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2932:6:83",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2931:15:83"
+            },
+            "scope": 32592,
+            "src": "2854:147:83",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 32593,
+        "src": "71:2932:83",
+        "usedErrors": []
+      }
+    ],
+    "src": "36:2968:83"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.12",
+  "updatedAt": "2024-05-23T18:56:26.175Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
