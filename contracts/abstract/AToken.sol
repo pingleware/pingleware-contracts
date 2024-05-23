@@ -5,7 +5,7 @@ import "../libs/SafeMath.sol";
 import "../interfaces/IConsolidatedAuditTrail.sol";
 import "../interfaces/IOffering.sol";
 import "../interfaces/IPaymentWallet.sol";
-import "../interfaces/IExemptLiquidityMarketExchange.sol";
+import "../interfaces/IExchange.sol";
 import "./AAccessControl.sol";
 
 abstract contract AToken is IOffering, AAccessControl {
@@ -30,7 +30,7 @@ abstract contract AToken is IOffering, AAccessControl {
 
     bool public restricted = false; 
 
-    IExemptLiquidityMarketExchange public exchangeContract;
+    IExchange public exchangeContract;
 
     string public offeringType = "EQUITY";
 
@@ -127,7 +127,7 @@ abstract contract AToken is IOffering, AAccessControl {
 
             // save CAT
             string memory eventData = string(abi.encodePacked("FROM: ", from, ", TO: ", to, ", AMOUNT: ", exchangeContract.uintToString(tokens)));
-            exchangeContract.addAuditEntry(symbol,exchangeContract.timestampToString(),IConsolidatedAuditTrail.REPORABLE_EVENT.ORDER_EXECUTED,eventData);
+            exchangeContract.addAuditEntry(symbol,exchangeContract.timestampToString(),IConsolidatedAuditTrail.REPORTABLE_EVENT.ORDER_EXECUTED,eventData);
         }
 
         return true;
@@ -135,7 +135,7 @@ abstract contract AToken is IOffering, AAccessControl {
 
 
     function setExchangeContract(address exchangeAddress) external {
-        exchangeContract = IExemptLiquidityMarketExchange(exchangeAddress);
+        exchangeContract = IExchange(exchangeAddress);
     }
 
     function setOfferingType(string memory _offeringType) external {

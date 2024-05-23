@@ -61,7 +61,7 @@ abstract contract AEquityToken is AToken, IEquityToken {
 
         // save CAT
         string memory eventData = exchangeContract.formatEventDataForOrderRouting(string(abi.encodePacked(blockhash(block.timestamp))), string(abi.encodePacked(issuer)), string(abi.encodePacked(wallet)), string(abi.encodePacked(block.timestamp)), string(abi.encodePacked(block.timestamp)), exchangeContract.uintToString(tokens), "");
-        exchangeContract.addAuditEntry(symbol,exchangeContract.timestampToString(),IConsolidatedAuditTrail.REPORABLE_EVENT.ORDER_ROUTING,eventData);
+        exchangeContract.addAuditEntry(symbol,exchangeContract.timestampToString(),IConsolidatedAuditTrail.REPORTABLE_EVENT.ORDER_ROUTING,eventData);
     }
 
     /**
@@ -119,6 +119,6 @@ abstract contract AEquityToken is AToken, IEquityToken {
 
         // save CAT
         string memory eventData = exchangeContract.formatEventDataForOrderRouting(string(abi.encodePacked(blockhash(block.timestamp))), string(abi.encodePacked(wallet)), string(abi.encodePacked(issuer)), string(abi.encodePacked(block.timestamp)), string(abi.encodePacked(block.timestamp)), exchangeContract.uintToString(tokens), "");
-        exchangeContract.addAuditEntry(symbol,exchangeContract.timestampToString(),IConsolidatedAuditTrail.REPORABLE_EVENT.ORDER_ROUTING,eventData);
+        exchangeContract.addAuditEntry(symbol,exchangeContract.timestampToString(),IConsolidatedAuditTrail.REPORTABLE_EVENT.ORDER_ROUTING,eventData);
     }
 }

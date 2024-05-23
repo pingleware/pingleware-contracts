@@ -3,7 +3,8 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "../../common/Version.sol";
 import "../../common/Frozen.sol";
-import "../../interfaces/IExemptLiquidityMarketExchange.sol";
+import "../../interfaces/IExchange.sol";
+import "../../interfaces/IConsolidatedAuditTrail.sol";
 
 contract MunicipalBond is Version, Frozen {
     struct Investor {
@@ -41,7 +42,7 @@ contract MunicipalBond is Version, Frozen {
     mapping(address => Investor) public investors;
     mapping(address => uint256) public investorQuotes;
 
-    IExemptLiquidityMarketExchange public exchangeContract;
+    IExchange public exchangeContract;
     IConsolidatedAuditTrail public catContract;
 
     address public feeRecipient;
@@ -114,7 +115,7 @@ contract MunicipalBond is Version, Frozen {
         restricted = _restricted;
         maxBondUnits = _maxBondUnits;
 
-        exchangeContract = IExemptLiquidityMarketExchange(exchangeAddress);
+        exchangeContract = IExchange(exchangeAddress);
         catContract = IConsolidatedAuditTrail(catAddress);
     }
 
@@ -130,7 +131,7 @@ contract MunicipalBond is Version, Frozen {
     }
 
     function setOfferingPoolContract(address exchangeAddress) external {
-        exchangeContract = IExemptLiquidityMarketExchange(exchangeAddress);
+        exchangeContract = IExchange(exchangeAddress);
     }
 
     function setConsolidateAuditTrailContract(address catAddress) external {

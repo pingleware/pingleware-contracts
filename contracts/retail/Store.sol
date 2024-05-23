@@ -7,8 +7,7 @@ import "../common/Version.sol";
 import "../common/Owned.sol";
 
 /**
-    @notice This contract implements a simple store that can interact with
-    registered customers. Every customer has its own shopping cart.
+    @notice This contract implements a simple store that can interact with registered customers. Every customer has its own shopping cart.
     @title Retail Store Contract
     @author Harris Brakmic
 */
